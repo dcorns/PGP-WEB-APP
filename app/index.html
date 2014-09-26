@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Personalized Growth Plan</title>
+    <link href='http://fonts.googleapis.com/css?family=Rajdhani:400,700|Source+Code+Pro:400,700|Droid+Serif:400,700' rel='stylesheet' type='text/css'>
+    <link href="css/base.css" type="text/css" rel="stylesheet">
+    <link href="css/header.css" type="text/css" rel="stylesheet">
+    <link href="css/footer.css" type="text/css" rel="stylesheet">
+    <link href="css/nav.css" type="text/css" rel="stylesheet">
+    <link href="css/newSurvey.css" type="text/css" rel="stylesheet">
+    <link href="css/layout.css" type="text/css" rel="stylesheet">
+  </head>
+
+  <body>
+    <header>
+      <img class="header-logo" src="img/logo_wText2.png" alt="logo"></img>
+      <h1 class="header-h1">Personal Growth Plan Self Assessment</h1>
+      <nav>
+        <h1 hidden class="hidden">Navigation</h1>
+        <ul class="nav_ul">
+          <li class="nav_ul-li">
+            <a class="nav_ul-li-a" href="/#/index">Home</a>
+          </li>
+          <li class="nav_ul-li">
+            <a class="nav_ul-li-a" href="#/select">Create PGP</a>
+          </li>
+          <li class="nav_ul-li">
+            <a class="nav_ul-li-a" href="#/view">View PGP</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <div data-ng-app="notesApp">
+      <div data-ng-view>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p class="footer_p">&copy; 2014 Team PGP</p>
+    </footer>
+
+    <script src="bundle.js"></script>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<article data-ng-controller="taController" class="newSurvey">
+  <h1 class="newSurvey-h1">Ceate a Personalized Growth Plan</h1>
+
+  <div data-ng-repeat="note in notes">
+    <p>
+      <form data-ng-show="note.editing" class="newSurvey_form">
+        Name:{{note.name}}</br>
+        goal:<input data-ng-model="note.goal"/>
+        Course:<input data-ng-model="note.course"/></br>
+        RTG1<input data-ng-model="note.rtg1"/></br>
+        RTG2<input data-ng-model="note.rtg2"/></br>
+        RTG3<input data-ng-model="note.rtg3"/></br>
+        <button data-ng-click="saveNote(note)">Save Changes</button>
+      </form>
+
+      <form data-ng-hide="note.editing" class="newSurvey_form">
+        {{note.goal}} , {{note.name}} , {{note.course}} , {{note.rtg1}}
+        , {{note.rtg2}} , {{note.rtg3}} , {{note.note}}
+        <button data-ng-click="editNote(note)">Edit Note</button>
+        <button data-ng-click="deleteNote(note)">Delete Note</button>
+      </form>
+    </p>
+  </div>
+</article>
+
+
+
+<!-- <div data-ng-controller="notesController">
+
+<h1>Display page</h1>
+
+  <button data-ng-click="deleteAll()">Sacrifice All to the MonGOD</button>
+  <p>goal</p>
+  <input type="text" data-ng-model="newNote.goal">
+  <p>name</p>
+  <input type="text" data-ng-model="newNote.name">
+  <input type="text" data-ng-model="newNote.course">
+  <input type="text" data-ng-model="newNote.rtg1">
+  <input type="text" data-ng-model="newNote.rtg2">
+  <input type="text" data-ng-model="newNote.rtg3">
+  <input type="text" data-ng-model="newNote.note">
+
+  <button data-ng-click="saveNewNote()">Save Note</button>
+  <div data-ng-repeat="note in notes">
+    <p>
+      <div data-ng-show="note.editing">
+        <input data-ng-model="note.goal"/>
+        <button data-ng-click="saveNote(note)">Save Changes</button>
+      </div>
+
+      <div data-ng-hide="note.editing">
+        {{note.goal}} |||| {{note.name}} |||| {{note.course}} |||| {{note.rtg1}}
+        |||| {{note.rtg2}} |||| {{note.rtg3}} |||| {{note.note}}
+        <button data-ng-click="editNote(note)">Edit Note</button>
+        <button data-ng-click="deleteNote(note)">Delete Note</button>
+      </div>
+    </p>
+  </div>
+</div>
+ -->
