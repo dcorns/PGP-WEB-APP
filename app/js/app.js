@@ -10,20 +10,16 @@ require('./notes/controllers/ta-controller')(notesApp);
 
 notesApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider
-    .when('/notes', {
-      templateUrl: 'views/notes/notes.html',
+    .when('/student_survey', {
+      templateUrl: 'views/notes/student_survey.html',
       controller: 'notesController'
     })
-    .when('/select', {
-      templateUrl: 'views/notes/select.html',
+    .when('/create_PGP', {
+      templateUrl: 'views/notes/create_PGP.html',
       controller: 'notesController'
     })
-    .when('/ta', {
-      templateUrl: 'views/notes/ta.html',
-      controller: 'notesController'
-    })
-    .when('/view', {
-      templateUrl: 'views/notes/view.html',
+    .when('/view_PGP', {
+      templateUrl: 'views/notes/view_PGP.html',
       controller: 'notesController'
     })
     .otherwise({
