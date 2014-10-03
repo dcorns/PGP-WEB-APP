@@ -1,0 +1,28 @@
+<div data-ng-controller="userController">
+
+    <article class="newUser">
+
+        <form class="newUser_form">
+
+            <fieldset>
+                <legend>New User Information</legend>
+                <label class="newUser_form-lbl">Email Address</label>
+                <textarea rows="1" class="newUser_form-textarea" placeholder="Please enter email address here" ng-model="selectedUser.email"></textarea>
+
+                <label class="newUser_form-lbl">Password</label>
+                <textarea rows="1" placeholder="Please enter password here" ng-model="selectedUser.password"></textarea>
+
+                <label class="newUser_form-lbl">First Name</label>
+                <textarea rows="1" placeholder="Please enter first name here" class="newUser_form-textarea" ng-model="selectedUser.firstName"></textarea>
+
+                <label class="newUser_form-lbl">Last Name</label>
+                <textarea rows="1" placeholder="Please enter last name here" class="newUser_form-textarea" ng-model="selectedUser.lastName"></textarea>
+            </fieldset>
+
+            <button data-ng-click="saveUser(selectedUser)">Create</button>
+
+        </form>
+
+    </article>
+
+</div>

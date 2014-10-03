@@ -93,5 +93,5 @@ module.exports = function(grunt) {
   grunt.registerTask('angulartestwatch', ['angulartest', 'watch:angulartest']);
   grunt.registerTask('test', ['angulartest', 'simplemocha']);
   grunt.registerTask('buildtest', ['test', 'build:dev']);
-  grunt.registerTask('default', ['buildtest', 'watch:express']);
+  grunt.registerTask('default', ['watch:express']);
 };
