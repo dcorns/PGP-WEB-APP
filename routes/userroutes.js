@@ -2,37 +2,47 @@
  * Created by dcorns on 10/2/14.
  */
 'use strict';
+var Note = require('../models/user');
 
-var User = require('../models/user');
+module.exports = function(app) {
+  var baseUrl = '/api/v_0_0_1/users';
 
-var BSON = require('mongodb').BSONPure; //npm install mongodb
-
-
-exports.landing = function(req, res){
-  res.set('Status','200');
-  res.render('index.html');
-};
-
-exports.deleteUser = function(req, res){
-  var id = BSON.ObjectID.createFromHexString(req.params.id);
-  console.dir(req.params.id);
-  db.collection('users').remove({
-    _id: id
-  }, function(err, user){
-    if (err)
-      res.send(err, user);
-    res.json({
-      message: 'User deleted!'
+  app.get(baseUrl, function(req, res){
+    User.find({}, function(err, users) {
+      if (err) return res.status(500).json(err);
+      return res.json(users);
     });
   });
-};
 
-exports.getAllUsers = function(req, res) {
-  db.collection('users').find().toArray(function(err, docs){
-    if(err)
-      res.send(err);
-    res.json(docs);
-    console.dir(docs);
-    console.dir('End of function');
+  app.post(baseUrl, function(req, res) {
+    console.log(req.body);
+    var user = new Note(req.body);
+    user.save(function(err, resUser) {
+      if (err) return res.status(500).json(err);
+      return res.send(resUser);
+    });
+  });
+
+  app.get(baseUrl + '/:id', function(req, res) {
+    User.findOne({'_id': req.params.id}, function(err, user) {
+      if (err) return res.status(500).json(err);
+      return res.json(user);
+    });
+  });
+
+  app.put(baseUrl + '/:id', function(req, res) {
+    var note = req.body;
+    delete user._id;
+    Note.findOneAndUpdate({'_id': req.params.id}, note, function(err, resUser) {
+      if (err) return res.status(500).json(err);
+      return res.status(202).json(resUser);
+    });
+  });
+
+  app.delete(baseUrl + '/:id', function(req, res) {
+    User.remove({'_id': req.params.id}, function(err, resUser) {
+      if (err) return res.status(500).json(err);
+      return res.status(200).json({'msg': 'deleted'});
+    });
   });
 };
