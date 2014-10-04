@@ -2,7 +2,7 @@
  * Created by dcorns on 10/2/14.
  */
 'use strict';
-var Note = require('../models/user');
+var User = require('../models/user');
 
 module.exports = function(app) {
   var baseUrl = '/api/v_0_0_1/users';
@@ -16,7 +16,7 @@ module.exports = function(app) {
 
   app.post(baseUrl, function(req, res) {
     console.log(req.body);
-    var user = new Note(req.body);
+    var user = new User(req.body);
     user.save(function(err, resUser) {
       if (err) return res.status(500).json(err);
       return res.send(resUser);
@@ -31,9 +31,9 @@ module.exports = function(app) {
   });
 
   app.put(baseUrl + '/:id', function(req, res) {
-    var note = req.body;
+    var user = req.body;
     delete user._id;
-    Note.findOneAndUpdate({'_id': req.params.id}, note, function(err, resUser) {
+    User.findOneAndUpdate({'_id': req.params.id}, note, function(err, resUser) {
       if (err) return res.status(500).json(err);
       return res.status(202).json(resUser);
     });

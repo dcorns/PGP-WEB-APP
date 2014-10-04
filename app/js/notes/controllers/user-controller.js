@@ -23,7 +23,7 @@ module.exports = function(app) {
     $scope.saveNewUser = function() {
       $http.post('api/v_0_0_1/users', $scope.newUser)
         .success(function(data) {
-          $scope.notes.push(data);
+          $scope.users.push(data);
         })
         .error(function(data, status) {
           console.log(data);
@@ -32,7 +32,7 @@ module.exports = function(app) {
     };
 
     $scope.editUser = function(user) {
-      note.editing = true;
+      user.editing = true;
     };
 
     $scope.saveUser = function(user) {
@@ -47,7 +47,7 @@ module.exports = function(app) {
     };
 
     $scope.deleteUser = function(user) {
-      $http.delete('api/v_0_0_1/notes/' + note._id, note)
+      $http.delete('api/v_0_0_1/users/' + user._id, user)
         .success(function(data) {
           $scope.getAllUsers();
         })
