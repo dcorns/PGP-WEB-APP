@@ -7,16 +7,16 @@
             <fieldset>
                 <legend>New User Information</legend>
                 <label class="newUser_form-lbl">Email Address</label>
-                <textarea rows="1" class="newUser_form-textarea" placeholder="Please enter email address here" ng-model="selectedUser.email"></textarea>
+                <textarea rows="1" class="newUser_form-textarea" placeholder="Please enter email address here" ng-model="newUser.email"></textarea>
 
                 <label class="newUser_form-lbl">Password</label>
-                <textarea rows="1" placeholder="Please enter password here" ng-model="selectedUser.password"></textarea>
+                <textarea rows="1" placeholder="Please enter password here" ng-model="newUser.password"></textarea>
 
                 <label class="newUser_form-lbl">First Name</label>
-                <textarea rows="1" placeholder="Please enter first name here" class="newUser_form-textarea" ng-model="selectedUser.firstName"></textarea>
+                <textarea rows="1" placeholder="Please enter first name here" class="newUser_form-textarea" ng-model="newUser.firstName"></textarea>
 
                 <label class="newUser_form-lbl">Last Name</label>
-                <textarea rows="1" placeholder="Please enter last name here" class="newUser_form-textarea" ng-model="selectedUser.lastName"></textarea>
+                <textarea rows="1" placeholder="Please enter last name here" class="newUser_form-textarea" ng-model="newUser.lastName"></textarea>
             </fieldset>
 
             <button data-ng-click="saveNewUser(selectedUser)">Create</button>
