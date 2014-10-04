@@ -27,7 +27,11 @@ notesApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'views/notes/create_Account.html',
       controller: 'notesController'
     })
+    .when('/login', {
+      templateUrl: 'views/notes/login.html',
+      controller: 'notesController'
+    })
     .otherwise({
-      redirectTo: '/login'
+      redirectTo: '/notes'
     });
 }]);

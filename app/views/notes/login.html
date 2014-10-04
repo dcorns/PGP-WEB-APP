@@ -1,0 +1,21 @@
+<div data-ng-controller="userController">
+
+    <article class="userLogin">
+
+        <form class="userLogin_form">
+
+            <fieldset>
+                <legend>User Login</legend>
+                <label class="loginUser_form-lbl">Email Address</label>
+                <textarea rows="1" class="loginUser_form-textarea" placeholder="email address" ng-model="loginUser.email"></textarea>
+                <label class="newUser_form-lbl">Password</label>
+                <textarea rows="1" placeholder="password" ng-model="loginUser.password"></textarea>
+            </fieldset>
+
+            <button data-ng-click="userLogin(logindUser)">Submit</button>
+
+        </form>
+
+    </article>
+
+</div>
