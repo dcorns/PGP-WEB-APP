@@ -24,12 +24,30 @@ module.exports = function(app) {
       $http.post('api/v_0_0_1/users', $scope.newUser)
         .success(function(data) {
           $scope.users.push(data);
+          alert("Account created.");
         })
         .error(function(data, status) {
-          console.log(data);
+          console.error(data + ',' + status);
+          alert("There was a problem creating your account");
         });
-      alert("Account created.");
+
     };
+
+    $scope.userLogin = function() {
+      $http.post('api/v_0_0_1/login', $scope.loginUser)
+        .success(function(data) {
+          console.log('success');
+          console.dir(data);
+        })
+        .error(function(data, status) {
+          console.log("error");
+          console.dir(status);
+          alert("There was a problem the login server");
+        });
+      //alert("This should always occur");
+    };
+
+
 
     $scope.editUser = function(user) {
       user.editing = true;
