@@ -4,6 +4,7 @@
 'use strict';
 
 var User = require('../../models/user');
+var bcrypt = require('bcryptjs');
 
 module.exports = function(usrObj) {
   return{
@@ -30,6 +31,14 @@ module.exports = function(usrObj) {
         }
         test(result);
       }
-    }
+    },
+    encrypt: function(cb){
+      bcrypt.genSalt(10, function(err, salt) {
+        bcrypt.hash(usrObj.password, salt, function(err, hash) {
+         usrObj.password = hash;
+            cb(usrObj);
+          });
+        });
+      }
   }
 };

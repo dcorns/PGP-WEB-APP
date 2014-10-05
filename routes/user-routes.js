@@ -3,6 +3,7 @@
  */
 'use strict';
 var User = require('../models/user');
+var auth = require('../api/js/authorize');
 
 module.exports = function(app) {
   var baseUrl = '/api/v_0_0_1/users';
@@ -15,12 +16,16 @@ module.exports = function(app) {
   });
 
   app.post(baseUrl, function(req, res) {
-    console.log(req.body);
     var user = new User(req.body);
-    user.save(function(err, resUser) {
-      if (err) return res.status(500).json(err);
-      return res.send(resUser);
+    user.roll = 'student';
+    var a = auth(user);
+    a.encrypt(function(usr){
+      user.save(function(err, usr) {
+        if (err) return res.status(500).json(err);
+        return res.json(user);
+      });
     });
+
   });
 
   app.get(baseUrl + '/:id', function(req, res) {
