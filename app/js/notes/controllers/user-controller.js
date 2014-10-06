@@ -39,13 +39,15 @@ module.exports = function(app) {
           console.log('user-controller(39)');
           console.log('success: '+ data);
           //Save token in local storage
-          $window.sessionStorage.setItem('token', data);
-                    $location.path('/');
-                    if ($window.sessionStorage.getItem('token')) {
-                        config.headers.Authorization = 'Bearer ' + $window.sessionStorage.getItem('token');
-                      }
-                    console.dir($window.sessionStorage.getItem('token'));
+          window.sessionStorage.setItem('token', data);
+                    //location.path('/');
+//                    if (window.sessionStorage.getItem('token')) {
+//                        config.headers.Authorization = 'Bearer ' + window.sessionStorage.getItem('token');
+//                      }
+                    console.dir(window.sessionStorage.getItem('token'));
+          //window.sessionStorage.removeItem('token');
         })
+
         .error(function(data, status) {
           console.log("error");
           console.dir(status);
