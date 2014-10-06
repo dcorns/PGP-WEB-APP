@@ -15,22 +15,20 @@ module.exports = function(app) {
     });
   });
 
+  //Login
   app.post(baseUrl, function(req, res) {
     console.log(req.body);
     var a = auth(req.body);
     a.authenticate(function(usr){
       if(usr.user && usr.password){
         a.makeToken(function(usr){
-          console.log(usr.token);
-          return res.status(200).json(usr.token);
+          return res.status(200).json(usr.atoken);
         });
       }
       else{
         return res.status(500).json(usr);
       }
     });
-   // console.log(acheck);
-   // return res.status('200').json({j:'j'});
   });
 
   app.get(baseUrl + '/:id', function(req, res) {

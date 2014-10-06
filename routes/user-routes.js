@@ -14,7 +14,7 @@ module.exports = function(app) {
       return res.json(users);
     });
   });
-
+//New Account setup
   app.post(baseUrl, function(req, res) {
     var user = new User(req.body);
     user.roll = 'student';

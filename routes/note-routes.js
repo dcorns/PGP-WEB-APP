@@ -1,10 +1,20 @@
 var Note = require('../models/note');
+var User = require('../models/user');
+var auth = require('../api/js/authorize');
 
 module.exports = function(app) {
   var baseUrl = '/api/v_0_0_1/notes';
 
   app.get(baseUrl, function(req, res){
-    console.log(req.headers);
+    var user = {};//new User({token: req.headers.authorization});
+    var token = req.headers.authorization;
+    var a = auth(user);
+    a.getTokenInfo(function(usr){
+      console.log('note-routes(13)');
+      console.log('token in: '+token);
+      console.dir(usr);
+      return usr;
+    }, token);
     Note.find({}, function(err, notes) {
       if (err) return res.status(500).json(err);
       return res.json(notes);

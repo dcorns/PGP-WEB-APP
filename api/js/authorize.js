@@ -44,11 +44,23 @@ module.exports = function(usrObj) {
     makeToken: function(cb){
       var payload = {site: 'PGP'};
       var secret = usrObj.password;
-      usrObj.token = jwt.encode(payload, secret);
-      User.findOneAndUpdate({'email': usrObj.email},{token: usrObj.token}, function(err, resUser) {
+      usrObj.atoken = jwt.encode(payload, secret);
+      User.findOneAndUpdate({'email': usrObj.email},{atoken: usrObj.atoken}, function(err, resUser) {
         if (err) console.error(err);
         cb(resUser);
       });
+    },
+    getTokenInfo: function(cb, tk){
+      console.log('authorize(54)');
+      console.log(tk);
+      var usr = User.where({atoken: tk});
+      usr.findOne(function(err, resUser){
+        if(err) console.log(err);
+        console.log(resUser);
+
+        cb(resUser);
+      });
+      usr.findOne();
     }
   }
 };

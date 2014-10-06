@@ -2,7 +2,14 @@
 
 module.exports = function(app) {
   app.controller('notesController', function($scope, $http) {
-
+    //Check for authorization before loading notes
+    //window.sessionStorage.removeItem('token');
+    console.log('notes-controller(7)'+sessionStorage.getItem('token'));
+    if(window.sessionStorage.getItem('token')){
+    var token = window.sessionStorage.getItem('token');
+    console.log('notes-controller(5)');
+    console.log(token);
+    $http.defaults.headers.common.Authorization = token;
     $scope.getAllNotes = function() {
       $http({
         method: 'GET',
@@ -56,6 +63,7 @@ module.exports = function(app) {
 
     $scope.deleteAll = function() {
       $scope.notes.forEach(function(note) {$scope.deleteNote(note)});
+    }
     }
   });
 };

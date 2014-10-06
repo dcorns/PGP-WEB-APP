@@ -10,7 +10,7 @@ var userSchema = mongoose.Schema({
   email: String,
   password: String,
   roll: String,
-  token: String
+  atoken: String
 });
 
 module.exports = mongoose.model('User', userSchema);
