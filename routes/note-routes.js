@@ -4,6 +4,7 @@ module.exports = function(app) {
   var baseUrl = '/api/v_0_0_1/notes';
 
   app.get(baseUrl, function(req, res){
+    console.log(req.headers);
     Note.find({}, function(err, notes) {
       if (err) return res.status(500).json(err);
       return res.json(notes);
