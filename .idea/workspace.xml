@@ -4,7 +4,6 @@
     <list default="true" id="23c3429a-4576-41b7-b03d-20ba6343ac4c" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/routes/userroutes.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/test/mocha/api/notes-api-routes-test.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/notes/controllers/user-controller.js" afterPath="$PROJECT_DIR$/app/js/notes/controllers/user-controller.js" />
     </list>
     <ignored path="PGP-Web-App.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,8 +39,8 @@
       <file leaf-file-name="user-controller.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/js/notes/controllers/user-controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6905371" vertical-offset="576" max-vertical-offset="1692">
-              <caret line="47" column="12" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="12" />
+            <state vertical-scroll-proportion="1.4731457" vertical-offset="198" max-vertical-offset="1692">
+              <caret line="43" column="63" selection-start-line="43" selection-start-column="63" selection-end-line="43" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -913,8 +912,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/js/notes/controllers/user-controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6905371" vertical-offset="576" max-vertical-offset="1692">
-          <caret line="47" column="12" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="12" />
+        <state vertical-scroll-proportion="1.4731457" vertical-offset="198" max-vertical-offset="1692">
+          <caret line="43" column="63" selection-start-line="43" selection-start-column="63" selection-end-line="43" selection-end-column="63" />
           <folding />
         </state>
       </provider>
