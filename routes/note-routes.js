@@ -13,8 +13,8 @@ module.exports = function(app) {
       console.log('note-routes(13)');
       console.log('token in: '+token);
       console.dir(usr);
-      return usr;
     }, token);
+
     Note.find({}, function(err, notes) {
       if (err) return res.status(500).json(err);
       return res.json(notes);

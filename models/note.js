@@ -2,6 +2,8 @@ var mongoose = require('mongoose');
 
 var noteSchema = mongoose.Schema({
   name: String,
+  ta: String,
+  student: String,
   course: String,
   rtg1: String,
   rtg2: String,
