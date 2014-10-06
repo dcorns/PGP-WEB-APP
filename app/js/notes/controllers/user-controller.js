@@ -42,7 +42,7 @@ module.exports = function(app) {
         .error(function(data, status) {
           console.log("error");
           console.dir(status);
-          alert("There was a problem the login server");
+          alert("There was a problem signing in");
         });
       //alert("This should always occur");
     };

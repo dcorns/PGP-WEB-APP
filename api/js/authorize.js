@@ -5,6 +5,7 @@
 
 var User = require('../../models/user');
 var bcrypt = require('bcryptjs');
+var jwt = require('jwt-simple');
 
 module.exports = function(usrObj) {
   return{
@@ -28,7 +29,6 @@ module.exports = function(usrObj) {
       function testPassword(usr, result) {
         bcrypt.compare(usrObj.password, usr.password, function(err, res) {
           result.password = res;
-          console.log(result);
           test(result);
         });
       }
@@ -40,6 +40,15 @@ module.exports = function(usrObj) {
             cb(usrObj);
           });
         });
-      }
+      },
+    makeToken: function(cb){
+      var payload = {site: 'PGP'};
+      var secret = usrObj.password;
+      usrObj.token = jwt.encode(payload, secret);
+      User.findOneAndUpdate({'email': usrObj.email},{token: usrObj.token}, function(err, resUser) {
+        if (err) console.error(err);
+        cb(resUser);
+      });
+    }
   }
 };

@@ -38,7 +38,7 @@ module.exports = function(app) {
   app.put(baseUrl + '/:id', function(req, res) {
     var user = req.body;
     delete user._id;
-    User.findOneAndUpdate({'_id': req.params.id}, note, function(err, resUser) {
+    User.findOneAndUpdate({'_id': req.params.id}, user, function(err, resUser) {
       if (err) return res.status(500).json(err);
       return res.status(202).json(resUser);
     });
