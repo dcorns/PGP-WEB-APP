@@ -10,6 +10,8 @@ module.exports = function(app) {
     console.log('notes-controller(5)');
     console.log(token);
     $http.defaults.headers.common.Authorization = token;
+
+
     $scope.getAllNotes = function() {
       $http({
         method: 'GET',
