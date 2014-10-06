@@ -26,10 +26,11 @@ module.exports = function(usrObj) {
       });
       usr.findOne();
       function testPassword(usr, result) {
-        if (usr.password === usrObj.password) {
-          result.password = true;
-        }
-        test(result);
+        bcrypt.compare(usrObj.password, usr.password, function(err, res) {
+          result.password = res;
+          console.log(result);
+          test(result);
+        });
       }
     },
     encrypt: function(cb){
