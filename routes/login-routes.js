@@ -22,7 +22,7 @@ module.exports = function(app) {
     a.authenticate(function(usr){
       if(usr.user && usr.password){
         a.makeToken(function(usr){
-          return res.status(200).json(usr.atoken);
+          return res.status(200).json(usr);
         });
       }
       else{

@@ -37,9 +37,9 @@ module.exports = function(app) {
       $http.post('api/v_0_0_1/login', $scope.loginUser)
         .success(function(data) {
           console.log('user-controller(39)');
-          console.log('success: '+ data);
+          console.log('success: '+ data.atoken);
           //Save token in local storage
-          window.sessionStorage.setItem('token', data);
+          window.sessionStorage.setItem('token', data.atoken);
                     //location.path('/');
 //                    if (window.sessionStorage.getItem('token')) {
 //                        config.headers.Authorization = 'Bearer ' + window.sessionStorage.getItem('token');

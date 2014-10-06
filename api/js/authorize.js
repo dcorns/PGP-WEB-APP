@@ -45,15 +45,19 @@ module.exports = function(usrObj) {
       var payload = {site: 'PGP'};
       var secret = usrObj.password;
       usrObj.atoken = jwt.encode(payload, secret);
+      console.log('authorize(48)');
+      console.log(usrObj.atoken);
       User.findOneAndUpdate({'email': usrObj.email},{atoken: usrObj.atoken}, function(err, resUser) {
         if (err) console.error(err);
+        console.log(resUser);
         cb(resUser);
       });
     },
     getTokenInfo: function(cb, tk){
       console.log('authorize(54)');
+      console.log('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzaXRlIjoiUEdQIn0.nZEgKfoCmRlLgeng09nkJBm14U0Zk79RYG1WNYCMfQs');
       console.log(tk);
-      var usr = User.where({atoken: tk});
+      var usr = User.where({atoken: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzaXRlIjoiUEdQIn0.nZEgKfoCmRlLgeng09nkJBm14U0Zk79RYG1WNYCMfQs'});
       usr.findOne(function(err, resUser){
         if(err) console.log(err);
         console.log(resUser);
