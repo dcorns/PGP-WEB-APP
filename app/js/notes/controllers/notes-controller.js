@@ -2,8 +2,8 @@
 
 module.exports = function(app) {
   app.controller('notesController', function($scope, $http) {
+
     //Check for authorization before loading notes
-    //window.sessionStorage.removeItem('token');
     console.log('notes-controller(7)'+sessionStorage.getItem('token'));
     if(window.sessionStorage.getItem('token')){
     var token = window.sessionStorage.getItem('token');
@@ -18,6 +18,8 @@ module.exports = function(app) {
         url: '/api/v_0_0_1/notes'
       }).success(function(data) {
         $scope.notes = data;
+        console.log('notes-controller(21)');
+        console.dir($scope);
         $scope.selectedNote = $scope.notes[0];
       }).error(function(data, status) {
         console.log('error!');
