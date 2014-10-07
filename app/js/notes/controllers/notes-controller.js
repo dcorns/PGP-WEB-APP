@@ -7,7 +7,7 @@ module.exports = function(app) {
     console.log('notes-controller(7)'+sessionStorage.getItem('token'));
     if(window.sessionStorage.getItem('token')){
     var token = window.sessionStorage.getItem('token');
-    console.log('notes-controller(5)');
+    console.log('notes-controller(10)');
     console.log(token);
     $http.defaults.headers.common.Authorization = token;
 

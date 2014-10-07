@@ -17,6 +17,7 @@ module.exports = function(app) {
 
   //Login
   app.post(baseUrl, function(req, res) {
+    console.log('login-routes(20)');
     console.log(req.body);
     var a = auth(req.body);
     a.authenticate(function(usr){

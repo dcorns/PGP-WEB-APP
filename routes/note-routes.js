@@ -25,6 +25,8 @@ module.exports = function(app) {
         if (usr.roll === 'student') {
           Note.findOne({student: usr.email}, function (err, note) {
             if (err) return res.status(500).json(err);
+            console.log('notes-routes(28)');
+            console.dir(note);
             if (note) {
               return res.json(note);
             }
@@ -39,18 +41,32 @@ module.exports = function(app) {
   });
 
   app.post(baseUrl, function(req, res) {
+    console.log('note-routes(42)');
     console.log(req.body);
     var token = req.headers.authorization;
     var user = {};
     var a = auth(user);
     a.getTokenInfo(function(usr){
-
+      Note.findOne({student: usr.email}, function (err, note) {
+        if (err) console.error(err);
+        var newNote = new Note(req.body);
+        if (note) {
+          Note.findOneAndUpdate({student: note.student}, newNote, function(err, resNote) {
+            if (err) return res.status(500).json(err);
+            return res.status(202).json(resNote);
+          });
+        }
+        else {
+          newNote.student = usr.email;
+          console.log('note-routes(56)');
+          console.dir(newNote);
+          newNote.save(function(err, resNote){
+            if (err) return res.status(500).json(err);
+            return res.send(resNote);
+          });
+        }
+      })
     }, token);
-    var note = new Note(req.body);
-    note.save(function(err, resNote) {
-      if (err) return res.status(500).json(err);
-      return res.send(resNote);
-    });
   });
 
   app.get(baseUrl + '/:id', function(req, res) {
