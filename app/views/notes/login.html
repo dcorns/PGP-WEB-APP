@@ -7,9 +7,9 @@
             <fieldset>
                 <legend>User Login</legend>
                 <label class="loginUser_form-lbl">Email Address</label>
-                <textarea rows="1" class="loginUser_form-textarea" placeholder="email address" ng-model="loginUser.email"></textarea>
+                <input class="loginUser_form-textarea" placeholder="email address" type="email" ng-model="loginUser.email"></textarea>
                 <label class="newUser_form-lbl">Password</label>
-                <textarea rows="1" placeholder="password" ng-model="loginUser.password"></textarea>
+                <input placeholder="password" type="password" ng-model="loginUser.password"></textarea>
             </fieldset>
 
             <button data-ng-click="userLogin(loginUser)">Submit</button>

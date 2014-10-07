@@ -28,7 +28,8 @@ module.exports = function(app) {
             console.log('notes-routes(28)');
             console.dir(note);
             if (note) {
-              return res.json(note);
+              var singleNote = [note];
+              return res.json(singleNote);
             }
             else {
               return res.json({});
