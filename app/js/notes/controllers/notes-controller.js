@@ -19,8 +19,13 @@ module.exports = function(app) {
       }).success(function(data) {
         $scope.notes = data;
         console.log('notes-controller(21)');
-        console.dir($scope);
+        console.dir($scope.notes);
         $scope.selectedNote = $scope.notes[0];
+        $scope.rtg1 = data[0].rtg1;
+        var test = angular.element(document.getElementById('rtg1'));
+        test.val(data[0].rtg1);
+        console.dir($scope.selectedNote);
+        console.log($scope.rtg1+', '+data[0].rtg1);
       }).error(function(data, status) {
         console.log('error!');
         console.log(status);
