@@ -1,28 +1,29 @@
 <div data-ng-controller="userController">
+  <article class="newUser">
+    <form class="newUser_form">
+      <fieldset>
+        <legend>New User Information</legend>
+        <div>
+          <label class="newUser_form-lbl">Email Address</label>
+          <input class="newUser_form-textarea" type="email" placeholder="Best email?" ng-model="newUser.email">
+        </div>
 
-    <article class="newUser">
+        <div>
+          <label class="newUser_form-lbl">Password</label>
+          <input type="password" placeholder="Choose password" ng-model="newUser.password">
+        </div>
 
-        <form class="newUser_form">
+        <div>
+          <label class="newUser_form-lbl">First Name</label>
+          <input type="text" placeholder="First name?" class="newUser_form-textarea" ng-model="newUser.firstName">
+        </div>
 
-            <fieldset>
-                <legend>New User Information</legend>
-                <label class="newUser_form-lbl">Email Address</label>
-                <input class="newUser_form-textarea" type="email" placeholder="Please enter email address here" ng-model="newUser.email">
-
-                <label class="newUser_form-lbl">Password</label>
-                <input type="text" placeholder="Please enter password here" ng-model="newUser.password"></textarea>
-
-                <label class="newUser_form-lbl">First Name</label>
-                <input type="text" placeholder="Please enter first name here" class="newUser_form-textarea" ng-model="newUser.firstName">
-
-                <label class="newUser_form-lbl">Last Name</label>
-                <input type="text" placeholder="Please enter last name here" class="newUser_form-textarea" ng-model="newUser.lastName">
-            </fieldset>
-
-            <button data-ng-click="saveNewUser(selectedUser)">Create</button>
-
-        </form>
-
-    </article>
-
+        <div>
+          <label class="newUser_form-lbl">Last Name</label>
+          <input type="text" placeholder="Last name?" class="newUser_form-textarea" ng-model="newUser.lastName">
+        </div>
+      </fieldset>
+      <button data-ng-click="saveNewUser(selectedUser)">Create</button>
+    </form>
+  </article>
 </div>
