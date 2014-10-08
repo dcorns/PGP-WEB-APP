@@ -14,11 +14,11 @@ module.exports = function(app) {
       console.log('token in: '+token);
       console.dir(usr);
       console.log('role = '+usr.roll);
-      if(usr.roll === 'ta'){
 
+      if(usr.roll === 'ta'){
         Note.find({}, function(err, notes) {
           if (err) return res.status(500).json(err);
-          return res.json(notes);
+          return res.status(200).json(notes);
         });
       }
       else {
@@ -28,11 +28,10 @@ module.exports = function(app) {
             console.log('notes-routes(28)');
             console.dir(note);
             if (note) {
-              var singleNote = [note];
-              return res.json(singleNote);
+              return res.status(200).json(note);
             }
             else {
-              return res.json({});
+              return res.status(201).send(note);
             }
 
           })
@@ -59,6 +58,7 @@ module.exports = function(app) {
           });
         }
         else {
+          var newNote = new Note(req.body);
           newNote.student = usr.email;
           console.log('note-routes(62)');
           console.dir(newNote);

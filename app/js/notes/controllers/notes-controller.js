@@ -11,19 +11,38 @@ module.exports = function(app) {
     console.log(token);
     $http.defaults.headers.common.Authorization = token;
 
+    $scope.notes = [];
 
     $scope.getAllNotes = function() {
       $http({
         method: 'GET',
         url: '/api/v_0_0_1/notes'
       }).success(function(data) {
-        $scope.notes = data;
         console.log('notes-controller(21)');
-        console.dir($scope.notes);
-        $scope.selectedNote = $scope.notes[0];
+        console.dir(data);
+        if(data) {
+          console.log('data is truthy');
+          if(Array.isArray(data)) $scope.notes = data;
+          else $scope.notes = [data];
+          console.dir($scope.notes);
+          $scope.selectedNote = $scope.notes[0];
+          console.dir($scope.selectedNote);
+          console.log($scope.selectedNote.course);
+          //load input fields with existing data
+          var ux = ui();
+          ux.fillInput("course", $scope.selectedNote.course);
+          ux.fillInput("rtg1", $scope.selectedNote.rtg1);
+          ux.fillInput("rtg2", $scope.selectedNote.rtg2);
+          ux.fillInput("rtg3", $scope.selectedNote.rtg3);
+          ux.fillInput("goal", $scope.selectedNote.goal);
+          ux.fillInput("note", $scope.selectedNote.note);
+        }
+        else {
+          $scope.selectedNote = {};
+        }
         console.dir($scope.selectedNote);
-       // ui.fillInput("course", $scope.notes[0].course);
       }).error(function(data, status) {
+        console.log(data);
         console.log('error!');
         console.log(status);
       });
@@ -34,16 +53,18 @@ module.exports = function(app) {
     $scope.saveNewNote = function() {
       $http.post('api/v_0_0_1/notes', $scope.newNote)
         .success(function(data) {
-          console.log('notes-controller(37)');
+          console.log('notes-controller(44)');
           console.log(data);
           console.log($scope.notes);
-          $scope.notes.push(data);
+          if(Array.isArray($scope.notes)) $scope.notes.push(data);
+          else $scope.notes = [data];
           console.log($scope.notes);
+          alert("Your self-assessment has been submitted. Thank you!");
         })
         .error(function(data, status) {
           console.log(data);
+          alert("There was a problem submitting your assessment");
         });
-      alert("Your self-assessment has been submitted. Thank you!");
     };
 
     $scope.editNote = function(note) {

@@ -43,11 +43,17 @@ module.exports = function(app) {
           console.log('success: '+ data.atoken);
           //Save token in local storage
           window.sessionStorage.setItem('token', data.atoken);
-                    //location.path('/');
-//                    if (window.sessionStorage.getItem('token')) {
-//                        config.headers.Authorization = 'Bearer ' + window.sessionStorage.getItem('token');
-//                      }
-                    console.dir(window.sessionStorage.getItem('token'));
+
+          document.getElementById('createaccount').class = 'hidden';
+          document.getElementById('btnlogin').class = 'hidden';
+          if(data.roll === 'ta'){
+            document.getElementById('survey').class = 'hidden';
+          }
+          else{
+            if(data.roll === 'student'){
+              document.getElementById('createpgp').class = 'hidden';
+            }
+          }
 
         })
 
