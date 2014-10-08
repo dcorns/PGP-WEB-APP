@@ -36,6 +36,17 @@ module.exports = function(app) {
           ux.fillInput("rtg3", $scope.selectedNote.rtg3);
           ux.fillInput("goal", $scope.selectedNote.goal);
           ux.fillInput("note", $scope.selectedNote.note);
+          ux.fillInput("course", $scope.selectedNote.course);
+          ux.fillInput("rtg4", $scope.selectedNote.rtg4);
+          ux.fillInput("rtg5", $scope.selectedNote.rtg5);
+          ux.fillInput("rtg6", $scope.selectedNote.rtg6);
+          ux.fillInput("rtg7", $scope.selectedNote.rtg7);
+          ux.fillInput("goal", $scope.selectedNote.goal);
+          ux.fillInput("goal2", $scope.selectedNote.goal2);
+          ux.fillInput("goal3", $scope.selectedNote.goal3);
+          ux.fillInput("goal4", $scope.selectedNote.goal4);
+          ux.fillInput("goal5", $scope.selectedNote.goal5);
+          ux.fillInput("note", $scope.selectedNote.note);
         }
         else {
           $scope.selectedNote = {};
