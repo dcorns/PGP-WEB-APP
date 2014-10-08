@@ -50,22 +50,24 @@ module.exports = function(app) {
     a.getTokenInfo(function(usr){
       Note.findOne({student: usr.email}, function (err, note) {
         if (err) console.error(err);
-        var newNote = new Note(req.body);
         if (note) {
-          Note.findOneAndUpdate({student: note.student}, newNote, function(err, resNote) {
+          console.log('note-routes(55)');
+          console.dir(note);
+          Note.findOneAndUpdate({student: note.student}, req.body, function(err, resNote) {
             if (err) return res.status(500).json(err);
             return res.status(202).json(resNote);
           });
         }
         else {
           newNote.student = usr.email;
-          console.log('note-routes(56)');
+          console.log('note-routes(62)');
           console.dir(newNote);
           newNote.save(function(err, resNote){
-            if (err) return res.status(500).json(err);
-            return res.send(resNote);
+            if (err) return res.status(505).json(err);
+            return res.status(202).json(resNote);
           });
         }
+
       })
     }, token);
   });

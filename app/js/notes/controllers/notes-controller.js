@@ -2,7 +2,7 @@
 
 module.exports = function(app) {
   app.controller('notesController', function($scope, $http) {
-
+    var ui = require('../../ui');
     //Check for authorization before loading notes
     console.log('notes-controller(7)'+sessionStorage.getItem('token'));
     if(window.sessionStorage.getItem('token')){
@@ -21,11 +21,8 @@ module.exports = function(app) {
         console.log('notes-controller(21)');
         console.dir($scope.notes);
         $scope.selectedNote = $scope.notes[0];
-        $scope.rtg1 = data[0].rtg1;
-        var test = angular.element(document.getElementById('rtg1'));
-        test.val(data[0].rtg1);
         console.dir($scope.selectedNote);
-        console.log($scope.rtg1+', '+data[0].rtg1);
+       // ui.fillInput("course", $scope.notes[0].course);
       }).error(function(data, status) {
         console.log('error!');
         console.log(status);
@@ -37,7 +34,11 @@ module.exports = function(app) {
     $scope.saveNewNote = function() {
       $http.post('api/v_0_0_1/notes', $scope.newNote)
         .success(function(data) {
+          console.log('notes-controller(37)');
+          console.log(data);
+          console.log($scope.notes);
           $scope.notes.push(data);
+          console.log($scope.notes);
         })
         .error(function(data, status) {
           console.log(data);

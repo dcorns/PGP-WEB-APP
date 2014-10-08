@@ -1,12 +1,13 @@
-<article class="newSurvey">
+<article data-ng-controller="notesController" class="newSurvey">
   <h1 hidden class="hidden">New Student Survey</h1>
 
-  <form name="survey" data-ng-controller="notesController" class="newSurvey_form">
+  <form name="survey" class="newSurvey_form">
 
     <fieldset class="newSurvey_form-info">
       <legend>Student Information</legend>
-        <label class="newSurvey_form-lbl" data-ng-bind=selectedNote.student></label>
-        <label class="newSurvey_form-lbl">{{selectedNote.course}}</label>
+        <label class="newSurvey_form-lbl">{{selectedNote.student}}</label>
+        <label class="newSurvey_form-lbl">Course</label>
+        <input id="course" class="newSurvey_form-lbl" data-ng-model="newNote.course">
     </fieldset>
 
     <section>
@@ -16,22 +17,22 @@
     </section>
 
     <fieldset name="rating" class="newSurvey_form-sbj">
-      <label for="rtg1" class="newSurvey_form-lbl">HTML:</label>
-      <input id="rtg1" name="rtg1" class="newSurvey_form-text" type="number" min="1" max="10" data-ng-bind=rtg1>
+      <label class="newSurvey_form-lbl">HTML:</label>
+      <input class="newSurvey_form-text" placeholder="1-10" type="number" min="1" max="10" data-ng-model="newNote.rtg1">
       <label class="newSurvey_form-lbl">CSS:</label>
-      <input class="newSurvey_form-text" placeholder="1-10" type="number" min="1" max="10" data-ng-model="selectedNote.rtg2">
+      <input class="newSurvey_form-text" placeholder="1-10" type="number" min="1" max="10" data-ng-model="newNote.rtg2">
       <label class="newSurvey_form-lbl">Javascript:</label>
-      <input class="newSurvey_form-text" placeholder="1-10" type="number" min="1" max="10" data-ng-bind="selectedNote.rtg3">
+      <input class="newSurvey_form-text" placeholder="1-10" type="number" min="1" max="10" data-ng-model="newNote.rtg3">
     </fieldset>
 
     <fieldset>
       <legend>Goals</legend>
-      <textarea rows="10" class="newSurvey_form-textarea" placeholder="What would you like to do with your new skills?"  data-ng-model="newNote.goal"></textarea>
+      <textarea rows="10" class="newSurvey_form-textarea" placeholder="What would you like to do with your new skills?" data-ng-model="newNote.goal">{{selectedNote.goal}}</textarea>
     </fieldset>
 
     <fieldset>
       <legend>Questions/Concerns?</legend>
-      <textarea rows="10" class="newSurvey_form-textarea" placeholder="Please share any questions or concerns you may have." type="text" data-ng-model="newNote.note"></textarea>
+      <textarea rows="10" class="newSurvey_form-textarea" placeholder="Please share any questions or concerns you may have." data-ng-model="newNote.note">{{selectedNote.note}}</textarea>
     </fieldset>
 
     <button data-ng-click="saveNewNote()">SUBMIT</button>
