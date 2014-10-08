@@ -12,6 +12,8 @@ app.use(express.static(__dirname + (process.env.STATIC_DIR || '/build')));
 
 app.use(bodyparser.json());
 require('./routes/note-routes')(app);
+require('./routes/user-routes')(app);
+require('./routes/login-routes')(app);
 
 var server = http.createServer(app);
 
