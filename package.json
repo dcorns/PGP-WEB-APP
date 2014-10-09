@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "Track student learning objectives",
   "main": "index.js",
+  "engines": {
+    "node": "0.10.32",
+    "npm": "1.4.28"
+  },
   "scripts": {
     "test": "grunt test"
   },
