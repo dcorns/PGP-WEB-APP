@@ -25,6 +25,7 @@ module.exports = function(app) {
         .success(function(data) {
           $scope.users.push(data);
           alert("Account created.");
+          window.location="/#/login";
         })
         .error(function(data, status) {
           console.error(data + ',' + status);
@@ -48,10 +49,12 @@ module.exports = function(app) {
           document.getElementById('btnlogin').class = 'hidden';
           if(data.roll === 'ta'){
             document.getElementById('survey').class = 'hidden';
+            window.location="/#/view_PGP";
           }
           else{
             if(data.roll === 'student'){
               document.getElementById('createpgp').class = 'hidden';
+              window.location="/#/student_survey";
             }
           }
 

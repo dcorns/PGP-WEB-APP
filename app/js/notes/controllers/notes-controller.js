@@ -71,6 +71,7 @@ module.exports = function(app) {
           else $scope.notes = [data];
           console.log($scope.notes);
           alert("Your self-assessment has been submitted. Thank you!");
+          window.location="/#/home";
         })
         .error(function(data, status) {
           console.log(data);

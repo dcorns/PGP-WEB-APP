@@ -32,6 +32,8 @@ notesApp.config(['$routeProvider', function($routeProvider) {
       controller: 'notesController'
     })
     .otherwise({
-      redirectTo: '/notes'
+      //redirectTo: '/views/notes/home.html'
+      templateUrl: 'views/notes/home.html',
+      controller:'notesController'
     });
 }]);
