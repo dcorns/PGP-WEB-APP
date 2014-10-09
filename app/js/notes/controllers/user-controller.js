@@ -45,18 +45,18 @@ module.exports = function(app) {
           //Save token in local storage
           window.sessionStorage.setItem('token', data.atoken);
 
-          var tird = document.getElementById('btncreateaccount');
-          tird.class = 'hidden';
-          console.log('user-controller(49)');
-          console.log(tird);
-          document.getElementById('btnlogin').class = 'hidden';
+          var ca = document.getElementById('btncreateaccount');
+          ca.className = 'hidden';
+
           if(data.roll === 'ta'){
-            document.getElementById('btnsurvey').class = 'hidden';
+            document.getElementById('btnsurvey').className = 'hidden';
+            document.getElementById('btncreatepgp').className = 'nav_ul-li';
             window.location="/#/view_PGP";
           }
           else{
             if(data.roll === 'student'){
-              document.getElementById('btncreatepgp').class = 'hidden';
+              document.getElementById('btncreatepgp').className = 'hidden';
+              document.getElementById('btnsurvey').className = 'nav_ul-li';
               window.location="/#/student_survey";
             }
           }
