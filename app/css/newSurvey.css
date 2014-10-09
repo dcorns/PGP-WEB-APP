@@ -20,6 +20,7 @@ legend, h1, .newSurvey-h1 {
   font-family: "Rajdhani", sans-serif;
   font-size: 2.5rem;
   font-weight: bold;
+  padding: 1rem;
 }
 
 .newSurvey_select {
@@ -58,7 +59,6 @@ input[placeholder="Course"] {
 
 .newSurvey_form-sbj {
   display: block;
-  text-align: center;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 2rem;

@@ -6,7 +6,7 @@
 
     <fieldset class="newSurvey_form-info">
       <legend>Student Information</legend>
-        <label class="newSurvey_form-lbl">{{selectedNote.student}}</label>
+        <label class="newSurvey_form-lbl">{{selectedNote.student}}</label></br>
         <label class="newSurvey_form-lbl">Course</label>
         <input id="course" class="newSurvey_form-lbl" data-ng-model="newNote.course">
     </fieldset>
@@ -18,34 +18,62 @@
     </section>
 
     <fieldset name="rating" class="newSurvey_form-sbj">
-      <label class="newSurvey_form-lbl">HTML:</label>
-      <input id="rtg1" class="newSurvey_form-text" placeholder="1-5" type="number" min="1" max="5" data-ng-model="newNote.rtg1">
-      <label class="newSurvey_form-lbl">CSS:</label>
-      <input id="rtg2" class="newSurvey_form-text" placeholder="1-5" type="number" min="1" max="5" data-ng-model="newNote.rtg2">
-      <label class="newSurvey_form-lbl">JavaScript:</label>
-      <input id="rtg3" class="newSurvey_form-text" placeholder="1-5" type="number" min="1" max="5" data-ng-model="newNote.rtg3">
-        <label class="newSurvey_form-lbl">GIT:</label>
-        <input id="rtg4" class="newSurvey_form-text" placeholder="1-5" type="number" min="1" max="5" data-ng-model="newNote.rtg4">
-        <label class="newSurvey_form-lbl">data structures and algorithms:</label>
-        <input id="rtg5" class="newSurvey_form-text" placeholder="1-5" type="number" min="1" max="5" data-ng-model="newNote.rtg5">
-        <label class="newSurvey_form-lbl">command line interface:</label>
-        <input id="rtg6" class="newSurvey_form-text" placeholder="1-5" type="number" min="1" max="5" data-ng-model="newNote.rtg6">
-        <label class="newSurvey_form-lbl">object-oriented programming:</label>
-        <input id="rtg7" class="newSurvey_form-text" placeholder="1-5" type="number" min="1" max="10" data-ng-model="newNote.rtg7">
+      <div>
+        <input id="rtg1" class="newSurvey_form-text" placeholder="1-5" type="number" data-ng-model="newNote.rtg1">
+        <label class="newSurvey_form-lbl" for="rtg1">— HTML</label>
+      </div>
+
+      <div>
+        <input id="rtg2" class="newSurvey_form-text" placeholder="1-5" type="number" data-ng-model="newNote.rtg2">
+        <label class="newSurvey_form-lbl" for="rtg2">— CSS</label>
+      </div>
+
+      <div>
+        <input id="rtg3" class="newSurvey_form-text" placeholder="1-5" type="number" data-ng-model="newNote.rtg3">
+        <label class="newSurvey_form-lbl" for="rtg3">— JavaScript</label>
+      </div>
+
+      <div>
+        <input id="rtg4" class="newSurvey_form-text" placeholder="1-5" type="number" data-ng-model="newNote.rtg4">
+        <label class="newSurvey_form-lbl" for="rtg4">— GIT</label>
+      </div>
+
+      <div>
+        <input id="rtg5" class="newSurvey_form-text" placeholder="1-5" type="number" data-ng-model="newNote.rtg5">
+        <label class="newSurvey_form-lbl" for="rtg5">— Data structures and algorithms</label>
+      </div>
+
+      <div>
+        <input id="rtg6" class="newSurvey_form-text" placeholder="1-5" type="number" data-ng-model="newNote.rtg6">
+        <label class="newSurvey_form-lbl" for="rtg6">— Command line interface</label>
+      </div>
+
+      <div>
+        <input id="rtg7" class="newSurvey_form-text" placeholder="1-5" type="number" data-ng-model="newNote.rtg7">
+        <label class="newSurvey_form-lbl" for="rtg7">— Object-oriented programming</label>
+      </div>
     </fieldset>
 
     <fieldset>
       <legend>Goals</legend>
-        <label>What are your long-term goals?</label>
-      <textarea id="goal" rows="10" class="newSurvey_form-textarea" placeholder="What are your long-term goals?" data-ng-model="newNote.goal">{{selectedNote.goal}}</textarea>
-        <label>Why are you interested in developing your computer/coding skills?</label>
-        <textarea id="goal2" rows="10" class="newSurvey_form-textarea" placeholder="Why are you interested in developing your computer/coding skills?" data-ng-model="newNote.goal2">{{selectedNote.goal2}}</textarea>
-        <label>What kinds of problems do you like working on?</label>
-        <textarea id="goal3" rows="10" class="newSurvey_form-textarea" placeholder="What kinds of problems do you like working on?" data-ng-model="newNote.goal3">{{selectedNote.goal3}}</textarea>
-        <label>What would you like to do next?</label>
-        <textarea id="goal4" rows="10" class="newSurvey_form-textarea" placeholder="What would you like to do next?" data-ng-model="newNote.goal4">{{selectedNote.goal4}}</textarea>
-        <label>What would you like to be able to accomplish with code?</label>
-        <textarea id="goal5" rows="10" class="newSurvey_form-textarea" placeholder="What would you like to be able to accomplish with code?" data-ng-model="newNote.goal5">{{selectedNote.goal5}}</textarea>
+      <label for="goal">What are your long-term goals?</label>
+      <textarea id="goal" rows="10" class="newSurvey_form-textarea" placeholder="What are your long-term goals?" data-ng-model="newNote.goal">
+        {{selectedNote.goal}}
+      </textarea>
+      <label for="goal2">Why are you interested in developing your computer/coding skills?</label>
+      <textarea id="goal2" rows="10" class="newSurvey_form-textarea" placeholder="Why are you interested in developing your computer/coding skills?" data-ng-model="newNote.goal2">{{selectedNote.goal2}}</textarea>
+      <label for="goal3">What kinds of problems do you like working on?</label>
+      <textarea id="goal3" rows="10" class="newSurvey_form-textarea" placeholder="What kinds of problems do you like working on?" data-ng-model="newNote.goal3">
+        {{selectedNote.goal3}}
+      </textarea>
+      <label for="goal4">What would you like to do next?</label>
+      <textarea id="goal4" rows="10" class="newSurvey_form-textarea" placeholder="What would you like to do next?" data-ng-model="newNote.goal4">
+        {{selectedNote.goal4}}
+      </textarea>
+      <label for="goal5">What would you like to be able to accomplish with code?</label>
+      <textarea id="goal5" rows="10" class="newSurvey_form-textarea" placeholder="What would you like to be able to accomplish with code?" data-ng-model="newNote.goal5">
+        {{selectedNote.goal5}}
+      </textarea>
     </fieldset>
 
     <fieldset>
