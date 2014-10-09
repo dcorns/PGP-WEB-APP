@@ -29,6 +29,7 @@ module.exports = function(app) {
           console.dir($scope.selectedNote);
           console.log($scope.selectedNote.course);
           //load input fields with existing data
+          $scope.hidetest = true;
           var ux = ui();
           ux.fillInput("course", $scope.selectedNote.course);
           ux.fillInput("rtg1", $scope.selectedNote.rtg1);
