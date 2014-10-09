@@ -24,7 +24,7 @@ module.exports = function(app) {
       $http.post('api/v_0_0_1/users', $scope.newUser)
         .success(function(data) {
           $scope.users.push(data);
-          alert("Account created.");
+          alert("Welcome! Your account was created. Please sign in to complete your survey.");
           window.location="/#/login";
         })
         .error(function(data, status) {
