@@ -1,28 +1,29 @@
 {
-  "name": "sea-b20-notes",
-  "version": "0.0.0",
-  "description": "A simple note taking app",
+  "name": "code-fellows-pgp",
+  "version": "0.0.1",
+  "description": "Track student learning objectives",
   "main": "index.js",
   "scripts": {
     "test": "grunt test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/codefellows/sea-b20-notes.git"
+    "url": "https://github.com/codefellows/PGP-Web-App"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/codefellows/sea-b20-notes/issues"
+    "url": "https://github.com/codefellows/PGP-Web-App/issues"
   },
-  "homepage": "https://github.com/codefellows/sea-b20-notes",
+  "homepage": "https://github.com/codefellows/PGP-Web-App",
   "dependencies": {
     "bcryptjs": "^2.0.2",
     "body-parser": "^1.6.3",
     "express": "^4.7.4",
     "jwt-simple": "^0.2.0",
     "mongoose": "^3.8.14",
-    "sinon": "^1.10.3"
+    "bcryptjs": "latest",
+    "jwt-simple": "latest"
   },
   "devDependencies": {
     "angular": "^1.2.23",
