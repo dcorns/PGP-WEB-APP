@@ -25,6 +25,7 @@ module.exports = function(app) {
         .success(function(data) {
           $scope.users.push(data);
           alert("Account created.");
+          window.location="/#/login";
         })
         .error(function(data, status) {
           console.error(data + ',' + status);
@@ -44,14 +45,19 @@ module.exports = function(app) {
           //Save token in local storage
           window.sessionStorage.setItem('token', data.atoken);
 
-          document.getElementById('createaccount').class = 'hidden';
+          var tird = document.getElementById('btncreateaccount');
+          tird.class = 'hidden';
+          console.log('user-controller(49)');
+          console.log(tird);
           document.getElementById('btnlogin').class = 'hidden';
           if(data.roll === 'ta'){
-            document.getElementById('survey').class = 'hidden';
+            document.getElementById('btnsurvey').class = 'hidden';
+            window.location="/#/view_PGP";
           }
           else{
             if(data.roll === 'student'){
-              document.getElementById('createpgp').class = 'hidden';
+              document.getElementById('btncreatepgp').class = 'hidden';
+              window.location="/#/student_survey";
             }
           }
 

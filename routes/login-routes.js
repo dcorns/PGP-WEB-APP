@@ -17,6 +17,9 @@ module.exports = function(app) {
 
   //Login
   app.post(baseUrl, function(req, res) {
+    console.log('login-routes(20)');
+    req.body.email = req.body.email.toLowerCase();
+    console.log(req.body);
     var a = auth(req.body);
     a.authenticate(function(usr){
       if(usr.user && usr.password){

@@ -18,6 +18,7 @@ module.exports = function(app) {
   app.post(baseUrl, function(req, res) {
     var user = new User(req.body);
     user.roll = 'student';
+    user.email = user.email.toLowerCase();
     var a = auth(user);
     a.encrypt(function(usr){
       user.save(function(err, usr) {

@@ -13,7 +13,7 @@ module.exports = function(usrObj) {
       return usrObj;
     },
     authenticate: function(test) {
-      var usr = User.where({email: usrObj.email});
+      var usr = User.where({email: usrObj.email.toLowerCase()});
       console.log('authorize(17)');
       console.dir(usrObj);
       usr.findOne(function (err, user) {
