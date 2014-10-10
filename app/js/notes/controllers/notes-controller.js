@@ -3,6 +3,10 @@
 module.exports = function(app) {
   app.controller('notesController', function($scope, $http) {
     var ui = require('../../ui');
+    //hide buttons before authorization
+    document.getElementById('btncreatepgp').className = 'hidden';
+    document.getElementById('btnsurvey').className = 'hidden';
+    document.getElementById('btnviewpgp').className = 'hidden';
     //Check for authorization before loading notes
     console.log('notes-controller(7)'+sessionStorage.getItem('token'));
     if(window.sessionStorage.getItem('token')){
@@ -51,6 +55,8 @@ module.exports = function(app) {
         }
         else {
           $scope.selectedNote = {};
+          console.log('notes-controller(55)');
+
         }
         console.dir($scope.selectedNote);
       }).error(function(data, status) {
