@@ -51,7 +51,7 @@ module.exports = function(app) {
           if(data.roll === 'ta'){
             document.getElementById('btnsurvey').className = 'hidden';
             document.getElementById('btncreatepgp').className = 'nav_ul-li';
-            window.location="/#/view_PGP";
+            window.location="/#/create_PGP";
           }
           else{
             if(data.roll === 'student'){

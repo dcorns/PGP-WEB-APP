@@ -7,31 +7,27 @@ module.exports = function(app) {
     document.getElementById('btncreatepgp').className = 'hidden';
     document.getElementById('btnsurvey').className = 'hidden';
     document.getElementById('btnviewpgp').className = 'hidden';
+
     //Check for authorization before loading notes
-    console.log('notes-controller(7)'+sessionStorage.getItem('token'));
     if(window.sessionStorage.getItem('token')){
     var token = window.sessionStorage.getItem('token');
-    console.log('notes-controller(10)');
-    console.log(token);
     $http.defaults.headers.common.Authorization = token;
 
     $scope.notes = [];
-
     $scope.getAllNotes = function() {
       $http({
         method: 'GET',
         url: '/api/v_0_0_1/notes'
       }).success(function(data) {
-        console.log('notes-controller(21)');
-        console.dir(data);
         if(data) {
-          console.log('data is truthy');
-          if(Array.isArray(data)) $scope.notes = data;
-          else $scope.notes = [data];
-          console.dir($scope.notes);
+          if(Array.isArray(data)){
+            $scope.notes = data;
+          }
+          else {
+            $scope.notes = [data];
+          }
           $scope.selectedNote = $scope.notes[0];
-          console.dir($scope.selectedNote);
-          console.log($scope.selectedNote.course);
+
           //load input fields with existing data
           $scope.hidetest = true;
           var ux = ui();
@@ -55,10 +51,7 @@ module.exports = function(app) {
         }
         else {
           $scope.selectedNote = {};
-          console.log('notes-controller(55)');
-
         }
-        console.dir($scope.selectedNote);
       }).error(function(data, status) {
         console.log(data);
         console.log('error!');
