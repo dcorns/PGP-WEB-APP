@@ -6,17 +6,12 @@ module.exports = function(app) {
   var baseUrl = '/api/v_0_0_1/notes';
 
   app.get(baseUrl, function(req, res){
-    console.log('note-routes(9)');
     var user = {};
     var token = req.headers.authorization;
     var a = auth(user);
-    a.getTokenInfo(function(usr){
-      console.log('note-routes(13)');
-      console.log('token in: '+token);
-      if(typeof token != 'undefined'){
-        console.dir(usr);
-        console.log('role = '+usr.roll);
 
+    a.getTokenInfo(function(usr){
+      if(typeof token != 'undefined'){
         if(usr.roll === 'ta'){
           Note.find({}, function(err, notes) {
             if (err) return res.status(500).json(err);
@@ -26,9 +21,9 @@ module.exports = function(app) {
         else {
           if (usr.roll === 'student') {
             Note.findOne({student: usr.email}, function (err, note) {
-              if (err) return res.status(500).json(err);
-              console.log('notes-routes(28)');
-              console.dir(note);
+              if (err) {
+                return res.status(500).json(err);
+              }
               if (note) {
                 return res.status(200).json(note);
               }
