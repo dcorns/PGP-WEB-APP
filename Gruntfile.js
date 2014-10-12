@@ -109,7 +109,7 @@ module.exports = function(grunt) {
     }
   });
   grunt.registerTask('build:dev', ['clean:dev', 'browserify:dev', 'copy:dev']);
-  grunt.registerTask('build:production', ['clean:dev', 'browserify:dev', 'copy:dev']);
+  grunt.registerTask('build:production', ['clean:production', 'browserify:production', 'copy:production']);
   grunt.registerTask('angulartest', ['browserify:angulartest', 'karma:unit']);
   grunt.registerTask('angulartestwatch', ['angulartest', 'watch:angulartest']);
   grunt.registerTask('test', ['angulartest', 'simplemocha']);
