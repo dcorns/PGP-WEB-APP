@@ -79,7 +79,7 @@ module.exports = function(grunt) {
         configFile: 'karma.conf.js',
         singleRus: true,
         browsers: [ 'PhantomJS' ]
-      },
+      }
     },
 
     express: {
