@@ -88,6 +88,12 @@ module.exports = function(grunt) {
           options: 'server.js',
           background: true
         }
+      },
+      production: {
+        options: {
+          options: 'server.js',
+          background: true
+        }
       }
     },
 
