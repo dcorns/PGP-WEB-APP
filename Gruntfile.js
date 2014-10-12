@@ -52,7 +52,7 @@ module.exports = function(grunt) {
           debug: true
         },
         src: ['app/js/**/*.js'],
-        dest: 'production/bundle.js'
+        dest: 'ship/bundle.js'
       },
 
       angulartest: {
