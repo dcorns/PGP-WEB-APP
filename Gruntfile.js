@@ -13,6 +13,9 @@ module.exports = function(grunt) {
     clean: {
       dev: {
         src: ['build/']
+      },
+      production:{
+        src:['ship/']
       }
     },
 
@@ -22,6 +25,13 @@ module.exports = function(grunt) {
         cwd: 'app/',
         src: ['*.html', 'css/*.css', 'img/*.*', 'views/**/*.html'],
         dest: 'build/',
+        filter: 'isFile'
+      },
+      production: {
+        expand: true,
+        cwd: 'app/',
+        src: ['*.html', 'css/*.css', 'img/*.*', 'views/**/*.html'],
+        dest: 'ship/',
         filter: 'isFile'
       }
     },
@@ -35,6 +45,16 @@ module.exports = function(grunt) {
         src: ['app/js/**/*.js'],
         dest: 'build/bundle.js'
       },
+
+      production: {
+        options: {
+          transform: ['debowerify'],
+          debug: true
+        },
+        src: ['app/js/**/*.js'],
+        dest: 'production/bundle.js'
+      },
+
       angulartest: {
         options: {
           transform: ['debowerify'],
@@ -89,6 +109,7 @@ module.exports = function(grunt) {
     }
   });
   grunt.registerTask('build:dev', ['clean:dev', 'browserify:dev', 'copy:dev']);
+  grunt.registerTask('build:production', ['clean:dev', 'browserify:dev', 'copy:dev']);
   grunt.registerTask('angulartest', ['browserify:angulartest', 'karma:unit']);
   grunt.registerTask('angulartestwatch', ['angulartest', 'watch:angulartest']);
   grunt.registerTask('test', ['angulartest', 'simplemocha']);
