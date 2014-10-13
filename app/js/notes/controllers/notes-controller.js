@@ -14,6 +14,7 @@ module.exports = function(app) {
     $http.defaults.headers.common.Authorization = token;
 
     $scope.notes = [];
+    $scope.resources = [];
     $scope.getAllNotes = function() {
       $http({
         method: 'GET',
@@ -108,7 +109,23 @@ module.exports = function(app) {
 
     $scope.deleteAll = function() {
       $scope.notes.forEach(function(note) {$scope.deleteNote(note)});
-    }
+    };
+
+      $scope.saveGenResource = function() {
+        var save={};
+        console.log('nc117');
+        console.log($scope.saveGResource);
+        save = $scope.saveGResource;
+        save.resourceFor = 'General';
+        $http.post('api/v_0_0_1/resources/', save)
+          .success(function(data) {
+            $scope.resources.push(data);
+            alert("New Resource Saved!");
+          })
+          .error(function(data) {
+            console.log(data);
+          });
+      };
     }
   });
 };

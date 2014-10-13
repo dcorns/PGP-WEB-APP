@@ -8,13 +8,16 @@
         <legend>Please Select A Student</legend>
         <select ng-model="selectedNote" ng-options="note.name for note in notes">
         </select>
-        <label class="newSurvey_form-text">{{selectedNote.course}}{{selectedNote.student}}</label>
+        <!--<label class="newSurvey_form-text">{{selectedNote.course}}{{selectedNote.student}}</label>-->
       </fieldset>
 
       <fieldset>
         <legend>Goals</legend>
+          <form id="frmGoalResource"><input type="text" id="g1Rsubmission" ng-model="saveGResource.resource.title"><input id="glRtype" type="text" ng-model="saveGResource.resource.type"><input id="glRlink type=url" ng-model="saveGResource.resource.rlink"><button data-ng-click="saveGenResource(saveGResource)">Save resource</button></form>
           <label readonly class="newSurvey_form-std">My long term goals</label>
           <label readonly class="newSurvey_form-std">{{selectedNote.goal}}</label>
+          <select ng-model="selectedG1Res" ng-options="note.name for note in notes">
+      </select><label>{{selectedNote.goalsrc1}}</label>
           <label readonly class="newSurvey_form-std">Reasons for my interest in developing computer/coding skills</label>
           <label readonly class="newSurvey_form-std">{{selectedNote.goal2}}</label>
           <label readonly class="newSurvey_form-std">I like working on these kinds of problems</label>
