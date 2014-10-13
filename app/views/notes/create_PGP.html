@@ -17,7 +17,7 @@
           <label readonly class="newSurvey_form-std">My long term goals</label>
           <label readonly class="newSurvey_form-std">{{selectedNote.goal}}</label>
           <select ng-model="selectedG1Res" ng-options="r.title for r in genResources">
-      </select><label>{{selectedNote.goalsrc1}}</label>
+      </select><button data-ng-click="addResource(selectedG1Res)">ADD</button><label>{{selectedNote.goalsrc1}}</label>
           <label readonly class="newSurvey_form-std">Reasons for my interest in developing computer/coding skills</label>
           <label readonly class="newSurvey_form-std">{{selectedNote.goal2}}</label>
           <label readonly class="newSurvey_form-std">I like working on these kinds of problems</label>

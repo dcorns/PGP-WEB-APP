@@ -28,6 +28,9 @@ module.exports = function(app) {
     var ntsUtil = db(req.body);
     ntsUtil.pushResource(function(err, rd){
       if (err) return res.status(500).json(err);
+      console.log('rr31');
+      console.log(req.body);
+      console.log(rd);
       return res.status(200).json(rd);
     });
     return res.status(502);

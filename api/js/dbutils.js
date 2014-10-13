@@ -52,7 +52,7 @@ module.exports = function(obj){
           {safe: true, upsert: true},
           function(err, resData) {
             console.log(err);
-            cb(null, resData);
+            cb(null, obj.resource);
           }
         );
       }

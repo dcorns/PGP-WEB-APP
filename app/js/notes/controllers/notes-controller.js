@@ -115,8 +115,14 @@ module.exports = function(app) {
         $scope.saveGResource.resourceFor = 'General';
         $http.post('api/v_0_0_1/resources/', $scope.saveGResource)
           .success(function(data) {
-            $scope.resources.push(data);
-            alert("New Resource Saved!");
+            if(typeof $scope.genResources !== 'undefined'){
+              $scope.genResources.push(data);
+            }
+            else{
+              $scope.genResources = [data];
+              $scope.selectedG1Res = $scope.genResources[0];
+            }
+            alert("New General Resource Saved!");
           })
           .error(function(data) {
             console.log(data);
@@ -159,6 +165,10 @@ module.exports = function(app) {
       };
 
       $scope.getAllResources();
+
+      $scope.addResource = function(sel){
+        $scope.selectedNote.goalsrc1.push(sel);
+      };
 
     }
   });
