@@ -13,7 +13,16 @@
 
       <fieldset>
         <legend>Goals</legend>
-        <label readonly class="newSurvey_form-std">{{selectedNote.goal}}</label>
+          <label readonly class="newSurvey_form-std">My long term goals</label>
+          <label readonly class="newSurvey_form-std">{{selectedNote.goal}}</label>
+          <label readonly class="newSurvey_form-std">Reasons for my interest in developing computer/coding skills</label>
+          <label readonly class="newSurvey_form-std">{{selectedNote.goal2}}</label>
+          <label readonly class="newSurvey_form-std">I like working on these kinds of problems</label>
+          <label readonly class="newSurvey_form-std">{{selectedNote.goal3}}</label>
+          <label readonly class="newSurvey_form-std">What I would like to do next</label>
+          <label readonly class="newSurvey_form-std">{{selectedNote.goal4}}</label>
+          <label readonly class="newSurvey_form-std">>What I would like to be able to accomplish with code</label>
+          <label readonly class="newSurvey_form-std">{{selectedNote.goal5}}</label>
       </fieldset>
 
       <fieldset>
@@ -34,6 +43,22 @@
         <label class="newSurvey_form-lbl">Javascript:</label>
         <label class="newSurvey_form-lbl">{{selectedNote.rtg3}}</label>
         <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" ng-model="selectedNote.rec3"></textarea>
+
+          <label class="newSurvey_form-lbl">GIT:</label>
+          <label class="newSurvey_form-lbl">{{selectedNote.rtg4}}</label>
+          <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" ng-model="selectedNote.rec4"></textarea>
+
+          <label class="newSurvey_form-lbl">Data structures and algorithms:</label>
+          <label class="newSurvey_form-lbl">{{selectedNote.rtg5}}</label>
+          <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" ng-model="selectedNote.rec5"></textarea>
+
+          <label class="newSurvey_form-lbl">Command line interface:</label>
+          <label class="newSurvey_form-lbl">{{selectedNote.rtg6}}</label>
+          <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" ng-model="selectedNote.rec6"></textarea>
+
+          <label class="newSurvey_form-lbl">Object-oriented programming:</label>
+          <label class="newSurvey_form-lbl">{{selectedNote.rtg7}}</label>
+          <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" ng-model="selectedNote.rec7"></textarea>
 
         <label class="newSurvey_form-lbl">Notes:</label>
         <textarea rows="5" placeholder="Please enter personalized notes here" class="newSurvey_form-textarea" ng-model="selectedNote.feedbk"></textarea>
