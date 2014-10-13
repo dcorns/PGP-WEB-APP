@@ -12,7 +12,7 @@ module.exports = function(app) {
     var a = auth(user);
 
     a.getTokenInfo(function(usr){
-      if(typeof token != 'undefined'){
+      if(typeof token !== 'undefined'){
         if(usr.roll === 'ta'){
           Note.find({}, function(err, notes) {
             if (err) return res.status(500).json(err);
@@ -60,8 +60,6 @@ module.exports = function(app) {
       Note.findOne({student: usr.email}, function (err, note) {
         if (err) console.error(err);
         if (note) {
-          console.log('note-routes(55)');
-          console.dir(note);
           Note.findOneAndUpdate({student: note.student}, req.body, function(err, resNote) {
             if (err) return res.status(500).json(err);
             return res.status(202).json(resNote);
@@ -92,10 +90,19 @@ module.exports = function(app) {
   app.put(baseUrl + '/:id', function(req, res) {
     var note = req.body;
     delete note._id;
-    Note.findOneAndUpdate({'_id': req.params.id}, note, function(err, resNote) {
-      if (err) return res.status(500).json(err);
-      return res.status(202).json(resNote);
-    });
+    var user = {};
+    var token = req.headers.authorization;
+    var a = auth(user);
+    a.getTokenInfo(function(usr){
+      note.ta = usr.email;
+      console.log('nr(95)');
+      console.log(usr);
+      Note.findOneAndUpdate({'_id': req.params.id}, note, function(err, resNote) {
+        if (err) return res.status(500).json(err);
+        return res.status(202).json(resNote);
+      });
+    }, token);
+
   });
 
   app.delete(baseUrl + '/:id', function(req, res) {
