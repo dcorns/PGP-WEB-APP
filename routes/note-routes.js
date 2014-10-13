@@ -1,6 +1,7 @@
 var Note = require('../models/note');
 var User = require('../models/user');
 var auth = require('../api/js/authorize');
+var db = require('../api/js/dbutils');
 
 module.exports = function(app) {
   var baseUrl = '/api/v_0_0_1/notes';
@@ -15,8 +16,16 @@ module.exports = function(app) {
         if(usr.roll === 'ta'){
           Note.find({}, function(err, notes) {
             if (err) return res.status(500).json(err);
-            return res.status(200).json(notes);
+            var ntsUtil = db(notes);
+            var resData = ntsUtil.combineUsers(function(err, rd){
+              if (err) return res.status(502).json(err);
+              console.log(rd);
+              return res.status(200).json(rd);
+            });
+            return res.status(503);
           });
+
+
         }
         else {
           if (usr.roll === 'student') {

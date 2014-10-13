@@ -19,6 +19,7 @@ module.exports = function(app) {
         method: 'GET',
         url: '/api/v_0_0_1/notes'
       }).success(function(data) {
+        console.dir(data);
         if(data) {
           if(Array.isArray(data)){
             $scope.notes = data;

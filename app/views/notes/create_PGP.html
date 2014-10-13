@@ -6,7 +6,7 @@
 
       <fieldset class="newSurvey_select">
         <legend>Please Select A Student</legend>
-        <select ng-model="selectedNote" ng-options="note.student for note in notes">
+        <select ng-model="selectedNote" ng-options="note.name for note in notes">
         </select>
         <label class="newSurvey_form-text">{{selectedNote.course}}{{selectedNote.student}}</label>
       </fieldset>
