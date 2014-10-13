@@ -112,12 +112,8 @@ module.exports = function(app) {
     };
 
       $scope.saveGenResource = function() {
-        var save={};
-        console.log('nc117');
-        console.log($scope.saveGResource);
-        save = $scope.saveGResource;
-        save.resourceFor = 'General';
-        $http.post('api/v_0_0_1/resources/', save)
+        $scope.saveGResource.resourceFor = 'General';
+        $http.post('api/v_0_0_1/resources/', $scope.saveGResource)
           .success(function(data) {
             $scope.resources.push(data);
             alert("New Resource Saved!");
@@ -126,6 +122,44 @@ module.exports = function(app) {
             console.log(data);
           });
       };
+
+      $scope.getAllResources = function() {
+        $http({
+          method: 'GET',
+          url: '/api/v_0_0_1/resources/'
+        }).success(function(data) {
+          console.log('nc131');
+          console.dir(data);
+          $scope.resources = data;
+          for(var i = 0; i < data.length; i++){
+            console.log(i+', '+data[i].resourceFor);
+            switch (data[i].resourceFor){
+              case 'General':
+                console.log(data[i].resource);
+                $scope.genResources = data[i].resource;
+                $scope.selectedG1Res = $scope.genResources[0];
+                break;
+              default:
+                break;
+            }
+          }
+          console.log('nc(146)');
+          console.log($scope.genResources);
+//          for(var resfor in data){
+//            console.log('property');
+//            console.log(resfor);
+//          }
+       //   $scope.selectedG1Res = $scope.genresources[0];
+
+        }).error(function(data, status) {
+          console.dir(data);
+          console.log('error!');
+          console.log(status);
+        });
+      };
+
+      $scope.getAllResources();
+
     }
   });
 };

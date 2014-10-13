@@ -16,7 +16,7 @@
           <form id="frmGoalResource"><input type="text" id="g1Rsubmission" ng-model="saveGResource.resource.title"><input id="glRtype" type="text" ng-model="saveGResource.resource.type"><input id="glRlink type=url" ng-model="saveGResource.resource.rlink"><button data-ng-click="saveGenResource(saveGResource)">Save resource</button></form>
           <label readonly class="newSurvey_form-std">My long term goals</label>
           <label readonly class="newSurvey_form-std">{{selectedNote.goal}}</label>
-          <select ng-model="selectedG1Res" ng-options="note.name for note in notes">
+          <select ng-model="selectedG1Res" ng-options="r.title for r in genResources">
       </select><label>{{selectedNote.goalsrc1}}</label>
           <label readonly class="newSurvey_form-std">Reasons for my interest in developing computer/coding skills</label>
           <label readonly class="newSurvey_form-std">{{selectedNote.goal2}}</label>
