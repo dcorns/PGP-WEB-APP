@@ -5,7 +5,7 @@ module.exports = function(app) {
     var ui = require('../../ui');
     var ux = ui();
     //hide buttons before authorization
-    ux.hideMainButtons();
+    ux.startHidden();
     ux.setToggles();
 
     //Check for authorization before loading notes

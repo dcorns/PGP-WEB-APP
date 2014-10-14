@@ -88,4 +88,8 @@ h1 {
   display: none;
 }
 
+.toggle {
+    width: 7em;
+    background-color: brown;
+}
 
