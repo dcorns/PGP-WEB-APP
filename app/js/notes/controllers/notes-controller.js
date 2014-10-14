@@ -220,7 +220,7 @@ module.exports = function(app) {
       };
 
       $scope.savecmdResource = function() {
-        $scope.saveCMDResource.resourceFor = 'HTML';
+        $scope.saveCMDResource.resourceFor = 'CMD';
         $http.post('api/v_0_0_1/resources/', $scope.saveCMDResource)
           .success(function(data) {
             if(typeof $scope.CMDResources !== 'undefined'){
@@ -238,7 +238,7 @@ module.exports = function(app) {
       };
 
       $scope.saveoopResource = function() {
-        $scope.saveOOPResource.resourceFor = 'HTML';
+        $scope.saveOOPResource.resourceFor = 'OOP';
         $http.post('api/v_0_0_1/resources/', $scope.saveOOPResource)
           .success(function(data) {
             if(typeof $scope.OOPResources !== 'undefined'){
@@ -267,7 +267,6 @@ module.exports = function(app) {
             console.log(i+', '+data[i].resourceFor);
             switch (data[i].resourceFor){
               case 'General':
-                console.log(data[i].resource);
                 $scope.genResources = data[i].resource;
                 $scope.selectedG1Res = $scope.genResources[0];
                 $scope.selectedG2Res = $scope.genResources[0];
@@ -276,31 +275,31 @@ module.exports = function(app) {
                 $scope.selectedG5Res = $scope.genResources[0];
                 break;
               case 'HTML':
-                $scope.HTMLResourses = data[i].resource;
+                $scope.HTMLResources = data[i].resource;
                 $scope.selectedHTMLRes = $scope.HTMLResources[0];
                 break;
               case 'CSS':
-                $scope.CSSResourses = data[i].resource;
+                $scope.CSSResources = data[i].resource;
                 $scope.selectedCSSRes = $scope.CSSResources[0];
                 break;
               case 'JS':
-                $scope.JSResourses = data[i].resource;
+                $scope.JSResources = data[i].resource;
                 $scope.selectedJSRes = $scope.JSResources[0];
                 break;
               case 'GIT':
-                $scope.GITResourses = data[i].resource;
+                $scope.GITResources = data[i].resource;
                 $scope.selectedGITRes = $scope.GITResources[0];
                 break;
               case 'DSA':
-                $scope.DSAResourses = data[i].resource;
+                $scope.DSAResources = data[i].resource;
                 $scope.selectedDSARes = $scope.DSAResources[0];
                 break;
               case 'CMD':
-                $scope.CMDResourses = data[i].resource;
+                $scope.CMDResources = data[i].resource;
                 $scope.selectedCMDRes = $scope.CMDResources[0];
                 break;
               case 'OOP':
-                $scope.OOPResourses = data[i].resource;
+                $scope.OOPResources = data[i].resource;
                 $scope.selectedOOPRes = $scope.OOPResources[0];
                 break;
               default:
@@ -337,25 +336,25 @@ module.exports = function(app) {
       };
 
       $scope.addHTMLResource = function(sel){
-        $scope.selectedNote.HTMLsrc.push(sel);
+        $scope.selectedNote.recsrc1.push(sel);
       };
       $scope.addCSSResource = function(sel){
-        $scope.selectedNote.CSSsrc.push(sel);
+        $scope.selectedNote.recsrc2.push(sel);
       };
       $scope.addJSResource = function(sel){
-        $scope.selectedNote.JSsrc.push(sel);
+        $scope.selectedNote.recsrc3.push(sel);
       };
       $scope.addGITResource = function(sel){
-        $scope.selectedNote.GITsrc.push(sel);
+        $scope.selectedNote.recsrc4.push(sel);
       };
       $scope.addDSAResource = function(sel){
-        $scope.selectedNote.DSAsrc.push(sel);
+        $scope.selectedNote.recsrc5.push(sel);
       };
       $scope.addCMDResource = function(sel){
-        $scope.selectedNote.CMDsrc.push(sel);
+        $scope.selectedNote.recsrc6.push(sel);
       };
       $scope.addOOPResource = function(sel){
-        $scope.selectedNote.OOPsrc.push(sel);
+        $scope.selectedNote.recsrc7.push(sel);
       };
 
     }
