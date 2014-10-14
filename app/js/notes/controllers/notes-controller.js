@@ -149,17 +149,38 @@ module.exports = function(app) {
                 $scope.selectedG4Res = $scope.genResources[0];
                 $scope.selectedG5Res = $scope.genResources[0];
                 break;
+              case 'HTML':
+                $scope.HTMLResourses = data[i].resource;
+                $scope.selectedHTMLRes = $scope.HTMLResources[0];
+                break;
+              case 'CSS':
+                $scope.CSSResourses = data[i].resource;
+                $scope.selectedCSSRes = $scope.CSSResources[0];
+                break;
+              case 'JS':
+                $scope.JSResourses = data[i].resource;
+                $scope.selectedJSRes = $scope.JSResources[0];
+                break;
+              case 'GIT':
+                $scope.GITResourses = data[i].resource;
+                $scope.selectedGITRes = $scope.GITResources[0];
+                break;
+              case 'DSA':
+                $scope.DSAResourses = data[i].resource;
+                $scope.selectedDSARes = $scope.DSAResources[0];
+                break;
+              case 'CMD':
+                $scope.CMDResourses = data[i].resource;
+                $scope.selectedCMDRes = $scope.CMDResources[0];
+                break;
+              case 'OOP':
+                $scope.OOPResourses = data[i].resource;
+                $scope.selectedOOPRes = $scope.OOPResources[0];
+                break;
               default:
                 break;
             }
           }
-          console.log('nc(146)');
-          console.log($scope.genResources);
-//          for(var resfor in data){
-//            console.log('property');
-//            console.log(resfor);
-//          }
-       //   $scope.selectedG1Res = $scope.genresources[0];
 
         }).error(function(data, status) {
           console.dir(data);
