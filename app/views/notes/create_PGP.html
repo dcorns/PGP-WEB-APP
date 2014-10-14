@@ -61,44 +61,72 @@
 
         <label class="newSurvey_form-lbl">HTML:</label>
           <form id="frmHTMLResource">
+              <label class="newSurvey_form-lbl">{{selectedNote.rtg1}}</label>
               <input type="text" placeholder="New Resource Title" data-ng-model="saveHTMLResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveHTMLResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveHTMLResource.resource.rlink"><button data-ng-click="savehtmlResource(saveHTMLResource)">Save resource</button></form>
-        <label class="newSurvey_form-lbl">{{selectedNote.rtg1}}</label>
+          <label for="sHTML">HTML Resources</label>
+          <select id="sHTML" data-ng-model="selectedHTMLRes" data-ng-options="r.title for r in HTMLResources">
+          </select>
+          <button data-ng-click="addHTMLResource(selectedHTMLRes)">ADD</button><label>{{selectedNote.HTMLsrc}}</label>
         <textarea rows="5" class="newSurvey_form-textarea" placeholder="Please enter recommendations here" data-ng-model="selectedNote.rec1"></textarea>
 
         <label class="newSurvey_form-lbl">CSS:</label>
           <form id="frmCSSResource">
+              <label class="newSurvey_form-lbl">{{selectedNote.rtg2}}</label>
               <input type="text" placeholder="New Resource Title" data-ng-model="saveCSSResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveCSSResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveCSSResource.resource.rlink"><button data-ng-click="savecssResource(saveCSSResource)">Save resource</button></form>
-        <label class="newSurvey_form-lbl">{{selectedNote.rtg2}}</label>
+          <label for="sCSS">CSS Resources</label>
+          <select id="sCSS" data-ng-model="selectedCSSRes" data-ng-options="r.title for r in CSSResources">
+          </select>
+          <button data-ng-click="addCSSResource(selectedCSSRes)">ADD</button><label>{{selectedNote.CSSsrc}}</label>
         <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" data-ng-model="selectedNote.rec2"></textarea>
 
         <label class="newSurvey_form-lbl">Javascript:</label>
           <form id="frmJSResource">
+              <label class="newSurvey_form-lbl">{{selectedNote.rtg3}}</label>
               <input type="text" placeholder="New Resource Title" data-ng-model="saveJSResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveJSResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveJSResource.resource.rlink"><button data-ng-click="savejsResource(saveJSResource)">Save resource</button></form>
-        <label class="newSurvey_form-lbl">{{selectedNote.rtg3}}</label>
+          <label for="sJS">JavaSript Resources</label>
+          <select id="sJS" data-ng-model="selectedJSRes" data-ng-options="r.title for r in JSResources">
+          </select>
+          <button data-ng-click="addJSResource(selectedJSRes)">ADD</button><label>{{selectedNote.JSsrc}}</label>
         <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" data-ng-model="selectedNote.rec3"></textarea>
 
           <label class="newSurvey_form-lbl">GIT:</label>
           <form id="frmGITResource">
+              <label class="newSurvey_form-lbl">{{selectedNote.rtg4}}</label>
               <input type="text" placeholder="New Resource Title" data-ng-model="saveGITResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveGITResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveGITResource.resource.rlink"><button data-ng-click="savegitResource(saveGITResource)">Save resource</button></form>
-          <label class="newSurvey_form-lbl">{{selectedNote.rtg4}}</label>
+          <label for="sGIT">GIT Resources</label>
+          <select id="sGIT" data-ng-model="selectedGITRes" data-ng-options="r.title for r in GITResources">
+          </select>
+          <button data-ng-click="addGITResource(selectedGITRes)">ADD</button><label>{{selectedNote.GITsrc}}</label>
           <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" data-ng-model="selectedNote.rec4"></textarea>
 
           <label class="newSurvey_form-lbl">Data structures and algorithms:</label>
           <form id="frmDSAResource">
+              <label class="newSurvey_form-lbl">{{selectedNote.rtg5}}</label>
               <input type="text" placeholder="New Resource Title" data-ng-model="saveDSAResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveDSAResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveDSAResource.resource.rlink"><button data-ng-click="savedsaResource(saveDSAResource)">Save resource</button></form>
-          <label class="newSurvey_form-lbl">{{selectedNote.rtg5}}</label>
+          <label for="sDSA">Data Structures and Algorithms Resources</label>
+          <select id="sDSA" data-ng-model="selectedDSLRes" data-ng-options="r.title for r in DSLResources">
+          </select>
+          <button data-ng-click="addDSLResource(selectedDSLRes)">ADD</button><label>{{selectedNote.DSLsrc}}</label>
           <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" data-ng-model="selectedNote.rec5"></textarea>
 
           <label class="newSurvey_form-lbl">Command line interface:</label>
           <form id="frmCMDResource">
+              <label class="newSurvey_form-lbl">{{selectedNote.rtg6}}</label>
               <input type="text" placeholder="New Resource Title" data-ng-model="saveCMDResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveCMDResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveCMDResource.resource.rlink"><button data-ng-click="savecmdResource(saveCMDResource)">Save resource</button></form>
-          <label class="newSurvey_form-lbl">{{selectedNote.rtg6}}</label>
+          <label for="sCMD">Command Line (terminal) Resources</label>
+          <select id="sCMD" data-ng-model="selectedCMDRes" data-ng-options="r.title for r in CMDResources">
+          </select>
+          <button data-ng-click="addCMDResource(selectedCMDRes)">ADD</button><label>{{selectedNote.CMDsrc}}</label>
           <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" data-ng-model="selectedNote.rec6"></textarea>
 
           <label class="newSurvey_form-lbl">Object-oriented programming:</label>
           <form id="frmOOPResource">
+              <label class="newSurvey_form-lbl">{{selectedNote.rtg7}}</label>
               <input type="text" placeholder="New Resource Title" data-ng-model="saveOOPResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveOOPResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveOOPResource.resource.rlink"><button data-ng-click="saveoopResource(saveOOPResource)">Save resource</button></form>
-          <label class="newSurvey_form-lbl">{{selectedNote.rtg7}}</label>
+          <label for="sOOP">Object-oriented Programing Resources</label>
+          <select id="sOOP" data-ng-model="selectedOOPRes" data-ng-options="r.title for r in OOPResources">
+          </select>
+          <button data-ng-click="addOOPResource(selectedOOPRes)">ADD</button><label>{{selectedNote.OOPsrc}}</label>
           <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" data-ng-model="selectedNote.rec7"></textarea>
       </fieldset>
 
@@ -106,10 +134,8 @@
               <legend>Questions/Concerns?</legend>
               <label class="newSurvey_form-std">{{selectedNote.note}}</label>
 
-
-
-        <label class="newSurvey_form-lbl">Notes:</label>
-        <textarea rows="5" placeholder="Please enter personalized notes here" class="newSurvey_form-textarea" data-ng-model="selectedNote.feedbk"></textarea>
+        <label class="newSurvey_form-lbl">Responses:</label>
+        <textarea rows="5" placeholder="Enter responses to Questions and concerns here." class="newSurvey_form-textarea" data-ng-model="selectedNote.feedbk"></textarea>
           </fieldset>
 
       <button data-ng-click="saveNote(selectedNote)">Save PGP</button>
