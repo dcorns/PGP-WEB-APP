@@ -22,18 +22,37 @@
           <label for="sG1">General Resources</label>
           <select id="sG1" data-ng-model="selectedG1Res" data-ng-options="r.title for r in genResources">
       </select>
-          <button data-ng-click="addResource(selectedG1Res)">ADD</button><label>{{selectedNote.goalsrc1}}</label>
+          <button data-ng-click="addg1Resource(selectedG1Res)">ADD</button><label>{{selectedNote.goalsrc1}}</label>
 
           <label class="newSurvey_form-std">Reasons for my interest in developing computer/coding skills</label>
           <label class="newSurvey_form-std">{{selectedNote.goal2}}</label>
-
+          <label for="sG2">General Resources</label>
+          <select id="sG2" data-ng-model="selectedG2Res" data-ng-options="r.title for r in genResources">
+          </select>
+          <button data-ng-click="addg2Resource(selectedG2Res)">ADD</button><label>{{selectedNote.goalsrc2}}</label>
 
           <label  class="newSurvey_form-std">I like working on these kinds of problems</label>
           <label  class="newSurvey_form-std">{{selectedNote.goal3}}</label>
+          <label for="sG3">General Resources</label>
+          <select id="sG3" data-ng-model="selectedG3Res" data-ng-options="r.title for r in genResources">
+          </select>
+          <button data-ng-click="addg3Resource(selectedG3Res)">ADD</button><label>{{selectedNote.goalsrc3}}</label>
+
           <label  class="newSurvey_form-std">What I would like to do next</label>
           <label  class="newSurvey_form-std">{{selectedNote.goal4}}</label>
+          <label for="sG4">General Resources</label>
+          <select id="sG4" data-ng-model="selectedG4Res" data-ng-options="r.title for r in genResources">
+          </select>
+          <button data-ng-click="addg4Resource(selectedG4Res)">ADD</button><label>{{selectedNote.goalsrc4}}</label>
+
           <label  class="newSurvey_form-std">>What I would like to be able to accomplish with code</label>
           <label  class="newSurvey_form-std">{{selectedNote.goal5}}</label>
+          <label for="sG5">General Resources</label>
+          <select id="sG5" data-ng-model="selectedG5Res" data-ng-options="r.title for r in genResources">
+          </select>
+          <button data-ng-click="addg5Resource(selectedG5Res)">ADD</button><label>{{selectedNote.goalsrc5}}</label>
+
+
       </fieldset>
 
       <fieldset>

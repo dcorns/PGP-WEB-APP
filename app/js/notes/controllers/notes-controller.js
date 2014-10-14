@@ -144,6 +144,10 @@ module.exports = function(app) {
                 console.log(data[i].resource);
                 $scope.genResources = data[i].resource;
                 $scope.selectedG1Res = $scope.genResources[0];
+                $scope.selectedG2Res = $scope.genResources[0];
+                $scope.selectedG3Res = $scope.genResources[0];
+                $scope.selectedG4Res = $scope.genResources[0];
+                $scope.selectedG5Res = $scope.genResources[0];
                 break;
               default:
                 break;
@@ -166,8 +170,23 @@ module.exports = function(app) {
 
       $scope.getAllResources();
 
-      $scope.addResource = function(sel){
+
+      //add Resources **************************************************************************************************
+      //no target coming through and extra argument does not work either so separate handlers Angular?
+      $scope.addg1Resource = function(sel){
         $scope.selectedNote.goalsrc1.push(sel);
+      };
+      $scope.addg2Resource = function(sel){
+        $scope.selectedNote.goalsrc2.push(sel);
+      };
+      $scope.addg3Resource = function(sel){
+        $scope.selectedNote.goalsrc3.push(sel);
+      };
+      $scope.addg4Resource = function(sel){
+        $scope.selectedNote.goalsrc4.push(sel);
+      };
+      $scope.addg5Resource = function(sel){
+        $scope.selectedNote.goalsrc5.push(sel);
       };
 
     }

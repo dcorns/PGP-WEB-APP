@@ -97,6 +97,7 @@ module.exports = function(app) {
       note.ta = usr.email;
       console.log('nr(95)');
       console.log(usr);
+      console.log(note);
       Note.findOneAndUpdate({'_id': req.params.id}, note, function(err, resNote) {
         if (err) return res.status(500).json(err);
         return res.status(202).json(resNote);
