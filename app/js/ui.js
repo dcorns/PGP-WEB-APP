@@ -10,6 +10,15 @@ module.exports = function(){
         document.getElementById(id).value = val || "";
         return this;
       }
+    },
+    hideMainButtons: function(){
+      document.getElementById('btncreatepgp').className = 'hidden';
+      document.getElementById('btnsurvey').className = 'hidden';
+      document.getElementById('btnviewpgp').className = 'hidden';
+      return this;
+    },
+    setToggles: function(){
+      var one = document.getElementById('addGenResourse');
     }
   }
 };

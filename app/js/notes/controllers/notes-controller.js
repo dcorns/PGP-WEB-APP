@@ -3,10 +3,10 @@
 module.exports = function(app) {
   app.controller('notesController', function($scope, $http) {
     var ui = require('../../ui');
+    var ux = ui();
     //hide buttons before authorization
-    document.getElementById('btncreatepgp').className = 'hidden';
-    document.getElementById('btnsurvey').className = 'hidden';
-    document.getElementById('btnviewpgp').className = 'hidden';
+    ux.hideMainButtons();
+    ux.setToggles();
 
     //Check for authorization before loading notes
     if(window.sessionStorage.getItem('token')){
@@ -32,7 +32,6 @@ module.exports = function(app) {
 
           //load input fields with existing data
           $scope.hidetest = true;
-          var ux = ui();
           ux.fillInput("course", $scope.selectedNote.course);
           ux.fillInput("rtg1", $scope.selectedNote.rtg1);
           ux.fillInput("rtg2", $scope.selectedNote.rtg2);

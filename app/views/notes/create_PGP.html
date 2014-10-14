@@ -13,8 +13,13 @@
         <!--Goal Resources ***************************************************************************-->
       <fieldset>
         <legend>Goals</legend>
-          <form id="frmGoalResource">
-              <input type="text" placeholder="New Resource Title" data-ng-model="saveGResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveGResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveGResource.resource.rlink"><button data-ng-click="saveGenResource(saveGResource)">Save resource</button></form>
+          <h2>Save New General Resources Here</h2>
+          <div id="addGenResourse">
+              <form id="frmGoalResource">
+                  <input type="text" required placeholder="New Resource Title" data-ng-model="saveGResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveGResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveGResource.resource.rlink"><button data-ng-click="saveGenResource(saveGResource)">Save resource</button>
+              </form>
+          </div>
+
 
         <!--Goals input ************************************************************************************-->
           <label class="newSurvey_form-std">My long term goals</label>
