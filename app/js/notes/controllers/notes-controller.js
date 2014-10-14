@@ -129,6 +129,132 @@ module.exports = function(app) {
           });
       };
 
+      $scope.savehtmlResource = function() {
+        $scope.saveHTMLResource.resourceFor = 'HTML';
+        $http.post('api/v_0_0_1/resources/', $scope.saveHTMLResource)
+          .success(function(data) {
+            if(typeof $scope.HTMLResources !== 'undefined'){
+              $scope.HTMLResources.push(data);
+            }
+            else{
+              $scope.HTMLResources = [data];
+              $scope.selectedHTMLRes = $scope.HTMLResources[0];
+            }
+            alert("New HTML Resource Saved!");
+          })
+          .error(function(data) {
+            console.log(data);
+          });
+      };
+
+      $scope.savecssResource = function() {
+        $scope.saveCSSResource.resourceFor = 'CSS';
+        $http.post('api/v_0_0_1/resources/', $scope.saveCSSResource)
+          .success(function(data) {
+            if(typeof $scope.CSSResources !== 'undefined'){
+              $scope.CSSResources.push(data);
+            }
+            else{
+              $scope.CSSResources = [data];
+              $scope.selectedCSSRes = $scope.CSSResources[0];
+            }
+            alert("New CSS Resource Saved!");
+          })
+          .error(function(data) {
+            console.log(data);
+          });
+      };
+
+      $scope.savejsResource = function() {
+        $scope.saveJSResource.resourceFor = 'JS';
+        $http.post('api/v_0_0_1/resources/', $scope.saveJSResource)
+          .success(function(data) {
+            if(typeof $scope.JSResources !== 'undefined'){
+              $scope.JSResources.push(data);
+            }
+            else{
+              $scope.JSResources = [data];
+              $scope.selectedJSRes = $scope.JSResources[0];
+            }
+            alert("New JavaScript Resource Saved!");
+          })
+          .error(function(data) {
+            console.log(data);
+          });
+      };
+
+      $scope.savegitResource = function() {
+        $scope.saveGITResource.resourceFor = 'GIT';
+        $http.post('api/v_0_0_1/resources/', $scope.saveGITResource)
+          .success(function(data) {
+            if(typeof $scope.GITResources !== 'undefined'){
+              $scope.GITResources.push(data);
+            }
+            else{
+              $scope.GITResources = [data];
+              $scope.selectedGITRes = $scope.GITResources[0];
+            }
+            alert("New HTML Resource Saved!");
+          })
+          .error(function(data) {
+            console.log(data);
+          });
+      };
+
+      $scope.savedsaResource = function() {
+        $scope.saveDSAResource.resourceFor = 'DSA';
+        $http.post('api/v_0_0_1/resources/', $scope.saveDSAResource)
+          .success(function(data) {
+            if(typeof $scope.DSAResources !== 'undefined'){
+              $scope.DSAResourses.push(data);
+            }
+            else{
+              $scope.DSAResources = [data];
+              $scope.selectedDSARes = $scope.DSAResources[0];
+            }
+            alert("New Data Structures and Algorithms Resource Saved!");
+          })
+          .error(function(data) {
+            console.log(data);
+          });
+      };
+
+      $scope.savecmdResource = function() {
+        $scope.saveCMDResource.resourceFor = 'HTML';
+        $http.post('api/v_0_0_1/resources/', $scope.saveCMDResource)
+          .success(function(data) {
+            if(typeof $scope.CMDResources !== 'undefined'){
+              $scope.CMDResources.push(data);
+            }
+            else{
+              $scope.CMDResources = [data];
+              $scope.selectedCMDRes = $scope.CMDResources[0];
+            }
+            alert("New Terminal Resource Saved!");
+          })
+          .error(function(data) {
+            console.log(data);
+          });
+      };
+
+      $scope.saveoopResource = function() {
+        $scope.saveOOPResource.resourceFor = 'HTML';
+        $http.post('api/v_0_0_1/resources/', $scope.saveOOPResource)
+          .success(function(data) {
+            if(typeof $scope.OOPResources !== 'undefined'){
+              $scope.OOPResources.push(data);
+            }
+            else{
+              $scope.OOPResources = [data];
+              $scope.selectedOOPRes = $scope.OOPResources[0];
+            }
+            alert("New Object-orientated Programing Resource Saved!");
+          })
+          .error(function(data) {
+            console.log(data);
+          });
+      };
+
       $scope.getAllResources = function() {
         $http({
           method: 'GET',
@@ -208,6 +334,28 @@ module.exports = function(app) {
       };
       $scope.addg5Resource = function(sel){
         $scope.selectedNote.goalsrc5.push(sel);
+      };
+
+      $scope.addHTMLResource = function(sel){
+        $scope.selectedNote.HTMLsrc.push(sel);
+      };
+      $scope.addCSSResource = function(sel){
+        $scope.selectedNote.CSSsrc.push(sel);
+      };
+      $scope.addJSResource = function(sel){
+        $scope.selectedNote.JSsrc.push(sel);
+      };
+      $scope.addGITResource = function(sel){
+        $scope.selectedNote.GITsrc.push(sel);
+      };
+      $scope.addDSAResource = function(sel){
+        $scope.selectedNote.DSAsrc.push(sel);
+      };
+      $scope.addCMDResource = function(sel){
+        $scope.selectedNote.CMDsrc.push(sel);
+      };
+      $scope.addOOPResource = function(sel){
+        $scope.selectedNote.OOPsrc.push(sel);
       };
 
     }

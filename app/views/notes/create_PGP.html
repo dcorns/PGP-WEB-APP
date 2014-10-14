@@ -104,9 +104,9 @@
               <label class="newSurvey_form-lbl">{{selectedNote.rtg5}}</label>
               <input type="text" placeholder="New Resource Title" data-ng-model="saveDSAResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveDSAResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveDSAResource.resource.rlink"><button data-ng-click="savedsaResource(saveDSAResource)">Save resource</button></form>
           <label for="sDSA">Data Structures and Algorithms Resources</label>
-          <select id="sDSA" data-ng-model="selectedDSLRes" data-ng-options="r.title for r in DSLResources">
+          <select id="sDSA" data-ng-model="selectedDSARes" data-ng-options="r.title for r in DSAResources">
           </select>
-          <button data-ng-click="addDSLResource(selectedDSLRes)">ADD</button><label>{{selectedNote.DSLsrc}}</label>
+          <button data-ng-click="addDSAResource(selectedDSARes)">ADD</button><label>{{selectedNote.DSAsrc}}</label>
           <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" data-ng-model="selectedNote.rec5"></textarea>
 
           <label class="newSurvey_form-lbl">Command line interface:</label>
