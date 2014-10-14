@@ -6,65 +6,73 @@
 
       <fieldset class="newSurvey_select">
         <legend>Please Select A Student</legend>
-        <select ng-model="selectedNote" ng-options="note.name for note in notes">
+        <select data-ng-model="selectedNote" data-ng-options="note.name for note in notes">
         </select>
-        <!--<label class="newSurvey_form-text">{{selectedNote.course}}{{selectedNote.student}}</label>-->
       </fieldset>
 
+        <!--Goal Resources ***************************************************************************-->
       <fieldset>
         <legend>Goals</legend>
-          <form id="frmGoalResource"><input type="text" id="g1Rsubmission" ng-model="saveGResource.resource.title"><input id="glRtype" type="text" ng-model="saveGResource.resource.type"><input id="glRlink type=url" ng-model="saveGResource.resource.rlink"><button data-ng-click="saveGenResource(saveGResource)">Save resource</button></form>
-          <label readonly class="newSurvey_form-std">My long term goals</label>
-          <label readonly class="newSurvey_form-std">{{selectedNote.goal}}</label>
-          <select ng-model="selectedG1Res" ng-options="r.title for r in genResources">
-      </select><button data-ng-click="addResource(selectedG1Res)">ADD</button><label>{{selectedNote.goalsrc1}}</label>
-          <label readonly class="newSurvey_form-std">Reasons for my interest in developing computer/coding skills</label>
-          <label readonly class="newSurvey_form-std">{{selectedNote.goal2}}</label>
-          <label readonly class="newSurvey_form-std">I like working on these kinds of problems</label>
-          <label readonly class="newSurvey_form-std">{{selectedNote.goal3}}</label>
-          <label readonly class="newSurvey_form-std">What I would like to do next</label>
-          <label readonly class="newSurvey_form-std">{{selectedNote.goal4}}</label>
-          <label readonly class="newSurvey_form-std">>What I would like to be able to accomplish with code</label>
-          <label readonly class="newSurvey_form-std">{{selectedNote.goal5}}</label>
+          <form id="frmGoalResource">
+              <input type="text" placeholder="New Resource Title" id="g1Rsubmission" data-ng-model="saveGResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveGResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveGResource.resource.rlink"><button data-ng-click="saveGenResource(saveGResource)">Save resource</button></form>
+
+        <!--Goals input ************************************************************************************-->
+          <label class="newSurvey_form-std">My long term goals</label>
+          <label class="newSurvey_form-std">{{selectedNote.goal}}</label>
+          <label for="sG1">General Resources</label>
+          <select id="sG1" data-ng-model="selectedG1Res" data-ng-options="r.title for r in genResources">
+      </select>
+          <button data-ng-click="addResource(selectedG1Res)">ADD</button><label>{{selectedNote.goalsrc1}}</label>
+
+          <label class="newSurvey_form-std">Reasons for my interest in developing computer/coding skills</label>
+          <label class="newSurvey_form-std">{{selectedNote.goal2}}</label>
+
+
+          <label  class="newSurvey_form-std">I like working on these kinds of problems</label>
+          <label  class="newSurvey_form-std">{{selectedNote.goal3}}</label>
+          <label  class="newSurvey_form-std">What I would like to do next</label>
+          <label  class="newSurvey_form-std">{{selectedNote.goal4}}</label>
+          <label  class="newSurvey_form-std">>What I would like to be able to accomplish with code</label>
+          <label  class="newSurvey_form-std">{{selectedNote.goal5}}</label>
       </fieldset>
 
       <fieldset>
         <legend>Questions/Concerns?</legend>
-        <label readonly class="newSurvey_form-std">{{selectedNote.note}}</label>
+        <label class="newSurvey_form-std">{{selectedNote.note}}</label>
       </fieldset>
 
       <fieldset>
         <legend>Student's Skill Assessment By Topic</legend>
         <label class="newSurvey_form-lbl">HTML:</label>
         <label class="newSurvey_form-lbl">{{selectedNote.rtg1}}</label>
-        <textarea rows="5" class="newSurvey_form-textarea" placeholder="Please enter recommendations here" ng-model="selectedNote.rec1"></textarea>
+        <textarea rows="5" class="newSurvey_form-textarea" placeholder="Please enter recommendations here" data-ng-model="selectedNote.rec1"></textarea>
 
         <label class="newSurvey_form-lbl">CSS:</label>
         <label class="newSurvey_form-lbl">{{selectedNote.rtg2}}</label>
-        <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" ng-model="selectedNote.rec2"></textarea>
+        <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" data-ng-model="selectedNote.rec2"></textarea>
 
         <label class="newSurvey_form-lbl">Javascript:</label>
         <label class="newSurvey_form-lbl">{{selectedNote.rtg3}}</label>
-        <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" ng-model="selectedNote.rec3"></textarea>
+        <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" data-ng-model="selectedNote.rec3"></textarea>
 
           <label class="newSurvey_form-lbl">GIT:</label>
           <label class="newSurvey_form-lbl">{{selectedNote.rtg4}}</label>
-          <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" ng-model="selectedNote.rec4"></textarea>
+          <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" data-ng-model="selectedNote.rec4"></textarea>
 
           <label class="newSurvey_form-lbl">Data structures and algorithms:</label>
           <label class="newSurvey_form-lbl">{{selectedNote.rtg5}}</label>
-          <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" ng-model="selectedNote.rec5"></textarea>
+          <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" data-ng-model="selectedNote.rec5"></textarea>
 
           <label class="newSurvey_form-lbl">Command line interface:</label>
           <label class="newSurvey_form-lbl">{{selectedNote.rtg6}}</label>
-          <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" ng-model="selectedNote.rec6"></textarea>
+          <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" data-ng-model="selectedNote.rec6"></textarea>
 
           <label class="newSurvey_form-lbl">Object-oriented programming:</label>
           <label class="newSurvey_form-lbl">{{selectedNote.rtg7}}</label>
-          <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" ng-model="selectedNote.rec7"></textarea>
+          <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" data-ng-model="selectedNote.rec7"></textarea>
 
         <label class="newSurvey_form-lbl">Notes:</label>
-        <textarea rows="5" placeholder="Please enter personalized notes here" class="newSurvey_form-textarea" ng-model="selectedNote.feedbk"></textarea>
+        <textarea rows="5" placeholder="Please enter personalized notes here" class="newSurvey_form-textarea" data-ng-model="selectedNote.feedbk"></textarea>
       </fieldset>
 
       <button data-ng-click="saveNote(selectedNote)">Save PGP</button>
