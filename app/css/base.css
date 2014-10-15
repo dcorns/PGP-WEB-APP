@@ -95,5 +95,10 @@ h1 {
 
 .rating{
     font-size: 10rem;
+    background-color: darkred;
 }
 
+.cbComplete{
+    height: 2em;
+    width: 2em;
+}

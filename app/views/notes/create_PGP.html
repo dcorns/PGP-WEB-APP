@@ -17,7 +17,7 @@
           <h2 id="saveGenResHere">Save New General Resources Here</h2>
           <div id="addGenResourse">
               <form id="frmGoalResource">
-                  <input type="text" placeholder="New Resource Title" data-ng-model="saveGResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveGResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveGResource.resource.rlink"><button data-ng-click="saveGenResource(saveGResource)">Save resource</button>
+                  <input type="text" placeholder="New Resource Title" data-ng-model="saveGResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveGResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveGResource.resource.rlink"><button data-ng-click="saveGenResource(saveGResource)">Save New Resource</button>
               </form>
           </div>
 
@@ -31,7 +31,7 @@
           <label for="sG1">General Resources</label>
           <select id="sG1" data-ng-model="selectedG1Res" data-ng-options="r.title for r in genResources">
       </select>
-          <button data-ng-click="addg1Resource(selectedG1Res)">ADD</button>
+          <button data-ng-click="addg1Resource(selectedG1Res)">ADD Resource to Plan</button>
               <ul class="resourceList">
                   <li class="animate-repeat" data-ng-repeat="rec in selectedNote.goalsrc1">
                       Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
@@ -50,7 +50,7 @@
           <label for="sG2">General Resources</label>
           <select id="sG2" data-ng-model="selectedG2Res" data-ng-options="r.title for r in genResources">
           </select>
-          <button data-ng-click="addg2Resource(selectedG2Res)">ADD</button>
+          <button data-ng-click="addg2Resource(selectedG2Res)">ADD Resource to Plan</button>
               <ul class="resourceList">
                   <li class="animate-repeat" data-ng-repeat="rec in selectedNote.goalsrc2">
                       Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
@@ -69,7 +69,7 @@
           <label for="sG3">General Resources</label>
           <select id="sG3" data-ng-model="selectedG3Res" data-ng-options="r.title for r in genResources">
           </select>
-          <button data-ng-click="addg3Resource(selectedG3Res)">ADD</button>
+          <button data-ng-click="addg3Resource(selectedG3Res)">ADD Resource to Plan</button>
               <ul class="resourceList">
                   <li class="animate-repeat" data-ng-repeat="rec in selectedNote.goalsrc3">
                       Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
@@ -88,7 +88,7 @@
           <label for="sG4">General Resources</label>
           <select id="sG4" data-ng-model="selectedG4Res" data-ng-options="r.title for r in genResources">
           </select>
-          <button data-ng-click="addg4Resource(selectedG4Res)">ADD</button>
+          <button data-ng-click="addg4Resource(selectedG4Res)">ADD Resource to Plan</button>
               <ul class="resourceList">
                   <li class="animate-repeat" data-ng-repeat="rec in selectedNote.goalsrc4">
                       Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
@@ -107,7 +107,7 @@
           <label for="sG5">General Resources</label>
           <select id="sG5" data-ng-model="selectedG5Res" data-ng-options="r.title for r in genResources">
           </select>
-          <button data-ng-click="addg5Resource(selectedG5Res)">ADD</button>
+          <button data-ng-click="addg5Resource(selectedG5Res)">ADD Resource to Plan</button>
               <ul class="resourceList">
                   <li class="animate-repeat" data-ng-repeat="rec in selectedNote.goalsrc5">
                       Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
@@ -132,11 +132,11 @@
         <label class="newSurvey_form-lbl">HTML:</label>
           <form id="frmHTMLResource">
               <label class="rating">{{selectedNote.rtg1}}</label>
-              <input type="text" placeholder="New Resource Title" data-ng-model="saveHTMLResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveHTMLResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveHTMLResource.resource.rlink"><button data-ng-click="savehtmlResource(saveHTMLResource)">Save resource</button></form>
+              <input type="text" placeholder="New Resource Title" data-ng-model="saveHTMLResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveHTMLResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveHTMLResource.resource.rlink"><button data-ng-click="savehtmlResource(saveHTMLResource)">Save New HTML resource</button></form>
           <label for="sHTML">HTML Resources</label>
           <select id="sHTML" data-ng-model="selectedHTMLRes" data-ng-options="r.title for r in HTMLResources">
           </select>
-          <button data-ng-click="addHTMLResource(selectedHTMLRes)">ADD</button>
+          <button data-ng-click="addHTMLResource(selectedHTMLRes)">ADD HTML Resource to Plan</button>
                 <ul class="resourceList">
                     <li class="animate-repeat" data-ng-repeat="rec in selectedNote.recsrc1">
                         Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
@@ -154,11 +154,11 @@
         <label class="newSurvey_form-lbl">CSS:</label>
           <form id="frmCSSResource">
               <label class="rating">{{selectedNote.rtg2}}</label>
-              <input type="text" placeholder="New Resource Title" data-ng-model="saveCSSResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveCSSResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveCSSResource.resource.rlink"><button data-ng-click="savecssResource(saveCSSResource)">Save resource</button></form>
+              <input type="text" placeholder="New Resource Title" data-ng-model="saveCSSResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveCSSResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveCSSResource.resource.rlink"><button data-ng-click="savecssResource(saveCSSResource)">Save New CSS Resource</button></form>
           <label for="sCSS">CSS Resources</label>
           <select id="sCSS" data-ng-model="selectedCSSRes" data-ng-options="r.title for r in CSSResources">
           </select>
-          <button data-ng-click="addCSSResource(selectedCSSRes)">ADD</button>
+          <button data-ng-click="addCSSResource(selectedCSSRes)">ADD CSS Resource to Plan </button>
                 <ul class="resourceList">
                     <li class="animate-repeat" data-ng-repeat="rec in selectedNote.recsrc2">
                         Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
@@ -176,11 +176,11 @@
         <label class="newSurvey_form-lbl">Javascript:</label>
           <form id="frmJSResource">
               <label class="rating">{{selectedNote.rtg3}}</label>
-              <input type="text" placeholder="New Resource Title" data-ng-model="saveJSResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveJSResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveJSResource.resource.rlink"><button data-ng-click="savejsResource(saveJSResource)">Save resource</button></form>
+              <input type="text" placeholder="New Resource Title" data-ng-model="saveJSResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveJSResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveJSResource.resource.rlink"><button data-ng-click="savejsResource(saveJSResource)">Save New JS resource</button></form>
           <label for="sJS">JavaSript Resources</label>
           <select id="sJS" data-ng-model="selectedJSRes" data-ng-options="r.title for r in JSResources">
           </select>
-          <button data-ng-click="addJSResource(selectedJSRes)">ADD</button>
+          <button data-ng-click="addJSResource(selectedJSRes)">ADD JS Resource to Plan</button>
                 <ul class="resourceList">
                     <li class="animate-repeat" data-ng-repeat="rec in selectedNote.recsrc3">
                         Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
@@ -198,11 +198,11 @@
           <label class="newSurvey_form-lbl">GIT:</label>
           <form id="frmGITResource">
               <label class="rating">{{selectedNote.rtg4}}</label>
-              <input type="text" placeholder="New Resource Title" data-ng-model="saveGITResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveGITResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveGITResource.resource.rlink"><button data-ng-click="savegitResource(saveGITResource)">Save resource</button></form>
+              <input type="text" placeholder="New Resource Title" data-ng-model="saveGITResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveGITResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveGITResource.resource.rlink"><button data-ng-click="savegitResource(saveGITResource)">Save New GIT Resource</button></form>
           <label for="sGIT">GIT Resources</label>
           <select id="sGIT" data-ng-model="selectedGITRes" data-ng-options="r.title for r in GITResources">
           </select>
-          <button data-ng-click="addGITResource(selectedGITRes)">ADD</button>
+          <button data-ng-click="addGITResource(selectedGITRes)">ADD GIT Resource to Plan</button>
                 <ul class="resourceList">
                     <li class="animate-repeat" data-ng-repeat="rec in selectedNote.recsrc4">
                         Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
@@ -220,11 +220,11 @@
           <label class="newSurvey_form-lbl">Data structures and algorithms:</label>
           <form id="frmDSAResource">
               <label class="rating">{{selectedNote.rtg5}}</label>
-              <input type="text" placeholder="New Resource Title" data-ng-model="saveDSAResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveDSAResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveDSAResource.resource.rlink"><button data-ng-click="savedsaResource(saveDSAResource)">Save resource</button></form>
+              <input type="text" placeholder="New Resource Title" data-ng-model="saveDSAResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveDSAResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveDSAResource.resource.rlink"><button data-ng-click="savedsaResource(saveDSAResource)">Save New Data Resource</button></form>
           <label for="sDSA">Data Structures and Algorithms Resources</label>
           <select id="sDSA" data-ng-model="selectedDSARes" data-ng-options="r.title for r in DSAResources">
           </select>
-          <button data-ng-click="addDSAResource(selectedDSARes)">ADD</button>
+          <button data-ng-click="addDSAResource(selectedDSARes)">ADD Data Resource to Plan</button>
                 <ul class="resourceList">
                     <li class="animate-repeat" data-ng-repeat="rec in selectedNote.recsrc5">
                         Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
@@ -242,11 +242,11 @@
           <label class="newSurvey_form-lbl">Command line interface:</label>
           <form id="frmCMDResource">
               <label class="rating">{{selectedNote.rtg6}}</label>
-              <input type="text" placeholder="New Resource Title" data-ng-model="saveCMDResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveCMDResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveCMDResource.resource.rlink"><button data-ng-click="savecmdResource(saveCMDResource)">Save resource</button></form>
+              <input type="text" placeholder="New Resource Title" data-ng-model="saveCMDResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveCMDResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveCMDResource.resource.rlink"><button data-ng-click="savecmdResource(saveCMDResource)">Save New Terminal Resource</button></form>
           <label for="sCMD">Command Line (terminal) Resources</label>
           <select id="sCMD" data-ng-model="selectedCMDRes" data-ng-options="r.title for r in CMDResources">
           </select>
-          <button data-ng-click="addCMDResource(selectedCMDRes)">ADD</button>
+          <button data-ng-click="addCMDResource(selectedCMDRes)">ADD Terminal Resource to Plan</button>
                 <ul class="resourceList">
                     <li class="animate-repeat" data-ng-repeat="rec in selectedNote.recsrc6">
                         Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
@@ -264,11 +264,11 @@
           <label class="newSurvey_form-lbl">Object-oriented programming:</label>
           <form id="frmOOPResource">
               <label class="rating">{{selectedNote.rtg7}}</label>
-              <input type="text" placeholder="New Resource Title" data-ng-model="saveOOPResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveOOPResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveOOPResource.resource.rlink"><button data-ng-click="saveoopResource(saveOOPResource)">Save resource</button></form>
+              <input type="text" placeholder="New Resource Title" data-ng-model="saveOOPResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveOOPResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveOOPResource.resource.rlink"><button data-ng-click="saveoopResource(saveOOPResource)">Save New Object-oriented Resource</button></form>
           <label for="sOOP">Object-oriented Programing Resources</label>
           <select id="sOOP" data-ng-model="selectedOOPRes" data-ng-options="r.title for r in OOPResources">
           </select>
-          <button data-ng-click="addOOPResource(selectedOOPRes)">ADD</button>
+          <button data-ng-click="addOOPResource(selectedOOPRes)">ADD Object-oriented Resource to Plan</button>
                 <ul class="resourceList">
                     <li class="animate-repeat" data-ng-repeat="rec in selectedNote.recsrc7">
                         Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
@@ -290,7 +290,7 @@
         <textarea rows="5" placeholder="Enter responses to Questions and concerns here." class="newSurvey_form-textarea" data-ng-model="selectedNote.feedbk"></textarea>
           </fieldset>
 
-      <button data-ng-click="saveNote(selectedNote)">Save PGP</button><label for="cbPGP">Check Complete to make PGP available to student</label><input id="cbPGP" type="checkbox" data-ng-model="selectedNote.recComplete">
+      <button data-ng-click="saveNote(selectedNote)">Save PGP</button><label for="cbPGP">Check Complete to make PGP available to student</label><input class="cbComplete" id="cbPGP" type="checkbox" data-ng-model="selectedNote.recComplete">
 
     </form>
 
