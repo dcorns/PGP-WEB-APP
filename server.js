@@ -14,6 +14,7 @@ app.use(bodyparser.json());
 require('./routes/note-routes')(app);
 require('./routes/user-routes')(app);
 require('./routes/login-routes')(app);
+require('./routes/resource-routes')(app);
 
 var server = http.createServer(app);
 
