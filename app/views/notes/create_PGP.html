@@ -131,7 +131,7 @@
                 <button id="btnHTMLOff" class="toggle">HTML</button>
         <label class="newSurvey_form-lbl">HTML:</label>
           <form id="frmHTMLResource">
-              <label class="newSurvey_form-lbl">{{selectedNote.rtg1}}</label>
+              <label class="rating">{{selectedNote.rtg1}}</label>
               <input type="text" placeholder="New Resource Title" data-ng-model="saveHTMLResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveHTMLResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveHTMLResource.resource.rlink"><button data-ng-click="savehtmlResource(saveHTMLResource)">Save resource</button></form>
           <label for="sHTML">HTML Resources</label>
           <select id="sHTML" data-ng-model="selectedHTMLRes" data-ng-options="r.title for r in HTMLResources">
@@ -153,7 +153,7 @@
                 <button id="btnCSSOff" class="toggle">CSS</button>
         <label class="newSurvey_form-lbl">CSS:</label>
           <form id="frmCSSResource">
-              <label class="newSurvey_form-lbl">{{selectedNote.rtg2}}</label>
+              <label class="rating">{{selectedNote.rtg2}}</label>
               <input type="text" placeholder="New Resource Title" data-ng-model="saveCSSResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveCSSResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveCSSResource.resource.rlink"><button data-ng-click="savecssResource(saveCSSResource)">Save resource</button></form>
           <label for="sCSS">CSS Resources</label>
           <select id="sCSS" data-ng-model="selectedCSSRes" data-ng-options="r.title for r in CSSResources">
@@ -175,7 +175,7 @@
                 <button id="btnJSOff" class="toggle">JavaScript</button>
         <label class="newSurvey_form-lbl">Javascript:</label>
           <form id="frmJSResource">
-              <label class="newSurvey_form-lbl">{{selectedNote.rtg3}}</label>
+              <label class="rating">{{selectedNote.rtg3}}</label>
               <input type="text" placeholder="New Resource Title" data-ng-model="saveJSResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveJSResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveJSResource.resource.rlink"><button data-ng-click="savejsResource(saveJSResource)">Save resource</button></form>
           <label for="sJS">JavaSript Resources</label>
           <select id="sJS" data-ng-model="selectedJSRes" data-ng-options="r.title for r in JSResources">
@@ -197,7 +197,7 @@
                 <button id="btnGITOff" class="toggle">GIT</button>
           <label class="newSurvey_form-lbl">GIT:</label>
           <form id="frmGITResource">
-              <label class="newSurvey_form-lbl">{{selectedNote.rtg4}}</label>
+              <label class="rating">{{selectedNote.rtg4}}</label>
               <input type="text" placeholder="New Resource Title" data-ng-model="saveGITResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveGITResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveGITResource.resource.rlink"><button data-ng-click="savegitResource(saveGITResource)">Save resource</button></form>
           <label for="sGIT">GIT Resources</label>
           <select id="sGIT" data-ng-model="selectedGITRes" data-ng-options="r.title for r in GITResources">
@@ -219,7 +219,7 @@
                 <button id="btnDSAOff" class="toggle">DATA</button>
           <label class="newSurvey_form-lbl">Data structures and algorithms:</label>
           <form id="frmDSAResource">
-              <label class="newSurvey_form-lbl">{{selectedNote.rtg5}}</label>
+              <label class="rating">{{selectedNote.rtg5}}</label>
               <input type="text" placeholder="New Resource Title" data-ng-model="saveDSAResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveDSAResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveDSAResource.resource.rlink"><button data-ng-click="savedsaResource(saveDSAResource)">Save resource</button></form>
           <label for="sDSA">Data Structures and Algorithms Resources</label>
           <select id="sDSA" data-ng-model="selectedDSARes" data-ng-options="r.title for r in DSAResources">
@@ -241,7 +241,7 @@
                 <button id="btnCMDOff" class="toggle">TERMINAL</button>
           <label class="newSurvey_form-lbl">Command line interface:</label>
           <form id="frmCMDResource">
-              <label class="newSurvey_form-lbl">{{selectedNote.rtg6}}</label>
+              <label class="rating">{{selectedNote.rtg6}}</label>
               <input type="text" placeholder="New Resource Title" data-ng-model="saveCMDResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveCMDResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveCMDResource.resource.rlink"><button data-ng-click="savecmdResource(saveCMDResource)">Save resource</button></form>
           <label for="sCMD">Command Line (terminal) Resources</label>
           <select id="sCMD" data-ng-model="selectedCMDRes" data-ng-options="r.title for r in CMDResources">
@@ -263,7 +263,7 @@
                 <button id="btnOOPOff" class="toggle">Object-Orientated</button>
           <label class="newSurvey_form-lbl">Object-oriented programming:</label>
           <form id="frmOOPResource">
-              <label class="newSurvey_form-lbl">{{selectedNote.rtg7}}</label>
+              <label class="rating">{{selectedNote.rtg7}}</label>
               <input type="text" placeholder="New Resource Title" data-ng-model="saveOOPResource.resource.title"><input type="text" placeholder="New Resource type" data-ng-model="saveOOPResource.resource.type"><input type="url" placeholder="New Resource Link" data-ng-model="saveOOPResource.resource.rlink"><button data-ng-click="saveoopResource(saveOOPResource)">Save resource</button></form>
           <label for="sOOP">Object-oriented Programing Resources</label>
           <select id="sOOP" data-ng-model="selectedOOPRes" data-ng-options="r.title for r in OOPResources">
