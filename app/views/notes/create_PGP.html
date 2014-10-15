@@ -31,7 +31,15 @@
           <label for="sG1">General Resources</label>
           <select id="sG1" data-ng-model="selectedG1Res" data-ng-options="r.title for r in genResources">
       </select>
-          <button data-ng-click="addg1Resource(selectedG1Res)">ADD</button><label>{{selectedNote.goalsrc1}}</label>
+          <button data-ng-click="addg1Resource(selectedG1Res)">ADD</button>
+              <ul class="resourceList">
+                  <li class="animate-repeat" data-ng-repeat="rec in selectedNote.goalsrc1">
+                      Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                  </li>
+                  <li class="animate-repeat" ng-if="results.length == 0">
+                      <strong>No results found...</strong>
+                  </li>
+              </ul>
           </fieldset>
 
           <button id="btnG2On" class="toggle">REASONS</button>
@@ -42,7 +50,15 @@
           <label for="sG2">General Resources</label>
           <select id="sG2" data-ng-model="selectedG2Res" data-ng-options="r.title for r in genResources">
           </select>
-          <button data-ng-click="addg2Resource(selectedG2Res)">ADD</button><label>{{selectedNote.goalsrc2}}</label>
+          <button data-ng-click="addg2Resource(selectedG2Res)">ADD</button>
+              <ul class="resourceList">
+                  <li class="animate-repeat" data-ng-repeat="rec in selectedNote.goalsrc2">
+                      Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                  </li>
+                  <li class="animate-repeat" ng-if="results.length == 0">
+                      <strong>No results found...</strong>
+                  </li>
+              </ul>
           </fieldset>
 
           <button id="btnG3On" class="toggle">LikeProblems</button>
@@ -53,7 +69,15 @@
           <label for="sG3">General Resources</label>
           <select id="sG3" data-ng-model="selectedG3Res" data-ng-options="r.title for r in genResources">
           </select>
-          <button data-ng-click="addg3Resource(selectedG3Res)">ADD</button><label>{{selectedNote.goalsrc3}}</label>
+          <button data-ng-click="addg3Resource(selectedG3Res)">ADD</button>
+              <ul class="resourceList">
+                  <li class="animate-repeat" data-ng-repeat="rec in selectedNote.goalsrc3">
+                      Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                  </li>
+                  <li class="animate-repeat" ng-if="results.length == 0">
+                      <strong>No results found...</strong>
+                  </li>
+              </ul>
         </fieldset>
 
           <button id="btnG4On" class="toggle">WhatNext</button>
@@ -64,18 +88,34 @@
           <label for="sG4">General Resources</label>
           <select id="sG4" data-ng-model="selectedG4Res" data-ng-options="r.title for r in genResources">
           </select>
-          <button data-ng-click="addg4Resource(selectedG4Res)">ADD</button><label>{{selectedNote.goalsrc4}}</label>
+          <button data-ng-click="addg4Resource(selectedG4Res)">ADD</button>
+              <ul class="resourceList">
+                  <li class="animate-repeat" data-ng-repeat="rec in selectedNote.goalsrc4">
+                      Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                  </li>
+                  <li class="animate-repeat" ng-if="results.length == 0">
+                      <strong>No results found...</strong>
+                  </li>
+              </ul>
         </fieldset>
 
           <button id="btnG5On" class="toggle">ACCOMPLISH</button>
           <fieldset id="fG5">
-              <button id="btnG5Off" class="toggle">LongTermGoals</button>
+              <button id="btnG5Off" class="toggle">ACCOMPLISH</button>
           <label  class="newSurvey_form-std">>What I would like to be able to accomplish with code</label>
           <p  class="newSurvey_form-std">{{selectedNote.goal5}}</p>
           <label for="sG5">General Resources</label>
           <select id="sG5" data-ng-model="selectedG5Res" data-ng-options="r.title for r in genResources">
           </select>
-          <button data-ng-click="addg5Resource(selectedG5Res)">ADD</button><label>{{selectedNote.goalsrc5}}</label>
+          <button data-ng-click="addg5Resource(selectedG5Res)">ADD</button>
+              <ul class="resourceList">
+                  <li class="animate-repeat" data-ng-repeat="rec in selectedNote.goalsrc5">
+                      Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                  </li>
+                  <li class="animate-repeat" ng-if="results.length == 0">
+                      <strong>No results found...</strong>
+                  </li>
+              </ul>
         </fieldset>
 
       </fieldset>
@@ -96,13 +136,21 @@
           <label for="sHTML">HTML Resources</label>
           <select id="sHTML" data-ng-model="selectedHTMLRes" data-ng-options="r.title for r in HTMLResources">
           </select>
-          <button data-ng-click="addHTMLResource(selectedHTMLRes)">ADD</button><label>{{selectedNote.recsrc1}}</label>
+          <button data-ng-click="addHTMLResource(selectedHTMLRes)">ADD</button>
+                <ul class="resourceList">
+                    <li class="animate-repeat" data-ng-repeat="rec in selectedNote.recsrc1">
+                        Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                    </li>
+                    <li class="animate-repeat" ng-if="results.length == 0">
+                        <strong>No results found...</strong>
+                    </li>
+                </ul>
         <textarea rows="5" class="newSurvey_form-textarea" placeholder="Please enter recommendations here" data-ng-model="selectedNote.rec1"></textarea>
         </fieldset>
 
             <button id="btnCSSOn" class="toggle">CSS</button>
             <fieldset id="fCSS">
-                <button id="btnCSSOff" class="toggle">HTML</button>
+                <button id="btnCSSOff" class="toggle">CSS</button>
         <label class="newSurvey_form-lbl">CSS:</label>
           <form id="frmCSSResource">
               <label class="newSurvey_form-lbl">{{selectedNote.rtg2}}</label>
@@ -110,7 +158,15 @@
           <label for="sCSS">CSS Resources</label>
           <select id="sCSS" data-ng-model="selectedCSSRes" data-ng-options="r.title for r in CSSResources">
           </select>
-          <button data-ng-click="addCSSResource(selectedCSSRes)">ADD</button><label>{{selectedNote.recsrc2}}</label>
+          <button data-ng-click="addCSSResource(selectedCSSRes)">ADD</button>
+                <ul class="resourceList">
+                    <li class="animate-repeat" data-ng-repeat="rec in selectedNote.recsrc2">
+                        Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                    </li>
+                    <li class="animate-repeat" ng-if="results.length == 0">
+                        <strong>No results found...</strong>
+                    </li>
+                </ul>
         <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" data-ng-model="selectedNote.rec2"></textarea>
         </fieldset>
 
@@ -124,7 +180,15 @@
           <label for="sJS">JavaSript Resources</label>
           <select id="sJS" data-ng-model="selectedJSRes" data-ng-options="r.title for r in JSResources">
           </select>
-          <button data-ng-click="addJSResource(selectedJSRes)">ADD</button><label>{{selectedNote.recsrc3}}</label>
+          <button data-ng-click="addJSResource(selectedJSRes)">ADD</button>
+                <ul class="resourceList">
+                    <li class="animate-repeat" data-ng-repeat="rec in selectedNote.recsrc3">
+                        Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                    </li>
+                    <li class="animate-repeat" ng-if="results.length == 0">
+                        <strong>No results found...</strong>
+                    </li>
+                </ul>
         <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" data-ng-model="selectedNote.rec3"></textarea>
                 </fieldset>
 
@@ -138,7 +202,15 @@
           <label for="sGIT">GIT Resources</label>
           <select id="sGIT" data-ng-model="selectedGITRes" data-ng-options="r.title for r in GITResources">
           </select>
-          <button data-ng-click="addGITResource(selectedGITRes)">ADD</button><label>{{selectedNote.recsrc4}}</label>
+          <button data-ng-click="addGITResource(selectedGITRes)">ADD</button>
+                <ul class="resourceList">
+                    <li class="animate-repeat" data-ng-repeat="rec in selectedNote.recsrc4">
+                        Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                    </li>
+                    <li class="animate-repeat" ng-if="results.length == 0">
+                        <strong>No results found...</strong>
+                    </li>
+                </ul>
           <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" data-ng-model="selectedNote.rec4"></textarea>
                 </fieldset>
 
@@ -152,7 +224,15 @@
           <label for="sDSA">Data Structures and Algorithms Resources</label>
           <select id="sDSA" data-ng-model="selectedDSARes" data-ng-options="r.title for r in DSAResources">
           </select>
-          <button data-ng-click="addDSAResource(selectedDSARes)">ADD</button><label>{{selectedNote.recsrc5}}</label>
+          <button data-ng-click="addDSAResource(selectedDSARes)">ADD</button>
+                <ul class="resourceList">
+                    <li class="animate-repeat" data-ng-repeat="rec in selectedNote.recsrc5">
+                        Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                    </li>
+                    <li class="animate-repeat" ng-if="results.length == 0">
+                        <strong>No results found...</strong>
+                    </li>
+                </ul>
           <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" data-ng-model="selectedNote.rec5"></textarea>
                 </fieldset>
 
@@ -166,7 +246,15 @@
           <label for="sCMD">Command Line (terminal) Resources</label>
           <select id="sCMD" data-ng-model="selectedCMDRes" data-ng-options="r.title for r in CMDResources">
           </select>
-          <button data-ng-click="addCMDResource(selectedCMDRes)">ADD</button><label>{{selectedNote.recsrc6}}</label>
+          <button data-ng-click="addCMDResource(selectedCMDRes)">ADD</button>
+                <ul class="resourceList">
+                    <li class="animate-repeat" data-ng-repeat="rec in selectedNote.recsrc6">
+                        Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                    </li>
+                    <li class="animate-repeat" ng-if="results.length == 0">
+                        <strong>No results found...</strong>
+                    </li>
+                </ul>
           <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" data-ng-model="selectedNote.rec6"></textarea>
         </fieldset>
 
@@ -180,7 +268,15 @@
           <label for="sOOP">Object-oriented Programing Resources</label>
           <select id="sOOP" data-ng-model="selectedOOPRes" data-ng-options="r.title for r in OOPResources">
           </select>
-          <button data-ng-click="addOOPResource(selectedOOPRes)">ADD</button><label>{{selectedNote.recsrc7}}</label>
+          <button data-ng-click="addOOPResource(selectedOOPRes)">ADD</button>
+                <ul class="resourceList">
+                    <li class="animate-repeat" data-ng-repeat="rec in selectedNote.recsrc7">
+                        Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                    </li>
+                    <li class="animate-repeat" ng-if="results.length == 0">
+                        <strong>No results found...</strong>
+                    </li>
+                </ul>
           <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea" data-ng-model="selectedNote.rec7"></textarea>
                 </fieldset>
 
@@ -194,7 +290,7 @@
         <textarea rows="5" placeholder="Enter responses to Questions and concerns here." class="newSurvey_form-textarea" data-ng-model="selectedNote.feedbk"></textarea>
           </fieldset>
 
-      <button data-ng-click="saveNote(selectedNote)">Save PGP</button>
+      <button data-ng-click="saveNote(selectedNote)">Save PGP</button><label for="cbPGP">Check Complete to make PGP available to student</label><input id="cbPGP" type="checkbox" data-ng-model="selectedNote.recComplete">
 
     </form>
 

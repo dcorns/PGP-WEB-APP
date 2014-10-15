@@ -39,7 +39,7 @@ var noteSchema = mongoose.Schema({
   recsrc7: [],
   moresrc: [],
   feedbk: String,
-  rtgcomplete: Boolean,
+  rtgComplete: Boolean,
   recComplete: Boolean
 });
 
