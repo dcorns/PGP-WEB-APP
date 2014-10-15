@@ -15,21 +15,20 @@ module.exports = function(){
       document.getElementById('btncreatepgp').className = 'hidden';
       document.getElementById('btnsurvey').className = 'hidden';
       document.getElementById('btnviewpgp').className = 'hidden';
-      document.getElementById('btnGoalsOff').className = 'hidden';
-      document.getElementById('fGoals').className = 'hidden';
-      document.getElementById('fAss').className = 'hidden';
-      document.getElementById('fG1').className = 'hidden';
-      document.getElementById('fG2').className = 'hidden';
-      document.getElementById('fG3').className = 'hidden';
-      document.getElementById('fG4').className = 'hidden';
-      document.getElementById('fG5').className = 'hidden';
-      document.getElementById('fHTML').className = 'hidden';
-      document.getElementById('fCSS').className = 'hidden';
-      document.getElementById('fJS').className = 'hidden';
-      document.getElementById('fGIT').className = 'hidden';
-      document.getElementById('fDSA').className = 'hidden';
-      document.getElementById('fCMD').className = 'hidden';
-      document.getElementById('fOOP').className = 'hidden';
+      document.getElementById('btnGoalsOn').className = 'hidden';
+      document.getElementById('btnAssOn').className = 'hidden';
+      document.getElementById('btnG1On').className = 'hidden';
+      document.getElementById('btnG2On').className = 'hidden';
+      document.getElementById('btnG3On').className = 'hidden';
+      document.getElementById('btnG4On').className = 'hidden';
+      document.getElementById('btnG5On').className = 'hidden';
+      document.getElementById('btnHTMLOn').className = 'hidden';
+      document.getElementById('btnCSSOn').className = 'hidden';
+      document.getElementById('btnJSOn').className = 'hidden';
+      document.getElementById('btnGITOn').className = 'hidden';
+      document.getElementById('btnDSAOn').className = 'hidden';
+      document.getElementById('btnCMDOn').className = 'hidden';
+      document.getElementById('btnOOPOn').className = 'hidden';
       return this;
     },
     setToggles: function(){
