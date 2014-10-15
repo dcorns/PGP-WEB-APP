@@ -90,8 +90,8 @@ module.exports = function(app) {
       note.editing = null;
       $http.put('api/v_0_0_1/notes/' + note._id, note)
         .success(function(data) {
-          alert("PGP Saved, Refreshing survey list");
-          $scope.getAllNotes();
+          alert("PGP Saved");
+         // $scope.getAllNotes();
         })
         .error(function(data) {
           console.log(data);
