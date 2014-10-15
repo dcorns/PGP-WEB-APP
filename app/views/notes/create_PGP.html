@@ -33,7 +33,7 @@
       </select>
           <button data-ng-click="addg1Resource(selectedG1Res)">ADD Resource to Plan</button>
               <ul class="resourceList">
-                  <li class="animate-repeat" data-ng-repeat="rec in selectedNote.goalsrc1">
+                  <li class="animate-repeat" data-ng-click="removeFromPgp($event, rec, selectedNote.goalsrc1)" data-ng-repeat="rec in selectedNote.goalsrc1">
                       Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
                   </li>
                   <li class="animate-repeat" ng-if="results.length == 0">

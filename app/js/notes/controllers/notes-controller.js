@@ -358,6 +358,14 @@ module.exports = function(app) {
         $scope.selectedNote.recsrc7.push(sel);
       };
 
+      $scope.removeFromPgp = function(e, item){
+        console.dir(e);
+        if(e.altKey){
+          var idx = $scope.selectedNote.goalsrc1.indexOf(item);
+          $scope.selectedNote.goalsrc1.splice(idx,1);
+        }
+      };
+
     }
   });
 };
