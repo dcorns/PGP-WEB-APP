@@ -4,15 +4,18 @@ module.exports = function(app) {
   app.controller('notesController', function($scope, $http) {
     var ui = require('../../ui');
     var ux = ui();
-    //hide buttons before authorization
-    ux.startHidden();
-    ux.setToggles();
+    angular.element(document).ready(function() {
+      ux.startHidden();
+      ux.setToggles();
+
+      // Target an element instead
+      // angular.bootstrap(jQuery('body'), ['App']);
+    });
 
     //Check for authorization before loading notes
     if(window.sessionStorage.getItem('token')){
     var token = window.sessionStorage.getItem('token');
     $http.defaults.headers.common.Authorization = token;
-
     $scope.notes = [];
     $scope.resources = [];
     $scope.getAllNotes = function() {

@@ -38,7 +38,7 @@
           <fieldset id="fG2">
               <button id="btnG2Off" class="toggle">REASONS</button>
           <label class="newSurvey_form-std">Reasons for my interest in developing computer/coding skills</label>
-          <label class="newSurvey_form-std">{{selectedNote.goal2}}</label>
+          <p class="newSurvey_form-std">{{selectedNote.goal2}}</p>
           <label for="sG2">General Resources</label>
           <select id="sG2" data-ng-model="selectedG2Res" data-ng-options="r.title for r in genResources">
           </select>
@@ -49,7 +49,7 @@
           <fieldset id="fG3">
               <button id="btnG3Off" class="toggle">LikeProblems</button>
           <label  class="newSurvey_form-std">I like working on these kinds of problems</label>
-          <label  class="newSurvey_form-std">{{selectedNote.goal3}}</label>
+          <p  class="newSurvey_form-std">{{selectedNote.goal3}}</p>
           <label for="sG3">General Resources</label>
           <select id="sG3" data-ng-model="selectedG3Res" data-ng-options="r.title for r in genResources">
           </select>
@@ -60,7 +60,7 @@
           <fieldset id="fG4">
               <button id="btnG4Off" class="toggle">WhatNext</button>
           <label  class="newSurvey_form-std">What I would like to do next</label>
-          <label  class="newSurvey_form-std">{{selectedNote.goal4}}</label>
+          <p  class="newSurvey_form-std">{{selectedNote.goal4}}</p>
           <label for="sG4">General Resources</label>
           <select id="sG4" data-ng-model="selectedG4Res" data-ng-options="r.title for r in genResources">
           </select>
@@ -71,7 +71,7 @@
           <fieldset id="fG5">
               <button id="btnG5Off" class="toggle">LongTermGoals</button>
           <label  class="newSurvey_form-std">>What I would like to be able to accomplish with code</label>
-          <label  class="newSurvey_form-std">{{selectedNote.goal5}}</label>
+          <p  class="newSurvey_form-std">{{selectedNote.goal5}}</p>
           <label for="sG5">General Resources</label>
           <select id="sG5" data-ng-model="selectedG5Res" data-ng-options="r.title for r in genResources">
           </select>
@@ -188,7 +188,7 @@
 
           <fieldset>
               <legend>Questions/Concerns?</legend>
-              <label class="newSurvey_form-std">{{selectedNote.note}}</label>
+              <p class="newSurvey_form-std">{{selectedNote.note}}</p>
 
         <label class="newSurvey_form-lbl">Responses:</label>
         <textarea rows="5" placeholder="Enter responses to Questions and concerns here." class="newSurvey_form-textarea" data-ng-model="selectedNote.feedbk"></textarea>
