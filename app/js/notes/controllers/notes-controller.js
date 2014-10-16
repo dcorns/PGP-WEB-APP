@@ -17,6 +17,7 @@ module.exports = function (app) {
       $http.defaults.headers.common.Authorization = token;
       $scope.notes = [];
       $scope.resources = [];
+
       $scope.getAllNotes = function () {
         $http({
           method: 'GET',
@@ -318,7 +319,6 @@ module.exports = function (app) {
       };
 
       $scope.getAllResources();
-
 
       //add Resources **************************************************************************************************
       //no target coming through and extra argument does not work either so separate handlers Angular?
