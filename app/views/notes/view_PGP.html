@@ -1,33 +1,33 @@
 <div data-ng-controller="notesController">
 
-  <article class="newSurvey">
+    <article class="newSurvey">
 
-    <form class="newSurvey_form">
-      
-      <fieldset>
-        <h1>Please select your name below to view.</h1>
-        <select ng-model="selectedNote" ng-options="note.name for note in notes">
-        </select>
-        <label class="newSurvey_form-text">{{"Course: " + selectedNote.course}}</label>
-      </fieldset>
+        <form class="newSurvey_form">
 
-      <fieldset>
-        <legend>Student's Self Assessment</legend>
-        <label class="newSurvey_form-output-lbl">HTML:</label>
-        <label class="newSurvey_form-output">{{selectedNote.rec1}}</label>
+            <fieldset>
+                <h1>Please select your name below to view.</h1>
+                <select ng-model="selectedNote" ng-options="note.name for note in notes">
+                </select>
+                <label class="newSurvey_form-text">{{"Course: " + selectedNote.course}}</label>
+            </fieldset>
 
-        <label class="newSurvey_form-output-lbl">CSS:</label>
-        <label class="newSurvey_form-output">{{selectedNote.rec2}}</label>
+            <fieldset>
+                <legend>Student's Self Assessment</legend>
+                <label class="newSurvey_form-output-lbl">HTML:</label>
+                <label class="newSurvey_form-output">{{selectedNote.rec1}}</label>
 
-        <label class="newSurvey_form-output-lbl">Javascript:</label>
-        <label class="newSurvey_form-output">{{selectedNote.rec3}}</label>
+                <label class="newSurvey_form-output-lbl">CSS:</label>
+                <label class="newSurvey_form-output">{{selectedNote.rec2}}</label>
 
-         <label class="newSurvey_form-output-lbl">Instructor's Notes:</label>
-        <label class="newSurvey_form-output">{{selectedNote.feedbk}}</label>
-      </fieldset>
+                <label class="newSurvey_form-output-lbl">Javascript:</label>
+                <label class="newSurvey_form-output">{{selectedNote.rec3}}</label>
 
-    </form>
+                <label class="newSurvey_form-output-lbl">Instructor's Notes:</label>
+                <label class="newSurvey_form-output">{{selectedNote.feedbk}}</label>
+            </fieldset>
 
-  </article>
+        </form>
+
+    </article>
 
 </div>

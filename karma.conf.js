@@ -3,14 +3,14 @@
 'use strict';
 
 var browsers = ['Chrome', 'PhantomJS'];
-if ( /^win/.test(process.platform) ) {
+if (/^win/.test(process.platform)) {
   browsers = ['IE'];
 }
-if (process.env.TRAVIS ) {
+if (process.env.TRAVIS) {
   browsers = ['PhantomJS'];
 }
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
