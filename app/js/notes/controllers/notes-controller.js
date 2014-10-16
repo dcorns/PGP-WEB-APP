@@ -358,11 +358,89 @@ module.exports = function(app) {
         $scope.selectedNote.recsrc7.push(sel);
       };
 
-      $scope.removeFromPgp = function(e, item){
+//    Remove resource from PGP*****************************************************************************************
+      $scope.removeFromGsrc1 = function(e, item){
         console.dir(e);
         if(e.altKey){
           var idx = $scope.selectedNote.goalsrc1.indexOf(item);
           $scope.selectedNote.goalsrc1.splice(idx,1);
+        }
+      };
+      $scope.removeFromGsrc2 = function(e, item){
+        console.dir(e);
+        if(e.altKey){
+          var idx = $scope.selectedNote.goalsrc2.indexOf(item);
+          $scope.selectedNote.goalsrc2.splice(idx,1);
+        }
+      };
+      $scope.removeFromGsrc3 = function(e, item){
+        console.dir(e);
+        if(e.altKey){
+          var idx = $scope.selectedNote.goalsrc3.indexOf(item);
+          $scope.selectedNote.goalsrc3.splice(idx,1);
+        }
+      };
+      $scope.removeFromGsrc4 = function(e, item){
+        console.dir(e);
+        if(e.altKey){
+          var idx = $scope.selectedNote.goalsrc4.indexOf(item);
+          $scope.selectedNote.goalsrc4.splice(idx,1);
+        }
+      };
+      $scope.removeFromGsrc5 = function(e, item){
+        console.dir(e);
+        if(e.altKey){
+          var idx = $scope.selectedNote.goalsrc5.indexOf(item);
+          $scope.selectedNote.goalsrc5.splice(idx,1);
+        }
+      };
+      $scope.removeFromSrc1 = function(e, item){
+        console.dir(e);
+        if(e.altKey){
+          var idx = $scope.selectedNote.recsrc1.indexOf(item);
+          $scope.selectedNote.recsrc1.splice(idx,1);
+        }
+      };
+      $scope.removeFromSrc2 = function(e, item){
+        console.dir(e);
+        if(e.altKey){
+          var idx = $scope.selectedNote.recsrc2.indexOf(item);
+          $scope.selectedNote.recsrc2.splice(idx,1);
+        }
+      };
+      $scope.removeFromSrc3 = function(e, item){
+        console.dir(e);
+        if(e.altKey){
+          var idx = $scope.selectedNote.recsrc3.indexOf(item);
+          $scope.selectedNote.recsrc3.splice(idx,1);
+        }
+      };
+      $scope.removeFromSrc4 = function(e, item){
+        console.dir(e);
+        if(e.altKey){
+          var idx = $scope.selectedNote.recsrc4.indexOf(item);
+          $scope.selectedNote.recsrc4.splice(idx,1);
+        }
+      };
+      $scope.removeFromSrc5 = function(e, item){
+        console.dir(e);
+        if(e.altKey){
+          var idx = $scope.selectedNote.recsrc5.indexOf(item);
+          $scope.selectedNote.recsrc5.splice(idx,1);
+        }
+      };
+      $scope.removeFromSrc6 = function(e, item){
+        console.dir(e);
+        if(e.altKey){
+          var idx = $scope.selectedNote.recsrc6.indexOf(item);
+          $scope.selectedNote.recsrc6.splice(idx,1);
+        }
+      };
+      $scope.removeFromSrc7 = function(e, item){
+        console.dir(e);
+        if(e.altKey){
+          var idx = $scope.selectedNote.recsrc7.indexOf(item);
+          $scope.selectedNote.recsrc7.splice(idx,1);
         }
       };
 
