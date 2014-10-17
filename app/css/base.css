@@ -77,3 +77,57 @@ h1 {
     height: 2em;
     width: 2em;
 }
+
+.hCourse {
+    font-family: "Rajdhani", sans-serif;
+    padding: 0;
+    font-size: 2rem;
+    line-height: 1rem;
+    margin: 0;
+}
+
+.pgpLegend {
+    font-family: "Helvetica", sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 2rem 0 2rem 0;
+    line-height: 1rem;
+    color: darkslategrey;
+}
+.pgpHeader {
+    font-family: "Rajdhani", sans-serif;
+    font-size: 3.5rem;
+    font-weight: bold;
+    padding: 0 0 1rem 0;
+    line-height: 1rem;
+}
+
+.pgpAssTitle {
+    font-family: "Rajdhani", sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 0;
+}
+
+#pgpout p {
+    font-family: "Helvetica", sans-serif;
+    font-size: 1.5rem;
+    padding: 0;
+    line-height: 1rem;
+    color: seagreen;
+    text-indent: 1em;
+}
+
+#pgpout li {
+    font-family: "Helvetica", sans-serif;
+    font-size: 1.5rem;
+    padding: 0 0 0 1rem;
+    line-height: 2rem;
+}
+
+#pgpout {
+    background-color: gainsboro;
+    border-color: gray;
+    border-style: solid;
+    border-width: 1rem;
+}
