@@ -2,31 +2,155 @@
 
     <article class="newSurvey">
 
-        <form class="newSurvey_form">
+        <fieldset>
+            <h1>Personal Growth Plan For {{selectedNote.name}}</h1>
+            <!--<select ng-model="selectedNote" ng-options="note.name for note in notes">-->
+            <!--</select>-->
+            <label class="newSurvey_form-text">{{selectedNote.course}}</label>
+        </fieldset>
 
-            <fieldset>
-                <h1>Please select your name below to view.</h1>
-                <select ng-model="selectedNote" ng-options="note.name for note in notes">
-                </select>
-                <label class="newSurvey_form-text">{{"Course: " + selectedNote.course}}</label>
-            </fieldset>
+        <fieldset>
+            <legend>Based on your self assessment responses we recommend the following resources:</legend>
+            <label class="newSurvey_form-output-lbl">HTML:</label>
+            <ul class="resourceList">
+                <li class="animate-repeat" data-ng-repeat="rec in selectedNote.recsrc1">
+                    Type:{{rec.type}}: <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                </li>
+                <li class="animate-repeat" data-ng-if="results.length == 0">
+                    <strong>Nothing Recommended</strong>
+                </li>
+            </ul>
+            <label class="newSurvey_form-output-lbl">{{selectedNote.rec1}}</label>
 
-            <fieldset>
-                <legend>Student's Self Assessment</legend>
-                <label class="newSurvey_form-output-lbl">HTML:</label>
-                <label class="newSurvey_form-output">{{selectedNote.rec1}}</label>
+            <label class="newSurvey_form-output-lbl">CSS:</label>
+            <ul class="resourceList">
+                <li class="animate-repeat" data-ng-click="removeFromSrc2($event, rec)"
+                    data-ng-repeat="rec in selectedNote.recsrc2">
+                    Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                </li>
+                <li class="animate-repeat" ng-if="results.length == 0">
+                    <strong>No results found...</strong>
+                </li>
+            </ul>
+            <label class="newSurvey_form-output-lbl">{{selectedNote.rec2}}</label>
 
-                <label class="newSurvey_form-output-lbl">CSS:</label>
-                <label class="newSurvey_form-output">{{selectedNote.rec2}}</label>
+            <label class="newSurvey_form-output-lbl">JavaScript:</label>
+            <ul class="resourceList">
+                <li class="animate-repeat" data-ng-click="removeFromSrc3($event, rec)"
+                    data-ng-repeat="rec in selectedNote.recsrc3">
+                    Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                </li>
+                <li class="animate-repeat" ng-if="results.length == 0">
+                    <strong>No results found...</strong>
+                </li>
+            </ul>
+            <label class="newSurvey_form-output-lbl">{{selectedNote.rec3}}</label>
 
-                <label class="newSurvey_form-output-lbl">Javascript:</label>
-                <label class="newSurvey_form-output">{{selectedNote.rec3}}</label>
+            <label class="newSurvey_form-output-lbl">GIT:</label>
+            <ul class="resourceList">
+                <li class="animate-repeat" data-ng-click="removeFromSrc4($event, rec)"
+                    data-ng-repeat="rec in selectedNote.recsrc4">
+                    Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                </li>
+                <li class="animate-repeat" ng-if="results.length == 0">
+                    <strong>No results found...</strong>
+                </li>
+            </ul>
+            <label class="newSurvey_form-output-lbl">{{selectedNote.rec4}}</label>
 
-                <label class="newSurvey_form-output-lbl">Instructor's Notes:</label>
-                <label class="newSurvey_form-output">{{selectedNote.feedbk}}</label>
-            </fieldset>
+            <label class="newSurvey_form-output-lbl">Data Structures and Algorithms:</label>
+            <ul class="resourceList">
+                <li class="animate-repeat" data-ng-click="removeFromSrc5($event, rec)"
+                    data-ng-repeat="rec in selectedNote.recsrc5">
+                    Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                </li>
+                <li class="animate-repeat" ng-if="results.length == 0">
+                    <strong>No results found...</strong>
+                </li>
+            </ul>
+            <label class="newSurvey_form-output-lbl">{{selectedNote.rec5}}</label>
 
-        </form>
+            <label class="newSurvey_form-output-lbl">Command Line/ Terminal:</label>
+            <ul class="resourceList">
+                <li class="animate-repeat" data-ng-click="removeFromSrc6($event, rec)"
+                    data-ng-repeat="rec in selectedNote.recsrc6">
+                    Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                </li>
+                <li class="animate-repeat" ng-if="results.length == 0">
+                    <strong>No results found...</strong>
+                </li>
+            </ul>
+            <label class="newSurvey_form-output-lbl">{{selectedNote.rec6}}</label>
+
+            <label class="newSurvey_form-output-lbl">Object-orientated Programing:</label>
+            <ul class="resourceList">
+                <li class="animate-repeat" data-ng-click="removeFromSrc7($event, rec)"
+                    data-ng-repeat="rec in selectedNote.recsrc7">
+                    Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                </li>
+                <li class="animate-repeat" ng-if="results.length == 0">
+                    <strong>No results found...</strong>
+                </li>
+            </ul>
+            <label class="newSurvey_form-output-lbl">{{selectedNote.rec7}}</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Additional resources provided based on your responses to survey questions:</legend>
+
+            <ul class="resourceList">
+                <li class="animate-repeat" data-ng-click="removeFromGsrc1($event, rec)"
+                    data-ng-repeat="rec in selectedNote.goalsrc1">
+                    Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                </li>
+                <li class="animate-repeat" ng-if="results.length == 0">
+                    <strong>No results found...</strong>
+                </li>
+            </ul>
+
+            <ul class="resourceList">
+                <li class="animate-repeat" data-ng-click="removeFromGsrc2($event, rec)"
+                    data-ng-repeat="rec in selectedNote.goalsrc2">
+                    Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                </li>
+                <li class="animate-repeat" ng-if="results.length == 0">
+                    <strong>No results found...</strong>
+                </li>
+            </ul>
+
+            <ul class="resourceList">
+                <li class="animate-repeat" data-ng-click="removeFromGsrc3($event, rec)"
+                    data-ng-repeat="rec in selectedNote.goalsrc3">
+                    Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                </li>
+                <li class="animate-repeat" ng-if="results.length == 0">
+                    <strong>No results found...</strong>
+                </li>
+            </ul>
+
+            <ul class="resourceList">
+                <li class="animate-repeat" data-ng-click="removeFromGsrc4($event, rec)"
+                    data-ng-repeat="rec in selectedNote.goalsrc4">
+                    Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                </li>
+                <li class="animate-repeat" ng-if="results.length == 0">
+                    <strong>No results found...</strong>
+                </li>
+            </ul>
+
+            <ul class="resourceList">
+                <li class="animate-repeat" data-ng-click="removeFromGsrc5($event, rec)"
+                    data-ng-repeat="rec in selectedNote.goalsrc5">
+                    Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                </li>
+                <li class="animate-repeat" ng-if="results.length == 0">
+                    <strong>No results found...</strong>
+                </li>
+            </ul>
+
+        </fieldset>
+        <label class="newSurvey_form-output-lbl">Additional comments and responses:</label>
+        <label class="newSurvey_form-output-lbl">{{selectedNote.feedbk}}</label>
 
     </article>
 
