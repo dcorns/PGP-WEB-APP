@@ -131,15 +131,3 @@ h1 {
     border-style: solid;
     border-width: 1rem;
 }
-
-.pgpViewBtn {
-    font-family: "Rajdhani", sans-serif;
-    font-weight: bold;
-    font-size: 1.6rem;
-    text-decoration: none;
-    color: #fff;
-}
-
-.pgpViewBtn:active, .pgpViewBtn:hover {
-    color: black;
-}

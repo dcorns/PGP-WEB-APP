@@ -30,6 +30,9 @@ module.exports = function (app) {
             }
             else {
               $scope.notes = [data];
+              if($scope.notes[0].recComplete){
+                window.location = "/#/view_PGP";
+              }
             }
             $scope.selectedNote = $scope.notes[0];
 
