@@ -323,44 +323,9 @@ module.exports = function (app) {
 
       $scope.getAllResources();
 
-      //add Resources **************************************************************************************************
-      //no target coming through and extra argument does not work either so separate handlers Angular?
-      $scope.addg1Resource = function (sel) {
-        $scope.selectedNote.goalsrc1.push(sel);
-      };
-      $scope.addg2Resource = function (sel) {
-        $scope.selectedNote.goalsrc2.push(sel);
-      };
-      $scope.addg3Resource = function (sel) {
-        $scope.selectedNote.goalsrc3.push(sel);
-      };
-      $scope.addg4Resource = function (sel) {
-        $scope.selectedNote.goalsrc4.push(sel);
-      };
-      $scope.addg5Resource = function (sel) {
-        $scope.selectedNote.goalsrc5.push(sel);
-      };
-
-      $scope.addHTMLResource = function (sel) {
-        $scope.selectedNote.recsrc1.push(sel);
-      };
-      $scope.addCSSResource = function (sel) {
-        $scope.selectedNote.recsrc2.push(sel);
-      };
-      $scope.addJSResource = function (sel) {
-        $scope.selectedNote.recsrc3.push(sel);
-      };
-      $scope.addGITResource = function (sel) {
-        $scope.selectedNote.recsrc4.push(sel);
-      };
-      $scope.addDSAResource = function (sel) {
-        $scope.selectedNote.recsrc5.push(sel);
-      };
-      $scope.addCMDResource = function (sel) {
-        $scope.selectedNote.recsrc6.push(sel);
-      };
-      $scope.addOOPResource = function (sel) {
-        $scope.selectedNote.recsrc7.push(sel);
+      $scope.addResource = function (sel, rsrc) {
+        console.log('Add Resource');
+        rsrc.push(sel);
       };
 
       $scope.removeRsrcFromPGP = function (e, item, rsrc) {
