@@ -35,7 +35,7 @@
         <button data-ng-click="addg1Resource(selectedG1Res)">ADD Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>
         <ul class="resourceList">
-            <li class="animate-repeat" data-ng-click="removeFromGsrc1($event, rec)"
+            <li class="animate-repeat" data-ng-click="removeRsrcFromPGP($event, rec, selectedNote.goalsrc1)"
                 data-ng-repeat="rec in selectedNote.goalsrc1">
                 Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
             </li>
@@ -57,7 +57,7 @@
         <button data-ng-click="addg2Resource(selectedG2Res)">ADD Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>
         <ul class="resourceList">
-            <li class="animate-repeat" data-ng-click="removeFromGsrc2($event, rec)"
+            <li class="animate-repeat" data-ng-click="removeRsrcFromPGP($event, rec, selectedNote.goalsrc2)"
                 data-ng-repeat="rec in selectedNote.goalsrc2">
                 Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
             </li>
@@ -79,7 +79,7 @@
         <button data-ng-click="addg3Resource(selectedG3Res)">ADD Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>
         <ul class="resourceList">
-            <li class="animate-repeat" data-ng-click="removeFromGsrc3($event, rec)"
+            <li class="animate-repeat" data-ng-click="removeRsrcFromPGP($event, rec, selectedNote.goalsrc3)"
                 data-ng-repeat="rec in selectedNote.goalsrc3">
                 Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
             </li>
@@ -101,7 +101,7 @@
         <button data-ng-click="addg4Resource(selectedG4Res)">ADD Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>
         <ul class="resourceList">
-            <li class="animate-repeat" data-ng-click="removeFromGsrc4($event, rec)"
+            <li class="animate-repeat" data-ng-click="removeRsrcFromPGP($event, rec, selectedNote.goalsrc4)"
                 data-ng-repeat="rec in selectedNote.goalsrc4">
                 Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
             </li>
@@ -123,7 +123,7 @@
         <button data-ng-click="addg5Resource(selectedG5Res)">ADD Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>
         <ul class="resourceList">
-            <li class="animate-repeat" data-ng-click="removeFromGsrc5($event, rec)"
+            <li class="animate-repeat" data-ng-click="removeRsrcFromPGP($event, rec, selectedNote.goalsrc5)"
                 data-ng-repeat="rec in selectedNote.goalsrc5">
                 Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
             </li>
@@ -159,7 +159,7 @@
         <button data-ng-click="addHTMLResource(selectedHTMLRes)">ADD HTML Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>
         <ul class="resourceList">
-            <li class="animate-repeat" data-ng-click="removeFromSrc1($event, rec)"
+            <li class="animate-repeat" data-ng-click="removeRsrcFromPGP($event, rec, selectedNote.recsrc1)"
                 data-ng-repeat="rec in selectedNote.recsrc1">
                 Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
             </li>
@@ -189,7 +189,7 @@
         <button data-ng-click="addCSSResource(selectedCSSRes)">ADD CSS Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>
         <ul class="resourceList">
-            <li class="animate-repeat" data-ng-click="removeFromSrc2($event, rec)"
+            <li class="animate-repeat" data-ng-click="removeRsrcFromPGP($event, rec, selectedNote.recsrc2)"
                 data-ng-repeat="rec in selectedNote.recsrc2">
                 Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
             </li>
@@ -219,7 +219,7 @@
         <button data-ng-click="addJSResource(selectedJSRes)">ADD JS Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>
         <ul class="resourceList">
-            <li class="animate-repeat" data-ng-click="removeFromSrc3($event, rec)"
+            <li class="animate-repeat" data-ng-click="removeRsrcFromPGP($event, rec, selectedNote.recsrc3)"
                 data-ng-repeat="rec in selectedNote.recsrc3">
                 Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
             </li>
@@ -249,7 +249,7 @@
         <button data-ng-click="addGITResource(selectedGITRes)">ADD GIT Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>
         <ul class="resourceList">
-            <li class="animate-repeat" data-ng-click="removeFromSrc4($event, rec)"
+            <li class="animate-repeat" data-ng-click="removeRsrcFromPGP($event, rec, selectedNote.recsrc4)"
                 data-ng-repeat="rec in selectedNote.recsrc4">
                 Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
             </li>
@@ -279,7 +279,7 @@
         <button data-ng-click="addDSAResource(selectedDSARes)">ADD Data Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>
         <ul class="resourceList">
-            <li class="animate-repeat" data-ng-click="removeFromSrc5($event, rec)"
+            <li class="animate-repeat" data-ng-click="removeRsrcFromPGP($event, rec, selectedNote.recsrc5)"
                 data-ng-repeat="rec in selectedNote.recsrc5">
                 Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
             </li>
@@ -309,7 +309,7 @@
         <button data-ng-click="addCMDResource(selectedCMDRes)">ADD Terminal Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>
         <ul class="resourceList">
-            <li class="animate-repeat" data-ng-click="removeFromSrc6($event, rec)"
+            <li class="animate-repeat" data-ng-click="removeRsrcFromPGP($event, rec, selectedNote.recsrc6)"
                 data-ng-repeat="rec in selectedNote.recsrc6">
                 Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
             </li>
@@ -339,7 +339,7 @@
         <button data-ng-click="addOOPResource(selectedOOPRes)">ADD Object-oriented Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>
         <ul class="resourceList">
-            <li class="animate-repeat" data-ng-click="removeFromSrc7($event, rec)"
+            <li class="animate-repeat" data-ng-click="removeRsrcFromPGP($event, rec, selectedNote.recsrc7)"
                 data-ng-repeat="rec in selectedNote.recsrc7">
                 Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
             </li>
