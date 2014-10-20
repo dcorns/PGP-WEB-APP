@@ -6,10 +6,9 @@ require('angular-route');
 var notesApp = angular.module('notesApp', ['ngRoute']);
 
 require('./notes/controllers/notes-controller')(notesApp);
-require('./notes/controllers/ta-controller')(notesApp);
 require('./notes/controllers/user-controller')(notesApp);
 
-notesApp.config(['$routeProvider', function($routeProvider) {
+notesApp.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
     .when('/student_survey', {
       templateUrl: 'views/notes/student_survey.html',
@@ -34,6 +33,6 @@ notesApp.config(['$routeProvider', function($routeProvider) {
     .otherwise({
       //redirectTo: '/views/notes/home.html'
       templateUrl: 'views/notes/home.html',
-      controller:'notesController'
+      controller: 'notesController'
     });
 }]);

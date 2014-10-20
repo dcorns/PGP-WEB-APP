@@ -1,5 +1,56 @@
 .newSurvey {
-  width: 90%;
-  margin: 2rem auto;
-  padding: 0 auto;
+    width: 90%;
+    margin: 2rem auto;
+    padding: 0 auto;
+}
+header {
+    background-color: #333;
+    padding: 2rem 0 1rem 0;
+}
+
+.header-logo {
+    width: 20rem;
+    display: block;
+    margin: 0 auto;
+    padding: 0 auto;
+}
+
+.header-h1 {
+    font-weight: bold;
+    color: #fff;
+    display: block;
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 3rem;
+}
+
+.nav_ul {
+    text-align: center;
+}
+
+.nav_ul-li {
+    display: inline-block;
+    padding: 1rem;
+}
+
+.nav_ul-li-a {
+    font-family: "Rajdhani", sans-serif;
+    font-weight: bold;
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: #fff;
+}
+
+.nav_ul-li-a:active, .nav_ul-li-a:hover {
+    color: #d03226;
+}
+
+.footer {
+    padding: 2rem;
+    background-color: #333;
+    color: #fff;
+}
+
+.footer_p {
+    text-align: center;
 }

@@ -18,6 +18,6 @@ require('./routes/resource-routes')(app);
 
 var server = http.createServer(app);
 
-server.listen(process.env.PORT || 3000, function() {
+server.listen(process.env.PORT || 3000, function () {
   console.log('server running on port 3000');
 });

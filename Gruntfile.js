@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function(grunt) {
+module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-browserify');
@@ -14,8 +14,11 @@ module.exports = function(grunt) {
       dev: {
         src: ['build/']
       },
-      production:{
-        src:['ship/']
+      production: {
+        src: ['ship/']
+      },
+      style:{
+        src: ['build/css/']
       }
     },
 
@@ -32,6 +35,13 @@ module.exports = function(grunt) {
         cwd: 'app/',
         src: ['*.html', 'css/*.css', 'img/*.*', 'views/**/*.html'],
         dest: 'ship/',
+        filter: 'isFile'
+      },
+      style:{
+        expand: true,
+        cwd: 'app/',
+        src: ['css/*.css'],
+        dest: 'build/',
         filter: 'isFile'
       }
     },
@@ -121,4 +131,5 @@ module.exports = function(grunt) {
   grunt.registerTask('test', ['angulartest', 'simplemocha']);
   grunt.registerTask('buildtest', ['test', 'build:dev']);
   grunt.registerTask('default', ['watch:express']);
+  grunt.registerTask('copystyle',['clean:style', 'copy:style']);
 };
