@@ -118,14 +118,13 @@ module.exports = function (app) {
         });
       };
 
-      $scope.removeResource = function (e, item, rsrc) {
+      $scope.removeResource = function (e, item, rsrc, rsrcFor) {
+        item.resourceFor = rsrcFor;
         console.dir(e); console.dir(item); console.dir(rsrc);
         if(e.altKey){
           $http.delete('api/v_0_0_1/resources/', item)
             .success(function (data) {
-              var idx = rsrc.indexOf(data);
-              rsrc.splice(idx, 1);
-              alert(data.title + " Resource Deleted!");
+              console.dir('nc127'); console.dir(data);
             })
             .error(function (data) {
             });

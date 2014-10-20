@@ -30,7 +30,7 @@
 
         <p class="newSurvey_form-std">{{selectedNote.goal}}</p>
         <label for="sG1">General Resources</label>
-        <select id="sG1" data-ng-model="selectedG1Res" data-ng-options="r.title for r in genResources" data-ng-click="removeResource($event, selectedG1Res, genResources)">
+        <select id="sG1" data-ng-model="selectedG1Res" data-ng-options="r.title for r in genResources" data-ng-click="removeResource($event, selectedG1Res, genResources, 'General')">
         </select>
         <button data-ng-click="addResource(selectedG1Res, selectedNote.goalsrc1)">ADD Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>

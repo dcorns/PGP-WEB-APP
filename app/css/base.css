@@ -80,7 +80,7 @@ h1 {
 
 .hCourse {
     font-family: "Rajdhani", sans-serif;
-    padding: 0;
+    padding: 0 0 0 2rem;
     font-size: 2rem;
     line-height: 1rem;
     margin: 0;
@@ -90,7 +90,7 @@ h1 {
     font-family: "Helvetica", sans-serif;
     font-size: 2rem;
     font-weight: bold;
-    padding: 2rem 0 2rem 0;
+    padding: 2rem 0 2rem 2rem;
     line-height: 1rem;
     color: darkslategrey;
 }
@@ -98,7 +98,7 @@ h1 {
     font-family: "Rajdhani", sans-serif;
     font-size: 3.5rem;
     font-weight: bold;
-    padding: 0 0 1rem 0;
+    padding: 0 0 1rem 2rem;
     line-height: 1rem;
 }
 
@@ -106,15 +106,15 @@ h1 {
     font-family: "Rajdhani", sans-serif;
     font-size: 2rem;
     font-weight: bold;
-    padding: 0;
+    padding: 0 0 0 2rem;
 }
 
 #pgpout p {
     font-family: "Helvetica", sans-serif;
     font-size: 1.5rem;
-    padding: 0;
-    line-height: 1rem;
-    color: seagreen;
+    padding: 0 2rem 0 2rem;
+    line-height: 2rem;
+    color: darkred;
     text-indent: 1em;
 }
 
@@ -130,4 +130,6 @@ h1 {
     border-color: gray;
     border-style: solid;
     border-width: 1rem;
+    border-radius: 20px;
+    margin: 1em;
 }

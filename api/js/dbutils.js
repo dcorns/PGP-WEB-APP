@@ -29,6 +29,16 @@ module.exports = function (obj) {
         }
       });
     },
+    spliceResource: function (cb){
+      Resource.findOne({'resourceFor': obj.resourceFor}, function (err, resrc){
+        if (err) cb(err, null);
+
+      });
+//      Note.remove({'_id': req.params.id}, function (err, resNote) {
+//        if (err) return res.status(500).json(err);
+//        return res.status(200).json({'msg': 'deleted'});
+//      });
+    },
     pushResource: function (cb) {
       var datain = new Resource({resourceFor: obj.resourceFor});
       Resource.findOne({'resourceFor': obj.resourceFor}, function (err, resrc) {
