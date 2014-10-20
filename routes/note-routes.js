@@ -17,15 +17,13 @@ module.exports = function (app) {
           Note.find({}, function (err, notes) {
             if (err) return res.status(500).json(err);
             var ntsUtil = db(notes);
-            var resData = ntsUtil.combineUsers(function (err, rd) {
+            ntsUtil.combineUsers(function (err, rd) {
               if (err) return res.status(502).json(err);
-              console.log(rd);
-              return res.status(200).json(rd);
+              var payload = {u: usr, n: rd};
+              return res.status(200).json(payload);
             });
             return res.status(503);
           });
-
-
         }
         else {
           if (usr.roll === 'student') {
