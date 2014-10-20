@@ -1,6 +1,9 @@
 <div data-ng-controller="notesController" id="pgpout">
 
     <article>
+        <fieldset id="pgpSelection" class="newSurvey_select">
+            <select data-ng-model="selectedNote" data-ng-options="note.name for note in notes"></select>
+        </fieldset>
 
         <fieldset>
             <h1 class="pgpHeader" >Personal Growth Plan For {{selectedNote.name}}</h1>

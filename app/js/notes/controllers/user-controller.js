@@ -35,22 +35,18 @@ module.exports = function(app) {
     };
 
     $scope.userLogin = function() {
-      console.log('user-contoller(37)');
       window.sessionStorage.removeItem('token');
-      console.log(window.sessionStorage.getItem('token'));
       $http.post('api/v_0_0_1/login', $scope.loginUser)
         .success(function(data) {
-          console.log('user-controller(39)');
-          console.log('success: '+ data.atoken);
           //Save token in local storage
           window.sessionStorage.setItem('token', data.atoken);
-
           var ca = document.getElementById('btncreateaccount');
           ca.className = 'hidden';
 
           if(data.roll === 'ta'){
             document.getElementById('btnsurvey').className = 'hidden';
             document.getElementById('btncreatepgp').className = 'nav_ul-li';
+            document.getElementById('btnviewpgp').className = 'nav_ul-li';
             window.location="/#/create_PGP";
           }
           else{
