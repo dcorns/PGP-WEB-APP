@@ -17,7 +17,7 @@
             <input type="text" placeholder="New Resource Title" data-ng-model="saveGResource.resource.title">
             <input type="text" placeholder="New Resource type" data-ng-model="saveGResource.resource.type">
             <input type="url" placeholder="New Resource Link" data-ng-model="saveGResource.resource.rlink">
-            <button data-ng-click="saveGenResource(saveGResource)">Save New Resource</button>
+            <button data-ng-click="saveResource(saveGResource, genResources, 'General')">Save New Resource</button>
         </form>
     </div>
 
@@ -30,7 +30,7 @@
 
         <p class="newSurvey_form-std">{{selectedNote.goal}}</p>
         <label for="sG1">General Resources</label>
-        <select id="sG1" data-ng-model="selectedG1Res" data-ng-options="r.title for r in genResources">
+        <select id="sG1" data-ng-model="selectedG1Res" data-ng-options="r.title for r in genResources" data-ng-click="removeResource($event, selectedG1Res, genResources)">
         </select>
         <button data-ng-click="addResource(selectedG1Res, selectedNote.goalsrc1)">ADD Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>
@@ -151,7 +151,7 @@
             <input type="text" placeholder="New Resource Title" data-ng-model="saveHTMLResource.resource.title"><input
                 type="text" placeholder="New Resource type" data-ng-model="saveHTMLResource.resource.type"><input
                 type="url" placeholder="New Resource Link" data-ng-model="saveHTMLResource.resource.rlink">
-            <button data-ng-click="savehtmlResource(saveHTMLResource)">Save New HTML resource</button>
+            <button data-ng-click="saveResource(saveHTMLResource, HTMLResources, 'HTML')">Save New HTML resource</button>
         </form>
         <label for="sHTML">HTML Resources</label>
         <select id="sHTML" data-ng-model="selectedHTMLRes" data-ng-options="r.title for r in HTMLResources">
@@ -181,7 +181,7 @@
             <input type="text" placeholder="New Resource Title" data-ng-model="saveCSSResource.resource.title"><input
                 type="text" placeholder="New Resource type" data-ng-model="saveCSSResource.resource.type"><input
                 type="url" placeholder="New Resource Link" data-ng-model="saveCSSResource.resource.rlink">
-            <button data-ng-click="savecssResource(saveCSSResource)">Save New CSS Resource</button>
+            <button data-ng-click="saveResource(saveCSSResource, CSSResources, 'CSS')">Save New CSS Resource</button>
         </form>
         <label for="sCSS">CSS Resources</label>
         <select id="sCSS" data-ng-model="selectedCSSRes" data-ng-options="r.title for r in CSSResources">
@@ -211,7 +211,7 @@
             <input type="text" placeholder="New Resource Title" data-ng-model="saveJSResource.resource.title"><input
                 type="text" placeholder="New Resource type" data-ng-model="saveJSResource.resource.type"><input
                 type="url" placeholder="New Resource Link" data-ng-model="saveJSResource.resource.rlink">
-            <button data-ng-click="savejsResource(saveJSResource)">Save New JS resource</button>
+            <button data-ng-click="saveResource(saveJSResource, JSResources, 'JS')">Save New JS resource</button>
         </form>
         <label for="sJS">JavaSript Resources</label>
         <select id="sJS" data-ng-model="selectedJSRes" data-ng-options="r.title for r in JSResources">
@@ -241,7 +241,7 @@
             <input type="text" placeholder="New Resource Title" data-ng-model="saveGITResource.resource.title"><input
                 type="text" placeholder="New Resource type" data-ng-model="saveGITResource.resource.type"><input
                 type="url" placeholder="New Resource Link" data-ng-model="saveGITResource.resource.rlink">
-            <button data-ng-click="savegitResource(saveGITResource)">Save New GIT Resource</button>
+            <button data-ng-click="saveResource(saveGITResource, GITResources, 'GIT')">Save New GIT Resource</button>
         </form>
         <label for="sGIT">GIT Resources</label>
         <select id="sGIT" data-ng-model="selectedGITRes" data-ng-options="r.title for r in GITResources">
@@ -271,7 +271,7 @@
             <input type="text" placeholder="New Resource Title" data-ng-model="saveDSAResource.resource.title"><input
                 type="text" placeholder="New Resource type" data-ng-model="saveDSAResource.resource.type"><input
                 type="url" placeholder="New Resource Link" data-ng-model="saveDSAResource.resource.rlink">
-            <button data-ng-click="savedsaResource(saveDSAResource)">Save New Data Resource</button>
+            <button data-ng-click="saveResource(saveDSAResource, DSAResources, 'DSA')">Save New Data Resource</button>
         </form>
         <label for="sDSA">Data Structures and Algorithms Resources</label>
         <select id="sDSA" data-ng-model="selectedDSARes" data-ng-options="r.title for r in DSAResources">
@@ -301,7 +301,7 @@
             <input type="text" placeholder="New Resource Title" data-ng-model="saveCMDResource.resource.title"><input
                 type="text" placeholder="New Resource type" data-ng-model="saveCMDResource.resource.type"><input
                 type="url" placeholder="New Resource Link" data-ng-model="saveCMDResource.resource.rlink">
-            <button data-ng-click="savecmdResource(saveCMDResource)">Save New Terminal Resource</button>
+            <button data-ng-click="saveResource(saveCMDResource, CMDResources, 'CMD')">Save New Terminal Resource</button>
         </form>
         <label for="sCMD">Command Line (terminal) Resources</label>
         <select id="sCMD" data-ng-model="selectedCMDRes" data-ng-options="r.title for r in CMDResources">
@@ -331,7 +331,7 @@
             <input type="text" placeholder="New Resource Title" data-ng-model="saveOOPResource.resource.title"><input
                 type="text" placeholder="New Resource type" data-ng-model="saveOOPResource.resource.type"><input
                 type="url" placeholder="New Resource Link" data-ng-model="saveOOPResource.resource.rlink">
-            <button data-ng-click="saveoopResource(saveOOPResource)">Save New Object-oriented Resource</button>
+            <button data-ng-click="saveResource(saveOOPResource, OOPResources, 'OOP')">Save New Object-oriented Resource</button>
         </form>
         <label for="sOOP">Object-oriented Programing Resources</label>
         <select id="sOOP" data-ng-model="selectedOOPRes" data-ng-options="r.title for r in OOPResources">
