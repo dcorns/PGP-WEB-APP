@@ -1,0 +1,115 @@
+<article data-ng-controller="notesController" class="newSurvey">
+    <h1 hidden class="hidden">New Student Survey</h1>
+
+    <form name="survey" class="newSurvey_form">
+
+        <fieldset class="newSurvey_form-info">
+            <legend>Student Information</legend>
+            <label class="newSurvey_form-lbl">{{selectedNote.student}}</label></br>
+            <label class="newSurvey_form-lbl">Course</label>
+            <input id="course" class="newSurvey_form-lbl" data-ng-model="newNote.course">
+        </fieldset>
+
+        <section>
+            <h1>Self Assessment</h1>
+
+            <p>We want to help you reach your goals. We've seen the work you've turned in. Now, we need your help
+                answering the following questions, so we can create a Personalized Growth Plan for you.</p>
+
+            <p>How do you rate yourself on a scale from 1 to 5</p>
+
+            <p>1: I am not at all comfortable with this</p>
+
+            <p>2: I have just a little comfort with this</p>
+
+            <p>3: I am moderately comfortable with this</p>
+
+            <p>4: I am very comfortable with this</p>
+
+            <p>5: I feel ready to use this skill professionally</p>
+        </section>
+
+        <fieldset name="rating" class="newSurvey_form-sbj">
+            <div>
+                <input id="rtg1" class="newSurvey_form-text" placeholder="1-5" type="number"
+                       data-ng-model="newNote.rtg1">
+                <label class="newSurvey_form-lbl" for="rtg1">— HTML</label>
+            </div>
+
+            <div>
+                <input id="rtg2" class="newSurvey_form-text" placeholder="1-5" type="number"
+                       data-ng-model="newNote.rtg2">
+                <label class="newSurvey_form-lbl" for="rtg2">— CSS</label>
+            </div>
+
+            <div>
+                <input id="rtg3" class="newSurvey_form-text" placeholder="1-5" type="number"
+                       data-ng-model="newNote.rtg3">
+                <label class="newSurvey_form-lbl" for="rtg3">— JavaScript</label>
+            </div>
+
+            <div>
+                <input id="rtg4" class="newSurvey_form-text" placeholder="1-5" type="number"
+                       data-ng-model="newNote.rtg4">
+                <label class="newSurvey_form-lbl" for="rtg4">— GIT</label>
+            </div>
+
+            <div>
+                <input id="rtg5" class="newSurvey_form-text" placeholder="1-5" type="number"
+                       data-ng-model="newNote.rtg5">
+                <label class="newSurvey_form-lbl" for="rtg5">— Data structures and algorithms</label>
+            </div>
+
+            <div>
+                <input id="rtg6" class="newSurvey_form-text" placeholder="1-5" type="number"
+                       data-ng-model="newNote.rtg6">
+                <label class="newSurvey_form-lbl" for="rtg6">— Command line interface</label>
+            </div>
+
+            <div>
+                <input id="rtg7" class="newSurvey_form-text" placeholder="1-5" type="number"
+                       data-ng-model="newNote.rtg7">
+                <label class="newSurvey_form-lbl" for="rtg7">— Object-oriented programming</label>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Goals</legend>
+            <label for="goal">What are your long-term goals?</label>
+            <textarea id="goal" rows="10" class="newSurvey_form-textarea" placeholder="What are your long-term goals?"
+                      data-ng-model="newNote.goal">
+                {{selectedNote.goal}}
+            </textarea>
+            <label for="goal2">Why are you interested in developing your computer/coding skills?</label>
+            <textarea id="goal2" rows="10" class="newSurvey_form-textarea"
+                      placeholder="Why are you interested in developing your computer/coding skills?"
+                      data-ng-model="newNote.goal2">{{selectedNote.goal2}}</textarea>
+            <label for="goal3">What kinds of problems do you like working on?</label>
+            <textarea id="goal3" rows="10" class="newSurvey_form-textarea"
+                      placeholder="What kinds of problems do you like working on?" data-ng-model="newNote.goal3">
+                {{selectedNote.goal3}}
+            </textarea>
+            <label for="goal4">What would you like to do next?</label>
+            <textarea id="goal4" rows="10" class="newSurvey_form-textarea" placeholder="What would you like to do next?"
+                      data-ng-model="newNote.goal4">
+                {{selectedNote.goal4}}
+            </textarea>
+            <label for="goal5">What would you like to be able to accomplish with code?</label>
+            <textarea id="goal5" rows="10" class="newSurvey_form-textarea"
+                      placeholder="What would you like to be able to accomplish with code?"
+                      data-ng-model="newNote.goal5">
+                {{selectedNote.goal5}}
+            </textarea>
+        </fieldset>
+
+        <fieldset>
+            <legend>Questions/Concerns?</legend>
+            <textarea id="note" rows="10" class="newSurvey_form-textarea"
+                      placeholder="Please share any questions or concerns you may have." data-ng-model="newNote.note">{{selectedNote.feedbk}}</textarea>
+        </fieldset>
+
+        <button data-ng-click="saveNewNote()">SUBMIT</button>
+
+    </form>
+</article>
+
