@@ -47,7 +47,7 @@ module.exports = function (app) {
       }
     }, token);
   });
-
+//Save new or update user survey
   app.post(baseUrl, function (req, res) {
     console.log('note-routes(42)');
     console.log(req.body);
@@ -85,6 +85,7 @@ module.exports = function (app) {
     });
   });
 
+  //save or update pgp
   app.put(baseUrl + '/:id', function (req, res) {
     var note = req.body;
     delete note._id;

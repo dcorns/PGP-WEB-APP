@@ -4,6 +4,8 @@
 'use strict';
 var Resource = require('../models/resource');
 var db = require('../api/js/dbutils');
+var auth = require('../api/js/authorize');
+var User = require('../models/user');
 
 module.exports = function (app) {
   var baseUrl = '/api/v_0_0_1/resources';
@@ -23,12 +25,21 @@ module.exports = function (app) {
   });
 
   app.post(baseUrl, function (req, res) {
-    var ntsUtil = db(req.body);
-    ntsUtil.pushResource(function (err, rd) {
-      if (err) return res.status(500).json(err);
-      return res.status(200).json(rd);
-    });
-    return res.status(502);
+    var user = {};
+    var token = req.headers.authorization;
+    var a = auth(user);
+    a.getTokenInfo(function(usr){
+      console.log('rr32'); console.dir(usr);
+      req.body.resource.addedBy = usr._id;
+      var ntsUtil = db(req.body);
+      ntsUtil.pushResource(function (err, rd) {
+        if (err) return res.status(500).json(err);
+        return res.status(200).json(rd);
+      });
+      return res.status(502);
+
+    }, token);
+
 
   });
 
