@@ -12,6 +12,7 @@
 
         <fieldset>
             <legend class="pgpLegend">Based on your self assessment responses we recommend the following resources:</legend>
+            <label class="ppgrating">{{selectedNote.rtg1}}</label>
             <label class="pgpAssTitle">HTML:</label>
             <ul>
                 <li class="animate-repeat" data-ng-repeat="rec in selectedNote.recsrc1">
@@ -23,6 +24,7 @@
             </ul>
             <p>{{selectedNote.rec1}}</p>
 
+            <label class="ppgrating">{{selectedNote.rtg2}}</label>
             <label class="pgpAssTitle">CSS:</label>
             <ul>
                 <li class="animate-repeat" data-ng-click="removeFromSrc2($event, rec)"
@@ -35,6 +37,7 @@
             </ul>
             <p>{{selectedNote.rec2}}</p>
 
+            <label class="ppgrating">{{selectedNote.rtg3}}</label>
             <label class="pgpAssTitle">JavaScript:</label>
             <ul>
                 <li class="animate-repeat" data-ng-click="removeFromSrc3($event, rec)"
@@ -47,6 +50,7 @@
             </ul>
             <p>{{selectedNote.rec3}}</p>
 
+            <label class="ppgrating">{{selectedNote.rtg4}}</label>
             <label class="pgpAssTitle">GIT:</label>
             <ul>
                 <li class="animate-repeat" data-ng-click="removeFromSrc4($event, rec)"
@@ -59,6 +63,7 @@
             </ul>
             <p>{{selectedNote.rec4}}</p>
 
+            <label class="ppgrating">{{selectedNote.rtg5}}</label>
             <label class="pgpAssTitle">Data Structures and Algorithms:</label>
             <ul>
                 <li class="animate-repeat" data-ng-click="removeFromSrc5($event, rec)"
@@ -71,6 +76,7 @@
             </ul>
             <p>{{selectedNote.rec5}}</p>
 
+            <label class="ppgrating">{{selectedNote.rtg6}}</label>
             <label class="pgpAssTitle">Command Line/ Terminal:</label>
             <ul>
                 <li class="animate-repeat" data-ng-click="removeFromSrc6($event, rec)"
@@ -83,6 +89,7 @@
             </ul>
             <p>{{selectedNote.rec6}}</p>
 
+            <label class="ppgrating">{{selectedNote.rtg7}}</label>
             <label class="pgpAssTitle">Object-orientated Programing:</label>
             <ul>
                 <li class="animate-repeat" data-ng-click="removeFromSrc7($event, rec)"

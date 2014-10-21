@@ -104,9 +104,9 @@ h1 {
 
 .pgpAssTitle {
     font-family: "Rajdhani", sans-serif;
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: bold;
-    padding: 0 0 0 2rem;
+    padding: 0 0 0 0;
 }
 
 #pgpout p {
@@ -132,4 +132,14 @@ h1 {
     border-width: 1rem;
     border-radius: 20px;
     margin: 1em;
+}
+
+.ppgrating{
+    background-color: red;
+    font-weight: bold;
+    font-size: 2rem;
+    padding: .5rem 1rem .5rem 1rem;
+    border-radius: 45px;
+    box-shadow: 2px 2px 7px #111111;
+    margin-left: .5rem;
 }
