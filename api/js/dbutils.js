@@ -19,9 +19,6 @@ module.exports = function (obj) {
             for (var ii = 0; ii < users.length; ii++) {
               if (obj[i].student === users[ii].email) {
                 obj[i].name = users[ii].firstName + ' ' + users[ii].lastName;
-                console.log('db(21)');
-                console.log(obj[i].name);
-                //return;
               }
             }
           }
@@ -32,12 +29,17 @@ module.exports = function (obj) {
     spliceResource: function (cb){
       Resource.findOne({'resourceFor': obj.resourceFor}, function (err, resrc){
         if (err) cb(err, null);
-
+        var idx = 0;
+        var ln = resrc.resource.length;
+        for (var i = 0; i < ln; i++) {
+          if (resrc.resource[i].title === obj.resource.title) {
+            idx = i;
+          }
+        }
+        resrc.resource.splice(idx, 1);
+        resrc.save();
+        cb(null, obj.resource);
       });
-//      Note.remove({'_id': req.params.id}, function (err, resNote) {
-//        if (err) return res.status(500).json(err);
-//        return res.status(200).json({'msg': 'deleted'});
-//      });
     },
     pushResource: function (cb) {
       var datain = new Resource({resourceFor: obj.resourceFor});
@@ -54,8 +56,6 @@ module.exports = function (obj) {
         }
       });
       function pushit(id) {
-        console.log('db47');
-        console.log(obj.resource);
         Resource.findByIdAndUpdate(
           id,
           {$push: {'resource': obj.resource}},

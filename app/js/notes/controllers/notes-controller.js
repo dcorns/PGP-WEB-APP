@@ -123,14 +123,17 @@ module.exports = function (app) {
       };
 
       $scope.removeResource = function (e, item, rsrc, rsrcFor) {
-        item.resourceFor = rsrcFor;
-        console.dir(e); console.dir(item); console.dir(rsrc);
+        var obj = {resourceFor: rsrcFor, resource: item};
+        console.dir(e); console.dir(item); console.dir(rsrc); console.log(rsrcFor);
         if(e.altKey){
-          $http.delete('api/v_0_0_1/resources/', item)
+          $http.put('api/v_0_0_1/resources/', obj)
             .success(function (data) {
-              console.dir('nc127'); console.dir(data);
+              alert(data.title +' deleted!');
+              $scope.getAllResources();
             })
             .error(function (data) {
+              console.dir(data);
+              alert(data.error);
             });
         }
       };
