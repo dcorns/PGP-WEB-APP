@@ -4,6 +4,7 @@
 'use strict';
 var User = require('../models/user');
 var auth = require('../api/js/authorize');
+var validate = require('validator');
 
 module.exports = function (app) {
   var baseUrl = '/api/v_0_0_1/users';
@@ -17,8 +18,13 @@ module.exports = function (app) {
 //New Account setup
   app.post(baseUrl, function (req, res) {
     var user = new User(req.body);
-    user.roll = 'student';
     user.email = user.email.toLowerCase();
+    //validate input
+    if(!(validate.isEmail(user.email))) return res.status(505).json({error:'Not a valid email address!'});
+    if(!(validate.isLength(user.password, 6) )) return res.status(506).json({error:'Password must be at least 6 characters long'});
+    if(!(validate.isLength(user.lastName, 2))) return res.status(507).json({error:'Last name must be at least 2 characters long'});
+    if(!(validate.isLength(user.firstName, 2))) return res.status(508).json({error:'First name must be at least 2 characters long'});
+    user.roll = 'student';
     var a = auth(user);
     a.encrypt(function (usr) {
       user.save(function (err, usr) {
