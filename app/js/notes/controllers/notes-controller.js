@@ -167,6 +167,11 @@ module.exports = function (app) {
           $scope.resources = data;
           for (var i = 0; i < data.length; i++) {
             console.log(i + ', ' + data[i].resourceFor);
+            data[i].resource.sort(function(a, b){
+              if(a.title.toUpperCase() > b.title.toUpperCase()) return 1;
+              if(a.title.toUpperCase() < b.title.toUpperCase()) return -1;
+              return 0;
+            });
             switch (data[i].resourceFor) {
               case 'General':
                 $scope.genResources = data[i].resource;
