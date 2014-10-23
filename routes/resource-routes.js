@@ -43,15 +43,23 @@ module.exports = function (app) {
 
   });
 
-  app.delete(baseUrl, function (req, res) {
-    console.log('rr36'); console.dir(req.body);
-    return res.status(200).json(req.body);
-//    var ntsUtil = db(req.body);
-//    ntsUtil.spliceResource(function (err, rd){
-//      if(err) return res.status(500).json(err);
-//      return res.status(200).json(rd);
-//    });
-//    return res.status(503);
+  //Delete Resource
+  app.put(baseUrl, function (req, res) {
+    var user = {};
+    var token = req.headers.authorization;
+    var a = auth(user);
+    a.getTokenInfo(function(usr){
+      if(usr._id == req.body.resource.addedBy){
+        var ntsUtil = db(req.body);
+        ntsUtil.spliceResource(function(err, rd){
+          if (err) return res.status(502).json(err);
+          return res.status(200).json(rd);
+        });
+      }
+      else{
+        return res.status(500).json({error: 'Resource can only be removed by creator'});
+      }
+    }, token);
   });
 
 };
