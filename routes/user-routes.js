@@ -28,7 +28,10 @@ module.exports = function (app) {
     var a = auth(user);
     a.encrypt(function (usr) {
       user.save(function (err, usr) {
-        if (err) return res.status(500).json(err);
+        if (err){
+          console.dir(err);
+          return res.status(500).json(err);
+        }
         return res.json(user);
       });
     });
