@@ -53,7 +53,7 @@ module.exports = function (app) {
         var ntsUtil = db(req.body);
         ntsUtil.spliceResource(function(err, rd){
           if (err) return res.status(502).json(err);
-          return res.status(200).json(rd.resource);
+          return res.status(200).json(rd);
         });
       }
       else{
