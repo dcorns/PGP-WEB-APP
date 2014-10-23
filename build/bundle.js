@@ -308,7 +308,7 @@ module.exports = function(app) {
         .error(function(data, status) {
           var errmsg = "There was a problem creating your account!";
           if(data.code === 11000){
-            errmsg = $scope.newUser.email + ": email is already in use!";
+            errmsg = $scope.newUser.email + " is already in use!";
           }
           alert(errmsg);
         });
