@@ -28,8 +28,11 @@ module.exports = function(app) {
           window.location="/#/login";
         })
         .error(function(data, status) {
-          console.error(data + ',' + status);
-          alert("There was a problem creating your account");
+          var errmsg = "There was a problem creating your account!";
+          if(data.code === 11000){
+            errmsg = $scope.newUser.email + " is already in use!";
+          }
+          alert(errmsg);
         });
 
     };
