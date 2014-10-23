@@ -4,6 +4,7 @@
 'use strict';
 var User = require('../models/user');
 var auth = require('../api/js/authorize');
+var validate = require('validator');
 
 module.exports = function (app) {
   var baseUrl = '/api/v_0_0_1/users';
@@ -17,8 +18,9 @@ module.exports = function (app) {
 //New Account setup
   app.post(baseUrl, function (req, res) {
     var user = new User(req.body);
-    user.roll = 'student';
     user.email = user.email.toLowerCase();
+    if(!(validate.isEmail(user.email))) return res.status(505).json({error:'Not a valid email address!'});
+    user.roll = 'student';
     var a = auth(user);
     a.encrypt(function (usr) {
       user.save(function (err, usr) {
