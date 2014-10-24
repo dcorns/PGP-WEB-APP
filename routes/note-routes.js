@@ -19,6 +19,7 @@ module.exports = function (app) {
             var ntsUtil = db(notes);
             ntsUtil.combineUsers(function (err, rd) {
               if (err) return res.status(502).json(err);
+
               var payload = {u: usr, n: rd};
               return res.status(200).json(payload);
             });
