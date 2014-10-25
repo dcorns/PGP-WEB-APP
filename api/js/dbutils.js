@@ -10,19 +10,24 @@ var Resource = require('../../models/resource');
 module.exports = function (obj) {
   return{
     combineUsers: function (cb) {
-      var badNews = null;
+      var rArray = [];
       User.find({}, function (err, users) {
         if (err) cb(err, null);
         else {
-          //obj.users = users;
-          for (var i = 0; i < obj.length; i++) {
-            for (var ii = 0; ii < users.length; ii++) {
-              if (obj[i].student === users[ii].email) {
-                obj[i].name = users[ii].firstName + ' ' + users[ii].lastName;
+          users.sort(function(a, b){
+            if (a.lastName.toUpperCase() > b.lastName.toUpperCase()) return 1;
+            if (a.lastName.toUpperCase() < b.lastName.toUpperCase()) return -1;
+            return 0;
+          });
+          for (var i = 0; i < users.length; i++) {
+            for (var ii = 0; ii < obj.length; ii++) {
+              if (users[i].email === obj[ii].student) {
+                obj[ii].name = users[i].firstName + ' ' + users[i].lastName;
+                rArray.push(obj[ii]);
               }
             }
           }
-          cb(null, obj);
+          cb(null, rArray);
         }
       });
     },

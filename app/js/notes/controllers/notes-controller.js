@@ -138,11 +138,11 @@ module.exports = function (app) {
         }
       };
 
-      $scope.saveResource = function (nrsrc, rsrc, rsrcFor) {
-        console.dir(nrsrc); console.dir(rsrc); console.dir(rsrcFor);
+      $scope.saveResource = function (nrsrc, rsrc, rsrcFor, inputClass) {
         nrsrc.resourceFor = rsrcFor;
         $http.post('api/v_0_0_1/resources/', nrsrc)
           .success(function (data) {
+            ux.blankInput(inputClass);
             if (typeof rsrc !== 'undefined') {
               rsrc.push(data);
             }

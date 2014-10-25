@@ -102,6 +102,14 @@ module.exports = function () {
         });
       }
 
+    },
+    blankInput: function(inputClass){
+      var blankThese = document.getElementsByClassName(inputClass);
+      for (var i=0; i < blankThese.length; i++){
+        blankThese[i].value = '';
+      }
+      return this;
     }
+
   }
 };
