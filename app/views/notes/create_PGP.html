@@ -26,12 +26,13 @@
     <button id="btnG1On" class="toggle">LongTermGoals</button>
     <fieldset id="fG1">
         <button id="btnG1Off" class="toggle">LongTermGoals</button>
-        <label class="newSurvey_form-std">My long term goals:</label>
+        <label class="pgpQuestions">My long term goals:</label>
 
         <p class="newSurvey_form-std">{{selectedNote.goal}}</p>
         <label for="sG1">General Resources</label>
         <select id="sG1" data-ng-model="selectedG1Res" data-ng-options="r.title for r in genResources" data-ng-click="removeResource($event, selectedG1Res, genResources, 'General')">
         </select>
+        <lable>Resource Blame:</lable> {{selectedG1Res.name}}
         <button data-ng-click="addResource(selectedG1Res, selectedNote.goalsrc1)">ADD Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>
         <ul class="resourceList">
@@ -48,12 +49,13 @@
     <button id="btnG2On" class="toggle">REASONS</button>
     <fieldset id="fG2">
         <button id="btnG2Off" class="toggle">REASONS</button>
-        <label class="newSurvey_form-std">Reasons for my interest in developing computer/coding skills</label>
+        <label class="pgpQuestions">Reasons for my interest in developing computer/coding skills:</label>
 
         <p class="newSurvey_form-std">{{selectedNote.goal2}}</p>
         <label for="sG2">General Resources</label>
         <select id="sG2" data-ng-model="selectedG2Res" data-ng-options="r.title for r in genResources" data-ng-click="removeResource($event, selectedG2Res, genResources, 'General')">
         </select>
+        <lable>Resource Blame:</lable> {{selectedG2Res.name}}
         <button data-ng-click="addResource(selectedG2Res, selectedNote.goalsrc2)">ADD Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>
         <ul class="resourceList">
@@ -70,12 +72,13 @@
     <button id="btnG3On" class="toggle">LikeProblems</button>
     <fieldset id="fG3">
         <button id="btnG3Off" class="toggle">LikeProblems</button>
-        <label class="newSurvey_form-std">I like working on these kinds of problems</label>
+        <label class="pgpQuestions">I like working on these kinds of problems:</label>
 
         <p class="newSurvey_form-std">{{selectedNote.goal3}}</p>
         <label for="sG3">General Resources</label>
         <select id="sG3" data-ng-model="selectedG3Res" data-ng-options="r.title for r in genResources" data-ng-click="removeResource($event, selectedG3Res, genResources, 'General')">
         </select>
+        <lable>Resource Blame:</lable> {{selectedG3Res.name}}
         <button data-ng-click="addResource(selectedG3Res, selectedNote.goalsrc3)">ADD Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>
         <ul class="resourceList">
@@ -92,12 +95,13 @@
     <button id="btnG4On" class="toggle">WhatNext</button>
     <fieldset id="fG4">
         <button id="btnG4Off" class="toggle">WhatNext</button>
-        <label class="newSurvey_form-std">What I would like to do next</label>
+        <label class="pgpQuestions">What I would like to do next:</label>
 
         <p class="newSurvey_form-std">{{selectedNote.goal4}}</p>
         <label for="sG4">General Resources</label>
         <select id="sG4" data-ng-model="selectedG4Res" data-ng-options="r.title for r in genResources" data-ng-click="removeResource($event, selectedG4Res, genResources, 'General')">
         </select>
+        <lable>Resource Blame:</lable> {{selectedG4Res.name}}
         <button data-ng-click="addResource(selectedG4Res, selectedNote.goalsrc4)">ADD Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>
         <ul class="resourceList">
@@ -114,12 +118,13 @@
     <button id="btnG5On" class="toggle">ACCOMPLISH</button>
     <fieldset id="fG5">
         <button id="btnG5Off" class="toggle">ACCOMPLISH</button>
-        <label class="newSurvey_form-std">>What I would like to be able to accomplish with code</label>
+        <label class="pgpQuestions">>What I would like to be able to accomplish with code:</label>
 
         <p class="newSurvey_form-std">{{selectedNote.goal5}}</p>
         <label for="sG5">General Resources</label>
         <select id="sG5" data-ng-model="selectedG5Res" data-ng-options="r.title for r in genResources" data-ng-click="removeResource($event, selectedG5Res, genResources, 'General')">
         </select>
+        <lable>Resource Blame:</lable> {{selectedG5Res.name}}
         <button data-ng-click="addResource(selectedG5Res, selectedNote.goalsrc5)">ADD Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>
         <ul class="resourceList">
@@ -156,6 +161,7 @@
         <label for="sHTML">HTML Resources</label>
         <select id="sHTML" data-ng-model="selectedHTMLRes" data-ng-options="r.title for r in HTMLResources" data-ng-click="removeResource($event, selectedHTMLRes, HTMLResources, 'HTML')">
         </select>
+        <lable>Resource Blame:</lable> {{selectedHTMLRes.name}}
         <button data-ng-click="addResource(selectedHTMLRes, selectedNote.recsrc1)">ADD HTML Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>
         <ul class="resourceList">
@@ -186,6 +192,7 @@
         <label for="sCSS">CSS Resources</label>
         <select id="sCSS" data-ng-model="selectedCSSRes" data-ng-options="r.title for r in CSSResources" data-ng-click="removeResource($event, selectedCSSRes, CSSResources, 'CSS')">
         </select>
+        <lable>Resource Blame:</lable> {{selectedCSSRes.name}}
         <button data-ng-click="addResource(selectedCSSRes, selectedNote.recsrc2)">ADD CSS Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>
         <ul class="resourceList">
@@ -216,6 +223,7 @@
         <label for="sJS">JavaSript Resources</label>
         <select id="sJS" data-ng-model="selectedJSRes" data-ng-options="r.title for r in JSResources" data-ng-click="removeResource($event, selectedJSRes, JSResources, 'JS')">
         </select>
+        <lable>Resource Blame:</lable> {{selectedJSRes.name}}
         <button data-ng-click="addResource(selectedJSRes, selectedNote.recsrc3)">ADD JS Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>
         <ul class="resourceList">
@@ -246,6 +254,7 @@
         <label for="sGIT">GIT Resources</label>
         <select id="sGIT" data-ng-model="selectedGITRes" data-ng-options="r.title for r in GITResources" data-ng-click="removeResource($event, selectedGITRes, GITResources, 'GIT')">
         </select>
+        <lable>Resource Blame:</lable> {{selectedGITRes.name}}
         <button data-ng-click="addResource(selectedGITRes, selectedNote.recsrc4)">ADD GIT Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>
         <ul class="resourceList">
@@ -276,6 +285,7 @@
         <label for="sDSA">Data Structures and Algorithms Resources</label>
         <select id="sDSA" data-ng-model="selectedDSARes" data-ng-options="r.title for r in DSAResources" data-ng-click="removeResource($event, selectedDSARes, DSAResources, 'DSA')">
         </select>
+        <lable>Resource Blame:</lable> {{selectedDSARes.name}}
         <button data-ng-click="addResource(selectedDSARes, selectedNote.recsrc5)">ADD Data Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>
         <ul class="resourceList">
@@ -306,6 +316,7 @@
         <label for="sCMD">Command Line (terminal) Resources</label>
         <select id="sCMD" data-ng-model="selectedCMDRes" data-ng-options="r.title for r in CMDResources" data-ng-click="removeResource($event, selectedCMDRes, CMDResources, 'CMD')">
         </select>
+        <lable>Resource Blame:</lable> {{selectedCMDRes.name}}
         <button data-ng-click="addResource(selectedCMDRes, selectedNote.recsrc6)">ADD Terminal Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>
         <ul class="resourceList">
@@ -336,6 +347,7 @@
         <label for="sOOP">Object-oriented Programing Resources</label>
         <select id="sOOP" data-ng-model="selectedOOPRes" data-ng-options="r.title for r in OOPResources" data-ng-click="removeResource($event, selectedOOPRes, OOPResources, 'OOP')">
         </select>
+        <lable>Resource Blame:</lable> {{selectedOOPRes.name}}
         <button data-ng-click="addResource(selectedOOPRes, selectedNote.recsrc7)">ADD Object-oriented Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>
         <ul class="resourceList">

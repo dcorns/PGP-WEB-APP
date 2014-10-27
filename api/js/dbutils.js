@@ -71,6 +71,27 @@ module.exports = function (obj) {
           }
         );
       }
+    },
+    addNames: function(cb){
+      var rArray = [];
+      User.find({roll: 'ta'}, function(err, users){
+        if(err) cb(err, null);
+        for(var r = 0; r < obj.length; r++) {
+          rArray.push(obj[r]);
+          rArray[r].name = ' ';
+          for (var i = 0; i < rArray[r].resource.length; i++) {
+            if(rArray[r].resource[i].addedBy){
+              for (var uidx = 0; uidx < users.length; uidx++) {
+                //Type conversion will not occur using == convert to string to insure ids match*************************
+                if (rArray[r].resource[i].addedBy.toString() === users[uidx]._id.toString()) {
+                  rArray[r].resource[i].name = users[uidx].firstName + ' ' + users[uidx].lastName;
+                }
+              }
+            }
+          }
+        }
+        cb(null, rArray);
+      });
     }
   }
 };
