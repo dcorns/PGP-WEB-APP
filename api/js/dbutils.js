@@ -92,6 +92,25 @@ module.exports = function (obj) {
         }
         cb(null, rArray);
       });
+    },
+    combinePgpGoalresources: function(cb){
+      var arraysCombined = obj.goalsrc1.concat(obj.goalsrc2, obj.goalsrc3, obj.goalsrc4, obj.goalsrc5);
+      obj.goalsrc1 = this.removeArrayDuplicates('title', arraysCombined);
+      obj.goalsrc2 = []; obj.goalsrc3 = []; obj.goalsrc4 = []; obj.goalsrc5 = [];
+      cb();
+    },
+    removeArrayDuplicates: function(searchkey, ary){
+      var dupFreeArray = [];
+      var exists = false;
+      for(var idx = 0; idx < ary.length; idx++){
+        for(var nidx = 0; nidx < dupFreeArray.length; nidx++){
+          if(ary[idx][searchkey] === dupFreeArray[nidx][searchkey]) exists = true;
+        }
+        if(!(exists)) dupFreeArray.push(ary[idx]);
+        exists = false;
+      }
+
+      return dupFreeArray;
     }
   }
 };
