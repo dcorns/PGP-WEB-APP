@@ -23,7 +23,6 @@ module.exports = function (app) {
           method: 'GET',
           url: '/api/v_0_0_1/notes'
         }).success(function (data) {
-          console.log('nc26'); console.dir(data);
           if (data) {
             if (Array.isArray(data.n)) {
               //is ta so user object and note array received

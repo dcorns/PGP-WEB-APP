@@ -33,7 +33,11 @@ module.exports = function (app) {
                 return res.status(500).json(err);
               }
               if (note) {
-                return res.status(200).json(note);
+                var rmdups = db(note);
+                rmdups.combinePgpGoalresources(function(){
+                  return res.status(200).json(note);
+                });
+
               }
               else {
                 return res.status(201).send(note);
@@ -67,8 +71,6 @@ module.exports = function (app) {
         else {
           var newNote = new Note(req.body);
           newNote.student = usr.email;
-          console.log('note-routes(62)');
-          console.dir(newNote);
           newNote.save(function (err, resNote) {
             if (err) return res.status(505).json(err);
             return res.status(202).json(resNote);
