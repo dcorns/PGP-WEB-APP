@@ -13,7 +13,11 @@ module.exports = function (app) {
   app.get(baseUrl, function (req, res) {
     Resource.find({}, function (err, rsrc) {
       if (err) return res.status(500).json(err);
-      return res.status(200).json(rsrc);
+      var dbs = db(rsrc);
+      dbs.addNames(function(err, rdata){
+        if (err) return res.status(503).json(err);
+        return res.status(200).json(rdata);
+      });
     });
   });
 
