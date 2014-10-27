@@ -5,4 +5,4 @@ db/
 test/testbundle.js
 test/bundle.js
 test/angular-testbundle.js
-.idea/
+build/
