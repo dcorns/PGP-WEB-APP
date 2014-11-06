@@ -143,13 +143,6 @@ module.exports = function (obj) {
         valid = false;
         err = addValErr(err, "OOP-Assessment", "Select from 1-5 only for Object-Orientated programming rating");
       }
-      //escape all text fields
-      console.log('db147');
-      console.log(obj.course);
-      obj.course = esc(obj.course);
-      console.log(obj.course);
-      console.log(valid);
-      console.log('db136'); console.log(valid);
       cb(err,valid);
     }
   };
