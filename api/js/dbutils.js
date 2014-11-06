@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var User = require('../../models/user');
 var Notes = require('../../models/note');
 var Resource = require('../../models/resource');
+var validate = require('validator');
 
 module.exports = function (obj) {
   return{
@@ -111,6 +112,39 @@ module.exports = function (obj) {
       }
 
       return dupFreeArray;
+    },
+    validateSurvey: function (cb){
+      var valid = true;
+      var err = null;
+      if((!(validate.isAlpha(obj.name))) && (!(typeof obj.name === 'undefined'))){
+        valid = false;
+        err = addValErr(err, "Name", "Only Alphanumeric characters are aloud for Name input!");
+        console.log('Name failed validation');
+      }
+      if((!(validate.isAlphanumeric(obj.course))) && (!(typeof obj.course === 'undefined'))){
+        valid = false;
+        err = addValErr(err, "Course", "Only Alphanumeric characters are aloud for Course input!");
+        console.log('Course failed validation');
+      }
+      if(((!(obj.rtg1 > 0)) || (!(obj.rtg1 < 6))) && (!(typeof obj.rtg1 === 'undefined'))){
+        valid = false;
+        err = addValErr(err, "HTML-Assessment", "Select from 1-5 only for HTML rating");
+        console.log('db132'); console.dir(err);
+        console.log('Rtg1 failed validation');
+      }
+      console.log(valid);
+      console.log('db136'); console.log(valid);
+      cb(err,valid);
     }
+  };
+  function addValErr(err, errName, errMsg){
+    console.log('db141');
+    if(!(err)){
+      err = {};
+    }
+    if(!(errName[errName])){
+      err[errName] = errMsg;
+    }
+    return err;
   }
 };
