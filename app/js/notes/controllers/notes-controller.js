@@ -85,7 +85,8 @@ module.exports = function (app) {
           })
           .error(function (data, status) {
             console.log(data);
-            alert("There was a problem submitting your assessment");
+            console.log(status);
+            alert("There was a problem submitting your assessment, Make sure all your input is valid.");
           });
       };
 

@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var User = require('../../models/user');
 var Notes = require('../../models/note');
 var Resource = require('../../models/resource');
+var validate = require('validator');
 
 module.exports = function (obj) {
   return{
@@ -111,6 +112,55 @@ module.exports = function (obj) {
       }
 
       return dupFreeArray;
+    },
+    validateSurvey: function (cb){
+      var valid = true;
+      var err = null;
+      if((!(validate.isAlpha(obj.name))) && (!(typeof obj.name === 'undefined'))){
+        valid = false;
+        err = addValErr(err, "Name", "Only Alphanumeric characters are aloud for Name input!");
+      }
+      if(((!(obj.rtg1 > 0)) || (!(obj.rtg1 < 6))) && (!(typeof obj.rtg1 === 'undefined'))){
+        valid = false;
+        err = addValErr(err, "HTML-Assessment", "Select from 1-5 only for HTML rating");
+      }
+      if(((!(obj.rtg2 > 0)) || (!(obj.rtg2 < 6))) && (!(typeof obj.rtg2 === 'undefined'))){
+        valid = false;
+        err = addValErr(err, "CSS-Assessment", "Select from 1-5 only for CSS rating");
+      }if(((!(obj.rtg3 > 0)) || (!(obj.rtg3 < 6))) && (!(typeof obj.rtg3 === 'undefined'))){
+        valid = false;
+        err = addValErr(err, "JS-Assessment", "Select from 1-5 only for JavaScript rating");
+      }if(((!(obj.rtg4 > 0)) || (!(obj.rtg4 < 6))) && (!(typeof obj.rtg4 === 'undefined'))){
+        valid = false;
+        err = addValErr(err, "GIT-Assessment", "Select from 1-5 only for GIT rating");
+      }if(((!(obj.rtg5 > 0)) || (!(obj.rtg5 < 6))) && (!(typeof obj.rtg5 === 'undefined'))){
+        valid = false;
+        err = addValErr(err, "DSA-Assessment", "Select from 1-5 only for DataStructures and Algorithms rating");
+      }if(((!(obj.rtg6 > 0)) || (!(obj.rtg6 < 6))) && (!(typeof obj.rtg6 === 'undefined'))){
+        valid = false;
+        err = addValErr(err, "CMD-Assessment", "Select from 1-5 only for Command Line rating");
+      }if(((!(obj.rtg7 > 0)) || (!(obj.rtg7 < 6))) && (!(typeof obj.rtg7 === 'undefined'))){
+        valid = false;
+        err = addValErr(err, "OOP-Assessment", "Select from 1-5 only for Object-Orientated programming rating");
+      }
+      //escape all text fields
+      console.log('db147');
+      console.log(obj.course);
+      obj.course = esc(obj.course);
+      console.log(obj.course);
+      console.log(valid);
+      console.log('db136'); console.log(valid);
+      cb(err,valid);
     }
+  };
+  function addValErr(err, errName, errMsg){
+    console.log('db141');
+    if(!(err)){
+      err = {};
+    }
+    if(!(errName[errName])){
+      err[errName] = errMsg;
+    }
+    return err;
   }
 };

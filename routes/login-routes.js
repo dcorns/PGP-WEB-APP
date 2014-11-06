@@ -28,7 +28,7 @@ module.exports = function (app) {
         });
       }
       else {
-        return res.status(500).json(usr);
+        return res.status(401).json(usr);
       }
     });
   });

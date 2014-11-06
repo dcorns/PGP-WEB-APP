@@ -60,24 +60,31 @@ module.exports = function (app) {
     var user = {};
     var a = auth(user);
     a.getTokenInfo(function (usr) {
-      Note.findOne({student: usr.email}, function (err, note) {
-        if (err) console.error(err);
-        if (note) {
-          Note.findOneAndUpdate({student: note.student}, req.body, function (err, resNote) {
-            if (err) return res.status(500).json(err);
-            return res.status(202).json(resNote);
-          });
+      var valid = db(req.body);
+      valid.validateSurvey(function (err, result){
+        console.log('nr65'); console.dir(err);
+        if(err){return res.status(400).json(err);}
+        if(result){
+          Note.findOne({student: usr.email}, function (err, note) {
+            if (err) console.error(err);
+            if (note) {
+              Note.findOneAndUpdate({student: note.student}, req.body, function (err, resNote) {
+                if (err) return res.status(500).json(err);
+                return res.status(202).json(resNote);
+              });
+            }
+            else {
+              //rtg1-7 course feedbk goal goal2-5
+              var newNote = new Note(req.body);
+              newNote.student = usr.email;
+              newNote.save(function (err, resNote) {
+                if (err) return res.status(505).json(err);
+                return res.status(202).json(resNote);
+              });
+            }
+          })
         }
-        else {
-          var newNote = new Note(req.body);
-          newNote.student = usr.email;
-          newNote.save(function (err, resNote) {
-            if (err) return res.status(505).json(err);
-            return res.status(202).json(resNote);
-          });
-        }
-
-      })
+      });
     }, token);
   });
 
