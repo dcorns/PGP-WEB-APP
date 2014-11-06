@@ -1,13 +1,13 @@
 <article data-ng-controller="notesController" class="newSurvey">
     <h1 hidden class="hidden">New Student Survey</h1>
 
-    <form name="survey" class="newSurvey_form">
+    <form name="survey" novalidate class="newSurvey_form">
 
         <fieldset class="newSurvey_form-info">
             <legend>Student Information</legend>
             <label class="newSurvey_form-lbl">{{selectedNote.student}}</label></br>
             <label class="newSurvey_form-lbl">Course</label>
-            <input id="course" class="newSurvey_form-lbl" data-ng-model="newNote.course">
+            <input id="course" required class="newSurvey_form-lbl" data-ng-model="newNote.course">
         </fieldset>
 
         <section>
