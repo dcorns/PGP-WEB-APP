@@ -120,10 +120,6 @@ module.exports = function (obj) {
         valid = false;
         err = addValErr(err, "Name", "Only Alphanumeric characters are aloud for Name input!");
       }
-      if((!(validate.isAlphanumeric(obj.course))) && (!(typeof obj.course === 'undefined'))){
-        valid = false;
-        err = addValErr(err, "Course", "Only Alphanumeric characters are aloud for Course input!");
-      }
       if(((!(obj.rtg1 > 0)) || (!(obj.rtg1 < 6))) && (!(typeof obj.rtg1 === 'undefined'))){
         valid = false;
         err = addValErr(err, "HTML-Assessment", "Select from 1-5 only for HTML rating");
@@ -147,6 +143,11 @@ module.exports = function (obj) {
         valid = false;
         err = addValErr(err, "OOP-Assessment", "Select from 1-5 only for Object-Orientated programming rating");
       }
+      //escape all text fields
+      console.log('db147');
+      console.log(obj.course);
+      obj.course = esc(obj.course);
+      console.log(obj.course);
       console.log(valid);
       console.log('db136'); console.log(valid);
       cb(err,valid);
