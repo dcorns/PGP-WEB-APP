@@ -119,18 +119,33 @@ module.exports = function (obj) {
       if((!(validate.isAlpha(obj.name))) && (!(typeof obj.name === 'undefined'))){
         valid = false;
         err = addValErr(err, "Name", "Only Alphanumeric characters are aloud for Name input!");
-        console.log('Name failed validation');
       }
       if((!(validate.isAlphanumeric(obj.course))) && (!(typeof obj.course === 'undefined'))){
         valid = false;
         err = addValErr(err, "Course", "Only Alphanumeric characters are aloud for Course input!");
-        console.log('Course failed validation');
       }
       if(((!(obj.rtg1 > 0)) || (!(obj.rtg1 < 6))) && (!(typeof obj.rtg1 === 'undefined'))){
         valid = false;
         err = addValErr(err, "HTML-Assessment", "Select from 1-5 only for HTML rating");
-        console.log('db132'); console.dir(err);
-        console.log('Rtg1 failed validation');
+      }
+      if(((!(obj.rtg2 > 0)) || (!(obj.rtg2 < 6))) && (!(typeof obj.rtg2 === 'undefined'))){
+        valid = false;
+        err = addValErr(err, "CSS-Assessment", "Select from 1-5 only for CSS rating");
+      }if(((!(obj.rtg3 > 0)) || (!(obj.rtg3 < 6))) && (!(typeof obj.rtg3 === 'undefined'))){
+        valid = false;
+        err = addValErr(err, "JS-Assessment", "Select from 1-5 only for JavaScript rating");
+      }if(((!(obj.rtg4 > 0)) || (!(obj.rtg4 < 6))) && (!(typeof obj.rtg4 === 'undefined'))){
+        valid = false;
+        err = addValErr(err, "GIT-Assessment", "Select from 1-5 only for GIT rating");
+      }if(((!(obj.rtg5 > 0)) || (!(obj.rtg5 < 6))) && (!(typeof obj.rtg5 === 'undefined'))){
+        valid = false;
+        err = addValErr(err, "DSA-Assessment", "Select from 1-5 only for DataStructures and Algorithms rating");
+      }if(((!(obj.rtg6 > 0)) || (!(obj.rtg6 < 6))) && (!(typeof obj.rtg6 === 'undefined'))){
+        valid = false;
+        err = addValErr(err, "CMD-Assessment", "Select from 1-5 only for Command Line rating");
+      }if(((!(obj.rtg7 > 0)) || (!(obj.rtg7 < 6))) && (!(typeof obj.rtg7 === 'undefined'))){
+        valid = false;
+        err = addValErr(err, "OOP-Assessment", "Select from 1-5 only for Object-Orientated programming rating");
       }
       console.log(valid);
       console.log('db136'); console.log(valid);
