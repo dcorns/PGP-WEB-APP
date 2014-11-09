@@ -3,7 +3,7 @@
  */
 'use strict';
 var User = require('../models/user');
-var auth = require('../api/js/authorize');
+var auth = require('../js/authorize');
 
 module.exports = function (app) {
   var baseUrl = '/api/v_0_0_1/login';

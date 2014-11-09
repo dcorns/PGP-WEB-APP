@@ -5,8 +5,8 @@ require('angular-route');
 
 var notesApp = angular.module('notesApp', ['ngRoute']);
 
-require('./notes/controllers/notes-controller')(notesApp);
-require('./notes/controllers/user-controller')(notesApp);
+require('../controllers/notes-controller')(notesApp);
+require('../controllers/user-controller')(notesApp);
 
 notesApp.config(['$routeProvider', function ($routeProvider) {
   $routeProvider

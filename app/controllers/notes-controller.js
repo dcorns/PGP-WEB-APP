@@ -2,7 +2,7 @@
 
 module.exports = function (app) {
   app.controller('notesController', function ($scope, $http) {
-    var ui = require('../../ui');
+    var ui = require('../js/ui');
     var ux = ui();
 
     angular.element(document).ready(function () {

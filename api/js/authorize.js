@@ -3,7 +3,7 @@
  */
 'use strict';
 
-var User = require('../../models/user');
+var User = require('../models/user');
 var bcrypt = require('bcryptjs');
 var jwt = require('jwt-simple');
 

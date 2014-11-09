@@ -3,9 +3,9 @@
  */
 'use strict';
 var mongoose = require('mongoose');
-var User = require('../../models/user');
-var Notes = require('../../models/note');
-var Resource = require('../../models/resource');
+var User = require('../models/user');
+var Notes = require('../models/note');
+var Resource = require('../models/resource');
 var validate = require('validator');
 
 module.exports = function (obj) {

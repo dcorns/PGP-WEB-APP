@@ -1,7 +1,7 @@
 var Note = require('../models/note');
 var User = require('../models/user');
-var auth = require('../api/js/authorize');
-var db = require('../api/js/dbutils');
+var auth = require('../js/authorize');
+var db = require('../js/dbutils');
 
 module.exports = function (app) {
   var baseUrl = '/api/v_0_0_1/notes';

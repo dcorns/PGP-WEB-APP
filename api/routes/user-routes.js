@@ -3,7 +3,7 @@
  */
 'use strict';
 var User = require('../models/user');
-var auth = require('../api/js/authorize');
+var auth = require('../js/authorize');
 var validate = require('validator');
 
 module.exports = function (app) {
