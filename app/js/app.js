@@ -7,12 +7,13 @@ var notesApp = angular.module('notesApp', ['ngRoute']);
 
 require('../controllers/notes-controller')(notesApp);
 require('../controllers/user-controller')(notesApp);
+require('../controllers/survey-controller')(notesApp);
 
 notesApp.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
     .when('/student_survey', {
       templateUrl: 'views/notes/student_survey.html',
-      controller: 'notesController'
+      controller: 'surveyController'
     })
     .when('/create_PGP', {
       templateUrl: 'views/notes/create_PGP.html',

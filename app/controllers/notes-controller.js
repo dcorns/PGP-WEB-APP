@@ -71,25 +71,6 @@ module.exports = function (app) {
 
       $scope.getAllNotes();
 
-      $scope.saveNewNote = function () {
-        $http.post('api/v_0_0_1/notes', $scope.newNote)
-          .success(function (data) {
-            console.log('notes-controller(44)');
-            console.log(data);
-            console.log($scope.notes);
-            if (Array.isArray($scope.notes)) $scope.notes.push(data);
-            else $scope.notes = [data];
-            console.log($scope.notes);
-            alert("Your self-assessment has been submitted. Thank you!");
-            window.location = "/#/home";
-          })
-          .error(function (data, status) {
-            console.log(data);
-            console.log(status);
-            alert("There was a problem submitting your assessment, Make sure all your input is valid.");
-          });
-      };
-
       $scope.editNote = function (note) {
         note.editing = true;
       };
