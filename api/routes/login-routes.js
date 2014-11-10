@@ -8,13 +8,6 @@ var auth = require('../js/authorize');
 module.exports = function (app) {
   var baseUrl = '/api/v_0_0_1/login';
 
-  app.get(baseUrl, function (req, res) {
-    User.find({}, function (err, users) {
-      if (err) return res.status(500).json(err);
-      return res.json(users);
-    });
-  });
-
   //Login
   app.post(baseUrl, function (req, res) {
     console.log('login-routes(20)');
@@ -24,6 +17,7 @@ module.exports = function (app) {
     a.authenticate(function (usr) {
       if (usr.user && usr.password) {
         a.makeToken(function (usr) {
+
           return res.status(200).json(usr);
         });
       }
@@ -33,26 +27,4 @@ module.exports = function (app) {
     });
   });
 
-  app.get(baseUrl + '/:id', function (req, res) {
-    User.findOne({'_id': req.params.id}, function (err, user) {
-      if (err) return res.status(500).json(err);
-      return res.json(user);
-    });
-  });
-
-  app.put(baseUrl + '/:id', function (req, res) {
-    var user = req.body;
-    delete user._id;
-    User.findOneAndUpdate({'_id': req.params.id}, note, function (err, resUser) {
-      if (err) return res.status(500).json(err);
-      return res.status(202).json(resUser);
-    });
-  });
-
-  app.delete(baseUrl + '/:id', function (req, res) {
-    User.remove({'_id': req.params.id}, function (err, resUser) {
-      if (err) return res.status(500).json(err);
-      return res.status(200).json({'msg': 'deleted'});
-    });
-  });
 };
