@@ -1,134 +1,165 @@
-<div data-ng-controller="viewPGPController" id="pgpout">
+<div data-ng-controller="notesController" id="pgpout">
 
     <article>
-        <fieldset>
-            <h1 class="pgpHeader" >Personal Growth Plan For {{pgp.name}}</h1>
-            <h2 class="hCourse">{{ 'Course ' + pgp.course}}</h2>
+        <fieldset id="pgpSelection" class="newSurvey_select">
+            <select data-ng-model="selectedNote" data-ng-options="note.name for note in notes"></select>
         </fieldset>
+
+        <fieldset>
+            <h1 class="pgpHeader" >Personal Growth Plan For {{selectedNote.name}}</h1>
+            <h2 class="hCourse">{{ 'Course ' + selectedNote.course}}</h2>
+        </fieldset>
+
         <fieldset>
             <legend class="pgpLegend">Based on your self assessment responses we recommend the following resources:</legend>
-            <label class="ppgrating">{{pgp.rtg1}}</label>
+            <label class="ppgrating">{{selectedNote.rtg1}}</label>
             <label class="pgpAssTitle">HTML:</label>
             <ul>
-                <li class="animate-repeat" data-ng-repeat="rec in pgp.recsrc1">
+                <li class="animate-repeat" data-ng-repeat="rec in selectedNote.recsrc1">
                     Type:{{rec.type}}: <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
                 </li>
                 <li class="animate-repeat" data-ng-if="results.length == 0">
                     <strong>Nothing Recommended</strong>
                 </li>
             </ul>
-            <p>{{pgp.rec1}}</p>
-            <label class="ppgrating">{{pgp.rtg2}}</label>
+            <p>{{selectedNote.rec1}}</p>
+
+            <label class="ppgrating">{{selectedNote.rtg2}}</label>
             <label class="pgpAssTitle">CSS:</label>
             <ul>
-                <li class="animate-repeat" data-ng-repeat="rec in pgp.recsrc2">
+                <li class="animate-repeat" data-ng-click="removeFromSrc2($event, rec)"
+                    data-ng-repeat="rec in selectedNote.recsrc2">
                     Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
                 </li>
                 <li class="animate-repeat" ng-if="results.length == 0">
                     <strong>No results found...</strong>
                 </li>
             </ul>
-            <p>{{pgp.rec2}}</p>
-            <label class="ppgrating">{{pgp.rtg3}}</label>
+            <p>{{selectedNote.rec2}}</p>
+
+            <label class="ppgrating">{{selectedNote.rtg3}}</label>
             <label class="pgpAssTitle">JavaScript:</label>
             <ul>
-                <li class="animate-repeat" data-ng-repeat="rec in pgp.recsrc3">
+                <li class="animate-repeat" data-ng-click="removeFromSrc3($event, rec)"
+                    data-ng-repeat="rec in selectedNote.recsrc3">
                     Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
                 </li>
                 <li class="animate-repeat" ng-if="results.length == 0">
                     <strong>No results found...</strong>
                 </li>
             </ul>
-            <p>{{pgp.rec3}}</p>
-            <label class="ppgrating">{{pgp.rtg4}}</label>
+            <p>{{selectedNote.rec3}}</p>
+
+            <label class="ppgrating">{{selectedNote.rtg4}}</label>
             <label class="pgpAssTitle">GIT:</label>
             <ul>
-                <li class="animate-repeat" data-ng-repeat="rec in pgp.recsrc4">
+                <li class="animate-repeat" data-ng-click="removeFromSrc4($event, rec)"
+                    data-ng-repeat="rec in selectedNote.recsrc4">
                     Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
                 </li>
                 <li class="animate-repeat" ng-if="results.length == 0">
                     <strong>No results found...</strong>
                 </li>
             </ul>
-            <p>{{pgp.rec4}}</p>
-            <label class="ppgrating">{{pgp.rtg5}}</label>
+            <p>{{selectedNote.rec4}}</p>
+
+            <label class="ppgrating">{{selectedNote.rtg5}}</label>
             <label class="pgpAssTitle">Data Structures and Algorithms:</label>
             <ul>
-                <li class="animate-repeat" data-ng-repeat="rec in pgp.recsrc5">
+                <li class="animate-repeat" data-ng-click="removeFromSrc5($event, rec)"
+                    data-ng-repeat="rec in selectedNote.recsrc5">
                     Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
                 </li>
                 <li class="animate-repeat" ng-if="results.length == 0">
                     <strong>No results found...</strong>
                 </li>
             </ul>
-            <p>{{pgp.rec5}}</p>
-            <label class="ppgrating">{{pgp.rtg6}}</label>
+            <p>{{selectedNote.rec5}}</p>
+
+            <label class="ppgrating">{{selectedNote.rtg6}}</label>
             <label class="pgpAssTitle">Command Line/ Terminal:</label>
             <ul>
-                <li class="animate-repeat" data-ng-repeat="rec in pgp.recsrc6">
+                <li class="animate-repeat" data-ng-click="removeFromSrc6($event, rec)"
+                    data-ng-repeat="rec in selectedNote.recsrc6">
                     Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
                 </li>
                 <li class="animate-repeat" ng-if="results.length == 0">
                     <strong>No results found...</strong>
                 </li>
             </ul>
-            <p>{{pgp.rec6}}</p>
-            <label class="ppgrating">{{pgp.rtg7}}</label>
+            <p>{{selectedNote.rec6}}</p>
+
+            <label class="ppgrating">{{selectedNote.rtg7}}</label>
             <label class="pgpAssTitle">Object-orientated Programing:</label>
             <ul>
-                <li class="animate-repeat" data-ng-repeat="rec in pgp.recsrc7">
+                <li class="animate-repeat" data-ng-click="removeFromSrc7($event, rec)"
+                    data-ng-repeat="rec in selectedNote.recsrc7">
                     Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
                 </li>
                 <li class="animate-repeat" ng-if="results.length == 0">
                     <strong>No results found...</strong>
                 </li>
             </ul>
-            <p>{{pgp.rec7}}</p>
+            <p>{{selectedNote.rec7}}</p>
         </fieldset>
+
         <fieldset>
             <legend class="pgpLegend">Additional resources provided based on your responses to survey questions:</legend>
+
             <ul>
-                <li class="animate-repeat" data-ng-repeat="rec in pgp.goalsrc1">
+                <li class="animate-repeat" data-ng-click="removeFromGsrc1($event, rec)"
+                    data-ng-repeat="rec in selectedNote.goalsrc1">
                     Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
                 </li>
                 <li class="animate-repeat" ng-if="results.length == 0">
                     <strong>No results found...</strong>
                 </li>
             </ul>
+
             <ul>
-                <li class="animate-repeat" data-ng-repeat="rec in pgp.goalsrc2">
+                <li class="animate-repeat" data-ng-click="removeFromGsrc2($event, rec)"
+                    data-ng-repeat="rec in selectedNote.goalsrc2">
                     Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
                 </li>
                 <li class="animate-repeat" ng-if="results.length == 0">
                     <strong>No results found...</strong>
                 </li>
             </ul>
+
             <ul>
-                <li class="animate-repeat" data-ng-repeat="rec in pgp.goalsrc3">
+                <li class="animate-repeat" data-ng-click="removeFromGsrc3($event, rec)"
+                    data-ng-repeat="rec in selectedNote.goalsrc3">
                     Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
                 </li>
                 <li class="animate-repeat" ng-if="results.length == 0">
                     <strong>No results found...</strong>
                 </li>
             </ul>
+
             <ul>
-                <li class="animate-repeat" data-ng-repeat="rec in pgp.goalsrc4">
+                <li class="animate-repeat" data-ng-click="removeFromGsrc4($event, rec)"
+                    data-ng-repeat="rec in selectedNote.goalsrc4">
                     Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
                 </li>
                 <li class="animate-repeat" ng-if="results.length == 0">
                     <strong>No results found...</strong>
                 </li>
             </ul>
+
             <ul>
-                <li class="animate-repeat" data-ng-repeat="rec in pgp.goalsrc5">
+                <li class="animate-repeat" data-ng-click="removeFromGsrc5($event, rec)"
+                    data-ng-repeat="rec in selectedNote.goalsrc5">
                     Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
                 </li>
                 <li class="animate-repeat" ng-if="results.length == 0">
                     <strong>No results found...</strong>
                 </li>
             </ul>
+
         </fieldset>
         <label class="pgpLegend">Additional comments and responses:</label>
-        <p>{{pgp.feedbk}}</p>
+        <p>{{selectedNote.feedbk}}</p>
+
     </article>
+
 </div>

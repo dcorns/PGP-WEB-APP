@@ -2,6 +2,7 @@
  * Created by dcorns on 10/2/14.
  */
 'use strict';
+var SOS = require('../js/saveObjInSession');
 module.exports = function(app) {
   app.controller('userController', function($scope, $http) {
 
@@ -41,22 +42,28 @@ module.exports = function(app) {
       window.sessionStorage.removeItem('token');
       $http.post('api/v_0_0_1/login', $scope.loginUser)
         .success(function(data) {
+          console.log('uc44');
+          console.dir(data);
           //Save token in local storage
-          window.sessionStorage.setItem('token', data.atoken);
+          window.sessionStorage.setItem('token', data.usr.atoken);
           var ca = document.getElementById('btncreateaccount');
           ca.className = 'hidden';
 
-          if(data.roll === 'ta'){
+          if(data.usr.roll === 'ta'){
             document.getElementById('btnsurvey').className = 'hidden';
             document.getElementById('btncreatepgp').className = 'nav_ul-li';
             document.getElementById('btnviewpgp').className = 'nav_ul-li';
             window.location="/#/create_PGP";
           }
           else{
-            if(data.roll === 'student'){
+            if(data.usr.roll === 'student'){
               document.getElementById('btncreatepgp').className = 'hidden';
               document.getElementById('btnsurvey').className = 'nav_ul-li';
-              window.location="/#/student_survey";
+              //Save note to local storage
+              var sessionNote = SOS(data.note);
+              sessionNote.saveNote();
+              if(data.note.recComplete) window.location='/#/view_PGP';
+              else window.location='/#/student_survey';
             }
           }
 

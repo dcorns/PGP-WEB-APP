@@ -3,9 +3,9 @@
  */
 'use strict';
 var mongoose = require('mongoose');
-var User = require('../../models/user');
-var Notes = require('../../models/note');
-var Resource = require('../../models/resource');
+var User = require('../models/user');
+var Notes = require('../models/note');
+var Resource = require('../models/resource');
 var validate = require('validator');
 
 module.exports = function (obj) {
@@ -116,10 +116,10 @@ module.exports = function (obj) {
     validateSurvey: function (cb){
       var valid = true;
       var err = null;
-      if((!(validate.isAlpha(obj.name))) && (!(typeof obj.name === 'undefined'))){
-        valid = false;
-        err = addValErr(err, "Name", "Only Alphanumeric characters are aloud for Name input!");
-      }
+      //if((!(validate.isAlpha(obj.name))) && (!(typeof obj.name === 'undefined'))){
+      //  valid = false;
+      //  err = addValErr(err, "Name", "Only Alphanumeric characters are aloud for Name input!");
+      //}
       if(((!(obj.rtg1 > 0)) || (!(obj.rtg1 < 6))) && (!(typeof obj.rtg1 === 'undefined'))){
         valid = false;
         err = addValErr(err, "HTML-Assessment", "Select from 1-5 only for HTML rating");
@@ -147,7 +147,6 @@ module.exports = function (obj) {
     }
   };
   function addValErr(err, errName, errMsg){
-    console.log('db141');
     if(!(err)){
       err = {};
     }

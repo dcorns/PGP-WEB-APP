@@ -2,7 +2,7 @@
 
 module.exports = function (app) {
   app.controller('notesController', function ($scope, $http) {
-    var ui = require('../../ui');
+    var ui = require('../js/ui');
     var ux = ui();
 
     angular.element(document).ready(function () {
@@ -24,19 +24,10 @@ module.exports = function (app) {
           url: '/api/v_0_0_1/notes'
         }).success(function (data) {
           if (data) {
-            if (Array.isArray(data.n)) {
-              //is ta so user object and note array received
               $scope.notes = data.n;
               document.getElementById('btnviewpgp').className = 'nav_ul-li';
               document.getElementById('btncreatepgp').className = 'nav_ul-li';
-            }
-            else {
-              // is student so single note received
-              $scope.notes = [data];
-              if($scope.notes[0].recComplete){
-                window.location = "/#/view_PGP";
-              }
-            }
+
             $scope.selectedNote = $scope.notes[0];
 
             //load input fields with existing data
@@ -59,9 +50,7 @@ module.exports = function (app) {
             ux.fillInput("goal5", $scope.selectedNote.goal5);
             ux.fillInput("note", $scope.selectedNote.note);
           }
-          else {
-            $scope.selectedNote = {};
-          }
+
         }).error(function (data, status) {
           console.log(data);
           console.log('error!');
@@ -70,25 +59,6 @@ module.exports = function (app) {
       };
 
       $scope.getAllNotes();
-
-      $scope.saveNewNote = function () {
-        $http.post('api/v_0_0_1/notes', $scope.newNote)
-          .success(function (data) {
-            console.log('notes-controller(44)');
-            console.log(data);
-            console.log($scope.notes);
-            if (Array.isArray($scope.notes)) $scope.notes.push(data);
-            else $scope.notes = [data];
-            console.log($scope.notes);
-            alert("Your self-assessment has been submitted. Thank you!");
-            window.location = "/#/home";
-          })
-          .error(function (data, status) {
-            console.log(data);
-            console.log(status);
-            alert("There was a problem submitting your assessment, Make sure all your input is valid.");
-          });
-      };
 
       $scope.editNote = function (note) {
         note.editing = true;

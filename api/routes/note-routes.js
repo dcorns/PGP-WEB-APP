@@ -1,7 +1,7 @@
 var Note = require('../models/note');
 var User = require('../models/user');
-var auth = require('../api/js/authorize');
-var db = require('../api/js/dbutils');
+var auth = require('../js/authorize');
+var db = require('../js/dbutils');
 
 module.exports = function (app) {
   var baseUrl = '/api/v_0_0_1/notes';
@@ -26,65 +26,10 @@ module.exports = function (app) {
             return res.status(503);
           });
         }
-        else {
-          if (usr.roll === 'student') {
-            Note.findOne({student: usr.email}, function (err, note) {
-              if (err) {
-                return res.status(500).json(err);
-              }
-              if (note) {
-                var rmdups = db(note);
-                rmdups.combinePgpGoalresources(function(){
-                  return res.status(200).json(note);
-                });
-
-              }
-              else {
-                return res.status(201).send(note);
-              }
-
-            })
-          }
-        }
       }
       else {
         return res.status(202).send(token);
       }
-    }, token);
-  });
-//Save new or update user survey
-  app.post(baseUrl, function (req, res) {
-    console.log('note-routes(42)');
-    console.log(req.body);
-    var token = req.headers.authorization;
-    var user = {};
-    var a = auth(user);
-    a.getTokenInfo(function (usr) {
-      var valid = db(req.body);
-      valid.validateSurvey(function (err, result){
-        console.log('nr65'); console.dir(err);
-        if(err){return res.status(400).json(err);}
-        if(result){
-          Note.findOne({student: usr.email}, function (err, note) {
-            if (err) console.error(err);
-            if (note) {
-              Note.findOneAndUpdate({student: note.student}, req.body, function (err, resNote) {
-                if (err) return res.status(500).json(err);
-                return res.status(202).json(resNote);
-              });
-            }
-            else {
-              //rtg1-7 course feedbk goal goal2-5
-              var newNote = new Note(req.body);
-              newNote.student = usr.email;
-              newNote.save(function (err, resNote) {
-                if (err) return res.status(505).json(err);
-                return res.status(202).json(resNote);
-              });
-            }
-          })
-        }
-      });
     }, token);
   });
 
@@ -121,5 +66,7 @@ module.exports = function (app) {
       return res.status(200).json({'msg': 'deleted'});
     });
   });
+
+
 
 };

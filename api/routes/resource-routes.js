@@ -3,8 +3,8 @@
  */
 'use strict';
 var Resource = require('../models/resource');
-var db = require('../api/js/dbutils');
-var auth = require('../api/js/authorize');
+var db = require('../js/dbutils');
+var auth = require('../js/authorize');
 var User = require('../models/user');
 
 module.exports = function (app) {

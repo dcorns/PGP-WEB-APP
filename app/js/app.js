@@ -5,22 +5,28 @@ require('angular-route');
 
 var notesApp = angular.module('notesApp', ['ngRoute']);
 
-require('./notes/controllers/notes-controller')(notesApp);
-require('./notes/controllers/user-controller')(notesApp);
+require('../controllers/notes-controller')(notesApp);
+require('../controllers/user-controller')(notesApp);
+require('../controllers/survey-controller')(notesApp);
+require('../controllers/viewPGP-controller')(notesApp);
 
 notesApp.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
     .when('/student_survey', {
       templateUrl: 'views/notes/student_survey.html',
-      controller: 'notesController'
+      controller: 'surveyController'
     })
     .when('/create_PGP', {
       templateUrl: 'views/notes/create_PGP.html',
       controller: 'notesController'
     })
+    .when('/preview_PGP', {
+      templateUrl: 'views/notes/preview_PGP.html',
+      controller: 'notesController'
+    })
     .when('/view_PGP', {
       templateUrl: 'views/notes/view_PGP.html',
-      controller: 'notesController'
+      controller: 'viewPGPController'
     })
     .when('/create_Account', {
       templateUrl: 'views/notes/create_Account.html',
@@ -31,7 +37,6 @@ notesApp.config(['$routeProvider', function ($routeProvider) {
       controller: 'notesController'
     })
     .otherwise({
-      //redirectTo: '/views/notes/home.html'
       templateUrl: 'views/notes/home.html',
       controller: 'notesController'
     });
