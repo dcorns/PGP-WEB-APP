@@ -20,6 +20,10 @@ notesApp.config(['$routeProvider', function ($routeProvider) {
       templateUrl: 'views/notes/create_PGP.html',
       controller: 'notesController'
     })
+    .when('/preview_PGP', {
+      templateUrl: 'views/notes/preview_PGP.html',
+      controller: 'notesController'
+    })
     .when('/view_PGP', {
       templateUrl: 'views/notes/view_PGP.html',
       controller: 'viewPGPController'
