@@ -8,6 +8,7 @@ var notesApp = angular.module('notesApp', ['ngRoute']);
 require('../controllers/notes-controller')(notesApp);
 require('../controllers/user-controller')(notesApp);
 require('../controllers/survey-controller')(notesApp);
+require('../controllers/viewPGP-controller')(notesApp);
 
 notesApp.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
@@ -21,7 +22,7 @@ notesApp.config(['$routeProvider', function ($routeProvider) {
     })
     .when('/view_PGP', {
       templateUrl: 'views/notes/view_PGP.html',
-      controller: 'notesController'
+      controller: 'viewPGPController'
     })
     .when('/create_Account', {
       templateUrl: 'views/notes/create_Account.html',
@@ -32,7 +33,6 @@ notesApp.config(['$routeProvider', function ($routeProvider) {
       controller: 'notesController'
     })
     .otherwise({
-      //redirectTo: '/views/notes/home.html'
       templateUrl: 'views/notes/home.html',
       controller: 'notesController'
     });
