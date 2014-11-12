@@ -2,7 +2,6 @@
  * Created by dcorns on 11/8/14.
  */
 'use strict';
-var LFS = require('../js/loadObjFromSession');
 module.exports = function (app){
   app.controller('surveyController', function ($http, $scope){
     var ui = require('../js/ui');

@@ -1,23 +1,18 @@
 'use strict';
-
+var ui = require('../js/ui');
 module.exports = function (app) {
   app.controller('notesController', function ($scope, $http) {
-    var ui = require('../js/ui');
     var ux = ui();
-
     angular.element(document).ready(function () {
       ux.startHidden();
       ux.setToggles();
-
     });
-
     //Check for authorization before loading notes
     if (window.sessionStorage.getItem('token')) {
       var token = window.sessionStorage.getItem('token');
       $http.defaults.headers.common.Authorization = token;
       $scope.notes = [];
       $scope.resources = [];
-
       $scope.getAllNotes = function () {
         $http({
           method: 'GET',
@@ -27,8 +22,13 @@ module.exports = function (app) {
               $scope.notes = data.n;
               document.getElementById('btnviewpgp').className = 'nav_ul-li';
               document.getElementById('btncreatepgp').className = 'nav_ul-li';
-
-            $scope.selectedNote = $scope.notes[0];
+            if(window.sessionStorage.getItem('formIdx')){
+              $scope.selectedNote = $scope.notes[window.sessionStorage.getItem('formIdx')];
+            }
+            else{
+              $scope.selectedNote = $scope.notes[0];
+              window.sessionStorage.setItem('formIdx', $scope.notes.indexOf($scope.selectedNote));
+            }
 
             //load input fields with existing data
             $scope.hidetest = true;
@@ -50,6 +50,12 @@ module.exports = function (app) {
             ux.fillInput("goal5", $scope.selectedNote.goal5);
             ux.fillInput("note", $scope.selectedNote.note);
           }
+          document.getElementById("btnviewpgp").addEventListener('click', function(){
+            window.sessionStorage.setItem('formIdx', $scope.notes.indexOf($scope.selectedNote));
+          });
+          document.getElementById("btncreatepgp").addEventListener('click', function(){
+            window.sessionStorage.setItem('formIdx', $scope.notes.indexOf($scope.selectedNote));
+          })
 
         }).error(function (data, status) {
           console.log(data);
