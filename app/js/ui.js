@@ -109,7 +109,8 @@ module.exports = function () {
         blankThese[i].value = '';
       }
       return this;
-    }
+    },
+
 
   }
 };

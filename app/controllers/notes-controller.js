@@ -1,5 +1,6 @@
 'use strict';
 var ui = require('../js/ui');
+var pgpResources = require('../js/pgpResources');
 module.exports = function (app) {
   app.controller('notesController', function ($scope, $http) {
     var ux = ui();
@@ -20,8 +21,6 @@ module.exports = function (app) {
         }).success(function (data) {
           if (data) {
               $scope.notes = data.n;
-              document.getElementById('btnviewpgp').className = 'nav_ul-li';
-              document.getElementById('btncreatepgp').className = 'nav_ul-li';
             if(window.sessionStorage.getItem('formIdx')){
               $scope.selectedNote = $scope.notes[window.sessionStorage.getItem('formIdx')];
             }
@@ -29,47 +28,22 @@ module.exports = function (app) {
               $scope.selectedNote = $scope.notes[0];
               window.sessionStorage.setItem('formIdx', $scope.notes.indexOf($scope.selectedNote));
             }
-
-            //load input fields with existing data
-            $scope.hidetest = true;
-            ux.fillInput("course", $scope.selectedNote.course);
-            ux.fillInput("rtg1", $scope.selectedNote.rtg1);
-            ux.fillInput("rtg2", $scope.selectedNote.rtg2);
-            ux.fillInput("rtg3", $scope.selectedNote.rtg3);
-            ux.fillInput("goal", $scope.selectedNote.goal);
-            ux.fillInput("note", $scope.selectedNote.note);
-            ux.fillInput("course", $scope.selectedNote.course);
-            ux.fillInput("rtg4", $scope.selectedNote.rtg4);
-            ux.fillInput("rtg5", $scope.selectedNote.rtg5);
-            ux.fillInput("rtg6", $scope.selectedNote.rtg6);
-            ux.fillInput("rtg7", $scope.selectedNote.rtg7);
-            ux.fillInput("goal", $scope.selectedNote.goal);
-            ux.fillInput("goal2", $scope.selectedNote.goal2);
-            ux.fillInput("goal3", $scope.selectedNote.goal3);
-            ux.fillInput("goal4", $scope.selectedNote.goal4);
-            ux.fillInput("goal5", $scope.selectedNote.goal5);
-            ux.fillInput("note", $scope.selectedNote.note);
           }
           document.getElementById("btnviewpgp").addEventListener('click', function(){
             window.sessionStorage.setItem('formIdx', $scope.notes.indexOf($scope.selectedNote));
           });
           document.getElementById("btncreatepgp").addEventListener('click', function(){
             window.sessionStorage.setItem('formIdx', $scope.notes.indexOf($scope.selectedNote));
-          })
-
+          });
+          document.getElementById('btnviewpgp').className = 'nav_ul-li';
+          document.getElementById('btncreatepgp').className = 'nav_ul-li';
         }).error(function (data, status) {
           console.log(data);
           console.log('error!');
           console.log(status);
         });
       };
-
       $scope.getAllNotes();
-
-      $scope.editNote = function (note) {
-        note.editing = true;
-      };
-
       $scope.saveNote = function (note) {
         note.editing = null;
         $http.put('api/v_0_0_1/notes/' + note._id, note)
@@ -81,7 +55,6 @@ module.exports = function (app) {
             console.log(data);
           });
       };
-
       $scope.deleteNote = function (note) {
         $http.delete('api/v_0_0_1/notes/' + note._id, note)
           .success(function (data) {
@@ -91,126 +64,14 @@ module.exports = function (app) {
             console.log(data);
           });
       };
-
       $scope.deleteAll = function () {
         $scope.notes.forEach(function (note) {
           $scope.deleteNote(note)
         });
       };
-
-      $scope.removeResource = function (e, item, rsrc, rsrcFor) {
-        var obj = {resourceFor: rsrcFor, resource: item};
-        console.dir(e); console.dir(item); console.dir(rsrc); console.log(rsrcFor);
-        if(e.altKey){
-          $http.put('api/v_0_0_1/resources/', obj)
-            .success(function (data) {
-              alert(data.title +' deleted!');
-              $scope.getAllResources();
-            })
-            .error(function (data) {
-              console.dir(data);
-              alert(data.error);
-            });
-        }
-      };
-
-      $scope.saveResource = function (nrsrc, rsrc, rsrcFor, inputClass) {
-        nrsrc.resourceFor = rsrcFor;
-        $http.post('api/v_0_0_1/resources/', nrsrc)
-          .success(function (data) {
-            ux.blankInput(inputClass);
-            if (typeof rsrc !== 'undefined') {
-              rsrc.push(data);
-            }
-            else {
-              rsrc = [data];
-            }
-            alert("New " + rsrcFor + " Resource Saved!");
-          })
-          .error(function (data) {
-            console.dir(data);
-            alert("Error saving resource!");
-          });
-      };
-
-      $scope.getAllResources = function () {
-        $http({
-          method: 'GET',
-          url: '/api/v_0_0_1/resources/'
-        }).success(function (data) {
-          console.log('nc131');
-          console.dir(data);
-          $scope.resources = data;
-          for (var i = 0; i < data.length; i++) {
-            console.log(i + ', ' + data[i].resourceFor);
-            data[i].resource.sort(function(a, b){
-              if(a.title.toUpperCase() > b.title.toUpperCase()) return 1;
-              if(a.title.toUpperCase() < b.title.toUpperCase()) return -1;
-              return 0;
-            });
-            switch (data[i].resourceFor) {
-              case 'General':
-                $scope.genResources = data[i].resource;
-                $scope.selectedG1Res = $scope.genResources[0];
-                $scope.selectedG2Res = $scope.genResources[0];
-                $scope.selectedG3Res = $scope.genResources[0];
-                $scope.selectedG4Res = $scope.genResources[0];
-                $scope.selectedG5Res = $scope.genResources[0];
-                break;
-              case 'HTML':
-                $scope.HTMLResources = data[i].resource;
-                $scope.selectedHTMLRes = $scope.HTMLResources[0];
-                break;
-              case 'CSS':
-                $scope.CSSResources = data[i].resource;
-                $scope.selectedCSSRes = $scope.CSSResources[0];
-                break;
-              case 'JS':
-                $scope.JSResources = data[i].resource;
-                $scope.selectedJSRes = $scope.JSResources[0];
-                break;
-              case 'GIT':
-                $scope.GITResources = data[i].resource;
-                $scope.selectedGITRes = $scope.GITResources[0];
-                break;
-              case 'DSA':
-                $scope.DSAResources = data[i].resource;
-                $scope.selectedDSARes = $scope.DSAResources[0];
-                break;
-              case 'CMD':
-                $scope.CMDResources = data[i].resource;
-                $scope.selectedCMDRes = $scope.CMDResources[0];
-                break;
-              case 'OOP':
-                $scope.OOPResources = data[i].resource;
-                $scope.selectedOOPRes = $scope.OOPResources[0];
-                break;
-              default:
-                break;
-            }
-          }
-
-        }).error(function (data, status) {
-          console.dir(data);
-          console.log('error!');
-          console.log(status);
-        });
-      };
-
+      //add resource functions to scope
+      $scope = pgpResources($scope, $http);
       $scope.getAllResources();
-
-      $scope.addResource = function (sel, rsrc) {
-        console.log('Add Resource');
-        rsrc.push(sel);
-      };
-
-      $scope.removeRsrcFromPGP = function (e, item, rsrc) {
-        console.dir(e); console.dir(item); console.dir(rsrc);
-        if (e.altKey) {
-          var idx = rsrc.indexOf(item);
-          rsrc.splice(idx, 1);
-        }
-      };
     }
   });
 };
