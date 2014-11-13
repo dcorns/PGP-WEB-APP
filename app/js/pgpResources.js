@@ -2,8 +2,9 @@
  * Created by dcorns on 11/12/14.
  */
 'use strict';
-
+var ui = require('../js/ui');
 module.exports = function($scope, $http){
+  var ux = ui();
   $scope.removeResource = function (e, item, rsrc, rsrcFor) {
     var obj = {resourceFor: rsrcFor, resource: item};
     if(e.altKey){
@@ -18,7 +19,6 @@ module.exports = function($scope, $http){
         });
     }
   };
-
   $scope.saveResource = function (nrsrc, rsrc, rsrcFor, inputClass) {
     nrsrc.resourceFor = rsrcFor;
     $http.post('api/v_0_0_1/resources/', nrsrc)
@@ -37,7 +37,6 @@ module.exports = function($scope, $http){
         alert("Error saving resource!");
       });
   };
-
   $scope.getAllResources = function () {
     $http({
       method: 'GET',
@@ -101,12 +100,10 @@ module.exports = function($scope, $http){
       console.log(status);
     });
   };
-
   $scope.addResource = function (sel, rsrc) {
     console.log('Add Resource');
     rsrc.push(sel);
   };
-
   $scope.removeRsrcFromPGP = function (e, item, rsrc) {
     console.dir(e); console.dir(item); console.dir(rsrc);
     if (e.altKey) {

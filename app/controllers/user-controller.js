@@ -2,10 +2,12 @@
  * Created by dcorns on 10/2/14.
  */
 'use strict';
+var ui = require('../js/ui');
 var SOS = require('../js/saveObjInSession');
 module.exports = function(app) {
   app.controller('userController', function($scope, $http) {
-
+    var ux = ui();
+    ux.hideMainButtons();
     $scope.getAllUsers = function() {
       $http({
         method: 'GET',

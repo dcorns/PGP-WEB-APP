@@ -8,7 +8,6 @@ var validate = require('validator');
 
 module.exports = function (app) {
   var baseUrl = '/api/v_0_0_1/users';
-
   app.get(baseUrl, function (req, res) {
     User.find({}, function (err, users) {
       if (err) return res.status(500).json(err);
