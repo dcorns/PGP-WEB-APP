@@ -3,41 +3,41 @@
 require('angular/angular');
 require('angular-route');
 
-var notesApp = angular.module('notesApp', ['ngRoute']);
+var pgpApp = angular.module('pgpApp', ['ngRoute']);
 
-require('../controllers/notes-controller')(notesApp);
-require('../controllers/user-controller')(notesApp);
-require('../controllers/survey-controller')(notesApp);
-require('../controllers/viewPGP-controller')(notesApp);
+require('../controllers/pgps-controller')(pgpApp);
+require('../controllers/user-controller')(pgpApp);
+require('../controllers/survey-controller')(pgpApp);
+require('../controllers/viewPGP-controller')(pgpApp);
 
-notesApp.config(['$routeProvider', function ($routeProvider) {
+pgpApp.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
     .when('/student_survey', {
-      templateUrl: 'views/notes/student_survey.html',
+      templateUrl: 'views/student_survey.html',
       controller: 'surveyController'
     })
     .when('/create_PGP', {
-      templateUrl: 'views/notes/create_PGP.html',
-      controller: 'notesController'
+      templateUrl: 'views/create_PGP.html',
+      controller: 'pgpsController'
     })
     .when('/preview_PGP', {
-      templateUrl: 'views/notes/preview_PGP.html',
-      controller: 'notesController'
+      templateUrl: 'views/preview_PGP.html',
+      controller: 'pgpsController'
     })
     .when('/view_PGP', {
-      templateUrl: 'views/notes/view_PGP.html',
+      templateUrl: 'views/view_PGP.html',
       controller: 'viewPGPController'
     })
     .when('/create_Account', {
-      templateUrl: 'views/notes/create_Account.html',
-      controller: 'notesController'
+      templateUrl: 'views/create_Account.html',
+      controller: 'userController'
     })
     .when('/login', {
-      templateUrl: 'views/notes/login.html',
-      controller: 'notesController'
+      templateUrl: 'views/login.html',
+      controller: 'userController'
     })
     .otherwise({
-      templateUrl: 'views/notes/home.html',
-      controller: 'notesController'
+      templateUrl: 'views/home.html',
+      controller: 'userController'
     });
 }]);

@@ -12,9 +12,7 @@ module.exports = function () {
       }
     },
     startHidden: function () {
-      document.getElementById('btncreatepgp').className = 'hidden';
-      document.getElementById('btnsurvey').className = 'hidden';
-      document.getElementById('btnviewpgp').className = 'hidden';
+      this.hideMainButtons();
       document.getElementById('btnGoalsOn').className = 'hidden';
       document.getElementById('btnAssOn').className = 'hidden';
       document.getElementById('btnG1On').className = 'hidden';
@@ -110,6 +108,12 @@ module.exports = function () {
       }
       return this;
     },
+    hideMainButtons: function(){
+      document.getElementById('btncreatepgp').className = 'hidden';
+      document.getElementById('btnsurvey').className = 'hidden';
+      document.getElementById('btnviewpgp').className = 'hidden';
+      return this;
+    }
 
 
   }
