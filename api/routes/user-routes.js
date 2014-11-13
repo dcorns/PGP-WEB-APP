@@ -3,9 +3,8 @@
  */
 'use strict';
 var User = require('../models/user');
-var auth = require('../js/authorize');
 var validation = require('../js/validation');
-
+var dbutils = require('../js/dbutils');
 module.exports = function (app) {
   var baseUrl = '/api/v_0_0_1/users';
   app.get(baseUrl, function (req, res) {
@@ -22,19 +21,8 @@ module.exports = function (app) {
     if(validateNewUser.err){
       return validateNewUser.err;
     }
-    var user = new User(req.body);
-    user.email = user.email.toLowerCase();
-    user.roll = 'student';
-    var a = auth(user);
-    a.encrypt(function (usr) {
-      user.save(function (err, usr) {
-        if (err){
-          console.dir(err);
-          return res.status(500).json(err);
-        }
-        return res.json(user);
-      });
-    });
+    var db = dbutils(req.body);
+    return db.addNewUser(req, res);
   });
 
   app.get(baseUrl + '/:id', function (req, res) {

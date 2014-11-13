@@ -4,7 +4,7 @@
 'use strict';
 var mongoose = require('mongoose');
 var User = require('../models/user');
-var Notes = require('../models/note');
+var auth = require('./authorize');
 var Resource = require('../models/resource');
 
 
@@ -144,6 +144,21 @@ module.exports = function (obj) {
         err = addValErr(err, "OOP-Assessment", "Select from 1-5 only for Object-Orientated programming rating");
       }
       cb(err,valid);
+    },
+    addNewUser: function(req, res){
+      var user = new User(req.body);
+      user.email = user.email.toLowerCase();
+      user.roll = 'student';
+      var a = auth(user);
+      a.encrypt(function (usr) {
+        user.save(function (err, usr) {
+          if (err){
+            console.dir(err);
+            return res.status(500).json(err);
+          }
+          return res.json(user);
+        });
+      });
     }
   };
   function addValErr(err, errName, errMsg){
