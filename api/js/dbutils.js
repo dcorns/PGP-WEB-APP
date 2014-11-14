@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var User = require('../models/user');
 var auth = require('./authorize');
 var Resource = require('../models/resource');
+var Note = require('../models/note');
 
 
 module.exports = function (obj) {
@@ -159,7 +160,30 @@ module.exports = function (obj) {
           return res.json(user);
         });
       });
+    },
+    getNote: function(usr, res){
+      var newNote = {};
+      var payload = Object.create(null);
+      Note.findOne({student: usr.email}, function (err, note) {
+        if (err) {
+          return res.status(500).json(err);
+        }
+        if (note) {
+          //note = this.combineResources(note);
+          payload.note = note;
+        }
+        else{
+          newNote.student = usr.email;
+          newNote.recComplete = false;
+          newNote.rtgComplete = false;
+          newNote.name = usr.firstName + ' ' + usr.lastName;
+          payload.note = newNote;
+        }
+        payload.usr = usr;
+        return res.status(200).json(payload);
+      });
     }
+
   };
   function addValErr(err, errName, errMsg){
     if(!(err)){

@@ -44,7 +44,7 @@ module.exports = function(app) {
       window.sessionStorage.removeItem('token');
       $http.post('api/v_0_0_1/login', $scope.loginUser)
         .success(function(data) {
-          console.log('uc44');
+          console.log('uc47');
           console.dir(data);
           //Save token in local storage
           window.sessionStorage.setItem('token', data.usr.atoken);
