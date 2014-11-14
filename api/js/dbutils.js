@@ -4,9 +4,10 @@
 'use strict';
 var mongoose = require('mongoose');
 var User = require('../models/user');
-var Notes = require('../models/note');
+var auth = require('./authorize');
 var Resource = require('../models/resource');
-var validate = require('validator');
+var Note = require('../models/note');
+
 
 module.exports = function (obj) {
   return{
@@ -144,7 +145,45 @@ module.exports = function (obj) {
         err = addValErr(err, "OOP-Assessment", "Select from 1-5 only for Object-Orientated programming rating");
       }
       cb(err,valid);
+    },
+    addNewUser: function(req, res){
+      var user = new User(req.body);
+      user.email = user.email.toLowerCase();
+      user.roll = 'student';
+      var a = auth(user);
+      a.encrypt(function (usr) {
+        user.save(function (err, usr) {
+          if (err){
+            console.dir(err);
+            return res.status(500).json(err);
+          }
+          return res.json(user);
+        });
+      });
+    },
+    getNote: function(usr, res){
+      var newNote = {};
+      var payload = Object.create(null);
+      Note.findOne({student: usr.email}, function (err, note) {
+        if (err) {
+          return res.status(500).json(err);
+        }
+        if (note) {
+          //note = this.combineResources(note);
+          payload.note = note;
+        }
+        else{
+          newNote.student = usr.email;
+          newNote.recComplete = false;
+          newNote.rtgComplete = false;
+          newNote.name = usr.firstName + ' ' + usr.lastName;
+          payload.note = newNote;
+        }
+        payload.usr = usr;
+        return res.status(200).json(payload);
+      });
     }
+
   };
   function addValErr(err, errName, errMsg){
     if(!(err)){
