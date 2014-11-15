@@ -146,18 +146,17 @@ module.exports = function (obj) {
       }
       cb(err,valid);
     },
-    addNewUser: function(req, res){
-      var user = new User(req.body);
+    addNewUser: function(cb){
+      var user = new User(obj);
       user.email = user.email.toLowerCase();
       user.roll = 'student';
       var a = auth(user);
       a.encrypt(function (usr) {
         user.save(function (err, usr) {
           if (err){
-            console.dir(err);
-            return res.status(500).json(err);
+            return cb(err, null);
           }
-          return res.json(user);
+          return cb(null, {msg: 'Save succeeded'});
         });
       });
     },

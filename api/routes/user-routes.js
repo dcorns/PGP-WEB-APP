@@ -16,12 +16,19 @@ module.exports = function (app) {
 //New Account setup
   app.post(baseUrl, function (req, res) {
     var validate = validation();
-    validate.validateNewUser(req.body, function(err){
-      if(err){
+    validate.validateNewUser(req.body, function(valid, err){
+      if(!(valid)){
         return res.status(400).json(err);
       }
-      var db = dbutils(req.body);
-      return db.addNewUser(req, res);
+      else{
+        var db = dbutils(req.body);
+        db.addNewUser(function(err, data){
+          if(err){
+            return res.status(500).json(err);
+          }
+          return res.status(201).json(data);
+        });
+      }
     });
   });
 
