@@ -32,6 +32,8 @@ module.exports = function(app) {
         })
         .error(function(data, status) {
           var errmsg = "There was a problem creating your account!";
+          console.log('uc35');
+          console.dir(data);
           if(data.code === 11000){
             errmsg = $scope.newUser.email + " is already in use!";
           }

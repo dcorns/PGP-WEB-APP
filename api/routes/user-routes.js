@@ -15,14 +15,14 @@ module.exports = function (app) {
   });
 //New Account setup
   app.post(baseUrl, function (req, res) {
-    console.log('ur19'); console.dir(req.body);
     var validate = validation();
-    var validateNewUser = validate.validateNewUser(req.body, res);
-    if(validateNewUser.err){
-      return validateNewUser.err;
-    }
-    var db = dbutils(req.body);
-    return db.addNewUser(req, res);
+    validate.validateNewUser(req.body, function(err){
+      if(err){
+        return res.status(400).json(err);
+      }
+      var db = dbutils(req.body);
+      return db.addNewUser(req, res);
+    });
   });
 
   app.get(baseUrl + '/:id', function (req, res) {
