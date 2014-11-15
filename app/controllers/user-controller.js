@@ -21,8 +21,6 @@ module.exports = function(app) {
       });
     };
 
-    $scope.getAllUsers();
-
     $scope.saveNewUser = function() {
       $http.post('api/v_0_0_1/users', $scope.newUser)
         .success(function(data) {
