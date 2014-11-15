@@ -161,12 +161,12 @@ module.exports = function (obj) {
         });
       });
     },
-    getNote: function(usr, res){
+    getUserPayload: function(usr, cb){
       var newNote = {};
       var payload = Object.create(null);
       Note.findOne({student: usr.email}, function (err, note) {
         if (err) {
-          return res.status(500).json(err);
+          return cb(err, null);
         }
         if (note) {
           //note = this.combineResources(note);
@@ -180,7 +180,7 @@ module.exports = function (obj) {
           payload.note = newNote;
         }
         payload.usr = usr;
-        return res.status(200).json(payload);
+        return cb(null, payload);
       });
     }
 

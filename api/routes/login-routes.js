@@ -12,15 +12,18 @@ module.exports = function (app) {
 
   //Login
   app.post(baseUrl, function (req, res) {
-    console.log('login-routes(20)');
     req.body.email = req.body.email.toLowerCase();
-    console.log(req.body);
     var a = auth(req.body);
     a.authenticate(function (usr) {
       if (usr.user && usr.password) {
         a.makeToken(function (usr) {
           var db = dbutils();
-          db.getNote(usr, res);
+          db.getUserPayload(usr, function(err, payload){
+            if(err){
+              return res.status(500).json(payload.err);
+            }
+            return res.status(200).json(payload);
+          });
         });
       }
       else {
