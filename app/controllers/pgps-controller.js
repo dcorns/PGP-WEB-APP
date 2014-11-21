@@ -62,23 +62,26 @@ module.exports = function (app) {
           });
       };
 
-      $scope.deletePgp = function (pgp) {
-        $http.delete('api/v_0_0_1/pgps/' + pgp._id, pgp)
-          .success(function (data) {
-            $scope.getAllPgps();
-          })
-          .error(function (data) {
-            console.log(data);
-          });
-      };
-      $scope.deleteAll = function () {
-        $scope.pgps.forEach(function (pgp) {
-          $scope.deletePgp(pgp)
-        });
-      };
       //add resource functions to scope
       $scope = pgpResources($scope, $http);
       $scope.getAllResources();
+
+      //$scope.deletePgp = function (pgp) {
+      //  $http.delete('api/v_0_0_1/pgps/' + pgp._id, pgp)
+      //    .success(function (data) {
+      //      $scope.getAllPgps();
+      //    })
+      //    .error(function (data) {
+      //      console.log(data);
+      //    });
+      //};
+      //$scope.deleteAll = function () {
+      //  $scope.pgps.forEach(function (pgp) {
+      //    $scope.deletePgp(pgp)
+      //  });
+      //};
+
+
     }
   });
 };
