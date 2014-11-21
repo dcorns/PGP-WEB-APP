@@ -37,26 +37,27 @@ module.exports = function(app) {
     };
 
     $scope.userLogin = function() {
-      window.sessionStorage.removeItem('token');
+      var storage = window.sessionStorage;
+      storage.removeItem('token');
       $http.post('api/v_0_0_1/login', $scope.loginUser)
         .success(function(data) {
-          console.log('uc47');
-          console.dir(data);
           //Save token in local storage
-          window.sessionStorage.setItem('token', data.usr.atoken);
+          storage.setItem('token', data.usr.atoken);
           var ca = document.getElementById('btncreateaccount');
           ca.className = 'hidden';
-
-          if(data.usr.roll === 'ta'){
-            document.getElementById('btnsurvey').className = 'hidden';
-            document.getElementById('btncreatepgp').className = 'nav_ul-li';
+          var roll = data.usr.roll,
+            btnSurvey = document.getElementById('btnsurvey'),
+            btnCreatePgp = document.getElementById('btncreatepgp');
+          if(roll === 'ta'){
+            btnSurvey.className = 'hidden';
+            btnCreatePgp.className = 'nav_ul-li';
             document.getElementById('btnviewpgp').className = 'nav_ul-li';
             window.location="/#/create_PGP";
           }
           else{
-            if(data.usr.roll === 'student'){
-              document.getElementById('btncreatepgp').className = 'hidden';
-              document.getElementById('btnsurvey').className = 'nav_ul-li';
+            if(roll === 'student'){
+              btnCreatePgp.className = 'hidden';
+              btnSurvey.className = 'nav_ul-li';
               //Save note to local storage
               var sessionNote = SOS(data.note);
               sessionNote.saveNote();
@@ -71,7 +72,6 @@ module.exports = function(app) {
           var handleError = handleErrors();
           handleError.alertObject(data);
         });
-      //alert("This should always occur");
     };
 
 

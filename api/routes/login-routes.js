@@ -19,7 +19,7 @@ module.exports = function (app) {
         return res.status(400).json(err);
       }
       else{
-        req.body.email = req.body.email.toLowerCase();
+        //req.body.email = req.body.email.toLowerCase();
         var a = auth(req.body);
         a.authenticate(function (usr) {
           if (usr.user && usr.password) {
