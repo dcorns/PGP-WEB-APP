@@ -9,8 +9,9 @@ module.exports = function (app) {
       ux.setToggles();
     });
     //Check for authorization before loading notes
-    if (window.sessionStorage.getItem('token')) {
-      var token = window.sessionStorage.getItem('token');
+    var storage = window.sessionStorage;
+    var token = storage.getItem('token');
+    if (token) {
       $http.defaults.headers.common.Authorization = token;
       $scope.pgps = [];
       $scope.resources = [];
@@ -21,22 +22,27 @@ module.exports = function (app) {
         }).success(function (data) {
           if (data) {
               $scope.pgps = data.n;
-            if(window.sessionStorage.getItem('formIdx')){
-              $scope.selectedPgp = $scope.pgps[window.sessionStorage.getItem('formIdx')];
+            var formIdx = storage.getItem('formIdx'),
+              selectedPgp = $scope.selectedPgp,
+              pgps = $scope.pgps,
+              btnViewPgp = document.getElementById("btnviewpgp"),
+              btnCreatePgp = document.getElementById("btncreatepgp");
+            if(formIdx){
+              selectedPgp = pgps[formIdx];
             }
             else{
-              $scope.selectedPgp = $scope.pgps[0];
-              window.sessionStorage.setItem('formIdx', $scope.pgps.indexOf($scope.selectedPgp));
+              selectedPgp = pgps[0];
+              storage.setItem('formIdx', pgps.indexOf(selectedPgp));
             }
           }
-          document.getElementById("btnviewpgp").addEventListener('click', function(){
-            window.sessionStorage.setItem('formIdx', $scope.pgps.indexOf($scope.selectedPgp));
+          btnViewPgp.addEventListener('click', function(){
+            storage.setItem('formIdx', pgps.indexOf(selectedPgp));
           });
-          document.getElementById("btncreatepgp").addEventListener('click', function(){
-            window.sessionStorage.setItem('formIdx', $scope.pgps.indexOf($scope.selectedPgp));
+          btnCreatePgp.addEventListener('click', function(){
+            storage.setItem('formIdx', pgps.indexOf(selectedPgp));
           });
-          document.getElementById('btnviewpgp').className = 'nav_ul-li';
-          document.getElementById('btncreatepgp').className = 'nav_ul-li';
+          btnViewPgp.className = 'nav_ul-li';
+          btnCreatePgp.className = 'nav_ul-li';
         }).error(function (data, status) {
           console.log(data);
           console.log('error!');
@@ -44,6 +50,7 @@ module.exports = function (app) {
         });
       };
       $scope.getAllPgps();
+
       $scope.savePgp = function (pgp) {
         pgp.editing = null;
         $http.put('api/v_0_0_1/pgps/' + pgp._id, pgp)
@@ -54,6 +61,7 @@ module.exports = function (app) {
             console.log(data);
           });
       };
+
       $scope.deletePgp = function (pgp) {
         $http.delete('api/v_0_0_1/pgps/' + pgp._id, pgp)
           .success(function (data) {
