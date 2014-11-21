@@ -4,10 +4,12 @@
 'use strict';
 var ui = require('../js/ui');
 var SOS = require('../js/saveObjInSession');
+var handleErrors = require('../js/handleErrors');
 module.exports = function(app) {
   app.controller('userController', function($scope, $http) {
     var ux = ui();
     ux.hideMainButtons();
+
     $scope.getAllUsers = function() {
       $http({
         method: 'GET',
@@ -21,21 +23,15 @@ module.exports = function(app) {
       });
     };
 
-    $scope.getAllUsers();
-
     $scope.saveNewUser = function() {
       $http.post('api/v_0_0_1/users', $scope.newUser)
         .success(function(data) {
-          $scope.users.push(data);
           alert("Welcome! Your account was created. Please sign in to complete your survey.");
           window.location="/#/login";
         })
-        .error(function(data, status) {
-          var errmsg = "There was a problem creating your account!";
-          if(data.code === 11000){
-            errmsg = $scope.newUser.email + " is already in use!";
-          }
-          alert(errmsg);
+        .error(function(data) {
+          var handleError = handleErrors();
+          handleError.alertObject(data);
         });
 
     };
@@ -71,10 +67,9 @@ module.exports = function(app) {
 
         })
 
-        .error(function(data, status) {
-          console.log("error");
-          console.dir(status);
-          alert("There was a problem signing in");
+        .error(function(data) {
+          var handleError = handleErrors();
+          handleError.alertObject(data);
         });
       //alert("This should always occur");
     };
