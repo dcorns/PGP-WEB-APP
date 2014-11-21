@@ -12,24 +12,32 @@ module.exports = function (usrObj) {
     echo: function () {
       return usrObj;
     },
-    authenticate: function (test) {
+    authenticate: function (cb) {
       var usr = User.where({email: usrObj.email.toLowerCase()});
+      var result = {user: false, password: false}
       usr.findOne(function (err, user) {
-        if (err) console.log(err);
-        var result = {user: false, password: false};
         if (user) {
-          result.user = true;
-          testPassword(user, result);
+          testPassword(user, function(res){
+            if(res){
+              result.user = true; result.password = true;
+              return cb(result);
+            }
+            else{
+              result.password = 'The password you entered failed authentication';
+              return cb(result);
+            }
+            });
+
         }
         else {
-          test(result);
+          result.user = 'The email you entered is not a registered user';
+          return cb(result);
         }
       });
       usr.findOne();
-      function testPassword(usr, result) {
+      function testPassword(usr, cb) {
         bcrypt.compare(usrObj.password, usr.password, function (err, res) {
-          result.password = res;
-          test(result);
+         return cb(res);
         });
       }
     },

@@ -67,10 +67,9 @@ module.exports = function(app) {
 
         })
 
-        .error(function(data, status) {
-          console.log("error");
-          console.dir(status);
-          alert("There was a problem signing in");
+        .error(function(data) {
+          var handleError = handleErrors();
+          handleError.alertObject(data);
         });
       //alert("This should always occur");
     };
