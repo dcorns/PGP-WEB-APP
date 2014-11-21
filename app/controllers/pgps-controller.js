@@ -23,23 +23,21 @@ module.exports = function (app) {
           if (data) {
               $scope.pgps = data.n;
             var formIdx = storage.getItem('formIdx'),
-              selectedPgp = $scope.selectedPgp,
-              pgps = $scope.pgps,
               btnViewPgp = document.getElementById("btnviewpgp"),
               btnCreatePgp = document.getElementById("btncreatepgp");
             if(formIdx){
-              selectedPgp = pgps[formIdx];
+              $scope.selectedPgp = $scope.pgps[formIdx];
             }
             else{
-              selectedPgp = pgps[0];
-              storage.setItem('formIdx', pgps.indexOf(selectedPgp));
+              $scope.selectedPgp = $scope.pgps[0];
+              storage.setItem('formIdx', $scope.pgps.indexOf($scope.selectedPgp));
             }
           }
           btnViewPgp.addEventListener('click', function(){
-            storage.setItem('formIdx', pgps.indexOf(selectedPgp));
+            storage.setItem('formIdx', $scope.pgps.indexOf($scope.selectedPgp));
           });
           btnCreatePgp.addEventListener('click', function(){
-            storage.setItem('formIdx', pgps.indexOf(selectedPgp));
+            storage.setItem('formIdx', $scope.pgps.indexOf($scope.selectedPgp));
           });
           btnViewPgp.className = 'nav_ul-li';
           btnCreatePgp.className = 'nav_ul-li';
