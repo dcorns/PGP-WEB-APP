@@ -9,12 +9,9 @@ var jwt = require('jwt-simple');
 
 module.exports = function (usrObj) {
   return{
-    echo: function () {
-      return usrObj;
-    },
     authenticate: function (cb) {
       var usr = User.where({email: usrObj.email.toLowerCase()});
-      var result = {user: false, password: false}
+      var result = {user: false, password: false};
       usr.findOne(function (err, user) {
         if (user) {
           testPassword(user, function(res){

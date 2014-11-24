@@ -5,6 +5,7 @@
 var auth = require('../js/authorize');
 var Note = require('../models/note');
 var db = require('../js/dbutils');
+var validation = require('../js/validation');
 
 module.exports = function(app){
   var baseUrl = '/api/v_0_0_1/userForm';
@@ -37,8 +38,8 @@ module.exports = function(app){
     var user = {};
     var a = auth(user);
     a.getTokenInfo(function (usr) {
-      var valid = db(req.body);
-      valid.validateSurvey(function (err, result){
+      var valid = validation();
+      valid.validateSurvey(req.body, function (err, result){
         if(err){
           console.dir(err);
           return res.status(400).json(err);}

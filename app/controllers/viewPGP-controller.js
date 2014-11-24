@@ -11,10 +11,10 @@ module.exports = function (app){
       ux.startHidden();
       ux.setToggles();
     });
-    if(window.sessionStorage.getItem('token')){
-      var token = window.sessionStorage.getItem('token');
+    var storage = window.sessionStorage;
+    var token = storage.getItem('token');
+    if(token){
       $http.defaults.headers.common.Authorization = token;
-
       $scope.getUserForm = function(){
         $http({
           method: 'GET',
