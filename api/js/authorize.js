@@ -3,9 +3,11 @@
  */
 'use strict';
 
-var User = require('../models/user');
-var bcrypt = require('bcryptjs');
-var jwt = require('jwt-simple');
+var User = require('../models/user'),
+bcrypt = require('bcryptjs'),
+jwt = require('jwt-simple'),
+corngoose = require('../js/corngoose');
+
 
 module.exports = function (usrObj) {
   return{
@@ -62,6 +64,16 @@ module.exports = function (usrObj) {
         cb(resUser);
       });
       usr.findOne();
+    },
+    authorizePgpEdit: function (userName, pgpID, cb){
+      corngoose.dbDocFind({_id: pgpID}, 'notes', function(err, cursor){
+        if(err) return cb(err, null);
+        var authorized = false;
+        if(cursor[0].ta === userName){
+          authorized = true;
+        }
+        return cb(null, authorized);
+      });
     }
   }
 };

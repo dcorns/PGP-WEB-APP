@@ -66,7 +66,7 @@ module.exports = function(){
         err = addValErr(err, "OOP-Assessment", "Select from 1-5 only for Object-Orientated programming rating");
       }
       cb(err,valid);
-    }
+    },
   };
   function validateEmail(txt){
     return (!(validate.isEmail(txt)));
