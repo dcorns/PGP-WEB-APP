@@ -14,7 +14,10 @@ module.exports = function(app){
     var token = req.headers.authorization;
     var user = {};
     var a = auth(user);
-    a.getTokenInfo(function(usr){
+    a.getTokenInfo(token, function(err, usr){
+      if(err){
+        return res.status(500).json(err);
+      }
       Note.findOne({student: usr.email}, function (err, note) {
         if (err) {
           return res.status(500).json(err);
@@ -29,7 +32,7 @@ module.exports = function(app){
           return res.status(201).send(note);
         }
       })
-    }, token);
+    });
     return res.status(200);
   });
 
@@ -37,7 +40,10 @@ module.exports = function(app){
     var token = req.headers.authorization;
     var user = {};
     var a = auth(user);
-    a.getTokenInfo(function (usr) {
+    a.getTokenInfo(token, function (err, usr) {
+      if(err){
+        res.status(500).json(err);
+      }
       var valid = validation();
       valid.validateSurvey(req.body, function (err, result){
         if(err){
@@ -63,6 +69,6 @@ module.exports = function(app){
           })
         }
       });
-    }, token);
+    });
   });
 };

@@ -57,7 +57,7 @@ module.exports = function (app) {
           })
           .error(function (data) {
             console.dir(data);
-            alert(data.status);
+            alert(data);
           });
       };
 

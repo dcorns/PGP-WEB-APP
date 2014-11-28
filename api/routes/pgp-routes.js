@@ -11,7 +11,10 @@ module.exports = function (app) {
     var user = {};
     var token = req.headers.authorization;
     var a = auth(user);
-    a.getTokenInfo(function (usr) {
+    a.getTokenInfo(token, function (err, usr) {
+      if(err){
+        return res.status(500).json(err);
+      }
       if (typeof token !== 'undefined') {
         if (usr.roll === 'ta') {
           corngoose.getCollection('notes', function(err, notes){
@@ -31,7 +34,7 @@ module.exports = function (app) {
       else {
         return res.status(202).send(token);
       }
-    }, token);
+    });
   });
 
   app.get(baseUrl + '/:id', function (req, res) {
@@ -48,7 +51,10 @@ module.exports = function (app) {
     var user = {};
     var token = req.headers.authorization;
     var a = auth(user);
-    a.getTokenInfo(function (usr) {
+    a.getTokenInfo(token, function (err, usr) {
+      if(err){
+        return res.status(500).json(err);
+      }
         a.authorizePgpEdit(usr.email, note._id, function (err, authorized){
           if(err) return res.status(500).json(err);
           if (authorized){
@@ -63,8 +69,7 @@ module.exports = function (app) {
             return res.status(401).json('Only creator or admin can save pgp changes');
           }
         });
-      }
-    , token);
+      });
   });
 
   app.delete(baseUrl + '/:id', function (req, res) {

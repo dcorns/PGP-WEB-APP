@@ -7,6 +7,7 @@ var User = require('../models/user');
 var auth = require('./authorize');
 var Resource = require('../models/resource');
 var Note = require('../models/note');
+var corngoose = require('./corngoose');
 
 
 module.exports = function (obj) {
@@ -129,22 +130,20 @@ module.exports = function (obj) {
       });
     },
     getUserPayload: function(usr, cb){
-      var newNote = {};
-      var payload = Object.create(null);
-      Note.findOne({student: usr.email}, function (err, note) {
-        if (err) {
+      var payload ={};
+      corngoose.dbDocFind({student: usr.email}, 'notes', function(err, note){
+        if(err){
           return cb(err, null);
         }
-        if (note) {
-          //note = this.combineResources(note);
-          payload.note = note;
+        if(note[0]){
+          payload.note = note[0];
         }
         else{
-          newNote.student = usr.email;
-          newNote.recComplete = false;
-          newNote.rtgComplete = false;
-          newNote.name = usr.firstName + ' ' + usr.lastName;
-          payload.note = newNote;
+          payload.note = {};
+          payload.note.student = usr.email;
+          payload.note.recComplete = false;
+          payload.note.rtgComplete = false;
+          payload.note.name = usr.firstName + ' ' + usr.lastName;
         }
         payload.usr = usr;
         return cb(null, payload);

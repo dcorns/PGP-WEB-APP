@@ -52,18 +52,27 @@ module.exports = function (usrObj) {
       var payload = {email: usrObj.email};
       var secret = usrObj.password;
       usrObj.atoken = jwt.encode(payload, secret);
-      User.findOneAndUpdate({'email': usrObj.email}, {atoken: usrObj.atoken}, function (err, resUser) {
-        if (err) console.error(err);
-        cb(resUser);
+      corngoose.dbDocUpdate(payload, {atoken: usrObj.atoken}, 'users', function(err, stored){
+        if(err){
+          return cb(err, null);
+        }
+        if(stored){
+          corngoose.dbDocFind({email: usrObj.email}, 'users', function(err, doc){
+            if(err){
+              return cb(err, null);
+            }
+            return cb(null, doc[0]);
+          });
+        }
       });
     },
-    getTokenInfo: function (cb, tk) {
-      var usr = User.where({atoken: tk});
-      usr.findOne(function (err, resUser) {
-        if (err) console.log(err);
-        cb(resUser);
+    getTokenInfo: function (tk, cb) {
+      corngoose.dbDocFind({atoken: tk}, 'users', function(err, doc){
+        if(err){
+          return cb(err, null);
+        }
+        return cb(null, doc[0]);
       });
-      usr.findOne();
     },
     authorizePgpEdit: function (userName, pgpID, cb){
       corngoose.dbDocFind({_id: pgpID}, 'notes', function(err, cursor){
