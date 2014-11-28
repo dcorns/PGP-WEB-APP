@@ -5,7 +5,8 @@ var bodyparser = require('body-parser');
 var mongoose = require('mongoose');
 var http = require('http');
 var app = express();
-
+var corngoose = require('./api/js/corngoose');
+corngoose.startDB('//localhost/notes-development');
 mongoose.connect(process.env.MONGOHQ_URL || 'mongodb://localhost/notes-development');
 
 app.use(express.static(__dirname + (process.env.STATIC_DIR || '/build')));

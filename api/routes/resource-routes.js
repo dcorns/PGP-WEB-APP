@@ -32,8 +32,10 @@ module.exports = function (app) {
     var user = {};
     var token = req.headers.authorization;
     var a = auth(user);
-    a.getTokenInfo(function(usr){
-      console.log('rr32'); console.dir(usr);
+    a.getTokenInfo(token, function(err, usr){
+      if(err){
+        res.status(500).json(err);
+      }
       req.body.resource.addedBy = usr._id;
       var ntsUtil = db(req.body);
       ntsUtil.pushResource(function (err, rd) {
@@ -42,7 +44,7 @@ module.exports = function (app) {
       });
       return res.status(502);
 
-    }, token);
+    });
 
 
   });
@@ -52,7 +54,10 @@ module.exports = function (app) {
     var user = {};
     var token = req.headers.authorization;
     var a = auth(user);
-    a.getTokenInfo(function(usr){
+    a.getTokenInfo(token, function(err, usr){
+      if(err){
+        res.status(500).json(err);
+      }
       if(usr._id == req.body.resource.addedBy){
         var ntsUtil = db(req.body);
         ntsUtil.spliceResource(function(err, rd){
@@ -63,7 +68,7 @@ module.exports = function (app) {
       else{
         return res.status(500).json({error: 'Resource can only be removed by creator'});
       }
-    }, token);
+    });
   });
 
 };

@@ -19,12 +19,14 @@ module.exports = function (app) {
         return res.status(400).json(err);
       }
       else{
-        //req.body.email = req.body.email.toLowerCase();
         var a = auth(req.body);
         a.authenticate(function (usr) {
           if (usr.user && usr.password) {
-            a.makeToken(function (usr) {
+            a.makeToken(function (err, usr) {
               var db = dbutils();
+              if(err){
+                return res.status(500).json(err);
+              }
               db.getUserPayload(usr, function(err, payload){
                 if(err){
                   return res.status(500).json(payload.err);
