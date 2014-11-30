@@ -29,10 +29,10 @@ module.exports = function(app) {
       $http.post('api/v_0_0_1/login', $scope.loginUser)
         .success(function(data) {
           //Save token in local storage
-          storage.setItem('token', data.usr.atoken);
+          storage.setItem('token', data.user.atoken);
           var ca = document.getElementById('btncreateaccount');
           ca.className = 'hidden';
-          var roll = data.usr.roll,
+          var roll = data.user.roll,
             btnSurvey = document.getElementById('btnsurvey'),
             btnCreatePgp = document.getElementById('btncreatepgp');
           if(roll === 'ta'){
