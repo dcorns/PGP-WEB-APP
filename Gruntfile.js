@@ -83,10 +83,10 @@ module.exports = function (grunt) {
 
     karma: {
       unit: {
-        configFile: 'karma.conf.js'
+        configFile: 'karma.config.js'
       },
       continuous: {
-        configFile: 'karma.conf.js',
+        configFile: 'karma.config.js',
         singleRus: true,
         browsers: [ 'PhantomJS' ]
       }
@@ -132,4 +132,5 @@ module.exports = function (grunt) {
   grunt.registerTask('buildtest', ['test', 'build:dev']);
   grunt.registerTask('default', ['watch:express']);
   grunt.registerTask('copystyle',['clean:style', 'copy:style']);
+  grunt.registerTask('apitest', 'simplemocha');
 };
