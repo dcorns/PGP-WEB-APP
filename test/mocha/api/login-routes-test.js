@@ -73,8 +73,8 @@ describe('login-routes authentication and authorization', function() {
       })
       .res(function (res) {
         expect(res).to.have.status(200);
-        expect(res.body).to.have.property('usr');
-        expect(res.body.usr.atoken).to.be.truthy;
+        expect(res.body).to.have.property('user');
+        expect(res.body.user.atoken).to.be.truthy;
         done();
       });
   });
@@ -87,10 +87,10 @@ describe('login-routes authentication and authorization', function() {
       })
       .res(function (res) {
         expect(res).to.have.status(200);
-        expect(res.body).to.have.property('usr');
-        expect(res.body.usr.roll).to.eq('student');
+        expect(res.body).to.have.property('user');
+        expect(res.body.user.roll).to.eq('student');
         expect(res.body).to.have.property('note');
-        expect(res.body.note.student).to.eq(res.body.usr.email);
+        expect(res.body.note.student).to.eq(res.body.user.email);
         done();
       });
   });

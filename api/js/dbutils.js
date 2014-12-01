@@ -145,7 +145,7 @@ module.exports = function (obj) {
           payload.note.rtgComplete = false;
           payload.note.name = usr.firstName + ' ' + usr.lastName;
         }
-        payload.usr = usr;
+        payload.user = usr;
         return cb(null, payload);
       });
     }
