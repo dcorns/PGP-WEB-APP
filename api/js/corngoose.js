@@ -80,6 +80,31 @@ module.exports = (function () {
           return cb(null, result);
         });
       });
+    },
+    dbDocInsert: function(keyObj, docData, collectionName, cb){
+      this.dbDocFind(keyObj, collectionName, function(err, docAry){
+        if(err){
+          return cb(err, null);
+        }
+        if(docAry[0]){
+          return cb('Key Object already exists in database', null);
+        }
+        db.collection(collectionName).insert(docData, {w:1}, function(err, insertDocArray){
+
+          if(err){
+            return cb(err, null);
+          }
+          return cb(null, insertDocArray);
+        });
+      });
+    },
+    dbDocRemove: function(keyObj, collectionName, cb){
+      db.collection(collectionName).remove(keyObj, {w:1}, function(err, result){
+        if (err){
+          return cb(err, null);
+        }
+        return cb(null, result);
+      });
     }
   };
 })();

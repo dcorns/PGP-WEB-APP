@@ -29,7 +29,6 @@ module.exports = function(app) {
       $http.post('api/v_0_0_1/login', $scope.loginUser)
         .success(function(data) {
           //Save token in local storage
-          console.dir(data);
           storage.setItem('token', data.user.atoken);
           var ca = document.getElementById('btncreateaccount');
           ca.className = 'hidden';

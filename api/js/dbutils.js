@@ -116,17 +116,24 @@ module.exports = function (obj) {
       return dupFreeArray;
     },
     addNewUser: function(cb){
-      var user = new User(obj);
-      user.email = user.email.toLowerCase();
-      user.roll = 'student';
-      var a = auth(user);
+      //var user = new User(obj);
+      obj.email = obj.email.toLowerCase();
+      obj.roll = 'student';
+      var a = auth(obj);
       a.encrypt(function (usr) {
-        user.save(function (err, usr) {
-          if (err){
+        corngoose.dbDocInsert({email:obj.email}, usr, 'users', function(err, docAry){
+          if(err){
             return cb(err, null);
           }
-          return cb(null, {msg: 'Save succeeded'});
-        });
+          console.log('db128'); console.dir(docAry[0]);
+          return cb(null, {msg: 'New user '+ docAry[0].email + ' added.'});
+      });
+        //user.save(function (err, usr) {
+        //  if (err){
+        //    return cb(err, null);
+        //  }
+        //  return cb(null, {msg: 'Save succeeded'});
+        //});
       });
     },
     getUserPayload: function(usr, cb){
