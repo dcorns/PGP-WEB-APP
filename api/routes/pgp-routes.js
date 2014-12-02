@@ -16,7 +16,7 @@ module.exports = function (app) {
         return res.status(500).json(err);
       }
       if (typeof token !== 'undefined') {
-        if (usr.roll === 'ta') {
+        if (usr.roll === 'ta' || usr.roll === 'admin') {
           corngoose.getCollection('notes', function(err, notes){
             if(err){
               if (err) return res.status(500).json(err);

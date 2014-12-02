@@ -35,7 +35,7 @@ module.exports = function(app) {
           var roll = data.user.roll,
             btnSurvey = document.getElementById('btnsurvey'),
             btnCreatePgp = document.getElementById('btncreatepgp');
-          if(roll === 'ta'){
+          if(roll === 'ta' || roll === 'admin'){
             btnSurvey.className = 'hidden';
             btnCreatePgp.className = 'nav_ul-li';
             document.getElementById('btnviewpgp').className = 'nav_ul-li';

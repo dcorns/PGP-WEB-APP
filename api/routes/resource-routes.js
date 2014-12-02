@@ -58,7 +58,7 @@ module.exports = function (app) {
       if(err){
         res.status(500).json(err);
       }
-      if(usr._id == req.body.resource.addedBy){
+      if(usr._id == req.body.resource.addedBy || usr.roll === 'admin'){
         var ntsUtil = db(req.body);
         ntsUtil.spliceResource(function(err, rd){
           if (err) return res.status(502).json(err);
@@ -66,7 +66,7 @@ module.exports = function (app) {
         });
       }
       else{
-        return res.status(500).json({error: 'Resource can only be removed by creator'});
+        return res.status(500).json({error: 'Resource can only be removed by creator or an admin'});
       }
     });
   });
