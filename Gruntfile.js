@@ -10,6 +10,11 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-express-server');
 
   grunt.initConfig({
+    jshint: {
+    options: {
+      transform: ['debowerify']
+    }
+      },
     clean: {
       dev: {
         src: ['build/']
@@ -67,11 +72,10 @@ module.exports = function (grunt) {
 
       angulartest: {
         options: {
-          transform: ['debowerify'],
-          debug: true
+          transform: ['debowerify']
         },
         src: ['test/angular/**/*test.js'],
-        dest: 'test/angular-testbundle.js'
+        dest: 'test/angularBundle.test.js'
       }
     },
 
@@ -87,7 +91,7 @@ module.exports = function (grunt) {
       },
       continuous: {
         configFile: 'karma.config.js',
-        singleRus: true,
+        singleRun: true,
         browsers: [ 'PhantomJS' ]
       }
     },
@@ -126,6 +130,7 @@ module.exports = function (grunt) {
   });
   grunt.registerTask('build:dev', ['clean:dev', 'browserify:dev', 'copy:dev']);
   grunt.registerTask('build:production', ['clean:production', 'browserify:production', 'copy:production']);
+  grunt.registerTask('apptest', ['karma:unit']);
   grunt.registerTask('angulartest', ['browserify:angulartest', 'karma:unit']);
   grunt.registerTask('angulartestwatch', ['angulartest', 'watch:angulartest']);
   grunt.registerTask('test', ['angulartest', 'simplemocha']);

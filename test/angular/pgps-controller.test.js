@@ -2,17 +2,32 @@
  * Created by dcorns on 11/28/14.
  */
 'use strict';
-var ui = require('../../app/js/ui');
-var pgpResources = require('../../app/js/pgpResources');
-describe('main', function(){
-  var scope;
-beforeEach(angular.mock.module('pgpApp'));
-  beforeEach(angular.mock.inject(function($rootScope, $pgpsController){
-    scope = $rootScope.$new();
-    $pgpsController('main', {$scope: scope});
+require('../../app/js/app');
+require('angular-mocks');
+
+describe('pgps-controller', function(){
+  var $controllerConstructor
+    ,$httpBackend
+    ,$scope
+    ,pgpsController;
+  beforeEach(angular.mock.module('pgpApp'));
+ // beforeEach(angular.mock.module('angular'));
+  beforeEach(angular.mock.inject(function($rootScope, $controller){
+    $scope = $rootScope.$new();
+    $controllerConstructor = $controller;
+    pgpsController = $controllerConstructor('pgpsController', {$scope: $scope});
   }));
   //Test begin
-it('Should have array pgps', function(){
-  expect(isArray(scope.pgps)).toBe(true);
-});
+  it('app.js should be able to create a controller', function() {
+    expect(typeof pgpsController).toBe('object');
+  });
+  describe('scope functions and vars', function(){
+    it('has the arrays $scope.pgps and $scope.resources', function(){
+      expect(Array.isArray($scope.pgps)).toBeTruthy();
+      expect(Array.isArray($scope.resources)).toBeTruthy();
+      expect($scope.token).toBeNull();
+
+    });
+  });
+
 });

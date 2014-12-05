@@ -9,12 +9,12 @@ module.exports = function (app) {
       ux.setToggles();
     });
     //Check for authorization before loading notes
-    var storage = window.sessionStorage;
-    var token = storage.getItem('token');
-    if (token) {
-      $http.defaults.headers.common.Authorization = token;
-      $scope.pgps = [];
-      $scope.resources = [];
+    $scope.storage = window.sessionStorage;
+    $scope.token = $scope.storage.getItem('token');
+    $http.defaults.headers.common.Authorization = $scope.token;
+    $scope.pgps = [];
+    $scope.resources = [];
+    if ($scope.token) {
       $scope.getAllPgps = function () {
         $http({
           method: 'GET',
@@ -47,7 +47,7 @@ module.exports = function (app) {
           console.log(status);
         });
       };
-      $scope.getAllPgps();
+
 
       $scope.savePgp = function (pgp) {
         pgp.editing = null;
@@ -64,6 +64,8 @@ module.exports = function (app) {
       //add resource functions to scope
       $scope = pgpResources($scope, $http);
       $scope.getAllResources();
+
+      $scope.getAllPgps();
 
     }
   });
