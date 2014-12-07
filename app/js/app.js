@@ -2,13 +2,17 @@
 //comment for changes
 require('angular/angular');
 require('angular-route');
-
 var pgpApp = angular.module('pgpApp', ['ngRoute']);
-
+require('../services/gettoken')(pgpApp);
 require('../controllers/pgps-controller')(pgpApp);
 require('../controllers/user-controller')(pgpApp);
 require('../controllers/survey-controller')(pgpApp);
 require('../controllers/viewPGP-controller')(pgpApp);
+
+//pgpApp.service('tokenService', function(){
+//  this.token2='token';
+//  this.monkey={};
+//});
 
 pgpApp.config(['$routeProvider', function ($routeProvider) {
   $routeProvider

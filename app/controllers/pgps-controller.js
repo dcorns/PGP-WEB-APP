@@ -1,16 +1,19 @@
 'use strict';
-var ui = require('../js/ui');
-var pgpResources = require('../js/pgpResources');
+//var ui = require('../js/ui');
+//var pgpResources = require('../js/pgpResources');
 module.exports = function (app) {
-  app.controller('pgpsController', function ($scope, $http) {
-    var ux = ui();
+  app.controller('pgpsController', function ($scope, $http, tokenService) {
+    var ux = tokenService.ui;
+    var pgpResources = tokenService.pgpResources;
     angular.element(document).ready(function () {
       ux.startHidden();
       ux.setToggles();
     });
     //Check for authorization before loading notes
-    $scope.storage = window.sessionStorage;
-    $scope.token = $scope.storage.getItem('token');
+    $scope.token = tokenService.token;
+    console.log($scope.token);
+    //$scope.storage = window.sessionStorage;
+    //$scope.token = $scope.storage.getItem('token');
     $http.defaults.headers.common.Authorization = $scope.token;
     $scope.pgps = [];
     $scope.resources = [];
@@ -22,7 +25,7 @@ module.exports = function (app) {
         }).success(function (data) {
           if (data) {
               $scope.pgps = data.n;
-            var formIdx = storage.getItem('formIdx'),
+            var formIdx = $scope.storage.getItem('formIdx'),
               btnViewPgp = document.getElementById("btnviewpgp"),
               btnCreatePgp = document.getElementById("btncreatepgp");
             if(formIdx){
@@ -30,14 +33,14 @@ module.exports = function (app) {
             }
             else{
               $scope.selectedPgp = $scope.pgps[0];
-              storage.setItem('formIdx', $scope.pgps.indexOf($scope.selectedPgp));
+              $scope.storage.setItem('formIdx', $scope.pgps.indexOf($scope.selectedPgp));
             }
           }
           btnViewPgp.addEventListener('click', function(){
-            storage.setItem('formIdx', $scope.pgps.indexOf($scope.selectedPgp));
+            $scope.storage.setItem('formIdx', $scope.pgps.indexOf($scope.selectedPgp));
           });
           btnCreatePgp.addEventListener('click', function(){
-            storage.setItem('formIdx', $scope.pgps.indexOf($scope.selectedPgp));
+            $scope.storage.setItem('formIdx', $scope.pgps.indexOf($scope.selectedPgp));
           });
           btnViewPgp.className = 'nav_ul-li';
           btnCreatePgp.className = 'nav_ul-li';

@@ -11,7 +11,6 @@ describe('pgps-controller', function(){
     ,$scope
     ,pgpsController;
   beforeEach(angular.mock.module('pgpApp'));
- // beforeEach(angular.mock.module('angular'));
   beforeEach(angular.mock.inject(function($rootScope, $controller){
     $scope = $rootScope.$new();
     $controllerConstructor = $controller;
@@ -28,6 +27,17 @@ describe('pgps-controller', function(){
       expect($scope.token).toBeNull();
 
     });
+  });
+  describe('If $scope.token is true, it should initialize functions and run $scope.getAllpgps', function(){
+    it('adds functions to scope', function(){
+      $scope.token = true;
+      expect($scope.token).toBe(true);
+      expect(typeof $scope.getAllPgps).toBeTruthy();
+      expect(typeof $scope.savePgp).toBeTruthy();
+      expect(typeof $scope.getAllResources).toBeTruthy();
+      expect(test.monkey.test).toEqual('test');
+    });
+
   });
 
 });
