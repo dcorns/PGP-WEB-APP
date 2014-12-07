@@ -35,7 +35,7 @@ describe('pgps-controller', function(){
       expect(typeof $scope.getAllPgps).toBeTruthy();
       expect(typeof $scope.savePgp).toBeTruthy();
       expect(typeof $scope.getAllResources).toBeTruthy();
-      expect(test.monkey.test).toEqual('test');
+
     });
 
   });

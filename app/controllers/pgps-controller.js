@@ -10,14 +10,12 @@ module.exports = function (app) {
       ux.setToggles();
     });
     //Check for authorization before loading notes
-    $scope.token = tokenService.token;
-    console.log($scope.token);
     //$scope.storage = window.sessionStorage;
     //$scope.token = $scope.storage.getItem('token');
-    $http.defaults.headers.common.Authorization = $scope.token;
+    $http.defaults.headers.common.Authorization = tokenService.token;
     $scope.pgps = [];
     $scope.resources = [];
-    if ($scope.token) {
+    if (tokenService.token) {
       $scope.getAllPgps = function () {
         $http({
           method: 'GET',
