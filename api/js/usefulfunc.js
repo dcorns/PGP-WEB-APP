@@ -14,18 +14,22 @@ module.exports = (function(){
         ,binStrLn
         ,asciiByte
         ,asciiNum
-        ,textOut = '';
+        ,textOut = ''
+        ,base64bin;
 
-      console.log('uf18 pad: '+ pad);
       if(pad > -1){
-        txt64 = txt64.substr(0, pad + 1);
+        txt64 = txt64.substr(0, pad);
       }
       var ln = txt64.length;
-      console.log('24 '+ln);
       for(var i = 0; i < ln; i++){
         dec64 = base64Alfabet.indexOf(txt64[i]);
-        binStr += base10TobaseX(dec64, 2).toString();
-        console.log('uf24'); console.log('dec64: '+dec64+' binStr: '+ binStr);
+        base64bin = base10TobaseX(dec64, 2).toString();
+        //set the binary result to 6 bits
+        var bln = base64bin.length;
+        for(bln; bln < 6; bln++){
+          base64bin = '0'+base64bin;
+        }
+        binStr += base64bin;
         binStrLn = binStr.length;
         if(binStrLn > 7){
           asciiByte = binStr.substr(0,8);
@@ -33,7 +37,6 @@ module.exports = (function(){
           asciiNum = parseInt(asciiByte, 2);
           textOut += String.fromCharCode(asciiNum);
         }
-
       }
       return textOut;
       function base10TobaseX(dec, base){
@@ -46,17 +49,16 @@ module.exports = (function(){
         while(dec >= base){
           modal = (dec%base).toString();
           baseOut += modal;
-          dec = (dec/base).toFixed(0);
+          dec = Math.floor((dec/base));
         }
-        if(modal === 1) baseOut += 1;
+        if(dec > 0) baseOut += 1;
+        else baseOut += 0;
         baseOut = reverseStr(baseOut);
         return baseOut;
       }
       function reverseStr(str){
         return str.split("").reverse().join("");
       }
-
-
     }
   }
 
