@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/codefellows/PGP-Web-App",
   "dependencies": {
+    "basic-auth": "^1.0.0",
     "bcryptjs": "latest",
     "body-parser": "^1.6.3",
     "express": "^4.7.4",
