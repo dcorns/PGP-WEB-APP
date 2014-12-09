@@ -1,3 +1,7 @@
+/**
+ * Created by dcorns on 11/30/14.
+ */
+'use strict';
 require('../../../server');
 var chai = require('chai');
 var chaihttp = require('chai-http');
