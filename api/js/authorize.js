@@ -74,11 +74,16 @@ module.exports = function (usrObj) {
         return cb(null, doc[0]);
       });
     },
-    authorizePgpEdit: function (userName, pgpID, cb){
+    authorizePgpEdit: function (user, pgpID, cb){
       corngoose.dbDocFind({_id: pgpID}, 'notes', function(err, cursor){
         if(err) return cb(err, null);
         var authorized = false;
-        if(cursor[0].ta === userName){
+        if(cursor[0].ta){
+          if(cursor[0].ta === user.email || user.roll === 'admin'){
+            authorized = true;
+          }
+        }
+        else{
           authorized = true;
         }
         return cb(null, authorized);
