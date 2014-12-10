@@ -10,23 +10,36 @@ var usefulfunc = require('./api/js/usefulfunc');
 
 corngoose.startDB('//localhost/notes-development');
 mongoose.connect(process.env.MONGOHQ_URL || 'mongodb://localhost/notes-development');
-app.use(express.static(__dirname + (process.env.STATIC_DIR || '/build')));
+
 app.use(bodyparser.json());
+
 
 app.get('/',function(req, res){
   var authHead = req.get('authorization');
   console.log(authHead);
   if(authHead){
-    var converted = usefulfunc.convert64RFC2045ToAscii256(token);
+    var converted = usefulfunc.convert64RFC2045ToAscii256(authHead);
     console.log(converted);
     if(converted === 'codefellows:LearnMoreFaster'){
-      res.sendfile(__dirname + '/build/index.html');
+      console.log('23: converted === true');
+      app.use(express.static(__dirname + (process.env.STATIC_DIR || '/build')));
+      res.status(200);
+      res.sendFile(__dirname + '/build/index.html');
+    }
+    else{
+      basicAuthFailed();
     }
   }
-  console.log('request made');
+  else{
+    basicAuthFailed();
+  }
+  function basicAuthFailed(){
+    console.log('request made');
     res.set('WWW-Authenticate', 'Basic realm=\"Authentication Required\"');
     res.status(401);
-  res.send();
+    res.send();
+  }
+
 });
 
 require('./api/routes/pgp-routes')(app);
