@@ -6,12 +6,29 @@ var mongoose = require('mongoose');
 var http = require('http');
 var app = express();
 var corngoose = require('./api/js/corngoose');
+var usefulfunc = require('./api/js/usefulfunc');
+
 corngoose.startDB('//localhost/notes-development');
 mongoose.connect(process.env.MONGOHQ_URL || 'mongodb://localhost/notes-development');
-
 app.use(express.static(__dirname + (process.env.STATIC_DIR || '/build')));
-
 app.use(bodyparser.json());
+
+app.get('/',function(req, res){
+  var authHead = req.get('authorization');
+  console.log(authHead);
+  if(authHead){
+    var converted = usefulfunc.convert64RFC2045ToAscii256(token);
+    console.log(converted);
+    if(converted === 'codefellows:LearnMoreFaster'){
+      res.sendfile(__dirname + '/build/index.html');
+    }
+  }
+  console.log('request made');
+    res.set('WWW-Authenticate', 'Basic realm=\"Authentication Required\"');
+    res.status(401);
+  res.send();
+});
+
 require('./api/routes/pgp-routes')(app);
 require('./api/routes/user-routes')(app);
 require('./api/routes/login-routes')(app);
