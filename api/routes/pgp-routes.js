@@ -55,9 +55,10 @@ module.exports = function (app) {
       if(err){
         return res.status(500).json(err);
       }
-        a.authorizePgpEdit(usr.email, note._id, function (err, authorized){
+        a.authorizePgpEdit(usr, note._id, function (err, authorized){
           if(err) return res.status(500).json(err);
           if (authorized){
+            note.ta = usr.email;
             corngoose.dbDocReplace(note, 'notes', function(err, result){
               if(err || !result) {
                 return res.status(500).json(err);
