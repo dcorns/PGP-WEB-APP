@@ -1,0 +1,379 @@
+<div data-ng-controller="pgpsController">
+<article class="newSurvey">
+<form class="newSurvey_form">
+<fieldset class="newSurvey_select">
+    <legend>Please Select A Student</legend>
+    <select data-ng-model="selectedPgp" data-ng-options="pgp.name for pgp in pgps"></select>
+</fieldset>
+<button class="toggle" id="btnGoalsOn">GOALS</button>
+<!--Goal Resources ***************************************************************************-->
+<fieldset id="fGoals">
+    <button class="toggle" id="btnGoalsOff">GOALS</button>
+    <legend>Goals</legend>
+    <h2 id="saveGenResHere">Save New General Resources Here</h2>
+
+    <div id="addGenResourse">
+        <form id="frmGoalResource">
+            <input class="rGeneral" type="text" placeholder="New Resource Title" data-ng-model="saveGResource.resource.title">
+            <input class="rGeneral" type="text" placeholder="New Resource type" data-ng-model="saveGResource.resource.type">
+            <input class="rGeneral" type="text" placeholder="New Resource Link" data-ng-model="saveGResource.resource.rlink">
+            <button data-ng-click="saveResource(saveGResource, genResources, 'General', 'rGeneral')">Save New Resource</button>
+        </form>
+    </div>
+
+
+    <!--Goals input ************************************************************************************-->
+    <button id="btnG1On" class="toggle">LongTermGoals</button>
+    <fieldset id="fG1">
+        <button id="btnG1Off" class="toggle">LongTermGoals</button>
+        <label class="pgpQuestions">My long term goals:</label>
+
+        <p class="newSurvey_form-std">{{selectedPgp.goal}}</p>
+        <label for="sG1">General Resources</label>
+        <select id="sG1" data-ng-model="selectedG1Res" data-ng-options="r.title for r in genResources" data-ng-click="removeResource($event, selectedG1Res, genResources, 'General')">
+        </select>
+        <label>Resource Blame:</label> {{selectedG1Res.name}}
+        <button data-ng-click="addResource(selectedG1Res, selectedPgp.goalsrc1)">ADD Resource to Plan</button>
+        <label>Remove from Plan: Alt+Click</label>
+        <ul class="resourceList">
+            <li class="animate-repeat" data-ng-click="removeRsrcFromPGP($event, rec, selectedPgp.goalsrc1)"
+                data-ng-repeat="rec in selectedPgp.goalsrc1">
+                Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+            </li>
+            <li class="animate-repeat" ng-if="results.length == 0">
+                <strong>No results found...</strong>
+            </li>
+        </ul>
+    </fieldset>
+
+    <button id="btnG2On" class="toggle">REASONS</button>
+    <fieldset id="fG2">
+        <button id="btnG2Off" class="toggle">REASONS</button>
+        <label class="pgpQuestions">Reasons for my interest in developing computer/coding skills:</label>
+
+        <p class="newSurvey_form-std">{{selectedPgp.goal2}}</p>
+        <label for="sG2">General Resources</label>
+        <select id="sG2" data-ng-model="selectedG2Res" data-ng-options="r.title for r in genResources" data-ng-click="removeResource($event, selectedG2Res, genResources, 'General')">
+        </select>
+        <lable>Resource Blame:</lable> {{selectedG2Res.name}}
+        <button data-ng-click="addResource(selectedG2Res, selectedPgp.goalsrc2)">ADD Resource to Plan</button>
+        <label>Remove from Plan: Alt+Click</label>
+        <ul class="resourceList">
+            <li class="animate-repeat" data-ng-click="removeRsrcFromPGP($event, rec, selectedPgp.goalsrc2)"
+                data-ng-repeat="rec in selectedPgp.goalsrc2">
+                Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+            </li>
+            <li class="animate-repeat" ng-if="results.length == 0">
+                <strong>No results found...</strong>
+            </li>
+        </ul>
+    </fieldset>
+
+    <button id="btnG3On" class="toggle">LikeProblems</button>
+    <fieldset id="fG3">
+        <button id="btnG3Off" class="toggle">LikeProblems</button>
+        <label class="pgpQuestions">I like working on these kinds of problems:</label>
+
+        <p class="newSurvey_form-std">{{selectedPgp.goal3}}</p>
+        <label for="sG3">General Resources</label>
+        <select id="sG3" data-ng-model="selectedG3Res" data-ng-options="r.title for r in genResources" data-ng-click="removeResource($event, selectedG3Res, genResources, 'General')">
+        </select>
+        <lable>Resource Blame:</lable> {{selectedG3Res.name}}
+        <button data-ng-click="addResource(selectedG3Res, selectedPgp.goalsrc3)">ADD Resource to Plan</button>
+        <label>Remove from Plan: Alt+Click</label>
+        <ul class="resourceList">
+            <li class="animate-repeat" data-ng-click="removeRsrcFromPGP($event, rec, selectedPgp.goalsrc3)"
+                data-ng-repeat="rec in selectedPgp.goalsrc3">
+                Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+            </li>
+            <li class="animate-repeat" ng-if="results.length == 0">
+                <strong>No results found...</strong>
+            </li>
+        </ul>
+    </fieldset>
+
+    <button id="btnG4On" class="toggle">WhatNext</button>
+    <fieldset id="fG4">
+        <button id="btnG4Off" class="toggle">WhatNext</button>
+        <label class="pgpQuestions">What I would like to do next:</label>
+
+        <p class="newSurvey_form-std">{{selectedPgp.goal4}}</p>
+        <label for="sG4">General Resources</label>
+        <select id="sG4" data-ng-model="selectedG4Res" data-ng-options="r.title for r in genResources" data-ng-click="removeResource($event, selectedG4Res, genResources, 'General')">
+        </select>
+        <lable>Resource Blame:</lable> {{selectedG4Res.name}}
+        <button data-ng-click="addResource(selectedG4Res, selectedPgp.goalsrc4)">ADD Resource to Plan</button>
+        <label>Remove from Plan: Alt+Click</label>
+        <ul class="resourceList">
+            <li class="animate-repeat" data-ng-click="removeRsrcFromPGP($event, rec, selectedPgp.goalsrc4)"
+                data-ng-repeat="rec in selectedPgp.goalsrc4">
+                Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+            </li>
+            <li class="animate-repeat" ng-if="results.length == 0">
+                <strong>No results found...</strong>
+            </li>
+        </ul>
+    </fieldset>
+
+    <button id="btnG5On" class="toggle">ACCOMPLISH</button>
+    <fieldset id="fG5">
+        <button id="btnG5Off" class="toggle">ACCOMPLISH</button>
+        <label class="pgpQuestions">>What I would like to be able to accomplish with code:</label>
+
+        <p class="newSurvey_form-std">{{selectedPgp.goal5}}</p>
+        <label for="sG5">General Resources</label>
+        <select id="sG5" data-ng-model="selectedG5Res" data-ng-options="r.title for r in genResources" data-ng-click="removeResource($event, selectedG5Res, genResources, 'General')">
+        </select>
+        <lable>Resource Blame:</lable> {{selectedG5Res.name}}
+        <button data-ng-click="addResource(selectedG5Res, selectedPgp.goalsrc5)">ADD Resource to Plan</button>
+        <label>Remove from Plan: Alt+Click</label>
+        <ul class="resourceList">
+            <li class="animate-repeat" data-ng-click="removeRsrcFromPGP($event, rec, selectedPgp.goalsrc5)"
+                data-ng-repeat="rec in selectedPgp.goalsrc5">
+                Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+            </li>
+            <li class="animate-repeat" ng-if="results.length == 0">
+                <strong>No results found...</strong>
+            </li>
+        </ul>
+    </fieldset>
+
+</fieldset>
+
+<!--Self Assessment ********************************************************************************************-->
+<button class="toggle" id="btnAssOn">ASSESSMENT</button>
+<fieldset id="fAss">
+    <button class="toggle" id="btnAssOff">ASSESSMENT</button>
+    <legend>Student's Skill Assessment By Topic</legend>
+
+    <button id="btnHTMLOn" class="toggle">HTML</button>
+    <fieldset id="fHTML">
+        <button id="btnHTMLOff" class="toggle">HTML</button>
+        <label class="newSurvey_form-lbl">HTML:</label>
+
+        <form id="frmHTMLResource">
+            <label class="ppgrating">{{selectedPgp.rtg1}}</label>
+            <input class="rHtml" type="text" placeholder="New Resource Title" data-ng-model="saveHTMLResource.resource.title">
+            <input class="rHtml" type="text" placeholder="New Resource type" data-ng-model="saveHTMLResource.resource.type">
+            <input class="rHtml" type="text" placeholder="New Resource Link" data-ng-model="saveHTMLResource.resource.rlink">
+            <button data-ng-click="saveResource(saveHTMLResource, HTMLResources, 'HTML', 'rHtml')">Save New HTML resource</button>
+        </form>
+        <label for="sHTML">HTML Resources</label>
+        <select id="sHTML" data-ng-model="selectedHTMLRes" data-ng-options="r.title for r in HTMLResources" data-ng-click="removeResource($event, selectedHTMLRes, HTMLResources, 'HTML')">
+        </select>
+        <lable>Resource Blame:</lable> {{selectedHTMLRes.name}}
+        <button data-ng-click="addResource(selectedHTMLRes, selectedPgp.recsrc1)">ADD HTML Resource to Plan</button>
+        <label>Remove from Plan: Alt+Click</label>
+        <ul class="resourceList">
+            <li class="animate-repeat" data-ng-click="removeRsrcFromPGP($event, rec, selectedPgp.recsrc1)"
+                data-ng-repeat="rec in selectedPgp.recsrc1">
+                Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+            </li>
+            <li class="animate-repeat" ng-if="results.length == 0">
+                <strong>No results found...</strong>
+            </li>
+        </ul>
+        <textarea rows="5" class="newSurvey_form-textarea" placeholder="Please enter recommendations here"
+                  data-ng-model="selectedPgp.rec1"></textarea>
+    </fieldset>
+
+    <button id="btnCSSOn" class="toggle">CSS</button>
+    <fieldset id="fCSS">
+        <button id="btnCSSOff" class="toggle">CSS</button>
+        <label class="newSurvey_form-lbl">CSS:</label>
+
+        <form id="frmCSSResource">
+            <label class="ppgrating">{{selectedPgp.rtg2}}</label>
+            <input class = "rCss" type="text" placeholder="New Resource Title" data-ng-model="saveCSSResource.resource.title">
+            <input class="rCss" type="text" placeholder="New Resource type" data-ng-model="saveCSSResource.resource.type">
+            <input class="rCss" type="text" placeholder="New Resource Link" data-ng-model="saveCSSResource.resource.rlink">
+            <button data-ng-click="saveResource(saveCSSResource, CSSResources, 'CSS', 'rCss')">Save New CSS Resource</button>
+        </form>
+        <label for="sCSS">CSS Resources</label>
+        <select id="sCSS" data-ng-model="selectedCSSRes" data-ng-options="r.title for r in CSSResources" data-ng-click="removeResource($event, selectedCSSRes, CSSResources, 'CSS')">
+        </select>
+        <lable>Resource Blame:</lable> {{selectedCSSRes.name}}
+        <button data-ng-click="addResource(selectedCSSRes, selectedPgp.recsrc2)">ADD CSS Resource to Plan</button>
+        <label>Remove from Plan: Alt+Click</label>
+        <ul class="resourceList">
+            <li class="animate-repeat" data-ng-click="removeRsrcFromPGP($event, rec, selectedPgp.recsrc2)"
+                data-ng-repeat="rec in selectedPgp.recsrc2">
+                Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+            </li>
+            <li class="animate-repeat" ng-if="results.length == 0">
+                <strong>No results found...</strong>
+            </li>
+        </ul>
+        <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea"
+                  data-ng-model="selectedPgp.rec2"></textarea>
+    </fieldset>
+
+    <button id="btnJSOn" class="toggle">JavaScript</button>
+    <fieldset id="fJS">
+        <button id="btnJSOff" class="toggle">JavaScript</button>
+        <label class="newSurvey_form-lbl">Javascript:</label>
+
+        <form id="frmJSResource">
+            <label class="ppgrating">{{selectedPgp.rtg3}}</label>
+            <input class="rJs" type="text" placeholder="New Resource Title" data-ng-model="saveJSResource.resource.title">
+            <input class="rJs" type="text" placeholder="New Resource type" data-ng-model="saveJSResource.resource.type">
+            <input class="rJs" type="text" placeholder="New Resource Link" data-ng-model="saveJSResource.resource.rlink">
+            <button data-ng-click="saveResource(saveJSResource, JSResources, 'JS', 'rJs')">Save New JS resource</button>
+        </form>
+        <label for="sJS">JavaSript Resources</label>
+        <select id="sJS" data-ng-model="selectedJSRes" data-ng-options="r.title for r in JSResources" data-ng-click="removeResource($event, selectedJSRes, JSResources, 'JS')">
+        </select>
+        <lable>Resource Blame:</lable> {{selectedJSRes.name}}
+        <button data-ng-click="addResource(selectedJSRes, selectedPgp.recsrc3)">ADD JS Resource to Plan</button>
+        <label>Remove from Plan: Alt+Click</label>
+        <ul class="resourceList">
+            <li class="animate-repeat" data-ng-click="removeRsrcFromPGP($event, rec, selectedPgp.recsrc3)"
+                data-ng-repeat="rec in selectedPgp.recsrc3">
+                Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+            </li>
+            <li class="animate-repeat" ng-if="results.length == 0">
+                <strong>No results found...</strong>
+            </li>
+        </ul>
+        <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea"
+                  data-ng-model="selectedPgp.rec3"></textarea>
+    </fieldset>
+
+    <button id="btnGITOn" class="toggle">GIT</button>
+    <fieldset id="fGIT">
+        <button id="btnGITOff" class="toggle">GIT</button>
+        <label class="newSurvey_form-lbl">GIT:</label>
+
+        <form id="frmGITResource">
+            <label class="ppgrating">{{selectedPgp.rtg4}}</label>
+            <input class="rGit" type="text" placeholder="New Resource Title" data-ng-model="saveGITResource.resource.title">
+            <input class="rGit" type="text" placeholder="New Resource type" data-ng-model="saveGITResource.resource.type">
+            <input class="rGit" type="text" placeholder="New Resource Link" data-ng-model="saveGITResource.resource.rlink">
+            <button data-ng-click="saveResource(saveGITResource, GITResources, 'GIT', 'rGit')">Save New GIT Resource</button>
+        </form>
+        <label for="sGIT">GIT Resources</label>
+        <select id="sGIT" data-ng-model="selectedGITRes" data-ng-options="r.title for r in GITResources" data-ng-click="removeResource($event, selectedGITRes, GITResources, 'GIT')">
+        </select>
+        <lable>Resource Blame:</lable> {{selectedGITRes.name}}
+        <button data-ng-click="addResource(selectedGITRes, selectedPgp.recsrc4)">ADD GIT Resource to Plan</button>
+        <label>Remove from Plan: Alt+Click</label>
+        <ul class="resourceList">
+            <li class="animate-repeat" data-ng-click="removeRsrcFromPGP($event, rec, selectedPgp.recsrc4)"
+                data-ng-repeat="rec in selectedPgp.recsrc4">
+                Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+            </li>
+            <li class="animate-repeat" ng-if="results.length == 0">
+                <strong>No results found...</strong>
+            </li>
+        </ul>
+        <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea"
+                  data-ng-model="selectedPgp.rec4"></textarea>
+    </fieldset>
+
+    <button id="btnDSAOn" class="toggle">DATA</button>
+    <fieldset id="fDSA">
+        <button id="btnDSAOff" class="toggle">DATA</button>
+        <label class="newSurvey_form-lbl">Data structures and algorithms:</label>
+
+        <form id="frmDSAResource">
+            <label class="ppgrating">{{selectedPgp.rtg5}}</label>
+            <input class="rDsa" type="text" placeholder="New Resource Title" data-ng-model="saveDSAResource.resource.title">
+            <input class="rDsa" type="text" placeholder="New Resource type" data-ng-model="saveDSAResource.resource.type">
+            <input class="rDsa" type="text" placeholder="New Resource Link" data-ng-model="saveDSAResource.resource.rlink">
+            <button data-ng-click="saveResource(saveDSAResource, DSAResources, 'DSA', 'rDsa')">Save New Data Resource</button>
+        </form>
+        <label for="sDSA">Data Structures and Algorithms Resources</label>
+        <select id="sDSA" data-ng-model="selectedDSARes" data-ng-options="r.title for r in DSAResources" data-ng-click="removeResource($event, selectedDSARes, DSAResources, 'DSA')">
+        </select>
+        <lable>Resource Blame:</lable> {{selectedDSARes.name}}
+        <button data-ng-click="addResource(selectedDSARes, selectedPgp.recsrc5)">ADD Data Resource to Plan</button>
+        <label>Remove from Plan: Alt+Click</label>
+        <ul class="resourceList">
+            <li class="animate-repeat" data-ng-click="removeRsrcFromPGP($event, rec, selectedPgp.recsrc5)"
+                data-ng-repeat="rec in selectedPgp.recsrc5">
+                Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+            </li>
+            <li class="animate-repeat" ng-if="results.length == 0">
+                <strong>No results found...</strong>
+            </li>
+        </ul>
+        <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea"
+                  data-ng-model="selectedPgp.rec5"></textarea>
+    </fieldset>
+
+    <button id="btnCMDOn" class="toggle">TERMINAL</button>
+    <fieldset id="fCMD">
+        <button id="btnCMDOff" class="toggle">TERMINAL</button>
+        <label class="newSurvey_form-lbl">Command line interface:</label>
+
+        <form id="frmCMDResource">
+            <label class="ppgrating">{{selectedPgp.rtg6}}</label>
+            <input class="rCmd" type="text" placeholder="New Resource Title" data-ng-model="saveCMDResource.resource.title">
+            <input class="rCmd" type="text" placeholder="New Resource type" data-ng-model="saveCMDResource.resource.type">
+            <input class="rCmd" type="text" placeholder="New Resource Link" data-ng-model="saveCMDResource.resource.rlink">
+            <button data-ng-click="saveResource(saveCMDResource, CMDResources, 'CMD', 'rCmd')">Save New Terminal Resource</button>
+        </form>
+        <label for="sCMD">Command Line (terminal) Resources</label>
+        <select id="sCMD" data-ng-model="selectedCMDRes" data-ng-options="r.title for r in CMDResources" data-ng-click="removeResource($event, selectedCMDRes, CMDResources, 'CMD')">
+        </select>
+        <lable>Resource Blame:</lable> {{selectedCMDRes.name}}
+        <button data-ng-click="addResource(selectedCMDRes, selectedPgp.recsrc6)">ADD Terminal Resource to Plan</button>
+        <label>Remove from Plan: Alt+Click</label>
+        <ul class="resourceList">
+            <li class="animate-repeat" data-ng-click="removeRsrcFromPGP($event, rec, selectedPgp.recsrc6)"
+                data-ng-repeat="rec in selectedPgp.recsrc6">
+                Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+            </li>
+            <li class="animate-repeat" ng-if="results.length == 0">
+                <strong>No results found...</strong>
+            </li>
+        </ul>
+        <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea"
+                  data-ng-model="selectedPgp.rec6"></textarea>
+    </fieldset>
+
+    <button id="btnOOPOn" class="toggle">Object-Orientated</button>
+    <fieldset id="fOOP">
+        <button id="btnOOPOff" class="toggle">Object-Orientated</button>
+        <label class="newSurvey_form-lbl">Object-oriented programming:</label>
+
+        <form id="frmOOPResource">
+            <label class="ppgrating">{{selectedPgp.rtg7}}</label>
+            <input class="rOop" type="text" placeholder="New Resource Title" data-ng-model="saveOOPResource.resource.title">
+            <input class="rOop" type="text" placeholder="New Resource type" data-ng-model="saveOOPResource.resource.type">
+            <input class="rOop" type="text" placeholder="New Resource Link" data-ng-model="saveOOPResource.resource.rlink">
+            <button data-ng-click="saveResource(saveOOPResource, OOPResources, 'OOP', 'rOop')">Save New Object-oriented Resource</button>
+        </form>
+        <label for="sOOP">Object-oriented Programing Resources</label>
+        <select id="sOOP" data-ng-model="selectedOOPRes" data-ng-options="r.title for r in OOPResources" data-ng-click="removeResource($event, selectedOOPRes, OOPResources, 'OOP')">
+        </select>
+        <lable>Resource Blame:</lable> {{selectedOOPRes.name}}
+        <button data-ng-click="addResource(selectedOOPRes, selectedPgp.recsrc7)">ADD Object-oriented Resource to Plan</button>
+        <label>Remove from Plan: Alt+Click</label>
+        <ul class="resourceList">
+            <li class="animate-repeat" data-ng-click="removeRsrcFromPGP($event, rec, selectedPgp.recsrc7)"
+                data-ng-repeat="rec in selectedPgp.recsrc7">
+                Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+            </li>
+            <li class="animate-repeat" ng-if="results.length == 0">
+                <strong>No results found...</strong>
+            </li>
+        </ul>
+        <textarea rows="5" placeholder="Please enter recommendations here" class="newSurvey_form-textarea"
+                  data-ng-model="selectedPgp.rec7"></textarea>
+    </fieldset>
+</fieldset>
+
+<fieldset>
+    <legend>Questions/Concerns?</legend>
+    <p class="newSurvey_form-std">{{selectedPgp.note}}</p>
+    <label class="newSurvey_form-lbl">Responses:</label>
+    <textarea rows="5" placeholder="Enter responses to Questions and concerns here." class="newSurvey_form-textarea"
+              data-ng-model="selectedPgp.feedbk"></textarea>
+</fieldset>
+    <button data-ng-click="savePgp(selectedPgp)">Save PGP</button>
+    <label for="cbPGP">Check Complete to make PGP available to student</label>
+    <input class="cbComplete" id="cbPGP" type="checkbox" data-ng-model="selectedPgp.recComplete">
+</form>
+</article>
+</div>
