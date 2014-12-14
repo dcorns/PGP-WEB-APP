@@ -61,6 +61,7 @@ module.exports = function (app) {
             note.ta = usr.email;
             corngoose.dbDocReplace(note, 'notes', function(err, result){
               if(err || !result) {
+                console.error(err);
                 return res.status(500).json(err);
               }
               return res.status(202).json(result);
