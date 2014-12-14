@@ -88,6 +88,20 @@ module.exports = function (usrObj) {
         }
         return cb(null, authorized);
       });
+    },
+    basicAuth: function(credentialsIn, cb){
+      corngoose.dbDocFind({type:'authorization'}, 'protectedvar', function(err, doc){
+        if(err){
+          console.log('authorize 95 DataError: '+err.msg);
+          return cb(err, false);
+        }
+        if(credentialsIn === doc[0].basicAuthVar){
+          return cb(null, true);
+        }
+        else{
+          return cb(null, false);
+        }
+      });
     }
   }
 };
