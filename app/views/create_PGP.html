@@ -3,8 +3,9 @@
 <form class="newSurvey_form">
 <fieldset class="newSurvey_select">
     <legend>Please Select A Student</legend>
-    <select data-ng-model="selectedPgp" data-ng-options="pgp.name for pgp in pgps"></select>
+    <select drc-opt-cls-directive = "{pgpcomplete: pgp.recComplete}" data-ng-model="selectedPgp" data-ng-options="pgp.name group by pgp.recComplete for pgp in pgps"></select>
 </fieldset>
+    <div ></div>
 <button class="toggle" id="btnGoalsOn">GOALS</button>
 <!--Goal Resources ***************************************************************************-->
 <fieldset id="fGoals">

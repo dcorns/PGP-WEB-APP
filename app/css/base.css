@@ -156,3 +156,12 @@ input.ng-invalid.ng-dirty {
 input.ng-valid.ng-dirty {
     background-color: #78FA89;
 }
+.firstSurveyComplete{
+    background-color: #ffc520;
+}
+.secondSurveyComplete{
+    background-color: #d03226;
+}
+.pgpComplete{
+    background-color: #006600;
+}

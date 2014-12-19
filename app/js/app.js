@@ -9,6 +9,7 @@ require('../controllers/pgps-controller')(pgpApp);
 require('../controllers/user-controller')(pgpApp);
 require('../controllers/survey-controller')(pgpApp);
 require('../controllers/viewPGP-controller')(pgpApp);
+require('../directives/drcOptCls-Directive')(pgpApp);
 
 pgpApp.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
