@@ -19,6 +19,7 @@ module.exports = function (app){
           method: 'GET',
           url: 'api/v_0_0_1/userForm'
         }).success(function(data){
+          console.log('sc22'); console.dir(data);
           $scope.survey = data;
           //For some reason these do not bind like the rest so this temp work around
           ux.fillInput("rtg1", $scope.survey.rtg1);

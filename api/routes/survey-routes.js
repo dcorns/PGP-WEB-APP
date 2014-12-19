@@ -4,7 +4,7 @@
 'use strict';
 var auth = require('../js/authorize');
 var Note = require('../models/note');
-var db = require('../js/dbutils');
+var dbutils = require('../js/dbutils');
 var validation = require('../js/validation');
 
 module.exports = function(app){
@@ -18,22 +18,15 @@ module.exports = function(app){
       if(err){
         return res.status(500).json(err);
       }
-      Note.findOne({student: usr.email}, function (err, note) {
+      var db = dbutils();
+      db.getUserPayload(usr, function(err, pl){
         if (err) {
           return res.status(500).json(err);
         }
-        if (note) {
-          var rmdups = db(note);
-          rmdups.combinePgpGoalresources(function(){
-            return res.status(200).json(note);
-          });
-        }
-        else {
-          return res.status(201).send(note);
-        }
-      })
+          return res.status(200).send(pl.note);
+      });
     });
-    return res.status(200);
+    return res.status(500);
   });
 
   app.post(baseUrl, function (req, res) {
