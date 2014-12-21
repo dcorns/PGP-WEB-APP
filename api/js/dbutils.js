@@ -126,11 +126,16 @@ module.exports = function (obj) {
         }
         else{
           payload.note = {};
-          payload.note.status = 'preSurvey';
           payload.note.student = usr.email;
           payload.note.recComplete = false;
+          payload.note.preRtgComplete = false;
           payload.note.rtgComplete = false;
           payload.note.name = usr.firstName + ' ' + usr.lastName;
+          payload.note.goalsrc1 = [];
+          payload.note.goalsrc2 = [];
+          payload.note.goalsrc3 = [];
+          payload.note.goalsrc4 = [];
+          payload.note.goalsrc5 = [];
         }
         payload.user = usr;
         return cb(null, payload);

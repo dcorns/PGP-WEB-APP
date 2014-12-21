@@ -97,7 +97,9 @@
             <textarea id="note" rows="10" class="newSurvey_form-textarea" placeholder="Please share any questions or concerns you may have." data-ng-model="survey.note">
             </textarea>
         </fieldset>
-        <button data-ng-click="saveSurvey()">SUBMIT</button>
+        <label for="cbSurvey">When you have completed your survey, check here to submit it to CodeFellows for analysis upon saving</label>
+        <input class="cbComplete" id="cbSurvey" type="checkbox" data-ng-model="survey.preRtgComplete">
+        <button data-ng-click="saveSurvey()">SAVE</button>
 
     </form>
 </article>
