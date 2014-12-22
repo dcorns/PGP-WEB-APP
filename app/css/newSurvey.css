@@ -108,3 +108,18 @@ button {
     width: 40%;
     border-radius: 5rem;
 }
+
+.survey-rating-lbl{
+    display: block;
+    padding: 0;
+    margin-bottom: .5em;
+}
+.preSurveyRatings{
+    display: block;
+    margin-bottom: 1em;
+    margin-top:1em;
+}
+.preQuestQuote{
+    font-style: italic;
+    margin-bottom: 1em;
+}
