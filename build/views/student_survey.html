@@ -1,0 +1,127 @@
+<article data-ng-controller="surveyController" class="newSurvey">
+    <h1 hidden class="hidden">New Student Survey</h1>
+
+    <form name="survey" novalidate class="newSurvey_form">
+
+        <fieldset class="newSurvey_form-info">
+            <legend>Welcome {{survey.name}}</legend>
+            <label class="newSurvey_form-lbl"></label></br>
+            <label class="newSurvey_form-lbl">Course</label>
+            <input id="course" required class="newSurvey_form-lbl" data-ng-model="survey.course">
+        </fieldset>
+
+        <section>
+            <h1>Self Assessment</h1>
+
+            <p>We want to help you reach your goals. We've seen the work you've turned in. Now, we need your help
+                answering the following questions, so we can create a Personalized Growth Plan for you.</p>
+
+            <p>How do you rate yourself on a scale from 1 to 5</p>
+
+            <p>1: I am not at all comfortable with this</p>
+
+            <p>2: I have just a little comfort with this</p>
+
+            <p>3: I am moderately comfortable with this</p>
+
+            <p>4: I am very comfortable with this</p>
+
+            <p>5: I feel ready to use this skill professionally</p>
+        </section>
+
+        <fieldset name="rating" class="newSurvey_form-sbj">
+            <div>
+                <label class="newSurvey_form-lbl">HTML</label></br>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg1 ===1}" ng-click="survey.rtg1 = 1">1</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg1 ===2}" ng-click="survey.rtg1 = 2">2</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg1 ===3}" ng-click="survey.rtg1 = 3">3</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg1 ===4}" ng-click="survey.rtg1 = 4">4</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg1 ===5}" ng-click="survey.rtg1 = 5">5</label>
+            </div>
+
+            <div>
+                <label class="newSurvey_form-lbl">CSS</label></br>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg2 ===1}" ng-click="survey.rtg2 = 1">1</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg2 ===2}" ng-click="survey.rtg2 = 2">2</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg2 ===3}" ng-click="survey.rtg2 = 3">3</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg2 ===4}" ng-click="survey.rtg2 = 4">4</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg2 ===5}" ng-click="survey.rtg2 = 5">5</label>
+            </div>
+
+            <div>
+                <label class="newSurvey_form-lbl">JavaScript</label></br>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg3 ===1}" ng-click="survey.rtg3 = 1">1</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg3 ===2}" ng-click="survey.rtg3 = 2">2</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg3 ===3}" ng-click="survey.rtg3 = 3">3</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg3 ===4}" ng-click="survey.rtg3 = 4">4</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg3 ===5}" ng-click="survey.rtg3 = 5">5</label>
+            </div>
+
+            <div>
+                <label class="newSurvey_form-lbl">GIT</label></br>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg4 ===1}" ng-click="survey.rtg4 = 1">1</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg4 ===2}" ng-click="survey.rtg4 = 2">2</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg4 ===3}" ng-click="survey.rtg4 = 3">3</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg4 ===4}" ng-click="survey.rtg4 = 4">4</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg4 ===5}" ng-click="survey.rtg4 = 5">5</label>
+            </div>
+
+            <div>
+                <label class="newSurvey_form-lbl">Data structures and algorithms</label></br>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg5 ===1}" ng-click="survey.rtg5 = 1">1</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg5 ===2}" ng-click="survey.rtg5 = 2">2</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg5 ===3}" ng-click="survey.rtg5 = 3">3</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg5 ===4}" ng-click="survey.rtg5 = 4">4</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg5 ===5}" ng-click="survey.rtg5 = 5">5</label>
+            </div>
+
+            <div>
+                <label class="newSurvey_form-lbl">Command line interface</label></br>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg6 ===1}" ng-click="survey.rtg6 = 1">1</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg6 ===2}" ng-click="survey.rtg6 = 2">2</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg6 ===3}" ng-click="survey.rtg6 = 3">3</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg6 ===4}" ng-click="survey.rtg6 = 4">4</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg6 ===5}" ng-click="survey.rtg6 = 5">5</label>
+            </div>
+
+            <div>
+                <label class="newSurvey_form-lbl">Object-oriented programming</label></br>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg7 ===1}" ng-click="survey.rtg7 = 1">1</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg7 ===2}" ng-click="survey.rtg7 = 2">2</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg7 ===3}" ng-click="survey.rtg7 = 3">3</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg7 ===4}" ng-click="survey.rtg7 = 4">4</label>
+                <label class="ppgrating" ng-class="{selectedRating:survey.rtg7 ===5}" ng-click="survey.rtg7 = 5">5</label>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Goals</legend>
+            <label for="goal">What are your long-term goals?</label>
+            <textarea id="goal" rows="10" class="newSurvey_form-textarea" placeholder="What are your long-term goals?" data-ng-model="survey.goal">
+            </textarea>
+            <label for="goal2">Why are you interested in developing your computer/coding skills?</label>
+            <textarea id="goal2" rows="10" class="newSurvey_form-textarea" placeholder="Why are you interested in developing your computer/coding skills?" data-ng-model="survey.goal2">
+            </textarea>
+            <label for="goal3">What kinds of problems do you like working on?</label>
+            <textarea id="goal3" rows="10" class="newSurvey_form-textarea" placeholder="What kinds of problems do you like working on?" data-ng-model="survey.goal3">
+            </textarea>
+            <label for="goal4">What would you like to do next?</label>
+            <textarea id="goal4" rows="10" class="newSurvey_form-textarea" placeholder="What would you like to do next?" data-ng-model="survey.goal4">
+            </textarea>
+            <label for="goal5">What would you like to be able to accomplish with code?</label>
+            <textarea id="goal5" rows="10" class="newSurvey_form-textarea" placeholder="What would you like to be able to accomplish with code?" data-ng-model="survey.goal5">
+            </textarea>
+        </fieldset>
+
+        <fieldset>
+            <legend>Questions/Concerns?</legend>
+            <textarea id="note" rows="10" class="newSurvey_form-textarea" placeholder="Please share any questions or concerns you may have." data-ng-model="survey.note">
+            </textarea>
+        </fieldset>
+        <label for="cbSurvey">When you have completed your survey, check here to submit it to CodeFellows for analysis upon saving</label>
+        <input class="cbComplete" id="cbSurvey" type="checkbox" data-ng-model="survey.preRtgComplete">
+        <button data-ng-click="saveSurvey()">SAVE</button>
+
+    </form>
+</article>
+
