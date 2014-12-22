@@ -40,7 +40,8 @@ var noteSchema = mongoose.Schema({
   moresrc: [],
   feedbk: String,
   rtgComplete: Boolean,
-  recComplete: Boolean
+  recComplete: Boolean,
+  status: String
 });
 
 module.exports = mongoose.model('Note', noteSchema);

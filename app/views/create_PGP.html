@@ -1,11 +1,12 @@
 <div data-ng-controller="pgpsController">
 <article class="newSurvey">
+
 <form class="newSurvey_form">
 <fieldset class="newSurvey_select">
     <legend>Please Select A Student</legend>
-    <select drc-opt-cls-directive = "{pgpcomplete: pgp.recComplete}" data-ng-model="selectedPgp" data-ng-options="pgp.name group by pgp.recComplete for pgp in pgps"></select>
+    <select data-ng-model="selectedPgp" data-ng-options="pgp.name group by pgp.recComplete for pgp in pgps" ></select>
 </fieldset>
-    <div ></div>
+    <div drc-opt-cls-directive = "{pgpComplete: pgp.recComplete}"></div>
 <button class="toggle" id="btnGoalsOn">GOALS</button>
 <!--Goal Resources ***************************************************************************-->
 <fieldset id="fGoals">

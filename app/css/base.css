@@ -135,13 +135,31 @@ h1 {
 }
 
 .ppgrating{
-    background-color: red;
+    background-color: firebrick;
     font-weight: bold;
     font-size: 2rem;
     padding: .5rem 1rem .5rem 1rem;
     border-radius: 45px;
     box-shadow: 2px 2px 7px #111111;
     margin-left: .5rem;
+}
+
+.ppgrating:hover{
+    font-size: 3rem;
+}
+
+.selectedRating{
+    background-color:red;
+    font-weight: bold;
+    font-size: 2rem;
+    padding: .5rem 1rem .5rem 1rem;
+    border-radius: 45px;
+    box-shadow: 2px 2px 7px #111111;
+    margin-left: .5rem;
+}
+
+.selectedRating:hover{
+    font-size: 3rem;
 }
 
 .pgpQuestions{

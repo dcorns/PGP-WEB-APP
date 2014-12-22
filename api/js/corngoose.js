@@ -4,7 +4,7 @@
 'use strict';
 var mongoClient = require('mongodb').MongoClient;
 //var User = require('../models/user');
-var Note = require('../models/user');
+//var Note = require('../models/user');
 var BSON = require('mongodb').BSONPure;
 module.exports = (function () {
   var procE = process.env,
@@ -72,6 +72,7 @@ module.exports = (function () {
         if(err){
           return cb(err, null);
         }
+        if(updateObject._id) delete updateObject._id;
         var updateObj = {$set: updateObject};
         db.collection(collectionName).update(queryObj, updateObj, function(err, result){
           if(err){
@@ -82,6 +83,7 @@ module.exports = (function () {
       });
     },
     dbDocInsert: function(keyObj, docData, collectionName, cb){
+      console.log('cg85'); console.dir(docData);
       this.dbDocFind(keyObj, collectionName, function(err, docAry){
         if(err){
           return cb(err, null);
