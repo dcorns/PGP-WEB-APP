@@ -136,6 +136,14 @@ module.exports = function (obj) {
           payload.note.goalsrc3 = [];
           payload.note.goalsrc4 = [];
           payload.note.goalsrc5 = [];
+          payload.note.recsrc1 = [];
+          payload.note.recsrc2 = [];
+          payload.note.recsrc3 = [];
+          payload.note.recsrc4 = [];
+          payload.note.recsrc5 = [];
+          payload.note.recsrc6 = [];
+          payload.note.recsrc7 = [];
+          payload.note.moresrc = [];
         }
         payload.user = usr;
         return cb(null, payload);
