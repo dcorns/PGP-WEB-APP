@@ -143,6 +143,7 @@ module.exports = function (obj) {
           payload.note.recsrc5 = [];
           payload.note.recsrc6 = [];
           payload.note.recsrc7 = [];
+          payload.note.moresrc = [];
         }
         payload.user = usr;
         return cb(null, payload);
