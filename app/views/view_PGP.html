@@ -8,7 +8,7 @@
         <fieldset>
             <legend class="pgpLegend">Based on your self assessment responses we recommend the following resources:</legend>
             <label class="ppgrating">{{pgp.rtg1}}</label>
-            <label class="ppgrating">{{pgp.rtg1a}}</label>
+            <label class="ppgrating" ng-hide="!showPostSurvey">{{pgp.rtg1a}}</label>
             <label class="pgpAssTitle">HTML:</label>
             <ul>
                 <li class="animate-repeat" data-ng-repeat="rec in pgp.recsrc1">
@@ -20,7 +20,7 @@
             </ul>
             <p>{{pgp.rec1}}</p>
             <label class="ppgrating">{{pgp.rtg2}}</label>
-            <label class="ppgrating">{{pgp.rtg2a}}</label>
+            <label class="ppgrating" ng-hide="!showPostSurvey">{{pgp.rtg2a}}</label>
             <label class="pgpAssTitle">CSS:</label>
             <ul>
                 <li class="animate-repeat" data-ng-repeat="rec in pgp.recsrc2">
@@ -32,7 +32,7 @@
             </ul>
             <p>{{pgp.rec2}}</p>
             <label class="ppgrating">{{pgp.rtg3}}</label>
-            <label class="ppgrating">{{pgp.rtg3a}}</label>
+            <label class="ppgrating" ng-hide="!showPostSurvey">{{pgp.rtg3a}}</label>
             <label class="pgpAssTitle">JavaScript:</label>
             <ul>
                 <li class="animate-repeat" data-ng-repeat="rec in pgp.recsrc3">
@@ -44,7 +44,7 @@
             </ul>
             <p>{{pgp.rec3}}</p>
             <label class="ppgrating">{{pgp.rtg4}}</label>
-            <label class="ppgrating">{{pgp.rtg4a}}</label>
+            <label class="ppgrating" ng-hide="!showPostSurvey">{{pgp.rtg4a}}</label>
             <label class="pgpAssTitle">GIT:</label>
             <ul>
                 <li class="animate-repeat" data-ng-repeat="rec in pgp.recsrc4">
@@ -56,7 +56,7 @@
             </ul>
             <p>{{pgp.rec4}}</p>
             <label class="ppgrating">{{pgp.rtg5}}</label>
-            <label class="ppgrating">{{pgp.rtg5a}}</label>
+            <label class="ppgrating" ng-hide="!showPostSurvey">{{pgp.rtg5a}}</label>
             <label class="pgpAssTitle">Data Structures and Algorithms:</label>
             <ul>
                 <li class="animate-repeat" data-ng-repeat="rec in pgp.recsrc5">
@@ -68,7 +68,7 @@
             </ul>
             <p>{{pgp.rec5}}</p>
             <label class="ppgrating">{{pgp.rtg6}}</label>
-            <label class="ppgrating">{{pgp.rtg6a}}</label>
+            <label class="ppgrating" ng-hide="!showPostSurvey">{{pgp.rtg6a}}</label>
             <label class="pgpAssTitle">Command Line/ Terminal:</label>
             <ul>
                 <li class="animate-repeat" data-ng-repeat="rec in pgp.recsrc6">
@@ -80,7 +80,7 @@
             </ul>
             <p>{{pgp.rec6}}</p>
             <label class="ppgrating">{{pgp.rtg7}}</label>
-            <label class="ppgrating">{{pgp.rtg7a}}</label>
+            <label class="ppgrating" ng-hide="!showPostSurvey">{{pgp.rtg7a}}</label>
             <label class="pgpAssTitle">Object-orientated Programing:</label>
             <ul>
                 <li class="animate-repeat" data-ng-repeat="rec in pgp.recsrc7">

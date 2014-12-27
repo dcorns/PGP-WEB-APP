@@ -23,6 +23,8 @@ module.exports = function (app) {
         }).success(function (data) {
           if (data) {
               $scope.pgps = data.n;
+            //The following added for backward compatibility; when the survey was only completed at the end
+            $scope.showPostSurvey = $scope.pgps.preRtgComplete;
             var formIdx = storage.getItem('formIdx'),
               btnViewPgp = document.getElementById("btnviewpgp"),
               btnCreatePgp = document.getElementById("btncreatepgp");
