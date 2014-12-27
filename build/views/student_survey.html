@@ -1,7 +1,9 @@
 <article data-ng-controller="surveyController" class="newSurvey">
     <h1 hidden class="hidden">New Student Survey</h1>
-
-    <form name="survey" novalidate class="newSurvey_form">
+    <h1 ng-hide="!surveysComplete">
+        Thank you for completing your post-survey. Your personal growth plan is being processed. When completed, it will be displayed here when you login.
+    </h1>
+    <form name="survey" novalidate class="newSurvey_form" ng-hide="surveysComplete">
 
         <fieldset class="newSurvey_form-info">
             <legend>Welcome {{survey.name}}</legend>
@@ -258,9 +260,16 @@
                 <textarea id="noteA" rows="10" class="newSurvey_form-textarea" placeholder="What are your long-term goals?" data-ng-model="survey.noteA"></textarea>
             </div>
         </fieldset>
-        <label for="cbSurvey">When you have completed your survey, check here to have it processed</label>
-        <input class="cbComplete" id="cbSurvey" type="checkbox" data-ng-model="survey.preRtgComplete">
-        <button data-ng-click="saveSurvey()">SAVE</button>
+        <div ng-hide="showPostSurvey">
+            <label for="cbPreSurvey">When you have completed your pre-survey, check here to have it processed</label>
+            <input class="cbComplete" id="cbPreSurvey" type="checkbox" data-ng-model="survey.preRtgComplete">
+            <button data-ng-click="saveSurvey()">SAVE</button>
+        </div>
+        <div ng-hide="!showPostSurvey">
+            <label for="cbPostSurvey">When you have completed your post-survey, check here to have it processed</label>
+            <input class="cbComplete" id="cbPostSurvey" type="checkbox" data-ng-model="survey.rtgComplete">
+            <button data-ng-click="saveSurvey()">SAVE</button>
+        </div>
     </form>
 </article>
 

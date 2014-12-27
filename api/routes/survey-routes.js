@@ -31,6 +31,7 @@ module.exports = function(app){
   });
 
   app.post(baseUrl, function (req, res) {
+    console.log('sr34'); console.dir(req.body);
     var token = req.headers.authorization;
     var user = {};
     var a = auth(user);
@@ -48,7 +49,6 @@ module.exports = function(app){
             if(err) console.error(err);
             if(note[0]){
               corngoose.dbDocUpdate({student: usr.email}, req.body, 'notes', function(err, success){
-                console.log('sr51'); console.dir(success);
                 if(err) return res.status(500).json(err);
                 return res.status(202).json(success);
               });
