@@ -29,7 +29,8 @@
         <button id="btnG1Off" class="toggle">LongTermGoals</button>
         <label class="pgpQuestions">My long term goals:</label>
 
-        <p class="newSurvey_form-std">{{selectedPgp.goal}}</p>
+        <p class="newSurvey_form-std">PreSurvey: {{selectedPgp.goal}}</p>
+        <p class="newSurvey_form-std">PostSurvey: {{selectedPgp.goala}}</p>
         <label for="sG1">General Resources</label>
         <select id="sG1" data-ng-model="selectedG1Res" data-ng-options="r.title for r in genResources" data-ng-click="removeResource($event, selectedG1Res, genResources, 'General')">
         </select>
@@ -52,7 +53,8 @@
         <button id="btnG2Off" class="toggle">REASONS</button>
         <label class="pgpQuestions">Reasons for my interest in developing computer/coding skills:</label>
 
-        <p class="newSurvey_form-std">{{selectedPgp.goal2}}</p>
+        <p class="newSurvey_form-std">PreSurvey: {{selectedPgp.goal2}}</p>
+        <p class="newSurvey_form-std">PostSurvey: {{selectedPgp.goal2a}}</p>
         <label for="sG2">General Resources</label>
         <select id="sG2" data-ng-model="selectedG2Res" data-ng-options="r.title for r in genResources" data-ng-click="removeResource($event, selectedG2Res, genResources, 'General')">
         </select>
@@ -75,7 +77,8 @@
         <button id="btnG3Off" class="toggle">LikeProblems</button>
         <label class="pgpQuestions">I like working on these kinds of problems:</label>
 
-        <p class="newSurvey_form-std">{{selectedPgp.goal3}}</p>
+        <p class="newSurvey_form-std">PreSurvey: {{selectedPgp.goal3}}</p>
+        <p class="newSurvey_form-std">PostSurvey: {{selectedPgp.goal3a}}</p>
         <label for="sG3">General Resources</label>
         <select id="sG3" data-ng-model="selectedG3Res" data-ng-options="r.title for r in genResources" data-ng-click="removeResource($event, selectedG3Res, genResources, 'General')">
         </select>
@@ -98,7 +101,8 @@
         <button id="btnG4Off" class="toggle">WhatNext</button>
         <label class="pgpQuestions">What I would like to do next:</label>
 
-        <p class="newSurvey_form-std">{{selectedPgp.goal4}}</p>
+        <p class="newSurvey_form-std">PreSurvey: {{selectedPgp.goal4}}</p>
+        <p class="newSurvey_form-std">PostSurvey: {{selectedPgp.goal4a}}</p>
         <label for="sG4">General Resources</label>
         <select id="sG4" data-ng-model="selectedG4Res" data-ng-options="r.title for r in genResources" data-ng-click="removeResource($event, selectedG4Res, genResources, 'General')">
         </select>
@@ -121,7 +125,8 @@
         <button id="btnG5Off" class="toggle">ACCOMPLISH</button>
         <label class="pgpQuestions">>What I would like to be able to accomplish with code:</label>
 
-        <p class="newSurvey_form-std">{{selectedPgp.goal5}}</p>
+        <p class="newSurvey_form-std">PreSurvey: {{selectedPgp.goal5}}</p>
+        <p class="newSurvey_form-std">PostSurvey: {{selectedPgp.goal5a}}</p>
         <label for="sG5">General Resources</label>
         <select id="sG5" data-ng-model="selectedG5Res" data-ng-options="r.title for r in genResources" data-ng-click="removeResource($event, selectedG5Res, genResources, 'General')">
         </select>
@@ -154,6 +159,7 @@
 
         <form id="frmHTMLResource">
             <label class="ppgrating">{{selectedPgp.rtg1}}</label>
+            <label class="ppgrating">{{selectedPgp.rtg1a}}</label>
             <input class="rHtml" type="text" placeholder="New Resource Title" data-ng-model="saveHTMLResource.resource.title">
             <input class="rHtml" type="text" placeholder="New Resource type" data-ng-model="saveHTMLResource.resource.type">
             <input class="rHtml" type="text" placeholder="New Resource Link" data-ng-model="saveHTMLResource.resource.rlink">
@@ -185,6 +191,7 @@
 
         <form id="frmCSSResource">
             <label class="ppgrating">{{selectedPgp.rtg2}}</label>
+            <label class="ppgrating">{{selectedPgp.rtg2a}}</label>
             <input class = "rCss" type="text" placeholder="New Resource Title" data-ng-model="saveCSSResource.resource.title">
             <input class="rCss" type="text" placeholder="New Resource type" data-ng-model="saveCSSResource.resource.type">
             <input class="rCss" type="text" placeholder="New Resource Link" data-ng-model="saveCSSResource.resource.rlink">
@@ -216,6 +223,7 @@
 
         <form id="frmJSResource">
             <label class="ppgrating">{{selectedPgp.rtg3}}</label>
+            <label class="ppgrating">{{selectedPgp.rtg3a}}</label>
             <input class="rJs" type="text" placeholder="New Resource Title" data-ng-model="saveJSResource.resource.title">
             <input class="rJs" type="text" placeholder="New Resource type" data-ng-model="saveJSResource.resource.type">
             <input class="rJs" type="text" placeholder="New Resource Link" data-ng-model="saveJSResource.resource.rlink">
@@ -247,6 +255,7 @@
 
         <form id="frmGITResource">
             <label class="ppgrating">{{selectedPgp.rtg4}}</label>
+            <label class="ppgrating">{{selectedPgp.rtg4a}}</label>
             <input class="rGit" type="text" placeholder="New Resource Title" data-ng-model="saveGITResource.resource.title">
             <input class="rGit" type="text" placeholder="New Resource type" data-ng-model="saveGITResource.resource.type">
             <input class="rGit" type="text" placeholder="New Resource Link" data-ng-model="saveGITResource.resource.rlink">
@@ -278,6 +287,7 @@
 
         <form id="frmDSAResource">
             <label class="ppgrating">{{selectedPgp.rtg5}}</label>
+            <label class="ppgrating">{{selectedPgp.rtg5a}}</label>
             <input class="rDsa" type="text" placeholder="New Resource Title" data-ng-model="saveDSAResource.resource.title">
             <input class="rDsa" type="text" placeholder="New Resource type" data-ng-model="saveDSAResource.resource.type">
             <input class="rDsa" type="text" placeholder="New Resource Link" data-ng-model="saveDSAResource.resource.rlink">
@@ -309,6 +319,7 @@
 
         <form id="frmCMDResource">
             <label class="ppgrating">{{selectedPgp.rtg6}}</label>
+            <label class="ppgrating">{{selectedPgp.rtg6a}}</label>
             <input class="rCmd" type="text" placeholder="New Resource Title" data-ng-model="saveCMDResource.resource.title">
             <input class="rCmd" type="text" placeholder="New Resource type" data-ng-model="saveCMDResource.resource.type">
             <input class="rCmd" type="text" placeholder="New Resource Link" data-ng-model="saveCMDResource.resource.rlink">
@@ -340,6 +351,7 @@
 
         <form id="frmOOPResource">
             <label class="ppgrating">{{selectedPgp.rtg7}}</label>
+            <label class="ppgrating">{{selectedPgp.rtg7a}}</label>
             <input class="rOop" type="text" placeholder="New Resource Title" data-ng-model="saveOOPResource.resource.title">
             <input class="rOop" type="text" placeholder="New Resource type" data-ng-model="saveOOPResource.resource.type">
             <input class="rOop" type="text" placeholder="New Resource Link" data-ng-model="saveOOPResource.resource.rlink">
@@ -367,7 +379,8 @@
 
 <fieldset>
     <legend>Questions/Concerns?</legend>
-    <p class="newSurvey_form-std">{{selectedPgp.note}}</p>
+    <p class="newSurvey_form-std">PreSurvey: {{selectedPgp.note}}</p>
+    <p class="newSurvey_form-std">PostSurvey: {{selectedPgp.noteA}}</p>
     <label class="newSurvey_form-lbl">Responses:</label>
     <textarea rows="5" placeholder="Enter responses to Questions and concerns here." class="newSurvey_form-textarea"
               data-ng-model="selectedPgp.feedbk"></textarea>
