@@ -24,6 +24,8 @@ module.exports = function(app){
         if (err) {
           return res.status(500).json(err);
         }
+        //Add this to disable the presurvey
+        pl.note.preRtgComplete = true;
           return res.status(200).send(pl.note);
       });
     });
