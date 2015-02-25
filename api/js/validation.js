@@ -7,21 +7,25 @@ module.exports = function(){
   return{
     validateNewUser: function(user, cb){
       var valid = true;
-      var failed = {};
+      var failed = [];
+      var failureCount = 0;
       if(validateEmail(user.email)){
-        failed.email = 'Not a valid email address!';
+        failed[failureCount] = 'Not a valid email address!';
+        failureCount++;
         valid = false;
       }
       if(validatePassword(user.password)){
-        failed.passwordLength = 'Password must be at least 6 characters long';
+        failed[failureCount] = 'Password must be at least 6 characters long';
+        failureCount++;
         valid = false;
       }
       if(validateName(user.lastName)){
-        failed.lastNameLength = 'Last name must be at least 2 characters long';
+        failed[failureCount] = 'Last name must be at least 2 characters long';
+        failureCount++;
         valid = false;
       }
       if(validateName(user.firstName)){
-        failed.firstNameLength = 'First name must be at least 2 characters long';
+        failed[failureCount] = 'First name must be at least 2 characters long';
         valid = false;
       }
       return cb(valid, failed);
@@ -66,7 +70,7 @@ module.exports = function(){
         err = addValErr(err, "OOP-Assessment", "Select from 1-5 only for Object-Orientated programming rating");
       }
       cb(err,valid);
-    },
+    }
   };
   function validateEmail(txt){
     return (!(validate.isEmail(txt)));
