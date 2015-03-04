@@ -9,7 +9,18 @@ module.exports = function(app){
     return {
       template: 'Name: {{selectedPgp.goal}} Address: {{selectedPgp.goala}}',
       link: function(){
-
+        var btnViewPgp = document.getElementById('btnviewpgp'),
+          btnCreatePgp = document.getElementById('btncreatepgp'),
+          btnCreateAccount = document.getElementById('btncreateaccount');
+        btnViewPgp.addEventListener('click', function(){
+          storage.setItem('formIdx', $scope.pgps.indexOf($scope.selectedPgp));
+        });
+        btnCreatePgp.addEventListener('click', function(){
+          storage.setItem('formIdx', $scope.pgps.indexOf($scope.selectedPgp));
+        });
+        btnViewPgp.className = 'nav_ul-li';
+        btnCreatePgp.className = 'nav_ul-li';
+        btnCreateAccount.className='hidden';
         }
     }
   });
