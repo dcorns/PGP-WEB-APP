@@ -7,8 +7,8 @@ var SOS = require('../js/saveObjInSession');
 var handleErrors = require('../js/handleErrors');
 module.exports = function(app) {
   app.controller('userController', function($scope, $http) {
-    var ux = ui();
-    ux.hideMainButtons();
+    //var ux = ui();
+   // ux.hideMainButtons();
 
     $scope.saveNewUser = function() {
       $http.post('api/v_0_0_1/users', $scope.newUser)
