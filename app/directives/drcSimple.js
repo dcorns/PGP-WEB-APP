@@ -8,19 +8,10 @@ module.exports = function(app){
   app.directive('drcSimple', function(){
     return {
       template: 'Name: {{selectedPgp.goal}} Address: {{selectedPgp.goala}}',
+      //script to run when directive called
       link: function(){
-        var btnViewPgp = document.getElementById('btnviewpgp'),
-          btnCreatePgp = document.getElementById('btncreatepgp'),
-          btnCreateAccount = document.getElementById('btncreateaccount');
-        btnViewPgp.addEventListener('click', function(){
-          storage.setItem('formIdx', $scope.pgps.indexOf($scope.selectedPgp));
-        });
-        btnCreatePgp.addEventListener('click', function(){
-          storage.setItem('formIdx', $scope.pgps.indexOf($scope.selectedPgp));
-        });
-        btnViewPgp.className = 'nav_ul-li';
-        btnCreatePgp.className = 'nav_ul-li';
-        btnCreateAccount.className='hidden';
+        var ux = ui();
+        ux.setView('create_PGP');
         }
     }
   });

@@ -3,7 +3,7 @@
 <form class="newSurvey_form">
 <fieldset class="newSurvey_select">
     <legend>Please Select A Student</legend>
-    <select data-ng-model="selectedPgp" data-ng-options="pgp.name group by pgp.recComplete for pgp in pgps" ></select>
+    <select id="selStudents" data-ng-model="selectedPgp" data-ng-options="pgp.name group by pgp.recComplete for pgp in pgps" ></select>
 </fieldset>
 <button class="toggle" id="btnGoalsOn">GOALS</button>
 <!--Goal Resources ***************************************************************************-->
@@ -389,5 +389,5 @@
     <input class="cbComplete" id="cbPGP" type="checkbox" data-ng-model="selectedPgp.recComplete">
 </form>
 </article>
-    <div data-drc-simple></div>
+    <div data-create-pgp-ui></div>
 </div>

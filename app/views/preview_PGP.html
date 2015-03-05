@@ -2,7 +2,7 @@
 
     <article>
         <fieldset id="pgpSelection" class="newSurvey_select">
-            <select data-ng-model="selectedPgp" data-ng-options="pgp.name for pgp in pgps"></select>
+            <select id="selStudents"data-ng-model="selectedPgp" data-ng-options="pgp.name for pgp in pgps"></select>
         </fieldset>
 
         <fieldset>
@@ -168,5 +168,5 @@
         <p>{{selectedPgp.feedbk}}</p>
 
     </article>
-
+    <div data-preview-pgp-ui></div>
 </div>

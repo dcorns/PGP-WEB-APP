@@ -4,13 +4,16 @@ require('angular/angular');
 require('angular-route');
 
 var pgpApp = angular.module('pgpApp', ['ngRoute']);
-
+//Controllers
 require('../controllers/pgps-controller')(pgpApp);
 require('../controllers/user-controller')(pgpApp);
 require('../controllers/survey-controller')(pgpApp);
 require('../controllers/viewPGP-controller')(pgpApp);
+//Directives
 require('../directives/drcOptCls-Directive')(pgpApp);
 require('../directives/drcSimple')(pgpApp);
+require('../directives/createPgpUi')(pgpApp);
+require('../directives/previewPgpUi')(pgpApp);
 
 pgpApp.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
