@@ -1,13 +1,7 @@
 'use strict';
-var ui = require('../js/ui');
 var pgpResources = require('../js/pgpResources');
 module.exports = function (app) {
   app.controller('pgpsController', function ($scope, $http) {
-    var ux = ui();
-    angular.element(document).ready(function () {
-      ux.startHidden();
-      ux.setToggles();
-    });
     //Check for authorization before loading notes
     var storage = window.sessionStorage;
     var token = storage.getItem('token');
@@ -24,9 +18,7 @@ module.exports = function (app) {
               $scope.pgps = data.n;
             //The following added for backward compatibility; when the survey was only completed at the end
             $scope.showPostSurvey = $scope.pgps.preRtgComplete;
-            var formIdx = storage.getItem('formIdx'),
-              btnViewPgp = document.getElementById("btnviewpgp"),
-              btnCreatePgp = document.getElementById("btncreatepgp");
+            var formIdx = storage.getItem('formIdx');
             if(formIdx){
               $scope.selectedPgp = $scope.pgps[formIdx];
             }
@@ -35,14 +27,6 @@ module.exports = function (app) {
               storage.setItem('formIdx', $scope.pgps.indexOf($scope.selectedPgp));
             }
           }
-          btnViewPgp.addEventListener('click', function(){
-            storage.setItem('formIdx', $scope.pgps.indexOf($scope.selectedPgp));
-          });
-          btnCreatePgp.addEventListener('click', function(){
-            storage.setItem('formIdx', $scope.pgps.indexOf($scope.selectedPgp));
-          });
-          btnViewPgp.className = 'nav_ul-li';
-          btnCreatePgp.className = 'nav_ul-li';
         }).error(function (data, status) {
           console.log(data);
           console.log('error!');

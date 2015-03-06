@@ -42,8 +42,6 @@ module.exports = function($scope, $http){
       method: 'GET',
       url: '/api/v_0_0_1/resources/'
     }).success(function (data) {
-      console.log('nc131');
-      console.dir(data);
       $scope.resources = data;
       for (var i = 0; i < data.length; i++) {
         console.log(i + ', ' + data[i].resourceFor);

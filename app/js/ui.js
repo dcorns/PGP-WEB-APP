@@ -3,6 +3,12 @@
  */
 'use strict';
 module.exports = function () {
+  var btnViewPgp = document.getElementById('btnviewpgp')
+    ,btnCreatePgp = document.getElementById('btncreatepgp')
+    ,btnSurvey = document.getElementById('btnsurvey')
+    ,btnLogIn = document.getElementById('btnLogin')
+    ,btnCreateAccount = document.getElementById('btncreateaccount');
+
   return {
     fillInput: function (id, val) {
       if (document.getElementById(id)) {
@@ -12,7 +18,6 @@ module.exports = function () {
       }
     },
     startHidden: function () {
-      this.hideMainButtons();
       document.getElementById('btnGoalsOn').className = 'hidden';
       document.getElementById('btnAssOn').className = 'hidden';
       document.getElementById('btnG1On').className = 'hidden';
@@ -112,9 +117,37 @@ module.exports = function () {
       document.getElementById('btncreatepgp').className = 'hidden';
       document.getElementById('btnsurvey').className = 'hidden';
       document.getElementById('btnviewpgp').className = 'hidden';
+      document.getElementById('btncreateAccount').className = 'hidden';
       return this;
+    },
+    setView: function(viewToSet){
+      switch(viewToSet){
+        case 'create_PGP':
+          btnCreatePgp.className = 'hidden';
+          btnViewPgp.className = 'nav_ul-li';
+          btnSurvey.className = 'hidden';
+          btnCreateAccount.className='hidden';
+          btnLogIn.className = 'hidden';
+          //btnViewPgp.addEventListener('click', function(){
+          //  window.sessionStorage.setItem('formIdx', scope.pgps.indexOf(scope.selectedPgp));
+          //});
+        break;
+        case 'preview_PGP':
+          btnSurvey.className = 'hidden';
+          btnViewPgp.className = 'hidden';
+          btnCreatePgp.className = 'nav_ul-li';
+          btnCreateAccount.className='hidden';
+          btnLogIn.className = 'hidden';
+          //btnCreatePgp.addEventListener('click', function(){
+          //  window.sessionStorage.setItem('formIdx', scope.pgps.indexOf(scope.selectedPgp));
+          //});
+          break;
+        default:
+        break;
+      }
+    },
+    setStudent: function(){
+        window.sessionStorage.setItem('formIdx', scope.pgps.indexOf(scope.selectedPgp));
     }
-
-
   }
 };
