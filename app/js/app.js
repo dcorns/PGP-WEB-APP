@@ -55,35 +55,3 @@ switch(dgRoute) {
     };
     break;
 }
-
-pgpApp.config(['$routeProvider', function ($routeProvider) {
-  $routeProvider
-    .when('/student_survey', {
-      templateUrl: 'views/student_survey.html',
-      controller: 'surveyController'
-    })
-    .when('/create_PGP', {
-      templateUrl: 'views/create_PGP.html',
-      controller: 'pgpsController'
-    })
-    .when('/preview_PGP', {
-      templateUrl: 'views/preview_PGP.html',
-      controller: 'pgpsController'
-    })
-    .when('/view_PGP', {
-      templateUrl: 'views/view_PGP.html',
-      controller: 'viewPGPController'
-    })
-    .when('/create_Account', {
-      templateUrl: 'views/create_Account.html',
-      controller: 'userController'
-    })
-    .when('/login', {
-      templateUrl: 'views/login.html',
-      controller: 'userController'
-    })
-    .otherwise({
-      templateUrl: 'views/home.html',
-      controller: 'userController'
-    });
-}]);
