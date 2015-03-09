@@ -1,57 +1,85 @@
 'use strict';
 //comment for changes
-require('angular/angular');
-require('angular-route');
 
-var pgpApp = angular.module('pgpApp', ['ngRoute']);
+var rp = require('../js/dgRouteProvider');
 
-require('../controllers/pgps-controller')(pgpApp);
-require('../controllers/user-controller')(pgpApp);
-require('../controllers/survey-controller')(pgpApp);
-require('../controllers/viewPGP-controller')(pgpApp);
-require('../directives/drcOptCls-Directive')(pgpApp);
+var surveyCtrl = require('../controllers/surveyController');
+var pgpsCtrl = require('../controllers/pgpsController');
+var userCtrl = require('../controllers/userController');
+var viewPGPCtrl = require('../controllers/viewPGPController');
 
-switch(dgRoute) {
-  case '/student_survey':
-    return {
-      templateUrl: 'views/student_survey.html',
-      controller: 'surveyController'
-    };
-    break;
-  case '/create_PGP':
-    return {
-      templateUrl: 'views/create_PGP.html',
-      controller: 'pgpsController'
-    };
-    break;
-  case '/preview_PGP':
-    return {
-      templateUrl: 'views/preview_PGP.html',
-      controller: 'pgpsController'
-    };
-    break;
-  case '/view_PGP':
-    return {
-      templateUrl: 'views/view_PGP.html',
-      controller: 'viewPGPController'
-    };
-    break;
-  case '/create_Account':
-    return {
-      templateUrl: 'views/create_Account.html',
-      controller: 'userController'
-    };
-    break;
-  case '/login':
-    return {
-      templateUrl: 'views/login.html',
-      controller: 'userController'
-    };
-    break;
-  default:
-    return {
-      templateUrl: 'views/home.html',
-      controller: 'userController'
-    };
-    break;
+function startdgApp(startup){
+  var preOnload = window.onload;
+  if(typeof preOnload !== 'function'){
+    window.onload = startup;
+  }
+  else{
+    window.onload = function() {
+      preOnload();
+      startup();
+    }
+  }
 }
+
+function firstDo(){
+  //Add event handlers for 'a' tags
+  var links = document.getElementsByTagName('a');
+  var idx = 0, ln = links.length;
+  for(idx; idx < ln; idx++){
+    links[idx].addEventListener('click', function(){
+      postOffice(this.href);
+    });
+  }
+
+}
+
+function postOffice(dgRoute){
+  //grab everything that follows the #
+  dgRoute = dgRoute.substr(dgRoute.indexOf('#')+1);
+  switch(dgRoute) {
+    case '/student_survey':
+      return rp({
+        templateUrl: 'views/student_survey.html',
+        controller: surveyCtrl
+      });
+      break;
+    case '/create_PGP':
+      return rp({
+        templateUrl: 'views/create_PGP.html',
+        controller: pgpsCtrl
+      });
+      break;
+    case '/preview_PGP':
+      return rp({
+        templateUrl: 'views/preview_PGP.html',
+        controller: pgpsCtrl
+      });
+      break;
+    case '/view_PGP':
+      return rp({
+        templateUrl: 'views/view_PGP.html',
+        controller: viewPGPCtrl
+      });
+      break;
+    case '/create_Account':
+      return rp({
+        templateUrl: 'views/create_Account.html',
+        controller: userCtrl
+      });
+      break;
+    case '/login':
+      return rp({
+        templateUrl: 'views/login.html',
+        controller: userCtrl
+      });
+      break;
+    default:
+      return rp({
+        templateUrl: 'views/home.html',
+        controller: userCtrl
+      });
+      break;
+  }
+}
+
+startdgApp(firstDo);
