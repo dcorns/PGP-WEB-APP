@@ -22,18 +22,25 @@ function startdgApp(startup){
 }
 
 function firstDo(){
+  //Handle Refresh by checking session storage for last href and redirecting if it exists
+  var lastHref = window.sessionStorage.getItem('href');
+  if (lastHref){
+    postOffice(lastHref);
+  }
   //Add event handlers for 'a' tags
   var links = document.getElementsByTagName('a');
   var idx = 0, ln = links.length;
   for(idx; idx < ln; idx++){
     links[idx].addEventListener('click', function(e){
-      console.log(this.href);
+      window.sessionStorage.setItem('href', this.href);
       window.history.pushState(null, null, this.href);
       e.preventDefault();
       postOffice(this.href);
     });
   }
+  //Add front and back button handler
   window.addEventListener('popstate', function(){
+    window.sessionStorage.setItem('href', location.href);
     postOffice(location.href);
   });
 
