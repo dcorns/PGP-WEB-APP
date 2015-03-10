@@ -27,6 +27,12 @@ function firstDo(){
   if (lastHref){
     postOffice(lastHref);
   }
+  else{//load home template
+    lastHref = '#/home';
+    window.sessionStorage.setItem('href', lastHref);
+    window.history.pushState(null, null, lastHref);
+    postOffice(lastHref);
+  }
   //Add event handlers for 'a' tags
   var links = document.getElementsByTagName('a');
   var idx = 0, ln = links.length;
@@ -83,6 +89,12 @@ function postOffice(dgRoute){
     case '#/login':
       return rp({
         templateUrl: 'views/login.html',
+        controller: userCtrl
+      });
+      break;
+    case '#/home':
+      return rp({
+        templateUrl: 'views/home.html',
         controller: userCtrl
       });
       break;
