@@ -26,48 +26,54 @@ function firstDo(){
   var links = document.getElementsByTagName('a');
   var idx = 0, ln = links.length;
   for(idx; idx < ln; idx++){
-    links[idx].addEventListener('click', function(){
+    links[idx].addEventListener('click', function(e){
+      console.log(this.href);
+      window.history.pushState(null, null, this.href);
+      e.preventDefault();
       postOffice(this.href);
     });
   }
+  window.addEventListener('popstate', function(){
+    postOffice(location.href);
+  });
 
 }
 
 function postOffice(dgRoute){
-  //grab everything that follows the #
-  dgRoute = dgRoute.substr(dgRoute.indexOf('#')+1);
+  //grab the '#' and everything that follows it.
+  dgRoute = dgRoute.substr(dgRoute.indexOf('#'));
   switch(dgRoute) {
-    case '/student_survey':
+    case '#/student_survey':
       return rp({
         templateUrl: 'views/student_survey.html',
         controller: surveyCtrl
       });
       break;
-    case '/create_PGP':
+    case '#/create_PGP':
       return rp({
         templateUrl: 'views/create_PGP.html',
         controller: pgpsCtrl
       });
       break;
-    case '/preview_PGP':
+    case '#/preview_PGP':
       return rp({
         templateUrl: 'views/preview_PGP.html',
         controller: pgpsCtrl
       });
       break;
-    case '/view_PGP':
+    case '#/view_PGP':
       return rp({
         templateUrl: 'views/view_PGP.html',
         controller: viewPGPCtrl
       });
       break;
-    case '/create_Account':
+    case '#/create_Account':
       return rp({
         templateUrl: 'views/create_Account.html',
         controller: userCtrl
       });
       break;
-    case '/login':
+    case '#/login':
       return rp({
         templateUrl: 'views/login.html',
         controller: userCtrl
