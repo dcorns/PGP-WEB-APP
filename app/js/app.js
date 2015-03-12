@@ -1,9 +1,13 @@
 'use strict';
 var dgApp = {};
-dgApp.userCtrl = require('../controllers/userController');
+dgApp.homeCtrl = require('../controllers/homeController');
+dgApp.loginCtrl = require('../controllers/loginController');
+dgApp.createAccountCtrl = require('../controllers/createAccountController');
 dgApp.surveyCtrl = require('../controllers/surveyController');
-dgApp.pgpsCtrl = require('../controllers/pgpsController');
-dgApp.viewPGPCtrl = require('../controllers/viewPGPController');
+dgApp.createPGPCtrl = require('../controllers/createPGPcontroller');
+dgApp.previewPGPCtrl = require('../controllers/previewPGPcontroller');
+dgApp.viewPGPCtrl = require('../controllers/viewPGPcontroller');
+
 require('../js/dgRouteProvider')(dgApp); //adds loadRoute method to dgApp
 
 function startdgApp(startup){

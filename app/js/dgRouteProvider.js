@@ -24,13 +24,13 @@ module.exports = function(app){
       case '#/create_PGP':
         return loadRoute({
           templateUrl: 'views/create_PGP.html',
-          controller: app.pgpsCtrl
+          controller: app.createPGPCtrl
         });
         break;
       case '#/preview_PGP':
         return loadRoute({
           templateUrl: 'views/preview_PGP.html',
-          controller: app.pgpsCtrl
+          controller: app.previewPGPCtrl
         });
         break;
       case '#/view_PGP':
@@ -42,25 +42,25 @@ module.exports = function(app){
       case '#/create_Account':
         return loadRoute({
           templateUrl: 'views/create_Account.html',
-          controller: app.userCtrl
+          controller: app.createAccountCtrl
         });
         break;
       case '#/login':
         return loadRoute({
           templateUrl: 'views/login.html',
-          controller: app.userCtrl
+          controller: app.loginCtrl
         });
         break;
       case '#/home':
         return loadRoute({
           templateUrl: 'views/home.html',
-          controller: app.userCtrl
+          controller: app.homeCtrl
         });
         break;
       default:
         return loadRoute({
           templateUrl: 'views/home.html',
-          controller: app.userCtrl
+          controller: app.homeCtrl
         });
         break;
     }
