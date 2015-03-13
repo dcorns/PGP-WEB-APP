@@ -7,7 +7,7 @@
 
 function loadRoute(rtObj){
   document.getElementById("dgView").innerHTML='<object type="text/html" data=' + rtObj.templateUrl + '></object>';
-  rtObj.controller();
+  rtObj.controller(); rtObj.view(); rtObj.model();
 }
 
 module.exports = function(app){
@@ -18,49 +18,65 @@ module.exports = function(app){
       case '#/student_survey':
         return loadRoute({
           templateUrl: 'views/student_survey.html',
-          controller: app.surveyCtrl
+          view: function(){},
+          controller: app.surveyCtrl,
+          model: function(){}
         });
         break;
       case '#/create_PGP':
         return loadRoute({
           templateUrl: 'views/create_PGP.html',
-          controller: app.createPGPCtrl
+          view: function(){},
+          controller: app.createPGPCtrl,
+          model: function(){}
         });
         break;
       case '#/preview_PGP':
         return loadRoute({
           templateUrl: 'views/preview_PGP.html',
-          controller: app.previewPGPCtrl
+          view: function(){},
+          controller: app.previewPGPCtrl,
+          model: function(){}
         });
         break;
       case '#/view_PGP':
         return loadRoute({
           templateUrl: 'views/view_PGP.html',
-          controller: app.viewPGPCtrl
+          view: function(){},
+          controller: app.viewPGPCtrl,
+          model: function(){}
         });
         break;
       case '#/create_Account':
         return loadRoute({
           templateUrl: 'views/create_Account.html',
-          controller: app.createAccountCtrl
+          view: function(){},
+          controller: app.createAccountCtrl,
+          model: function(){}
         });
         break;
       case '#/login':
         return loadRoute({
           templateUrl: 'views/login.html',
-          controller: app.loginCtrl
+          view: function(){},
+          controller: app.loginCtrl,
+          model: function(){}
         });
         break;
       case '#/home':
         return loadRoute({
           templateUrl: 'views/home.html',
-          controller: app.homeCtrl
+          view: function(){},
+          controller: app.homeCtrl,
+          model: function(){}
         });
         break;
       default:
         return loadRoute({
           templateUrl: 'views/home.html',
-          controller: app.homeCtrl
+          view: function(){},
+          controller: app.homeCtrl,
+          model: function(){}
         });
         break;
     }
