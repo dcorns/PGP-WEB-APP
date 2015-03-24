@@ -1,15 +1,14 @@
-<div data-ng-controller="userController">
+
     <article class="userLogin">
         <form class="userLogin_form">
             <fieldset>
                 <legend>User Login</legend>
                 <label class="loginUser_form-lbl">Email Address</label>
-                <input class="loginUser_form-textarea" placeholder="email address" type="email"
-                       data-ng-model="loginUser.email">
+                    <input id="username" class="loginUser_form-textarea" placeholder="email address" type="email"
+                       >
                 <label class="newUser_form-lbl">Password</label>
-                <input placeholder="password" type="password" data-ng-model="loginUser.password">
+                <input id="password" placeholder="password" type="password">
             </fieldset>
-            <button id="btnlogin" data-ng-click="userLogin(loginUser)">Submit</button>
+            <button id="btnlogin" onclick="dgApp.testmod()">Submit</button>
         </form>
     </article>
-</div>

@@ -1,48 +1,50 @@
 'use strict';
-//comment for changes
-require('angular/angular');
-require('angular-route');
+var dgApp = {};
+dgApp.homeView = require('../views/homeView');
+dgApp.homeCtrl = require('../controllers/homeController');
+dgApp.loginView = require('../views/loginView');
+dgApp.loginCtrl = require('../controllers/loginController');
+dgApp.createAccountCtrl = require('../controllers/createAccountController');
+dgApp.surveyCtrl = require('../controllers/surveyController');
+dgApp.createPgpView = require('../views/createPgpView');
+dgApp.createPGPCtrl = require('../controllers/createPGPcontroller');
+dgApp.previewPGPCtrl = require('../controllers/previewPGPcontroller');
+dgApp.viewPGPCtrl = require('../controllers/viewPGPcontroller');
 
-var pgpApp = angular.module('pgpApp', ['ngRoute']);
-//Controllers
-require('../controllers/pgps-controller')(pgpApp);
-require('../controllers/user-controller')(pgpApp);
-require('../controllers/survey-controller')(pgpApp);
-require('../controllers/viewPGP-controller')(pgpApp);
-//Directives
-require('../directives/drcOptCls-Directive')(pgpApp);
-require('../directives/drcSimple')(pgpApp);
-require('../directives/createPgpUi')(pgpApp);
-require('../directives/previewPgpUi')(pgpApp);
+require('../models/userModel')(dgApp); //adds userMdl object
+require('../js/dgRouteProvider')(dgApp); //adds loadRoute method to dgApp
+require('../js/dgMethods')(dgApp); //add dgMethod object to dgApp
 
-pgpApp.config(['$routeProvider', function ($routeProvider) {
-  $routeProvider
-    .when('/student_survey', {
-      templateUrl: 'views/student_survey.html',
-      controller: 'surveyController'
-    })
-    .when('/create_PGP', {
-      templateUrl: 'views/create_PGP.html',
-      controller: 'pgpsController'
-    })
-    .when('/preview_PGP', {
-      templateUrl: 'views/preview_PGP.html',
-      controller: 'pgpsController'
-    })
-    .when('/view_PGP', {
-      templateUrl: 'views/view_PGP.html',
-      controller: 'viewPGPController'
-    })
-    .when('/create_Account', {
-      templateUrl: 'views/create_Account.html',
-      controller: 'userController'
-    })
-    .when('/login', {
-      templateUrl: 'views/login.html',
-      controller: 'userController'
-    })
-    .otherwise({
-      templateUrl: 'views/home.html',
-      controller: 'userController'
+function firstDo(){
+  //Handle Refresh by checking session storage for last href and redirecting if it exists
+  var lastHref = window.sessionStorage.getItem('href');
+  var netAction = window.sessionStorage.getItem('netAction');
+    if (lastHref) {
+      dgApp.loadRoute(lastHref);
+    }
+    else {//load home template
+      lastHref = '#/home';
+      window.sessionStorage.setItem('href', lastHref);
+      window.history.pushState(null, null, lastHref);
+      dgApp.loadRoute(lastHref);
+    }
+    //Add event handlers for 'a' tags
+    var links = document.getElementsByTagName('a');
+    var idx = 0, ln = links.length;
+    for (idx; idx < ln; idx++) {
+      links[idx].addEventListener('click', function (e) {
+        window.sessionStorage.setItem('href', this.href);
+        window.history.pushState(null, null, this.href);
+        e.preventDefault();
+        dgApp.loadRoute(this.href);
+      });
+    }
+    //Add front and back button handler
+    window.addEventListener('popstate', function () {
+      window.sessionStorage.setItem('href', location.href);
+      dgApp.loadRoute(location.href);
     });
-}]);
+    window.dgApp = dgApp;
+}
+
+dgApp.dgMethod.winReady(firstDo);

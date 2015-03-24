@@ -3,12 +3,6 @@
  */
 'use strict';
 module.exports = function () {
-  var btnViewPgp = document.getElementById('btnviewpgp')
-    ,btnCreatePgp = document.getElementById('btncreatepgp')
-    ,btnSurvey = document.getElementById('btnsurvey')
-    ,btnLogIn = document.getElementById('btnLogin')
-    ,btnCreateAccount = document.getElementById('btncreateaccount');
-
   return {
     fillInput: function (id, val) {
       if (document.getElementById(id)) {
@@ -18,6 +12,7 @@ module.exports = function () {
       }
     },
     startHidden: function () {
+      this.hideMainButtons();
       document.getElementById('btnGoalsOn').className = 'hidden';
       document.getElementById('btnAssOn').className = 'hidden';
       document.getElementById('btnG1On').className = 'hidden';
@@ -117,37 +112,65 @@ module.exports = function () {
       document.getElementById('btncreatepgp').className = 'hidden';
       document.getElementById('btnsurvey').className = 'hidden';
       document.getElementById('btnviewpgp').className = 'hidden';
-      document.getElementById('btncreateAccount').className = 'hidden';
       return this;
     },
-    setView: function(viewToSet){
-      switch(viewToSet){
-        case 'create_PGP':
-          btnCreatePgp.className = 'hidden';
-          btnViewPgp.className = 'nav_ul-li';
-          btnSurvey.className = 'hidden';
-          btnCreateAccount.className='hidden';
-          btnLogIn.className = 'hidden';
-          //btnViewPgp.addEventListener('click', function(){
-          //  window.sessionStorage.setItem('formIdx', scope.pgps.indexOf(scope.selectedPgp));
-          //});
-        break;
-        case 'preview_PGP':
-          btnSurvey.className = 'hidden';
-          btnViewPgp.className = 'hidden';
-          btnCreatePgp.className = 'nav_ul-li';
-          btnCreateAccount.className='hidden';
-          btnLogIn.className = 'hidden';
-          //btnCreatePgp.addEventListener('click', function(){
-          //  window.sessionStorage.setItem('formIdx', scope.pgps.indexOf(scope.selectedPgp));
-          //});
-          break;
-        default:
-        break;
-      }
+    makeLoginView: function(){
+    var dgView2 = document.getElementById('dgView2');
+      var art = document.createElement('article');
+      art.className = 'userLogin';
+      var frm = document.createElement('form');
+      frm.className = 'userLogin_form';
+      var fs = document.createElement('fieldset');
+var leg = document.createElement('legend');
+var legtxt = document.createTextNode('User Login');
+      leg.appendChild(legtxt);
+      var lblemail = document.createElement('label');
+      var lblemailtxt = document.createTextNode('Email/UserName');
+      lblemail.appendChild(lblemailtxt);
+      lblemail.className = 'loginUser_form-lbl';
+    var email = document.createElement('input');
+      email.className = 'loginUser_form-textarea';
+    var pswd = document.createElement('input');
+    var btnLogin2 = document.createElement('button');
+      var btnTxt = document.createTextNode('SUBMIT');
+      btnLogin2.appendChild(btnTxt);
+      art.appendChild(frm);
+      frm.appendChild(fs);
+      fs.appendChild(leg);
+      fs.appendChild(lblemail);
+      fs.appendChild(email);
+      fs.appendChild(pswd);
+      frm.appendChild(btnLogin2);
+     // dgView2.innerHTML = art;
+      return this;
+  },
+    addTag: function(elId, tg, tgId){
+      var newTg = document.createElement(tg);
+      newTg.id = tgId;
+      document.getElementById(elId).appendChild(newTg);
     },
-    setStudent: function(){
-        window.sessionStorage.setItem('formIdx', scope.pgps.indexOf(scope.selectedPgp));
+    addTextTag: function(elId, tg, txt){
+      var par = document.createElement(tg);
+      par.innerHTML = txt;
+      document.getElementById(elId).appendChild(par);
+    },
+    addInput: function(elId, tgId, placeTxt, tgtype){
+      var i = document.createElement('input');
+      i.id = tgId;
+      i.placeholder = placeTxt;
+      i.type = tgtype;
+      document.getElementById(elId).appendChild(i);
+    },
+    addButton: function(elId, tgId, tgText){
+      var b = document.createElement('button');
+      b.id = tgId;
+      b.innerHTML = tgText;
+      b.type = 'button'; //this keeps the automatic page refresh from happening when used in a form
+      document.getElementById(elId).appendChild(b);
+    },
+    replaceClass: function(tgId, cls){
+      document.getElementById(tgId).className = cls;
     }
+
   }
 };
