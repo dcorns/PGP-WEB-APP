@@ -113,8 +113,64 @@ module.exports = function () {
       document.getElementById('btnsurvey').className = 'hidden';
       document.getElementById('btnviewpgp').className = 'hidden';
       return this;
+    },
+    makeLoginView: function(){
+    var dgView2 = document.getElementById('dgView2');
+      var art = document.createElement('article');
+      art.className = 'userLogin';
+      var frm = document.createElement('form');
+      frm.className = 'userLogin_form';
+      var fs = document.createElement('fieldset');
+var leg = document.createElement('legend');
+var legtxt = document.createTextNode('User Login');
+      leg.appendChild(legtxt);
+      var lblemail = document.createElement('label');
+      var lblemailtxt = document.createTextNode('Email/UserName');
+      lblemail.appendChild(lblemailtxt);
+      lblemail.className = 'loginUser_form-lbl';
+    var email = document.createElement('input');
+      email.className = 'loginUser_form-textarea';
+    var pswd = document.createElement('input');
+    var btnLogin2 = document.createElement('button');
+      var btnTxt = document.createTextNode('SUBMIT');
+      btnLogin2.appendChild(btnTxt);
+      art.appendChild(frm);
+      frm.appendChild(fs);
+      fs.appendChild(leg);
+      fs.appendChild(lblemail);
+      fs.appendChild(email);
+      fs.appendChild(pswd);
+      frm.appendChild(btnLogin2);
+     // dgView2.innerHTML = art;
+      return this;
+  },
+    addTag: function(elId, tg, tgId){
+      var newTg = document.createElement(tg);
+      newTg.id = tgId;
+      document.getElementById(elId).appendChild(newTg);
+    },
+    addTextTag: function(elId, tg, txt){
+      var par = document.createElement(tg);
+      par.innerHTML = txt;
+      document.getElementById(elId).appendChild(par);
+    },
+    addInput: function(elId, tgId, placeTxt, tgtype){
+      var i = document.createElement('input');
+      i.id = tgId;
+      i.placeholder = placeTxt;
+      i.type = tgtype;
+      document.getElementById(elId).appendChild(i);
+    },
+    addButton: function(elId, tgId, tgText){
+      var b = document.createElement('button');
+      b.id = tgId;
+      b.innerHTML = tgText;
+      b.type = 'button'; //this keeps the automatic page refresh from happening when used in a form
+      document.getElementById(elId).appendChild(b);
+    },
+    replaceClass: function(tgId, cls){
+      document.getElementById(tgId).className = cls;
     }
-
 
   }
 };

@@ -9,6 +9,7 @@ module.exports = function (app) {
   var baseUrl = '/api/v_0_0_1/login';
   //Login
   app.post(baseUrl, function (req, res) {
+    console.dir(req.body);
     var validate = validation();
     validate.validateLogin(req.body, function(valid, err){
       if(!(valid)){
