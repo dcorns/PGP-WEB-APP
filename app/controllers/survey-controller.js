@@ -20,6 +20,8 @@ module.exports = function (app){
           url: 'api/v_0_0_1/userForm'
         }).success(function(data){
           $scope.survey = data;
+          $scope.showPostSurvey = $scope.survey.preRtgComplete;
+          $scope.surveysComplete = $scope.survey.rtgComplete;
           //For some reason these do not bind like the rest so this temp work around
           ux.fillInput("rtg1", $scope.survey.rtg1);
           ux.fillInput("rtg2", $scope.survey.rtg2);

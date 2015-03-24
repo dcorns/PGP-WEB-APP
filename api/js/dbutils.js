@@ -96,25 +96,7 @@ module.exports = function (obj) {
         cb(null, rArray);
       });
     },
-    combinePgpGoalresources: function(cb){
-      var arraysCombined = obj.goalsrc1.concat(obj.goalsrc2, obj.goalsrc3, obj.goalsrc4, obj.goalsrc5);
-      obj.goalsrc1 = this.removeArrayDuplicates('title', arraysCombined);
-      obj.goalsrc2 = []; obj.goalsrc3 = []; obj.goalsrc4 = []; obj.goalsrc5 = [];
-      cb();
-    },
-    removeArrayDuplicates: function(searchkey, ary){
-      var dupFreeArray = [];
-      var exists = false;
-      for(var idx = 0; idx < ary.length; idx++){
-        for(var nidx = 0; nidx < dupFreeArray.length; nidx++){
-          if(ary[idx][searchkey] === dupFreeArray[nidx][searchkey]) exists = true;
-        }
-        if(!(exists)) dupFreeArray.push(ary[idx]);
-        exists = false;
-      }
 
-      return dupFreeArray;
-    },
     addNewUser: function(cb){
       //var user = new User(obj);
       obj.email = obj.email.toLowerCase();
@@ -125,15 +107,9 @@ module.exports = function (obj) {
           if(err){
             return cb(err, null);
           }
-          console.log('db128'); console.dir(docAry[0]);
           return cb(null, {msg: 'New user '+ docAry[0].email + ' added.'});
       });
-        //user.save(function (err, usr) {
-        //  if (err){
-        //    return cb(err, null);
-        //  }
-        //  return cb(null, {msg: 'Save succeeded'});
-        //});
+
       });
     },
     getUserPayload: function(usr, cb){
@@ -143,14 +119,31 @@ module.exports = function (obj) {
           return cb(err, null);
         }
         if(note[0]){
-          payload.note = note[0];
+          combinePgpGoalresources(note[0], function(err, cnote){
+            if(err) return cb(err, null);
+            payload.note = cnote;
+          });
         }
         else{
           payload.note = {};
           payload.note.student = usr.email;
           payload.note.recComplete = false;
+          payload.note.preRtgComplete = false;
           payload.note.rtgComplete = false;
           payload.note.name = usr.firstName + ' ' + usr.lastName;
+          payload.note.goalsrc1 = [];
+          payload.note.goalsrc2 = [];
+          payload.note.goalsrc3 = [];
+          payload.note.goalsrc4 = [];
+          payload.note.goalsrc5 = [];
+          payload.note.recsrc1 = [];
+          payload.note.recsrc2 = [];
+          payload.note.recsrc3 = [];
+          payload.note.recsrc4 = [];
+          payload.note.recsrc5 = [];
+          payload.note.recsrc6 = [];
+          payload.note.recsrc7 = [];
+          payload.note.moresrc = [];
         }
         payload.user = usr;
         return cb(null, payload);
@@ -166,5 +159,24 @@ module.exports = function (obj) {
       err[errName] = errMsg;
     }
     return err;
+  }
+
+  function combinePgpGoalresources(noteIn, cb){
+    var arraysCombined = noteIn.goalsrc1.concat(noteIn.goalsrc2, noteIn.goalsrc3, noteIn.goalsrc4, noteIn.goalsrc5);
+    noteIn.goalsrc1 = removeArrayDuplicates('title', arraysCombined);
+    noteIn.goalsrc2 = []; noteIn.goalsrc3 = []; noteIn.goalsrc4 = []; noteIn.goalsrc5 = [];
+    cb(null, noteIn);
+  }
+  function removeArrayDuplicates(searchkey, ary) {
+    var dupFreeArray = [];
+    var exists = false;
+    for (var idx = 0; idx < ary.length; idx++) {
+      for (var nidx = 0; nidx < dupFreeArray.length; nidx++) {
+        if (ary[idx][searchkey] === dupFreeArray[nidx][searchkey]) exists = true;
+      }
+      if (!(exists)) dupFreeArray.push(ary[idx]);
+      exists = false;
+    }
+    return dupFreeArray;
   }
 };

@@ -25,6 +25,7 @@ module.exports = function (app) {
               }
               if(usr.roll === 'student'){
                 var db = dbutils();
+                //this payload code moved to survey routes factor out of here
                 db.getUserPayload(usr, function(err, payload){
                   if(err){
                     return res.status(500).json(payload.err);
