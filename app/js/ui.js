@@ -161,12 +161,49 @@ var legtxt = document.createTextNode('User Login');
       i.type = tgtype;
       document.getElementById(elId).appendChild(i);
     },
-    addButton: function(elId, tgId, tgText){
+    addButton: function(elId, tgId, tgText, cls){
       var b = document.createElement('button');
+      b.className = cls || '';
       b.id = tgId;
       b.innerHTML = tgText;
       b.type = 'button'; //this keeps the automatic page refresh from happening when used in a form
       document.getElementById(elId).appendChild(b);
+    },
+    addToggleButton: function(elId, tgId, tgText1, tgText2, cls, f1, f2){
+      var b = document.createElement('button');
+      b.className = cls || '';
+      b.id = tgId;
+      b.innerHTML = tgText1;
+      b.type = 'button';
+      var clicked = true;
+      b.addEventListener('click', function(e){
+        if(clicked){
+          clicked = false;
+          e.srcElement.innerHTML = tgText1;
+          if(f1){
+            f1();
+          }
+        }
+        else{
+          clicked = true;
+          e.srcElement.innerHTML = tgText2;
+          if(f2){
+            f2();
+          }
+        }
+      });
+      document.getElementById(elId).appendChild(b);
+    },
+    addToggleViewButton: function(elId, tgId, tgTxt, cls, tglView){
+      this.addToggleButton(elId, tgId, tgTxt, tgTxt, cls, function(){
+        var fm = document.getElementById(tglView);
+        document.getElementById(tgId).className = 'btnOff';
+        fm.hidden = true;
+      }, function(){
+        var fm = document.getElementById(tglView);
+        document.getElementById(tgId).className = 'btnOn';
+        fm.hidden = false;
+      });
     },
     replaceClass: function(tgId, cls){
       document.getElementById(tgId).className = cls;

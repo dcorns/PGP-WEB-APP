@@ -4,5 +4,5 @@
  */
 'use strict';
 module.exports = function(){
-  alert('create PGP controller');
+
 };

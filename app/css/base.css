@@ -68,6 +68,17 @@ h1 {
     background-color: brown;
 }
 
+.btnOn {
+    width: 7em;
+    background-color: brown;
+}
+.btnOff {
+    width: 7em;
+    background-color: green;
+}
+
+
+
 .rating {
     font-size: 10rem;
     background-color: darkred;
