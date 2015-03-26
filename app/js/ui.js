@@ -144,14 +144,17 @@ var legtxt = document.createTextNode('User Login');
      // dgView2.innerHTML = art;
       return this;
   },
-    addTag: function(elId, tg, tgId){
+    addTag: function(elId, tg, tgId, cls, tgHtml){
       var newTg = document.createElement(tg);
       newTg.id = tgId;
+      newTg.className = cls || '';
+      newTg.innerHTML = tgHtml || '';
       document.getElementById(elId).appendChild(newTg);
     },
-    addTextTag: function(elId, tg, txt){
+    addTextTag: function(elId, tg, txt, cls){
       var par = document.createElement(tg);
       par.innerHTML = txt;
+      par.className = cls || '';
       document.getElementById(elId).appendChild(par);
     },
     addInput: function(elId, tgId, placeTxt, tgtype){
@@ -204,6 +207,12 @@ var legtxt = document.createTextNode('User Login');
         document.getElementById(tgId).className = 'btnOn';
         fm.hidden = false;
       });
+    },
+    addLabel: function(elId, lblFor, lblTxt){
+      var l = document.createElement(('label'));
+      l.htmlFor = lblFor;
+      l.innerHTML = lblTxt;
+      document.getElementById(elId).appendChild(l);
     },
     replaceClass: function(tgId, cls){
       document.getElementById(tgId).className = cls;

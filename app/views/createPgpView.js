@@ -31,6 +31,15 @@ module.exports = function(){
   ux.addInput('frmGoalResource', 'resrcType', 'New Resource Type', 'text');
   ux.addInput('frmGoalResource', 'resrcLink', 'New Resource Link', 'text');
   ux.addButton('frmGoalResource', 'btnSaveResource', 'Save New Resource');
-  ux.addButton('fGoals','btnG1On', 'LongTermGoals', 'toggle');
+  ux.addToggleViewButton('fGoals', 'btnG1On', 'LongTermGoals', 'btnOn', 'fG1');
   ux.addTag('fGoals', 'fieldset', 'fG1');
+  ux.addTextTag('fG1', 'label', 'My long term goals:', 'pgpQuestions');
+  ux.addTag('fG1', 'p', 'preGoala', 'preSurvey', 'PreSurvey: ');
+  ux.addTag('fG1', 'p', 'postGoala', 'postSurvey', 'PostSurvey');
+  ux.addLabel('fG1', 'sG1', 'General Resources');
+  ux.addTag('fG1', 'select', 'sG1');
+  ux.addTextTag('fG1', 'label', 'Resource Blame: ');
+  ux.addButton('fG1', 'addToPlan', 'Add Resource to Plan');
+  ux.addTextTag('fG1', 'label', 'Remove from Plan: Alt+Click');
+  ux.addTag('fG1', 'ul', 'goalAresources', 'resourceList');
 };
