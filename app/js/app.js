@@ -17,6 +17,7 @@ require('../js/dgRouteProvider')(dgApp); //adds loadRoute method to dgApp
 require('../js/dgMethods')(dgApp); //add dgMethod object to dgApp
 
 function firstDo(){
+  window.dgApp = dgApp;
   //Handle Refresh by checking session storage for last href and redirecting if it exists
   var lastHref = window.sessionStorage.getItem('href');
   var netAction = window.sessionStorage.getItem('netAction');
@@ -45,7 +46,6 @@ function firstDo(){
       window.sessionStorage.setItem('href', location.href);
       dgApp.loadRoute(location.href);
     });
-    window.dgApp = dgApp;
 }
 
 dgApp.dgMethod.winReady(firstDo);

@@ -6,7 +6,7 @@
 'use strict';
 
 function loadRoute(rtObj){
-  rtObj.view(); rtObj.controller()
+  rtObj.view(); rtObj.controller();
 }
 
 module.exports = function(app){
