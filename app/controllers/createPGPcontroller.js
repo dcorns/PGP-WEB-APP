@@ -32,6 +32,11 @@ module.exports = function(){
           dgApp.pgpMdl = pgpArray[idx];
           storage.setItem('formIdx', idx);
         });
+        document.getElementById('studentSelect').addEventListener('change', function(e){
+          var idx = e.srcElement.selectedOptions[0].accessKey;
+          dgApp.pgpMdl = pgpArray[idx];
+          storage.setItem('formIdx', idx);
+        });
       }
 
     }, token);
