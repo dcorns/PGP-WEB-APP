@@ -12,6 +12,7 @@ dgApp.previewPGPCtrl = require('../controllers/previewPGPcontroller');
 dgApp.viewPGPCtrl = require('../controllers/viewPGPcontroller');
 
 require('../models/userModel')(dgApp); //adds userMdl object
+require('../models/pgpModel')(dgApp); //adds pgpMdl object
 require('../js/dgRouteProvider')(dgApp); //adds loadRoute method to dgApp
 require('../js/dgMethods')(dgApp); //add dgMethod object to dgApp
 
