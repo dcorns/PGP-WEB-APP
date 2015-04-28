@@ -1,0 +1,141 @@
+<div data-ng-controller="viewPGPController" id="pgpout">
+
+    <article>
+        <fieldset>
+            <h1 class="pgpHeader" >Personal Growth Plan For {{pgp.name}}</h1>
+            <h2 class="hCourse">{{ 'Course ' + pgp.course}}</h2>
+        </fieldset>
+        <fieldset>
+            <legend class="pgpLegend">Based on your self assessment responses we recommend the following resources:</legend>
+            <label class="ppgrating">{{pgp.rtg1}}</label>
+            <label class="ppgrating" ng-hide="!showPostSurvey">{{pgp.rtg1a}}</label>
+            <label class="pgpAssTitle">HTML:</label>
+            <ul>
+                <li class="animate-repeat" data-ng-repeat="rec in pgp.recsrc1">
+                    Type:{{rec.type}}: <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                </li>
+                <li class="animate-repeat" data-ng-if="results.length == 0">
+                    <strong>Nothing Recommended</strong>
+                </li>
+            </ul>
+            <p>{{pgp.rec1}}</p>
+            <label class="ppgrating">{{pgp.rtg2}}</label>
+            <label class="ppgrating" ng-hide="!showPostSurvey">{{pgp.rtg2a}}</label>
+            <label class="pgpAssTitle">CSS:</label>
+            <ul>
+                <li class="animate-repeat" data-ng-repeat="rec in pgp.recsrc2">
+                    Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                </li>
+                <li class="animate-repeat" ng-if="results.length == 0">
+                    <strong>No results found...</strong>
+                </li>
+            </ul>
+            <p>{{pgp.rec2}}</p>
+            <label class="ppgrating">{{pgp.rtg3}}</label>
+            <label class="ppgrating" ng-hide="!showPostSurvey">{{pgp.rtg3a}}</label>
+            <label class="pgpAssTitle">JavaScript:</label>
+            <ul>
+                <li class="animate-repeat" data-ng-repeat="rec in pgp.recsrc3">
+                    Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                </li>
+                <li class="animate-repeat" ng-if="results.length == 0">
+                    <strong>No results found...</strong>
+                </li>
+            </ul>
+            <p>{{pgp.rec3}}</p>
+            <label class="ppgrating">{{pgp.rtg4}}</label>
+            <label class="ppgrating" ng-hide="!showPostSurvey">{{pgp.rtg4a}}</label>
+            <label class="pgpAssTitle">GIT:</label>
+            <ul>
+                <li class="animate-repeat" data-ng-repeat="rec in pgp.recsrc4">
+                    Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                </li>
+                <li class="animate-repeat" ng-if="results.length == 0">
+                    <strong>No results found...</strong>
+                </li>
+            </ul>
+            <p>{{pgp.rec4}}</p>
+            <label class="ppgrating">{{pgp.rtg5}}</label>
+            <label class="ppgrating" ng-hide="!showPostSurvey">{{pgp.rtg5a}}</label>
+            <label class="pgpAssTitle">Data Structures and Algorithms:</label>
+            <ul>
+                <li class="animate-repeat" data-ng-repeat="rec in pgp.recsrc5">
+                    Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                </li>
+                <li class="animate-repeat" ng-if="results.length == 0">
+                    <strong>No results found...</strong>
+                </li>
+            </ul>
+            <p>{{pgp.rec5}}</p>
+            <label class="ppgrating">{{pgp.rtg6}}</label>
+            <label class="ppgrating" ng-hide="!showPostSurvey">{{pgp.rtg6a}}</label>
+            <label class="pgpAssTitle">Command Line/ Terminal:</label>
+            <ul>
+                <li class="animate-repeat" data-ng-repeat="rec in pgp.recsrc6">
+                    Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                </li>
+                <li class="animate-repeat" ng-if="results.length == 0">
+                    <strong>No results found...</strong>
+                </li>
+            </ul>
+            <p>{{pgp.rec6}}</p>
+            <label class="ppgrating">{{pgp.rtg7}}</label>
+            <label class="ppgrating" ng-hide="!showPostSurvey">{{pgp.rtg7a}}</label>
+            <label class="pgpAssTitle">Object-orientated Programing:</label>
+            <ul>
+                <li class="animate-repeat" data-ng-repeat="rec in pgp.recsrc7">
+                    Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                </li>
+                <li class="animate-repeat" ng-if="results.length == 0">
+                    <strong>No results found...</strong>
+                </li>
+            </ul>
+            <p>{{pgp.rec7}}</p>
+        </fieldset>
+        <fieldset>
+            <legend class="pgpLegend">Additional resources provided based on your responses to survey questions:</legend>
+            <ul>
+                <li class="animate-repeat" data-ng-repeat="rec in pgp.goalsrc1">
+                    Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                </li>
+                <li class="animate-repeat" ng-if="results.length == 0">
+                    <strong>No results found...</strong>
+                </li>
+            </ul>
+            <ul>
+                <li class="animate-repeat" data-ng-repeat="rec in pgp.goalsrc2">
+                    Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                </li>
+                <li class="animate-repeat" ng-if="results.length == 0">
+                    <strong>No results found...</strong>
+                </li>
+            </ul>
+            <ul>
+                <li class="animate-repeat" data-ng-repeat="rec in pgp.goalsrc3">
+                    Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                </li>
+                <li class="animate-repeat" ng-if="results.length == 0">
+                    <strong>No results found...</strong>
+                </li>
+            </ul>
+            <ul>
+                <li class="animate-repeat" data-ng-repeat="rec in pgp.goalsrc4">
+                    Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                </li>
+                <li class="animate-repeat" ng-if="results.length == 0">
+                    <strong>No results found...</strong>
+                </li>
+            </ul>
+            <ul>
+                <li class="animate-repeat" data-ng-repeat="rec in pgp.goalsrc5">
+                    Type:{{rec.type}} <a data-ng-href="{{rec.rlink}}">{{rec.title}}</a>
+                </li>
+                <li class="animate-repeat" ng-if="results.length == 0">
+                    <strong>No results found...</strong>
+                </li>
+            </ul>
+        </fieldset>
+        <label class="pgpLegend">Additional comments and responses:</label>
+        <p>{{pgp.feedbk}}</p>
+    </article>
+</div>

@@ -15,13 +15,16 @@ module.exports = function(){
   btnCreatePgp.className = 'nav_ul-li';
   document.getElementById('btnviewpgp').className = 'nav_ul-li';
 
+  //main view
   document.getElementById('dgView').innerHTML = '';
   ux.addTag('dgView', 'Article', 'createPGP');
+
   ux.addTag('createPGP', 'form', 'createPGPForm');
   ux.addTag('createPGPForm', 'fieldset', 'createPGPSelect');
   ux.addTextTag('createPGPSelect', 'legend', 'Please Select A Student');
   ux.addTag('createPGPSelect', 'select', 'studentSelect');
   ux.addToggleViewButton('createPGPForm', 'btnGoalsToggle', 'GOALS', 'btnOn', 'fGoals');
+
   ux.addTag('createPGPForm', 'fieldset', 'fGoals');
   ux.addTextTag('fGoals', 'legend', 'Goals');
   ux.addTextTag('fGoals', 'h2', 'Save New General Resources Here');
@@ -36,6 +39,7 @@ module.exports = function(){
   ux.addTextTag('fG1', 'label', 'My long term goals:', 'pgpQuestions');
   ux.addTag('fG1', 'p', 'preGoala', 'preSurvey', 'PreSurvey: ');
   ux.addTag('fG1', 'p', 'postGoala', 'postSurvey', 'PostSurvey');
+
   ux.addLabel('fG1', 'sG1', 'General Resources');
   ux.addTag('fG1', 'select', 'sG1');
   ux.addTextTag('fG1', 'label', 'Resource Blame: ');
