@@ -7,8 +7,7 @@ var errHandle = require('../js/handleErrors')();
 module.exports = function(){
   //check authorization before loading data
   var storage = window.sessionStorage;
-  var pgpArray = [];
-  var pgpResources = {};
+  var pgpArray = [], pgpResources = [], pgpTopics = [];
   var genResources = [], HTMLResources = [], CSSResources = [], JSResources = [], GITResources = [], DSAResources = [], CMDResources = [], OOPResources = [];
   var selG1Res, selG2Res, selG3Res, selG4Res, selG5Res;
   var selHTMLRes, selCSSRes, selJSRes, selGITRes, selDSARes, selCMDRes, selOOPRes;
@@ -34,8 +33,6 @@ module.exports = function(){
         }
 
         getAllResources(data.u);
-
-        dgApp.dgMethod.dataLoadSelect('sG1', data.n, 'name', '_id');
 
         studentSelect.addEventListener('click', function(e){
           var idx = e.srcElement.selectedOptions[0].accessKey;
@@ -66,8 +63,10 @@ module.exports = function(){
       if(err){
         errHandle.alertObject(err); return;
       }
-      pgpResources = data;
+      pgpResources = data.resourceList;
+      pgpTopics = data.topicList;
       console.dir(pgpResources);
+      dgApp.dgMethod.dataLoadSelect('sG1', pgpResources, ['title', 'description', 'resourceLink']);
       //for (var i = 0; i < pgpResources.length; i++) {
       //  pgpResources[i].resource.sort(function(a, b){
       //    if(a.title.toUpperCase() > b.title.toUpperCase()) return 1;

@@ -17,8 +17,7 @@ var errHandle = require('../js/handleErrors')();
 module.exports = function(){
   //check authorization before loading data
   var storage = window.sessionStorage;
-  var pgpArray = [];
-  var pgpResources = {};
+  var pgpArray = [], pgpResources = [], pgpTopics = [];
   var genResources = [], HTMLResources = [], CSSResources = [], JSResources = [], GITResources = [], DSAResources = [], CMDResources = [], OOPResources = [];
   var selG1Res, selG2Res, selG3Res, selG4Res, selG5Res;
   var selHTMLRes, selCSSRes, selJSRes, selGITRes, selDSARes, selCMDRes, selOOPRes;
@@ -44,8 +43,6 @@ module.exports = function(){
         }
 
         getAllResources(data.u);
-
-        dgApp.dgMethod.dataLoadSelect('sG1', data.n, 'name', '_id');
 
         studentSelect.addEventListener('click', function(e){
           var idx = e.srcElement.selectedOptions[0].accessKey;
@@ -76,8 +73,10 @@ module.exports = function(){
       if(err){
         errHandle.alertObject(err); return;
       }
-      pgpResources = data;
+      pgpResources = data.resourceList;
+      pgpTopics = data.topicList;
       console.dir(pgpResources);
+      dgApp.dgMethod.dataLoadSelect('sG1', pgpResources, ['title', 'description', 'resourceLink']);
       //for (var i = 0; i < pgpResources.length; i++) {
       //  pgpResources[i].resource.sort(function(a, b){
       //    if(a.title.toUpperCase() > b.title.toUpperCase()) return 1;
@@ -392,12 +391,21 @@ dgMethod.dataBindInput = function(elem, evnt, mdl, item){
 };
 
 dgMethod.dataLoadSelect = function(elId, ary, item){
-  var len = ary.length;
-  var c = 0;
-  var opt;
+  var len = ary.length, c = 0, opt, display;
   for(c; c < len; c++){
+    if(Array.isArray(item)){
+      display = '';
+      var itLen = item.length, itC = 0;
+      for(itC; itC < itLen; itC++){
+        display = display + ary[c][item[itC]] + '|';
+      }
+      display = display.substr(0, display.length - 1);
+    }
+    else{
+      display = '<label class=selOptTitle>' + ary[c][item] + '</label>';
+    }
     opt = document.createElement('option');
-    opt.innerHTML = ary[c][item];
+    opt.innerHTML = display;
     opt.accessKey = c;
     document.getElementById(elId).appendChild(opt);
   }
@@ -1008,17 +1016,19 @@ module.exports = function(){
   ux.addTag('createPGPForm', 'fieldset', 'createPGPSelect');
   ux.addTextTag('createPGPSelect', 'legend', 'Please Select A Student');
   ux.addTag('createPGPSelect', 'select', 'studentSelect');
-  ux.addToggleViewButton('createPGPForm', 'btnGoalsToggle', 'GOALS', 'btnOn', 'fGoals');
 
-  ux.addTag('createPGPForm', 'fieldset', 'fGoals');
-  ux.addTextTag('fGoals', 'legend', 'Goals');
-  ux.addTextTag('fGoals', 'h2', 'Save New General Resources Here');
-  ux.addTag('fGoals','div', 'addGenResource');
-  ux.addTag('addGenResource', 'form', 'frmGoalResource');
+  ux.addTextTag('createPGPForm', 'h2', 'Save New Resources Here');
+  ux.addTag('createPGPForm', 'form', 'frmGoalResource');
   ux.addInput('frmGoalResource', 'resrcTitle', 'New Resource Title', 'text');
   ux.addInput('frmGoalResource', 'resrcType', 'New Resource Type', 'text');
   ux.addInput('frmGoalResource', 'resrcLink', 'New Resource Link', 'text');
   ux.addButton('frmGoalResource', 'btnSaveResource', 'Save New Resource');
+
+  ux.addToggleViewButton('createPGPForm', 'btnGoalsToggle', 'GOALS', 'btnOn', 'fGoals');
+  ux.addTag('createPGPForm', 'fieldset', 'fGoals');
+  ux.addTextTag('fGoals', 'legend', 'Goals');
+  //ux.addTag('fGoals','div', 'addGenResource');
+
   ux.addToggleViewButton('fGoals', 'btnG1On', 'LongTermGoals', 'btnOn', 'fG1');
   ux.addTag('fGoals', 'fieldset', 'fG1');
   ux.addTextTag('fG1', 'label', 'My long term goals:', 'pgpQuestions');

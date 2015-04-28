@@ -10,9 +10,6 @@ header {
 
 .header-logo {
     width: 20rem;
-    display: block;
-    margin: 0 auto;
-    padding: 0 auto;
 }
 
 .header-h1 {
@@ -25,7 +22,7 @@ header {
 }
 
 .nav_ul {
-    text-align: center;
+    /*text-align: center;*/
 }
 
 .nav_ul-li {
@@ -34,9 +31,9 @@ header {
 }
 
 .nav_ul-li-a {
-    font-family: "Rajdhani", sans-serif;
+    font-family: "SourceCodePro";
     font-weight: bold;
-    font-size: 1.6rem;
+    font-size: 14px;
     text-decoration: none;
     color: #fff;
 }

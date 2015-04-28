@@ -194,3 +194,6 @@ input.ng-valid.ng-dirty {
 .pgpComplete{
     background-color: #006600;
 }
+.selOptTitle{
+    background-color: grey;
+}
