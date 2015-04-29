@@ -73,8 +73,6 @@ module.exports = function (app) {
   //});
 
   app.post(baseUrl, function (req, res) {
-    console.log('resources Route');
-    console.dir(req.body);
     var token = req.body.atoken;
     var a = auth(req.body);
      a.getTokenInfo(token, function (err, usr) {
@@ -85,11 +83,9 @@ module.exports = function (app) {
         corngoose.getCollection('resourceList', function(err, rsrcs){
           if(err)return res.status(500).json(err);
           var payLoad = {resourceList: rsrcs};
-          console.dir(payLoad);
           corngoose.getCollection('topicList', function(err, topics){
             if(err) return res.status(500).json(err);
             payLoad.topicList = topics;
-            console.dir(payLoad);
             return res.status(200).json(payLoad);
           });
         });

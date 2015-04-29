@@ -32,7 +32,6 @@ module.exports = function(){
         var formIdx = storage.getItem('formIdx');
         dgApp.dgMethod.dataLoadSelect('studentSelect', data.n, 'name', '_id');
         var studentSelect = document.getElementById('studentSelect');
-        var sG1 = document.getElementById('sG1');
         if(formIdx){
           dgApp.pgpMdl = pgpArray[formIdx];
           studentSelect.selectedIndex = formIdx;
@@ -41,42 +40,26 @@ module.exports = function(){
           dgApp.pgpMdl = pgpArray[0];
           storage.setItem('formIdx', '0');
         }
-
         getAllResources(data.u);
-
-        studentSelect.addEventListener('click', function(e){
-          var idx = e.srcElement.selectedOptions[0].accessKey;
-          dgApp.pgpMdl = pgpArray[idx];
-          storage.setItem('formIdx', idx);
-          bindViewData();
-
-        });
-        studentSelect.addEventListener('change', function(e){
-          var idx = e.srcElement.selectedOptions[0].accessKey;
-          dgApp.pgpMdl = pgpArray[idx];
-          storage.setItem('formIdx', idx);
-          bindViewData();
-        });
-
+        addHandlers();
       }
 
     }, token);
   }
 
-  function bindViewData(){
+  function bindPgpData(){
     document.getElementById('preGoala').innerHTML = dgApp.pgpMdl['goal'];
     document.getElementById('postGoala').innerHTML = dgApp.pgpMdl['goala'];
   }
   function getAllResources(usr){
     dgApp.dgMethod.ajaxPostJson('/api/v_0_0_1/pgps/resources/',usr, function(err, data){
-      console.log('getAllResources');
       if(err){
         errHandle.alertObject(err); return;
       }
       pgpResources = data.resourceList;
       pgpTopics = data.topicList;
-      console.dir(pgpResources);
-      dgApp.dgMethod.dataLoadSelect('sG1', pgpResources, ['title', 'description', 'resourceLink']);
+      dgApp.dgMethod.dataLoadSelect('sG1', pgpResources, 'title');
+      dgApp.dgMethod.makeFormCheckBoxGroup('chooseResourceTopics', pgpTopics, 'name', 'description', 'cId');
       //for (var i = 0; i < pgpResources.length; i++) {
       //  pgpResources[i].resource.sort(function(a, b){
       //    if(a.title.toUpperCase() > b.title.toUpperCase()) return 1;
@@ -167,6 +150,38 @@ module.exports = function(){
       var idx = rsrc.indexOf(item);
       rsrc.splice(idx, 1);
     }
+  }
+
+  function addHandlers(){
+
+    var studentSelect = document.getElementById('studentSelect');
+    studentSelect.addEventListener('click', setPgpData);
+    studentSelect.addEventListener('change', setPgpData);
+
+    document.getElementById('btnSaveResource').addEventListener('click', function(e){
+      var topicFrm = document.getElementById('chooseResourceTopics');
+      var topicArray = [];
+      var c = 0, len = topicFrm.length;
+      for (c; c < len; c++) {
+        if (topicFrm[c].checked) {
+          topicArray.push(topicFrm[c].alt);
+        }
+      }
+      if (topicArray.length < 1) {
+        alert('Choose at least one resource topic for resource.');
+      }
+      else{
+        //save resource
+        console.dir(topicArray);
+      }
+    });
+  }
+
+  function setPgpData(e){
+    var idx = e.srcElement.selectedOptions[0].accessKey;
+    dgApp.pgpMdl = pgpArray[idx];
+    storage.setItem('formIdx', idx);
+    bindPgpData();
   }
 
 };
@@ -349,8 +364,6 @@ dgMethod.ajaxPutJson = function(url, jsonData, cb, token){
     else cb(JSON.parse(ajaxReq.response), null);
   });
   ajaxReq.addEventListener('error', function(data){
-    console.dir(ajaxReq);
-    console.dir(data);
     cb({XMLHttpRequestError: 'A fatal error occurred, see console for more information'}, null);
   });
 
@@ -409,7 +422,25 @@ dgMethod.dataLoadSelect = function(elId, ary, item){
     opt.accessKey = c;
     document.getElementById(elId).appendChild(opt);
   }
+
+  dgMethod.makeFormCheckBoxGroup = function(formID, data, nameKey, descriptionKey, idKey){
+    var elId = document.getElementById(formID), c = 0, len = data.length, cb, cblbl;
+    console.dir(formID);
+    for(c; c < len; c++){
+      cb = document.createElement('input');
+      cb.id = formID+ 'Cb' + c;
+      cb.title = data[c][descriptionKey];
+      cblbl = document.createElement('label');
+      cblbl.for = cb.id;
+      cblbl.innerHTML = data[c][nameKey];
+      cb.setAttribute('type', 'checkbox');
+      cb.alt = data[c][idKey] || c;
+      elId.appendChild(cblbl);
+      elId.appendChild(cb);
+    }
+  }
 };
+
 
 module.exports = function (app){
   app.dgMethod = dgMethod;
@@ -1022,6 +1053,8 @@ module.exports = function(){
   ux.addInput('frmGoalResource', 'resrcTitle', 'New Resource Title', 'text');
   ux.addInput('frmGoalResource', 'resrcType', 'New Resource Type', 'text');
   ux.addInput('frmGoalResource', 'resrcLink', 'New Resource Link', 'text');
+  ux.addTag('frmGoalResource', 'form','chooseResourceTopics');
+  ux.addTextTag('chooseResourceTopics', 'h3', 'Check all that apply to new Resource');
   ux.addButton('frmGoalResource', 'btnSaveResource', 'Save New Resource');
 
   ux.addToggleViewButton('createPGPForm', 'btnGoalsToggle', 'GOALS', 'btnOn', 'fGoals');

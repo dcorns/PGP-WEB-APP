@@ -29,6 +29,8 @@ module.exports = function(){
   ux.addInput('frmGoalResource', 'resrcTitle', 'New Resource Title', 'text');
   ux.addInput('frmGoalResource', 'resrcType', 'New Resource Type', 'text');
   ux.addInput('frmGoalResource', 'resrcLink', 'New Resource Link', 'text');
+  ux.addTag('frmGoalResource', 'form','chooseResourceTopics');
+  ux.addTextTag('chooseResourceTopics', 'h3', 'Check all that apply to new Resource');
   ux.addButton('frmGoalResource', 'btnSaveResource', 'Save New Resource');
 
   ux.addToggleViewButton('createPGPForm', 'btnGoalsToggle', 'GOALS', 'btnOn', 'fGoals');

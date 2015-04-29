@@ -47,8 +47,6 @@ dgMethod.ajaxPutJson = function(url, jsonData, cb, token){
     else cb(JSON.parse(ajaxReq.response), null);
   });
   ajaxReq.addEventListener('error', function(data){
-    console.dir(ajaxReq);
-    console.dir(data);
     cb({XMLHttpRequestError: 'A fatal error occurred, see console for more information'}, null);
   });
 
@@ -107,7 +105,25 @@ dgMethod.dataLoadSelect = function(elId, ary, item){
     opt.accessKey = c;
     document.getElementById(elId).appendChild(opt);
   }
+
+  dgMethod.makeFormCheckBoxGroup = function(formID, data, nameKey, descriptionKey, idKey){
+    var elId = document.getElementById(formID), c = 0, len = data.length, cb, cblbl;
+    console.dir(formID);
+    for(c; c < len; c++){
+      cb = document.createElement('input');
+      cb.id = formID+ 'Cb' + c;
+      cb.title = data[c][descriptionKey];
+      cblbl = document.createElement('label');
+      cblbl.for = cb.id;
+      cblbl.innerHTML = data[c][nameKey];
+      cb.setAttribute('type', 'checkbox');
+      cb.alt = data[c][idKey] || c;
+      elId.appendChild(cblbl);
+      elId.appendChild(cb);
+    }
+  }
 };
+
 
 module.exports = function (app){
   app.dgMethod = dgMethod;

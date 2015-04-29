@@ -22,7 +22,6 @@ module.exports = function(){
         var formIdx = storage.getItem('formIdx');
         dgApp.dgMethod.dataLoadSelect('studentSelect', data.n, 'name', '_id');
         var studentSelect = document.getElementById('studentSelect');
-        var sG1 = document.getElementById('sG1');
         if(formIdx){
           dgApp.pgpMdl = pgpArray[formIdx];
           studentSelect.selectedIndex = formIdx;
@@ -31,42 +30,26 @@ module.exports = function(){
           dgApp.pgpMdl = pgpArray[0];
           storage.setItem('formIdx', '0');
         }
-
         getAllResources(data.u);
-
-        studentSelect.addEventListener('click', function(e){
-          var idx = e.srcElement.selectedOptions[0].accessKey;
-          dgApp.pgpMdl = pgpArray[idx];
-          storage.setItem('formIdx', idx);
-          bindViewData();
-
-        });
-        studentSelect.addEventListener('change', function(e){
-          var idx = e.srcElement.selectedOptions[0].accessKey;
-          dgApp.pgpMdl = pgpArray[idx];
-          storage.setItem('formIdx', idx);
-          bindViewData();
-        });
-
+        addHandlers();
       }
 
     }, token);
   }
 
-  function bindViewData(){
+  function bindPgpData(){
     document.getElementById('preGoala').innerHTML = dgApp.pgpMdl['goal'];
     document.getElementById('postGoala').innerHTML = dgApp.pgpMdl['goala'];
   }
   function getAllResources(usr){
     dgApp.dgMethod.ajaxPostJson('/api/v_0_0_1/pgps/resources/',usr, function(err, data){
-      console.log('getAllResources');
       if(err){
         errHandle.alertObject(err); return;
       }
       pgpResources = data.resourceList;
       pgpTopics = data.topicList;
-      console.dir(pgpResources);
-      dgApp.dgMethod.dataLoadSelect('sG1', pgpResources, ['title', 'description', 'resourceLink']);
+      dgApp.dgMethod.dataLoadSelect('sG1', pgpResources, 'title');
+      dgApp.dgMethod.makeFormCheckBoxGroup('chooseResourceTopics', pgpTopics, 'name', 'description', 'cId');
       //for (var i = 0; i < pgpResources.length; i++) {
       //  pgpResources[i].resource.sort(function(a, b){
       //    if(a.title.toUpperCase() > b.title.toUpperCase()) return 1;
@@ -157,6 +140,38 @@ module.exports = function(){
       var idx = rsrc.indexOf(item);
       rsrc.splice(idx, 1);
     }
+  }
+
+  function addHandlers(){
+
+    var studentSelect = document.getElementById('studentSelect');
+    studentSelect.addEventListener('click', setPgpData);
+    studentSelect.addEventListener('change', setPgpData);
+
+    document.getElementById('btnSaveResource').addEventListener('click', function(e){
+      var topicFrm = document.getElementById('chooseResourceTopics');
+      var topicArray = [];
+      var c = 0, len = topicFrm.length;
+      for (c; c < len; c++) {
+        if (topicFrm[c].checked) {
+          topicArray.push(topicFrm[c].alt);
+        }
+      }
+      if (topicArray.length < 1) {
+        alert('Choose at least one resource topic for resource.');
+      }
+      else{
+        //save resource
+        console.dir(topicArray);
+      }
+    });
+  }
+
+  function setPgpData(e){
+    var idx = e.srcElement.selectedOptions[0].accessKey;
+    dgApp.pgpMdl = pgpArray[idx];
+    storage.setItem('formIdx', idx);
+    bindPgpData();
   }
 
 };
