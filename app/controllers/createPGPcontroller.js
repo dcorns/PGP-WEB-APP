@@ -161,6 +161,7 @@ module.exports = function(){
         alert('Choose at least one resource topic for resource.');
       }
       else{
+        //resrcTitle resrcDescription resrcLink
         //save resource
         console.dir(topicArray);
       }

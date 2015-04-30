@@ -27,7 +27,7 @@ module.exports = function(){
   ux.addTextTag('createPGPForm', 'h2', 'Save New Resources Here');
   ux.addTag('createPGPForm', 'form', 'frmGoalResource');
   ux.addInput('frmGoalResource', 'resrcTitle', 'New Resource Title', 'text');
-  ux.addInput('frmGoalResource', 'resrcType', 'New Resource Type', 'text');
+  ux.addInput('frmGoalResource', 'resrcDescription', 'New Resource Description', 'text');
   ux.addInput('frmGoalResource', 'resrcLink', 'New Resource Link', 'text');
   ux.addTag('frmGoalResource', 'form','chooseResourceTopics');
   ux.addTextTag('chooseResourceTopics', 'h3', 'Check all that apply to new Resource');
