@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="07ae87d6-5071-4c23-88bc-a66326b970a2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/clientValidation.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/PGP-WEB-APP.iml" afterPath="$PROJECT_DIR$/.idea/PGP-WEB-APP.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/app.js" afterPath="$PROJECT_DIR$/app/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundle.js" afterPath="$PROJECT_DIR$/build/bundle.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/clientValidation.js" afterPath="$PROJECT_DIR$/app/js/clientValidation.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/createPGPcontroller.js" afterPath="$PROJECT_DIR$/app/controllers/createPGPcontroller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/createPgpView.js" afterPath="$PROJECT_DIR$/app/views/createPgpView.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/index.html" afterPath="$PROJECT_DIR$/build/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -69,25 +70,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="clientValidation.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="clientValidation.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/js/clientValidation.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5934066">
-              <caret line="23" column="10" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="50" column="34" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="34" />
               <folding>
                 <element signature="n#!!block;n#validateTitleTextLength#0" expanded="true" />
-                <element signature="e#894#1244#0" expanded="true" />
-                <element signature="e#1279#1325#0" expanded="true" />
+                <element signature="n#!!block;n#validateTitleCharacters#0" expanded="true" />
+                <element signature="n#!!block;n#validateResourceTopicArray#0" expanded="true" />
+                <element signature="e#1602#1648#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="createPGPcontroller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/createPGPcontroller.js">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="163" column="47" selection-start-line="163" selection-start-column="47" selection-end-line="163" selection-end-column="47" />
+              <caret line="24" column="19" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="createPGPcontroller.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/createPGPcontroller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.04945055">
+              <caret line="156" column="43" selection-start-line="156" selection-start-column="43" selection-end-line="156" selection-end-column="43" />
               <folding>
                 <element signature="e#712#1322#0" expanded="true" />
                 <element signature="e#1361#1516#0" expanded="true" />
@@ -97,8 +109,7 @@
                 <element signature="e#4072#4436#0" expanded="true" />
                 <element signature="e#4186#4430#0" expanded="true" />
                 <element signature="e#4471#4496#0" expanded="true" />
-                <element signature="e#5466#5618#0" expanded="true" />
-                <marker date="1430282636717" expanded="true" signature="154:5621" placeholder="{...}" />
+                <element signature="e#5821#5973#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -202,7 +213,6 @@
         <option value="$PROJECT_DIR$/app/js/ui.js" />
         <option value="$PROJECT_DIR$/app/models/pgp.js" />
         <option value="$PROJECT_DIR$/app/js/dgRouteProvider.js" />
-        <option value="$PROJECT_DIR$/app/js/app.js" />
         <option value="$PROJECT_DIR$/app/models/pgpModel.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/server.js" />
@@ -214,8 +224,9 @@
         <option value="$PROJECT_DIR$/app/js/dgMethods.js" />
         <option value="$PROJECT_DIR$/app/index.html" />
         <option value="$PROJECT_DIR$/app/views/createPgpView.js" />
-        <option value="$PROJECT_DIR$/app/controllers/createPGPcontroller.js" />
+        <option value="$PROJECT_DIR$/app/js/app.js" />
         <option value="$PROJECT_DIR$/app/js/clientValidation.js" />
+        <option value="$PROJECT_DIR$/app/controllers/createPGPcontroller.js" />
       </list>
     </option>
   </component>
@@ -511,7 +522,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="js.eslint.nodeInterpreter" value="/usr/local/bin/node" />
     <property name="js.eslint.eslintPackage" value="" />
@@ -659,9 +670,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33722872" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33722872" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32554257" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39899832" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32888147" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -672,7 +683,7 @@
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24924012" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17097265" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19832827" sideWeight="0.47387388" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19832827" sideWeight="0.47387388" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34223706" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="99" y="127" width="1168" height="542" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5308848" sideWeight="0.49962714" order="7" side_tool="false" content_ui="tabs" />
@@ -866,13 +877,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.4078212">
           <caret line="14" column="2" selection-start-line="12" selection-start-column="0" selection-end-line="14" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9111111">
-          <caret line="47" column="7" selection-start-line="47" selection-start-column="7" selection-end-line="47" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -1089,30 +1093,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/api/js/validation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15934066">
+          <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="19" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/createPgpView.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="22" column="60" selection-start-line="22" selection-start-column="60" selection-end-line="22" selection-end-column="60" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/createPGPcontroller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="163" column="47" selection-start-line="163" selection-start-column="47" selection-end-line="163" selection-end-column="47" />
-          <folding>
-            <element signature="e#712#1322#0" expanded="true" />
-            <element signature="e#1361#1516#0" expanded="true" />
-            <element signature="e#1548#3617#0" expanded="true" />
-            <element signature="e#1637#3611#0" expanded="true" />
-            <element signature="e#3825#4001#0" expanded="true" />
-            <element signature="e#4072#4436#0" expanded="true" />
-            <element signature="e#4186#4430#0" expanded="true" />
-            <element signature="e#4471#4496#0" expanded="true" />
-            <element signature="e#5466#5618#0" expanded="true" />
-            <marker date="1430282636717" expanded="true" signature="154:5621" placeholder="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1141,22 +1142,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/js/validation.js">
+    <entry file="file://$PROJECT_DIR$/app/js/clientValidation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15934066">
-          <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
-          <folding />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="34" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="34" />
+          <folding>
+            <element signature="n#!!block;n#validateTitleTextLength#0" expanded="true" />
+            <element signature="n#!!block;n#validateTitleCharacters#0" expanded="true" />
+            <element signature="n#!!block;n#validateResourceTopicArray#0" expanded="true" />
+            <element signature="e#1602#1648#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/clientValidation.js">
+    <entry file="file://$PROJECT_DIR$/app/controllers/createPGPcontroller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5934066">
-          <caret line="23" column="10" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.04945055">
+          <caret line="156" column="43" selection-start-line="156" selection-start-column="43" selection-end-line="156" selection-end-column="43" />
           <folding>
-            <element signature="n#!!block;n#validateTitleTextLength#0" expanded="true" />
-            <element signature="e#894#1244#0" expanded="true" />
-            <element signature="e#1279#1325#0" expanded="true" />
+            <element signature="e#712#1322#0" expanded="true" />
+            <element signature="e#1361#1516#0" expanded="true" />
+            <element signature="e#1548#3617#0" expanded="true" />
+            <element signature="e#1637#3611#0" expanded="true" />
+            <element signature="e#3825#4001#0" expanded="true" />
+            <element signature="e#4072#4436#0" expanded="true" />
+            <element signature="e#4186#4430#0" expanded="true" />
+            <element signature="e#4471#4496#0" expanded="true" />
+            <element signature="e#5821#5973#0" expanded="true" />
           </folding>
         </state>
       </provider>

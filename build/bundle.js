@@ -167,13 +167,20 @@ module.exports = function(){
           topicArray.push(topicFrm[c].alt);
         }
       }
-      if (topicArray.length < 1) {
-        alert('Choose at least one resource topic for resource.');
-      }
-      else{
+        //resrcTitle resrcDescription resrcLink
+        var newResource = {title: document.getElementById('resrcTitle').value, topics: topicArray};
+        console.dir(newResource);
+        var validate = dgApp.dgClientValidate.validateResource(newResource);
+        if (validate.length > 0) {
+          c = 0; len = validate.length; var errorString = '';
+          for (c; c < len; c++) {
+            errorString = errorString + validate[c] + '\n';
+          }
+          alert(errorString);
+        }
+        console.dir(validate);
         //save resource
         console.dir(topicArray);
-      }
     });
   }
 
@@ -185,7 +192,7 @@ module.exports = function(){
   }
 
 };
-},{"../js/handleErrors":11}],3:[function(require,module,exports){
+},{"../js/handleErrors":12}],3:[function(require,module,exports){
 /**
  * homeController
  * Created by dcorns on 3/12/15.
@@ -235,7 +242,7 @@ module.exports = function(){
   document.getElementById('btnLogin').onclick = userLogin;
   firstDo();
 };
-},{"../js/handleErrors":11}],5:[function(require,module,exports){
+},{"../js/handleErrors":12}],5:[function(require,module,exports){
 /**
  * preViewPGPcontroller
  * Created by dcorns on 3/12/15.
@@ -280,6 +287,7 @@ require('../models/userModel')(dgApp); //adds userMdl object
 require('../models/pgpModel')(dgApp); //adds pgpMdl object
 require('../js/dgRouteProvider')(dgApp); //adds loadRoute method to dgApp
 require('../js/dgMethods')(dgApp); //add dgMethod object to dgApp
+require('../js/clientValidation')(dgApp); //add client validation
 
 function firstDo(){
   window.dgApp = dgApp;
@@ -314,7 +322,67 @@ function firstDo(){
 }
 
 dgApp.dgMethod.winReady(firstDo);
-},{"../controllers/createAccountController":1,"../controllers/createPGPcontroller":2,"../controllers/homeController":3,"../controllers/loginController":4,"../controllers/previewPGPcontroller":5,"../controllers/surveyController":6,"../controllers/viewPGPcontroller":7,"../js/dgMethods":9,"../js/dgRouteProvider":10,"../models/pgpModel":16,"../models/userModel":17,"../views/createPgpView":18,"../views/homeView":19,"../views/loginView":20}],9:[function(require,module,exports){
+},{"../controllers/createAccountController":1,"../controllers/createPGPcontroller":2,"../controllers/homeController":3,"../controllers/loginController":4,"../controllers/previewPGPcontroller":5,"../controllers/surveyController":6,"../controllers/viewPGPcontroller":7,"../js/clientValidation":9,"../js/dgMethods":10,"../js/dgRouteProvider":11,"../models/pgpModel":17,"../models/userModel":18,"../views/createPgpView":19,"../views/homeView":20,"../views/loginView":21}],9:[function(require,module,exports){
+/**
+ * clientValidation
+ * Created by dcorns on 4/28/15.
+ * single value validations return an empty string if valid, otherwise they return an error message string
+ * multi-value validations recieve an object and return an empty array if valid, otherwise they return an array of error objects of the form {property: error message}
+ */
+'use strict';
+var dgClientValidate = {};
+
+function validateTitleTextLength(str){
+  var valid = 'Title must be less than 25 characters long', len = str.length;
+  if (len < 25) {
+    valid = '';
+  }
+  if (len < 2) {
+    valid = 'Title must be at least 2 characters long';
+  }
+  return valid;
+}
+
+function validateTitleCharacters(str){
+  var valid = 'Title can only contain alphanumeric characters and -, \', \"';
+  var regx = /^[A-Za-z\d\s'"-]+$/;
+  if (regx.test(str)) {
+    valid = '';
+  }
+  return valid;
+}
+
+function validateResourceTopicArray(ary){
+  var valid = 'Please select at least one topic to save a new resource';
+  if (ary.length > 0) {
+    valid = '';
+  }
+  return valid;
+}
+
+dgClientValidate.validateResource = function (resourceObj){
+  var errorObj = {title:[], description:[], resourceLink:[], resourceTopics:[]};
+  var validate = validateTitleTextLength(resourceObj.title);
+  if (validate.length > 0) {
+    errorObj.title.push(validate);
+  }
+  validate = validateTitleCharacters(resourceObj.title);
+  if (validate.length > 0) {
+    errorObj.title.push(validate);
+  }
+
+  validate = validateResourceTopicArray(resourceObj.topics);
+  if (validate.length > 0) {
+    errorObj.title.push(validate);
+  }
+
+  return errorObj;
+};
+
+module.exports = function (app) {
+  app.dgClientValidate = dgClientValidate;
+};
+},{}],10:[function(require,module,exports){
 /**
  * dgMethods
  * Created by dcorns on 3/16/15.
@@ -445,7 +513,7 @@ dgMethod.dataLoadSelect = function(elId, ary, item){
 module.exports = function (app){
   app.dgMethod = dgMethod;
 };
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 /**
  * dgRouteProvider
  * Created by dcorns on 3/6/15.
@@ -521,7 +589,7 @@ module.exports = function(app){
     }
 };
 };
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 /**
  * Created by dcorns on 11/14/14.
  */
@@ -539,7 +607,7 @@ module.exports = function(){
     }
   };
 };
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 /**
  * Created by dcorns on 11/10/14.
  */
@@ -569,7 +637,7 @@ module.exports = function(obj){
     }
   }
 };
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 /**
  * Created by dcorns on 11/12/14.
  */
@@ -684,7 +752,7 @@ module.exports = function($scope, $http){
 
   return $scope;
 };
-},{"../js/ui":15}],14:[function(require,module,exports){
+},{"../js/ui":16}],15:[function(require,module,exports){
 /**
  * Created by dcorns on 11/9/14.
  */
@@ -716,7 +784,7 @@ module.exports = function(obj){
     }
   }
 };
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 /**
  * Created by dcorns on 10/7/14.
  */
@@ -940,7 +1008,7 @@ var legtxt = document.createTextNode('User Login');
   }
 };
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 /**
  * pgp
  * Created by dcorns on 3/25/15.
@@ -1005,7 +1073,7 @@ var pgpMdl = {
 module.exports = function (app){
   app.pgpMdl = pgpMdl;
 };
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 /**
  * surveyModel
  * Created by dcorns on 3/13/15.
@@ -1021,7 +1089,7 @@ var userMdl = {
 module.exports = function (app){
   app.userMdl = userMdl;
 };
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 /**
  * createPgpView
  * Created by dcorns on 3/24/15.
@@ -1051,7 +1119,7 @@ module.exports = function(){
   ux.addTextTag('createPGPForm', 'h2', 'Save New Resources Here');
   ux.addTag('createPGPForm', 'form', 'frmGoalResource');
   ux.addInput('frmGoalResource', 'resrcTitle', 'New Resource Title', 'text');
-  ux.addInput('frmGoalResource', 'resrcType', 'New Resource Type', 'text');
+  ux.addInput('frmGoalResource', 'resrcDescription', 'New Resource Description', 'text');
   ux.addInput('frmGoalResource', 'resrcLink', 'New Resource Link', 'text');
   ux.addTag('frmGoalResource', 'form','chooseResourceTopics');
   ux.addTextTag('chooseResourceTopics', 'h3', 'Check all that apply to new Resource');
@@ -1075,7 +1143,7 @@ module.exports = function(){
   ux.addTextTag('fG1', 'label', 'Remove from Plan: Alt+Click');
   ux.addTag('fG1', 'ul', 'goalAresources', 'resourceList');
 };
-},{"../js/ui":15}],19:[function(require,module,exports){
+},{"../js/ui":16}],20:[function(require,module,exports){
 /**
  * homeView
  * Created by dcorns on 3/13/15.
@@ -1095,7 +1163,7 @@ module.exports = function(){
   ux.addTextTag(title, 'p', 'It\'s been a great honor to travel this stretch of the journey with you. I wish you the best with all that this path leads you towards!');
   ux.addTextTag(title, 'p', '—Brook');
 };
-},{"../js/ui":15}],20:[function(require,module,exports){
+},{"../js/ui":16}],21:[function(require,module,exports){
 /**
  * loginView
  * Created by dcorns on 3/13/15.
@@ -1120,4 +1188,4 @@ module.exports = function(){
   ux.addButton('loginForm', 'btnLogin', 'SUBMIT');
   ux.replaceClass('loginForm', 'userLogin_form');
 };
-},{"../js/ui":15}]},{},[8,9,10,11,12,13,14,15]);
+},{"../js/ui":16}]},{},[8,9,10,11,12,13,14,15,16]);

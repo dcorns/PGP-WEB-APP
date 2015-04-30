@@ -157,14 +157,20 @@ module.exports = function(){
           topicArray.push(topicFrm[c].alt);
         }
       }
-      if (topicArray.length < 1) {
-        alert('Choose at least one resource topic for resource.');
-      }
-      else{
         //resrcTitle resrcDescription resrcLink
+        var newResource = {title: document.getElementById('resrcTitle').value, topics: topicArray};
+        console.dir(newResource);
+        var validate = dgApp.dgClientValidate.validateResource(newResource);
+        if (validate.length > 0) {
+          c = 0; len = validate.length; var errorString = '';
+          for (c; c < len; c++) {
+            errorString = errorString + validate[c] + '\n';
+          }
+          alert(errorString);
+        }
+        console.dir(validate);
         //save resource
         console.dir(topicArray);
-      }
     });
   }
 

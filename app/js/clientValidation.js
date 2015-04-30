@@ -2,7 +2,7 @@
  * clientValidation
  * Created by dcorns on 4/28/15.
  * single value validations return an empty string if valid, otherwise they return an error message string
- * multi-value validations recieve an object and return an empty array if valid, otherwise they return an array of objects of the form {property: ['error message']}
+ * multi-value validations recieve an object and return an empty array if valid, otherwise they return an array of error objects of the form {property: error message}
  */
 'use strict';
 var dgClientValidate = {};
@@ -27,18 +27,31 @@ function validateTitleCharacters(str){
   return valid;
 }
 
+function validateResourceTopicArray(ary){
+  var valid = 'Please select at least one topic to save a new resource';
+  if (ary.length > 0) {
+    valid = '';
+  }
+  return valid;
+}
+
 dgClientValidate.validateResource = function (resourceObj){
-  var errorArray = [];
+  var errorObj = {title:[], description:[], resourceLink:[], resourceTopics:[]};
   var validate = validateTitleTextLength(resourceObj.title);
   if (validate.length > 0) {
-    errorArray.push({title:[validate]});
+    errorObj.title.push(validate);
   }
   validate = validateTitleCharacters(resourceObj.title);
   if (validate.length > 0) {
-    if(errorArray[0]) errorArray[0].title.push(validate);
-    else errorArray.push({title:[validate]});
+    errorObj.title.push(validate);
   }
-  return errorArray;
+
+  validate = validateResourceTopicArray(resourceObj.topics);
+  if (validate.length > 0) {
+    errorObj.title.push(validate);
+  }
+
+  return errorObj;
 };
 
 module.exports = function (app) {
