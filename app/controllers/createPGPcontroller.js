@@ -159,18 +159,17 @@ module.exports = function(){
       }
         //resrcTitle resrcDescription resrcLink
         var newResource = {title: document.getElementById('resrcTitle').value, topics: topicArray};
-        console.dir(newResource);
-        var validate = dgApp.dgClientValidate.validateResource(newResource);
-        if (validate.length > 0) {
-          c = 0; len = validate.length; var errorString = '';
-          for (c; c < len; c++) {
-            errorString = errorString + validate[c] + '\n';
-          }
+        var errorString = dgApp.dgClientValidate.validateResource(newResource);
+        if (errorString.length > 0) {
           alert(errorString);
         }
-        console.dir(validate);
-        //save resource
-        console.dir(topicArray);
+      else{
+          console.dir(newResource);
+          //save resource
+        }
+
+
+
     });
   }
 

@@ -36,23 +36,48 @@ function validateResourceTopicArray(ary){
 }
 
 dgClientValidate.validateResource = function (resourceObj){
+  var errCount = 0;
   var errorObj = {title:[], description:[], resourceLink:[], resourceTopics:[]};
+  var result = '';
   var validate = validateTitleTextLength(resourceObj.title);
   if (validate.length > 0) {
     errorObj.title.push(validate);
+    errCount += 1;
   }
   validate = validateTitleCharacters(resourceObj.title);
   if (validate.length > 0) {
     errorObj.title.push(validate);
+    errCount += 1;
   }
 
   validate = validateResourceTopicArray(resourceObj.topics);
   if (validate.length > 0) {
-    errorObj.title.push(validate);
+    errorObj.resourceTopics.push(validate);
+    errCount += 1;
   }
 
-  return errorObj;
+  if(errCount > 0) {
+    result = buildErrorString(errorObj);
+  }
+
+  return result;
 };
+
+function buildErrorString(errObj){
+  var errorString = '';
+  for (var prop in errObj){
+    if(errObj.hasOwnProperty(prop)){
+      if(errObj[prop].length > 0){
+        errorString = errorString + prop + ':\n';
+        var c = 0, len = errObj[prop].length;
+        for (c; c < len; c++) {
+          errorString = errorString + errObj[prop][c] + '\n';
+        }
+      }
+    }
+  }
+  return errorString;
+}
 
 module.exports = function (app) {
   app.dgClientValidate = dgClientValidate;
