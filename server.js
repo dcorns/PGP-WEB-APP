@@ -56,7 +56,7 @@ require('./api/routes/pgp-routes')(app);
 require('./api/routes/user-routes')(app);
 require('./api/routes/login-routes')(app);
 require('./api/routes/resource-routes')(app);
-require('./api/routes/survey-routes')(app);
+//require('./api/routes/survey-routes')(app);
 
 var server = http.createServer(app);
 

@@ -15,6 +15,7 @@ require('../models/userModel')(dgApp); //adds userMdl object
 require('../models/pgpModel')(dgApp); //adds pgpMdl object
 require('../js/dgRouteProvider')(dgApp); //adds loadRoute method to dgApp
 require('../js/dgMethods')(dgApp); //add dgMethod object to dgApp
+require('../js/clientValidation')(dgApp); //add client validation
 
 function firstDo(){
   window.dgApp = dgApp;
