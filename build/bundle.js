@@ -169,6 +169,8 @@ module.exports = function(){
       }
         //resrcTitle resrcDescription resrcLink
         var newResource = {title: document.getElementById('resrcTitle').value, topics: topicArray};
+        newResource.description = document.getElementById('resrcDescription').value;
+        newResource.resourceLink = document.getElementById('resrcLink').value;
         var errorString = dgApp.dgClientValidate.validateResource(newResource);
         if (errorString.length > 0) {
           alert(errorString);
@@ -177,9 +179,6 @@ module.exports = function(){
           console.dir(newResource);
           //save resource
         }
-
-
-
     });
   }
 
@@ -359,11 +358,19 @@ function validateResourceTopicArray(ary){
   return valid;
 }
 
+function validateLink(lnk){
+  var valid = 'Resource Links must start with http(s):// and not contain any unsafe characters (^, %, , <>, [], {}, #, \\, \", `, ~, |)';
+  var regx = /^https?:\/\/.*[^%<>\s#\{\}"|\\\^\[\]`~]$/i;
+  if (regx.test(lnk)) {
+    valid = '';
+  }
+  return valid;
+}
+
 dgClientValidate.validateResource = function (resourceObj){
-  var errCount = 0;
-  var errorObj = {title:[], description:[], resourceLink:[], resourceTopics:[]};
-  var result = '';
-  var validate = validateTitleTextLength(resourceObj.title);
+  var errCount = 0, errorObj = {title:[], description:[], resourceLink:[], resourceTopics:[]}, result = '', validate;
+
+  validate = validateTitleTextLength(resourceObj.title);
   if (validate.length > 0) {
     errorObj.title.push(validate);
     errCount += 1;
@@ -378,6 +385,14 @@ dgClientValidate.validateResource = function (resourceObj){
   if (validate.length > 0) {
     errorObj.resourceTopics.push(validate);
     errCount += 1;
+  }
+
+  if(resourceObj.resourceLink) {
+    validate = validateLink(resourceObj.resourceLink);
+    if(validate.length > 0){
+      errorObj.resourceLink.push(validate);
+      errCount += 1;
+    }
   }
 
   if(errCount > 0) {

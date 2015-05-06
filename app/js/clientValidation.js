@@ -35,11 +35,19 @@ function validateResourceTopicArray(ary){
   return valid;
 }
 
+function validateLink(lnk){
+  var valid = 'Resource Links must start with http(s):// and not contain any unsafe characters (^, %, , <>, [], {}, #, \\, \", `, ~, |)';
+  var regx = /^https?:\/\/.*[^%<>\s#\{\}"|\\\^\[\]`~]$/i;
+  if (regx.test(lnk)) {
+    valid = '';
+  }
+  return valid;
+}
+
 dgClientValidate.validateResource = function (resourceObj){
-  var errCount = 0;
-  var errorObj = {title:[], description:[], resourceLink:[], resourceTopics:[]};
-  var result = '';
-  var validate = validateTitleTextLength(resourceObj.title);
+  var errCount = 0, errorObj = {title:[], description:[], resourceLink:[], resourceTopics:[]}, result = '', validate;
+
+  validate = validateTitleTextLength(resourceObj.title);
   if (validate.length > 0) {
     errorObj.title.push(validate);
     errCount += 1;
@@ -54,6 +62,14 @@ dgClientValidate.validateResource = function (resourceObj){
   if (validate.length > 0) {
     errorObj.resourceTopics.push(validate);
     errCount += 1;
+  }
+
+  if(resourceObj.resourceLink) {
+    validate = validateLink(resourceObj.resourceLink);
+    if(validate.length > 0){
+      errorObj.resourceLink.push(validate);
+      errCount += 1;
+    }
   }
 
   if(errCount > 0) {

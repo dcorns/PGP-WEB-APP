@@ -159,6 +159,8 @@ module.exports = function(){
       }
         //resrcTitle resrcDescription resrcLink
         var newResource = {title: document.getElementById('resrcTitle').value, topics: topicArray};
+        newResource.description = document.getElementById('resrcDescription').value;
+        newResource.resourceLink = document.getElementById('resrcLink').value;
         var errorString = dgApp.dgClientValidate.validateResource(newResource);
         if (errorString.length > 0) {
           alert(errorString);
@@ -167,9 +169,6 @@ module.exports = function(){
           console.dir(newResource);
           //save resource
         }
-
-
-
     });
   }
 
