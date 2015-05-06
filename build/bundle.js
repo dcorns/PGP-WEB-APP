@@ -40,6 +40,7 @@ module.exports = function(){
           dgApp.pgpMdl = pgpArray[0];
           storage.setItem('formIdx', '0');
         }
+        dgApp.userId = data.u._id;
         getAllResources(data.u);
         addHandlers();
       }
@@ -125,9 +126,9 @@ module.exports = function(){
     }
   }
 
-  function saveResource(nrsrc, rsrc, rsrcFor, inputClass){
-    nrsrc.resourceFor = rsrcFor;
-    dgApp.dgMethod.ajaxPostJson('api/v_0_0_1/resources/', nrsrc, function(data){
+  function saveResource(nrsrc, rsrc){
+    console.log('save resource invoked');
+    dgApp.dgMethod.ajaxPostJson('api/v_0_0_1/pgps/resources/save', nrsrc, function(err, data){
       if(err){
         errHandle.alertObject(err); return;
       }
@@ -137,8 +138,8 @@ module.exports = function(){
       else {
         rsrc = [data];
       }
-      alert("New " + rsrcFor + " Resource Saved!");
-    });
+      alert("New Resource Saved!");
+    }, token);
   }
 
   function addResource(sel, rsrc){
@@ -164,7 +165,7 @@ module.exports = function(){
       var c = 0, len = topicFrm.length;
       for (c; c < len; c++) {
         if (topicFrm[c].checked) {
-          topicArray.push(topicFrm[c].alt);
+          topicArray.push(parseInt(topicFrm[c].alt));
         }
       }
         //resrcTitle resrcDescription resrcLink
@@ -176,8 +177,20 @@ module.exports = function(){
           alert(errorString);
         }
       else{
+          newResource.token = token;
           console.dir(newResource);
-          //save resource
+          if(dgApp.dgMethod.arrayContains(pgpResources, newResource.title, 'title')){
+            alert(newResource.title + ' is already a resource title.');
+          }
+          else{
+            if(dgApp.dgMethod.arrayContains(pgpResources, newResource.resourceLink, 'resourceLink')){
+              alert(newResource.resourceLink + ' is already a resource link');
+            }
+            else{
+              //save resource
+              saveResource(newResource, pgpResources);
+            }
+          }
         }
     });
   }
@@ -568,6 +581,19 @@ dgMethod.dataLoadSelect = function(elId, ary, item){
   }
 };
 
+dgMethod.arrayContains = function(ary, aValue, aKey){
+  var c = 0, len = ary.length;
+  if (aKey) {
+    for (c; c < len; c++) {
+      if(ary[c][aKey] === aValue) return true;
+    }
+  }
+  else{
+    for (c; c < len; c++) {
+      if(ary[c] === aValue) return true;
+    }
+  }
+};
 
 module.exports = function (app){
   app.dgMethod = dgMethod;

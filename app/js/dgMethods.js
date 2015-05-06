@@ -124,6 +124,19 @@ dgMethod.dataLoadSelect = function(elId, ary, item){
   }
 };
 
+dgMethod.arrayContains = function(ary, aValue, aKey){
+  var c = 0, len = ary.length;
+  if (aKey) {
+    for (c; c < len; c++) {
+      if(ary[c][aKey] === aValue) return true;
+    }
+  }
+  else{
+    for (c; c < len; c++) {
+      if(ary[c] === aValue) return true;
+    }
+  }
+};
 
 module.exports = function (app){
   app.dgMethod = dgMethod;
