@@ -350,6 +350,15 @@ function validateTitleCharacters(str){
   return valid;
 }
 
+function validateDescriptionCharacters(str){
+  var valid = 'Description can only contain alphanumeric characters, -, \', \", and period';
+  var regx = /^[A-Za-z\d\s'"-\.]+$/;
+  if (regx.test(str)) {
+    valid = '';
+  }
+  return valid;
+}
+
 function validateResourceTopicArray(ary){
   var valid = 'Please select at least one topic to save a new resource';
   if (ary.length > 0) {
@@ -367,32 +376,35 @@ function validateLink(lnk){
   return valid;
 }
 
+function validateResourceDescription(str){
+  var valid = 'A two or more word description is required';
+  var regx = /^.*\s\S.*$/;
+  if(regx.test(str)){
+    if (str) {
+      valid = validateDescriptionCharacters(str);
+    }
+  }
+  return valid;
+}
+
 dgClientValidate.validateResource = function (resourceObj){
   var errCount = 0, errorObj = {title:[], description:[], resourceLink:[], resourceTopics:[]}, result = '', validate;
 
   validate = validateTitleTextLength(resourceObj.title);
-  if (validate.length > 0) {
-    errorObj.title.push(validate);
-    errCount += 1;
-  }
+  errorObj.title = checkValidate(validate, errorObj.title);
+
   validate = validateTitleCharacters(resourceObj.title);
-  if (validate.length > 0) {
-    errorObj.title.push(validate);
-    errCount += 1;
-  }
+  errorObj.title = checkValidate(validate, errorObj.title);
 
   validate = validateResourceTopicArray(resourceObj.topics);
-  if (validate.length > 0) {
-    errorObj.resourceTopics.push(validate);
-    errCount += 1;
-  }
+  errorObj.resourceTopics = checkValidate(validate, errorObj.resourceTopics);
+
+  validate = validateResourceDescription(resourceObj.description);
+  errorObj.description = checkValidate(validate, errorObj.description);
 
   if(resourceObj.resourceLink) {
     validate = validateLink(resourceObj.resourceLink);
-    if(validate.length > 0){
-      errorObj.resourceLink.push(validate);
-      errCount += 1;
-    }
+    errorObj.resourceLink = checkValidate(validate, errorObj.resourceLink);
   }
 
   if(errCount > 0) {
@@ -400,6 +412,14 @@ dgClientValidate.validateResource = function (resourceObj){
   }
 
   return result;
+
+  function checkValidate(validator, errorAry){
+    if(validator.length > 0){
+      errorAry.push(validator);
+      errCount += 1;
+    }
+    return errorAry;
+  }
 };
 
 function buildErrorString(errObj){

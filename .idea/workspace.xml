@@ -4,7 +4,6 @@
     <list default="true" id="07ae87d6-5071-4c23-88bc-a66326b970a2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundle.js" afterPath="$PROJECT_DIR$/build/bundle.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/clientValidation.js" afterPath="$PROJECT_DIR$/app/js/clientValidation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/createPGPcontroller.js" afterPath="$PROJECT_DIR$/app/controllers/createPGPcontroller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="cc44a7e5-b897-4fdf-b286-f8ab05fb6535" name="New changelist" comment="" />
@@ -69,22 +68,20 @@
       <file leaf-file-name="clientValidation.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/js/clientValidation.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6054795">
-              <caret line="44" column="1" selection-start-line="44" selection-start-column="1" selection-end-line="44" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.3561644">
+              <caret line="58" column="21" selection-start-line="58" selection-start-column="21" selection-end-line="58" selection-end-column="21" />
               <folding>
                 <element signature="e#0#334#0" expanded="false" />
+                <element signature="n#!!block;n#validateTitleTextLength#0" expanded="true" />
                 <element signature="e#510#531#0" expanded="false" />
-                <element signature="n#!!block;n#validateTitleCharacters#0" expanded="true" />
-                <element signature="n#!!block;n#validateResourceTopicArray#0" expanded="true" />
-                <element signature="n#!!block;n#validateLink#0" expanded="true" />
-                <element signature="e#1366#2212#0" expanded="true" />
-                <element signature="e#1571#1630#0" expanded="false" />
-                <element signature="e#1864#1932#0" expanded="false" />
+                <element signature="n#!!block;n#validateDescriptionCharacters#0" expanded="true" />
+                <element signature="e#1850#2903#0" expanded="true" />
+                <element signature="e#2786#2901#0" expanded="true" />
                 <element signature="n#!!block;n#buildErrorString#0" expanded="true" />
-                <element signature="e#2337#2587#0" expanded="false" />
-                <element signature="e#2372#2581#0" expanded="false" />
-                <element signature="e#2500#2573#0" expanded="false" />
-                <element signature="e#2649#2695#0" expanded="true" />
+                <element signature="e#3028#3278#0" expanded="false" />
+                <element signature="e#3063#3272#0" expanded="false" />
+                <element signature="e#3191#3264#0" expanded="false" />
+                <element signature="e#3340#3386#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -751,7 +748,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="8" />
+      <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="NodeJSConfigurationType">
@@ -1087,14 +1084,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/createPgpView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="60" selection-start-line="22" selection-start-column="60" selection-end-line="22" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/js/dgMethods.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1146,24 +1135,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/createPgpView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="60" selection-start-line="22" selection-start-column="60" selection-end-line="22" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/js/clientValidation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6054795">
-          <caret line="44" column="1" selection-start-line="44" selection-start-column="1" selection-end-line="44" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.3561644">
+          <caret line="58" column="21" selection-start-line="58" selection-start-column="21" selection-end-line="58" selection-end-column="21" />
           <folding>
             <element signature="e#0#334#0" expanded="false" />
+            <element signature="n#!!block;n#validateTitleTextLength#0" expanded="true" />
             <element signature="e#510#531#0" expanded="false" />
-            <element signature="n#!!block;n#validateTitleCharacters#0" expanded="true" />
-            <element signature="n#!!block;n#validateResourceTopicArray#0" expanded="true" />
-            <element signature="n#!!block;n#validateLink#0" expanded="true" />
-            <element signature="e#1366#2212#0" expanded="true" />
-            <element signature="e#1571#1630#0" expanded="false" />
-            <element signature="e#1864#1932#0" expanded="false" />
+            <element signature="n#!!block;n#validateDescriptionCharacters#0" expanded="true" />
+            <element signature="e#1850#2903#0" expanded="true" />
+            <element signature="e#2786#2901#0" expanded="true" />
             <element signature="n#!!block;n#buildErrorString#0" expanded="true" />
-            <element signature="e#2337#2587#0" expanded="false" />
-            <element signature="e#2372#2581#0" expanded="false" />
-            <element signature="e#2500#2573#0" expanded="false" />
-            <element signature="e#2649#2695#0" expanded="true" />
+            <element signature="e#3028#3278#0" expanded="false" />
+            <element signature="e#3063#3272#0" expanded="false" />
+            <element signature="e#3191#3264#0" expanded="false" />
+            <element signature="e#3340#3386#0" expanded="true" />
           </folding>
         </state>
       </provider>
