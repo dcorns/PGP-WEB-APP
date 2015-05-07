@@ -138,6 +138,15 @@ dgMethod.arrayContains = function(ary, aValue, aKey){
   }
 };
 
+dgMethod.selectAddOption = function (selId, optObj, item){
+  var opt = document.createElement('option');
+  opt.innerHTML = optObj[item];
+  console.log(opt.innerHTML);
+  var sel = document.getElementById(selId);
+  opt.accessKey = sel.options.length;
+  sel.appendChild(opt);
+};
+
 module.exports = function (app){
   app.dgMethod = dgMethod;
 };

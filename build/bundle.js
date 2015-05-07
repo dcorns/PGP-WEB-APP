@@ -129,15 +129,17 @@ module.exports = function(){
   function saveResource(nrsrc, rsrc){
     console.log('save resource invoked');
     dgApp.dgMethod.ajaxPostJson('api/v_0_0_1/pgps/resources/save', nrsrc, function(err, data){
+      console.dir(data);
       if(err){
         errHandle.alertObject(err); return;
       }
-      if (typeof rsrc !== 'undefined') {
-        rsrc.push(data);
+      if (typeof pgpResources !== 'undefined') {
+        pgpResources.push(data[0]);
       }
       else {
-        rsrc = [data];
+        pgpResources = data;
       }
+      dgApp.dgMethod.selectAddOption('sG1', data[0], 'title');
       alert("New Resource Saved!");
     }, token);
   }
@@ -183,7 +185,7 @@ module.exports = function(){
             alert(newResource.title + ' is already a resource title.');
           }
           else{
-            if(dgApp.dgMethod.arrayContains(pgpResources, newResource.resourceLink, 'resourceLink')){
+            if(dgApp.dgMethod.arrayContains(pgpResources, newResource.resourceLink, 'resourceLink') && (newResource.resourceLink !== '')){
               alert(newResource.resourceLink + ' is already a resource link');
             }
             else{
@@ -593,6 +595,15 @@ dgMethod.arrayContains = function(ary, aValue, aKey){
       if(ary[c] === aValue) return true;
     }
   }
+};
+
+dgMethod.selectAddOption = function (selId, optObj, item){
+  var opt = document.createElement('option');
+  opt.innerHTML = optObj[item];
+  console.log(opt.innerHTML);
+  var sel = document.getElementById(selId);
+  opt.accessKey = sel.options.length;
+  sel.appendChild(opt);
 };
 
 module.exports = function (app){

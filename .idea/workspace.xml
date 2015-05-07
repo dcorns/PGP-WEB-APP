@@ -5,7 +5,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundle.js" afterPath="$PROJECT_DIR$/build/bundle.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/createPGPcontroller.js" afterPath="$PROJECT_DIR$/app/controllers/createPGPcontroller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/dgMethods.js" afterPath="$PROJECT_DIR$/app/js/dgMethods.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/routes/resource-routes.js" afterPath="$PROJECT_DIR$/api/routes/resource-routes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="cc44a7e5-b897-4fdf-b286-f8ab05fb6535" name="New changelist" comment="" />
@@ -44,26 +43,50 @@
         <entry file="file://$PROJECT_DIR$/app/js/dgMethods.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="39" column="41" selection-start-line="39" selection-start-column="41" selection-end-line="39" selection-end-column="41" />
+              <caret line="141" column="45" selection-start-line="141" selection-start-column="45" selection-end-line="141" selection-end-column="45" />
               <folding>
                 <element signature="e#0#81#0" expanded="false" />
                 <element signature="e#205#388#0" expanded="true" />
                 <element signature="e#277#305#0" expanded="false" />
+                <element signature="e#449#1147#0" expanded="true" />
                 <element signature="e#534#663#0" expanded="true" />
                 <element signature="e#716#867#0" expanded="true" />
+                <element signature="e#1207#1861#0" expanded="true" />
                 <element signature="e#1292#1421#0" expanded="true" />
                 <element signature="e#1474#1576#0" expanded="true" />
-                <element signature="e#1758#1817#0" expanded="false" />
                 <element signature="e#1992#2121#0" expanded="true" />
                 <element signature="e#2174#2325#0" expanded="true" />
                 <element signature="e#2787#3955#0" expanded="true" />
-                <element signature="e#2856#3345#0" expanded="false" />
-                <element signature="e#2885#3104#0" expanded="false" />
                 <element signature="e#2981#3043#0" expanded="false" />
-                <element signature="e#3113#3193#0" expanded="false" />
                 <element signature="e#3572#3949#0" expanded="false" />
-                <element signature="e#4010#4230#0" expanded="true" />
-                <element signature="e#4264#4294#0" expanded="true" />
+                <element signature="e#4541#4571#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="clientValidation.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/clientValidation.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="66" column="58" selection-start-line="66" selection-start-column="58" selection-end-line="66" selection-end-column="58" />
+              <folding>
+                <element signature="e#0#334#0" expanded="false" />
+                <element signature="e#510#531#0" expanded="false" />
+                <element signature="e#547#608#0" expanded="false" />
+                <element signature="e#802#823#0" expanded="false" />
+                <element signature="e#1040#1061#0" expanded="false" />
+                <element signature="e#1218#1239#0" expanded="false" />
+                <element signature="e#1505#1526#0" expanded="false" />
+                <element signature="e#1696#1772#0" expanded="false" />
+                <element signature="e#1711#1768#0" expanded="false" />
+                <element signature="e#2518#2654#0" expanded="false" />
+                <element signature="e#2675#2721#0" expanded="false" />
+                <element signature="e#2816#2876#0" expanded="false" />
+                <element signature="e#2991#3282#0" expanded="false" />
+                <element signature="e#3028#3278#0" expanded="false" />
+                <element signature="e#3063#3272#0" expanded="false" />
+                <element signature="e#3191#3264#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -77,7 +100,6 @@
               <folding>
                 <element signature="e#343#383#0" expanded="false" />
                 <element signature="e#685#734#0" expanded="false" />
-                <element signature="e#2206#2938#0" expanded="true" />
                 <element signature="e#2353#2932#0" expanded="true" />
                 <element signature="e#2522#2859#0" expanded="true" />
                 <element signature="e#2690#2847#0" expanded="true" />
@@ -100,23 +122,22 @@
       <file leaf-file-name="createPGPcontroller.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/createPGPcontroller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.61095893">
-              <caret line="128" column="22" selection-start-line="128" selection-start-column="22" selection-end-line="128" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.6054795">
+              <caret line="129" column="28" selection-start-line="129" selection-start-column="28" selection-end-line="129" selection-end-column="28" />
               <folding>
                 <element signature="e#0#63#0" expanded="false" />
-                <element signature="e#643#1370#0" expanded="false" />
-                <element signature="e#727#780#0" expanded="false" />
-                <element signature="e#795#1350#0" expanded="false" />
+                <element signature="e#712#1357#0" expanded="true" />
                 <element signature="e#1042#1146#0" expanded="false" />
                 <element signature="e#1159#1251#0" expanded="false" />
                 <element signature="e#1583#3652#0" expanded="true" />
                 <element signature="e#1672#3646#0" expanded="true" />
                 <element signature="e#1997#2046#0" expanded="false" />
-                <element signature="e#3775#4044#0" expanded="false" />
+                <element signature="e#3703#4048#0" expanded="true" />
+                <element signature="e#3860#4036#0" expanded="true" />
                 <element signature="e#3877#3934#0" expanded="false" />
-                <element signature="e#4587#4657#0" expanded="false" />
-                <element signature="e#4687#6318#0" expanded="true" />
-                <element signature="e#4956#6312#0" expanded="true" />
+                <element signature="e#4700#4770#0" expanded="false" />
+                <element signature="e#4800#6468#0" expanded="true" />
+                <element signature="e#5069#6462#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -198,8 +219,8 @@
         <option value="$PROJECT_DIR$/app/views/createPgpView.js" />
         <option value="$PROJECT_DIR$/app/js/app.js" />
         <option value="$PROJECT_DIR$/app/js/clientValidation.js" />
-        <option value="$PROJECT_DIR$/app/js/dgMethods.js" />
         <option value="$PROJECT_DIR$/api/routes/resource-routes.js" />
+        <option value="$PROJECT_DIR$/app/js/dgMethods.js" />
         <option value="$PROJECT_DIR$/app/controllers/createPGPcontroller.js" />
       </list>
     </option>
@@ -391,24 +412,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PGP-WEB-APP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PGP-WEB-APP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -656,9 +659,9 @@
       <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32888147" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24924012" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17097265" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17097265" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19832827" sideWeight="0.47387388" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19832827" sideWeight="0.47387388" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34223706" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="99" y="127" width="1168" height="542" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5308848" sideWeight="0.49962714" order="7" side_tool="false" content_ui="tabs" />
@@ -720,7 +723,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="10" />
+      <option name="time" value="11" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="NodeJSConfigurationType">
@@ -1031,26 +1034,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/clientValidation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="72" column="56" selection-start-line="72" selection-start-column="56" selection-end-line="72" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#334#0" expanded="false" />
-            <element signature="n#!!block;n#validateTitleTextLength#0" expanded="true" />
-            <element signature="e#510#531#0" expanded="false" />
-            <element signature="n#!!block;n#validateDescriptionCharacters#0" expanded="true" />
-            <element signature="n#!!block;n#validateResourceDescription#0" expanded="true" />
-            <element signature="e#2786#2901#0" expanded="true" />
-            <element signature="n#!!block;n#buildErrorString#0" expanded="true" />
-            <element signature="e#3028#3278#0" expanded="false" />
-            <element signature="e#3063#3272#0" expanded="false" />
-            <element signature="e#3191#3264#0" expanded="false" />
-            <element signature="e#3340#3386#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/createPgpView.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.39452055">
@@ -1078,38 +1061,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/dgMethods.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="41" selection-start-line="39" selection-start-column="41" selection-end-line="39" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#81#0" expanded="false" />
-            <element signature="e#205#388#0" expanded="true" />
-            <element signature="e#277#305#0" expanded="false" />
-            <element signature="e#534#663#0" expanded="true" />
-            <element signature="e#716#867#0" expanded="true" />
-            <element signature="e#1292#1421#0" expanded="true" />
-            <element signature="e#1474#1576#0" expanded="true" />
-            <element signature="e#1758#1817#0" expanded="false" />
-            <element signature="e#1992#2121#0" expanded="true" />
-            <element signature="e#2174#2325#0" expanded="true" />
-            <element signature="e#2787#3955#0" expanded="true" />
-            <element signature="e#2856#3345#0" expanded="false" />
-            <element signature="e#2885#3104#0" expanded="false" />
-            <element signature="e#2981#3043#0" expanded="false" />
-            <element signature="e#3113#3193#0" expanded="false" />
-            <element signature="e#3572#3949#0" expanded="false" />
-            <element signature="e#4010#4230#0" expanded="true" />
-            <element signature="e#4264#4294#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/js/authorize.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="103" column="9" selection-start-line="103" selection-start-column="9" selection-end-line="103" selection-end-column="9" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/clientValidation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="66" column="58" selection-start-line="66" selection-start-column="58" selection-end-line="66" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#334#0" expanded="false" />
+            <element signature="e#510#531#0" expanded="false" />
+            <element signature="e#547#608#0" expanded="false" />
+            <element signature="e#802#823#0" expanded="false" />
+            <element signature="e#1040#1061#0" expanded="false" />
+            <element signature="e#1218#1239#0" expanded="false" />
+            <element signature="e#1505#1526#0" expanded="false" />
+            <element signature="e#1696#1772#0" expanded="false" />
+            <element signature="e#1711#1768#0" expanded="false" />
+            <element signature="e#2518#2654#0" expanded="false" />
+            <element signature="e#2675#2721#0" expanded="false" />
+            <element signature="e#2816#2876#0" expanded="false" />
+            <element signature="e#2991#3282#0" expanded="false" />
+            <element signature="e#3028#3278#0" expanded="false" />
+            <element signature="e#3063#3272#0" expanded="false" />
+            <element signature="e#3191#3264#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1120,7 +1101,6 @@
           <folding>
             <element signature="e#343#383#0" expanded="false" />
             <element signature="e#685#734#0" expanded="false" />
-            <element signature="e#2206#2938#0" expanded="true" />
             <element signature="e#2353#2932#0" expanded="true" />
             <element signature="e#2522#2859#0" expanded="true" />
             <element signature="e#2690#2847#0" expanded="true" />
@@ -1129,25 +1109,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/dgMethods.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="141" column="45" selection-start-line="141" selection-start-column="45" selection-end-line="141" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#81#0" expanded="false" />
+            <element signature="e#205#388#0" expanded="true" />
+            <element signature="e#277#305#0" expanded="false" />
+            <element signature="e#449#1147#0" expanded="true" />
+            <element signature="e#534#663#0" expanded="true" />
+            <element signature="e#716#867#0" expanded="true" />
+            <element signature="e#1207#1861#0" expanded="true" />
+            <element signature="e#1292#1421#0" expanded="true" />
+            <element signature="e#1474#1576#0" expanded="true" />
+            <element signature="e#1992#2121#0" expanded="true" />
+            <element signature="e#2174#2325#0" expanded="true" />
+            <element signature="e#2787#3955#0" expanded="true" />
+            <element signature="e#2981#3043#0" expanded="false" />
+            <element signature="e#3572#3949#0" expanded="false" />
+            <element signature="e#4541#4571#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/createPGPcontroller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.61095893">
-          <caret line="128" column="22" selection-start-line="128" selection-start-column="22" selection-end-line="128" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.6054795">
+          <caret line="129" column="28" selection-start-line="129" selection-start-column="28" selection-end-line="129" selection-end-column="28" />
           <folding>
             <element signature="e#0#63#0" expanded="false" />
-            <element signature="e#643#1370#0" expanded="false" />
-            <element signature="e#727#780#0" expanded="false" />
-            <element signature="e#795#1350#0" expanded="false" />
+            <element signature="e#712#1357#0" expanded="true" />
             <element signature="e#1042#1146#0" expanded="false" />
             <element signature="e#1159#1251#0" expanded="false" />
             <element signature="e#1583#3652#0" expanded="true" />
             <element signature="e#1672#3646#0" expanded="true" />
             <element signature="e#1997#2046#0" expanded="false" />
-            <element signature="e#3775#4044#0" expanded="false" />
+            <element signature="e#3703#4048#0" expanded="true" />
+            <element signature="e#3860#4036#0" expanded="true" />
             <element signature="e#3877#3934#0" expanded="false" />
-            <element signature="e#4587#4657#0" expanded="false" />
-            <element signature="e#4687#6318#0" expanded="true" />
-            <element signature="e#4956#6312#0" expanded="true" />
+            <element signature="e#4700#4770#0" expanded="false" />
+            <element signature="e#4800#6468#0" expanded="true" />
+            <element signature="e#5069#6462#0" expanded="true" />
           </folding>
         </state>
       </provider>
