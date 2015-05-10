@@ -98,8 +98,6 @@ module.exports = function (app) {
   });
 
   app.post(baseUrl + '/save', function (req, res) {
-    console.log('resource Save');
-    console.dir(req.body);
     var nrsrc = req.body;
     var token = nrsrc.token;
     delete nrsrc.token;
@@ -116,6 +114,25 @@ module.exports = function (app) {
         });
       }
       else {
+        return res.status(202).send(usr);
+      }
+    });
+  });
+
+  app.post(baseUrl + '/remove', function (req, res){
+    var removeMe = req.body;
+    var token = removeMe.token;
+    delete removeMe.token;
+    var a = auth();
+    a.getTokenInfo(token, function(err, usr){
+      if(err) return res.status(500).json(err);
+      if(typeof usr !== 'undefined'){
+        corngoose.dbDocRemove({title: removeMe.title}, 'resourceList', function(err, success){
+          if(err) return res.status(500).json(err);
+          return res.status(200).json(success);
+        });
+      }
+      else{
         return res.status(202).send(usr);
       }
     });

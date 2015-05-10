@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="07ae87d6-5071-4c23-88bc-a66326b970a2" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/angular/notes-controller-test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/angular/pgps-controller.test.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundle.js" afterPath="$PROJECT_DIR$/build/bundle.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/createPGPcontroller.js" afterPath="$PROJECT_DIR$/app/controllers/createPGPcontroller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/dgMethods.js" afterPath="$PROJECT_DIR$/app/js/dgMethods.js" />
@@ -40,30 +42,52 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="dgMethods.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="dgMethods.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/js/dgMethods.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="39" column="41" selection-start-line="39" selection-start-column="41" selection-end-line="39" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.5972603">
+              <caret line="101" column="9" selection-start-line="101" selection-start-column="9" selection-end-line="101" selection-end-column="9" />
               <folding>
                 <element signature="e#0#81#0" expanded="false" />
                 <element signature="e#205#388#0" expanded="true" />
                 <element signature="e#277#305#0" expanded="false" />
+                <element signature="e#449#1147#0" expanded="true" />
                 <element signature="e#534#663#0" expanded="true" />
                 <element signature="e#716#867#0" expanded="true" />
                 <element signature="e#1292#1421#0" expanded="true" />
-                <element signature="e#1474#1576#0" expanded="true" />
-                <element signature="e#1758#1817#0" expanded="false" />
                 <element signature="e#1992#2121#0" expanded="true" />
                 <element signature="e#2174#2325#0" expanded="true" />
-                <element signature="e#2787#3955#0" expanded="true" />
-                <element signature="e#2856#3345#0" expanded="false" />
-                <element signature="e#2885#3104#0" expanded="false" />
-                <element signature="e#2981#3043#0" expanded="false" />
-                <element signature="e#3113#3193#0" expanded="false" />
-                <element signature="e#3572#3949#0" expanded="false" />
-                <element signature="e#4010#4230#0" expanded="true" />
-                <element signature="e#4264#4294#0" expanded="true" />
+                <element signature="e#3044#3106#0" expanded="false" />
+                <element signature="e#3608#3985#0" expanded="false" />
+                <element signature="e#4326#4543#0" expanded="true" />
+                <element signature="e#4577#4607#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="clientValidation.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/clientValidation.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="66" column="58" selection-start-line="66" selection-start-column="58" selection-end-line="66" selection-end-column="58" />
+              <folding>
+                <element signature="e#0#334#0" expanded="false" />
+                <element signature="e#510#531#0" expanded="false" />
+                <element signature="e#547#608#0" expanded="false" />
+                <element signature="e#802#823#0" expanded="false" />
+                <element signature="e#1040#1061#0" expanded="false" />
+                <element signature="e#1218#1239#0" expanded="false" />
+                <element signature="e#1505#1526#0" expanded="false" />
+                <element signature="e#1696#1772#0" expanded="false" />
+                <element signature="e#1711#1768#0" expanded="false" />
+                <element signature="e#2518#2654#0" expanded="false" />
+                <element signature="e#2675#2721#0" expanded="false" />
+                <element signature="e#2816#2876#0" expanded="false" />
+                <element signature="e#2991#3282#0" expanded="false" />
+                <element signature="e#3028#3278#0" expanded="false" />
+                <element signature="e#3063#3272#0" expanded="false" />
+                <element signature="e#3191#3264#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -73,15 +97,18 @@
         <entry file="file://$PROJECT_DIR$/api/routes/resource-routes.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="117" column="12" selection-start-line="117" selection-start-column="12" selection-end-line="117" selection-end-column="12" />
+              <caret line="123" column="31" selection-start-line="123" selection-start-column="31" selection-end-line="123" selection-end-column="31" />
               <folding>
                 <element signature="e#343#383#0" expanded="false" />
                 <element signature="e#685#734#0" expanded="false" />
-                <element signature="e#2206#2938#0" expanded="true" />
                 <element signature="e#2353#2932#0" expanded="true" />
                 <element signature="e#2522#2859#0" expanded="true" />
                 <element signature="e#2690#2847#0" expanded="true" />
-                <element signature="e#3434#3542#0" expanded="true" />
+                <element signature="e#2992#3566#0" expanded="true" />
+                <element signature="e#3139#3560#0" expanded="true" />
+                <element signature="e#3373#3481#0" expanded="true" />
+                <element signature="e#3775#4145#0" expanded="true" />
+                <element signature="e#3956#4067#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -97,26 +124,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="createPGPcontroller.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="createPGPcontroller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/createPGPcontroller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.61095893">
-              <caret line="128" column="22" selection-start-line="128" selection-start-column="22" selection-end-line="128" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="67" column="32" selection-start-line="67" selection-start-column="32" selection-end-line="67" selection-end-column="32" />
               <folding>
                 <element signature="e#0#63#0" expanded="false" />
-                <element signature="e#643#1370#0" expanded="false" />
-                <element signature="e#727#780#0" expanded="false" />
-                <element signature="e#795#1350#0" expanded="false" />
+                <element signature="e#712#1357#0" expanded="true" />
                 <element signature="e#1042#1146#0" expanded="false" />
                 <element signature="e#1159#1251#0" expanded="false" />
-                <element signature="e#1583#3652#0" expanded="true" />
-                <element signature="e#1672#3646#0" expanded="true" />
-                <element signature="e#1997#2046#0" expanded="false" />
-                <element signature="e#3775#4044#0" expanded="false" />
-                <element signature="e#3877#3934#0" expanded="false" />
-                <element signature="e#4587#4657#0" expanded="false" />
-                <element signature="e#4687#6318#0" expanded="true" />
-                <element signature="e#4956#6312#0" expanded="true" />
+                <element signature="e#1583#2002#0" expanded="true" />
+                <element signature="e#1672#1996#0" expanded="true" />
+                <element signature="e#2595#3086#0" expanded="true" />
+                <element signature="e#2732#3073#0" expanded="true" />
+                <element signature="e#3209#3279#0" expanded="false" />
+                <element signature="e#3309#5134#0" expanded="true" />
+                <element signature="e#5160#5312#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -146,6 +170,11 @@
         <option name="title" value="Current Branch" />
       </GitPushTagMode>
     </option>
+  </component>
+  <component name="GulpTreeLayoutManager">
+    <layout place="tools.popup">
+      <scroll-view-position x="0" y="0" />
+    </layout>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -198,9 +227,9 @@
         <option value="$PROJECT_DIR$/app/views/createPgpView.js" />
         <option value="$PROJECT_DIR$/app/js/app.js" />
         <option value="$PROJECT_DIR$/app/js/clientValidation.js" />
-        <option value="$PROJECT_DIR$/app/js/dgMethods.js" />
         <option value="$PROJECT_DIR$/api/routes/resource-routes.js" />
         <option value="$PROJECT_DIR$/app/controllers/createPGPcontroller.js" />
+        <option value="$PROJECT_DIR$/app/js/dgMethods.js" />
       </list>
     </option>
   </component>
@@ -209,7 +238,75 @@
     <config-path>$PROJECT_DIR$/bower.json</config-path>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true">
-    <gruntfile path="$PROJECT_DIR$/Gruntfile.js" />
+    <gruntfile path="$PROJECT_DIR$/Gruntfile.js">
+      <alias-task name="angulartest" info="Alias for &quot;browserify:angulartest&quot;, &quot;karma:unit&quot; tasks." file-path="$PROJECT_DIR$/Gruntfile.js">
+        <dependency value="browserify:angulartest" />
+        <dependency value="karma:unit" />
+      </alias-task>
+      <alias-task name="angulartestwatch" info="Alias for &quot;angulartest&quot;, &quot;watch:angulartest&quot; tasks." file-path="$PROJECT_DIR$/Gruntfile.js">
+        <dependency value="angulartest" />
+        <dependency value="watch:angulartest" />
+      </alias-task>
+      <alias-task name="apitest" info="Alias for &quot;simplemocha&quot; task." file-path="$PROJECT_DIR$/Gruntfile.js">
+        <dependency value="simplemocha" />
+      </alias-task>
+      <alias-task name="build:dev" info="Alias for &quot;clean:dev&quot;, &quot;browserify:dev&quot;, &quot;copy:dev&quot; tasks." file-path="$PROJECT_DIR$/Gruntfile.js">
+        <dependency value="clean:dev" />
+        <dependency value="browserify:dev" />
+        <dependency value="copy:dev" />
+      </alias-task>
+      <alias-task name="build:production" info="Alias for &quot;clean:production&quot;, &quot;browserify:production&quot;, &quot;copy:production&quot; tasks." file-path="$PROJECT_DIR$/Gruntfile.js">
+        <dependency value="clean:production" />
+        <dependency value="browserify:production" />
+        <dependency value="copy:production" />
+      </alias-task>
+      <alias-task name="buildtest" info="Alias for &quot;test&quot;, &quot;build:dev&quot; tasks." file-path="$PROJECT_DIR$/Gruntfile.js">
+        <dependency value="test" />
+        <dependency value="build:dev" />
+      </alias-task>
+      <alias-task name="copystyle" info="Alias for &quot;clean:style&quot;, &quot;copy:style&quot; tasks." file-path="$PROJECT_DIR$/Gruntfile.js">
+        <dependency value="clean:style" />
+        <dependency value="copy:style" />
+      </alias-task>
+      <alias-task name="default" info="Alias for &quot;watch:express&quot; task." file-path="$PROJECT_DIR$/Gruntfile.js">
+        <dependency value="watch:express" />
+      </alias-task>
+      <alias-task name="test" info="Alias for &quot;angulartest&quot;, &quot;simplemocha&quot; tasks." file-path="$PROJECT_DIR$/Gruntfile.js">
+        <dependency value="angulartest" />
+        <dependency value="simplemocha" />
+      </alias-task>
+      <core-task name="browserify" info="Grunt task for browserify." file-path="$PROJECT_DIR$/node_modules/grunt-browserify/tasks/browserify.js" multi="true">
+        <target value="dev" />
+        <target value="production" />
+        <target value="angulartest" />
+      </core-task>
+      <core-task name="clean" info="Clean files and folders." file-path="$PROJECT_DIR$/node_modules/grunt-contrib-clean/tasks/clean.js" multi="true">
+        <target value="dev" />
+        <target value="production" />
+        <target value="style" />
+      </core-task>
+      <core-task name="copy" info="Copy files." file-path="$PROJECT_DIR$/node_modules/grunt-contrib-copy/tasks/copy.js" multi="true">
+        <target value="dev" />
+        <target value="production" />
+        <target value="style" />
+      </core-task>
+      <core-task name="express" info="Start an express web server" file-path="$PROJECT_DIR$/node_modules/grunt-express-server/tasks/express.js" multi="true">
+        <target value="dev" />
+        <target value="production" />
+      </core-task>
+      <core-task name="karma" info="run karma." file-path="$PROJECT_DIR$/node_modules/grunt-karma/tasks/grunt-karma.js" multi="true">
+        <target value="unit" />
+        <target value="continuous" />
+      </core-task>
+      <core-task name="mocha" info="Run Mocha unit tests in a headless PhantomJS instance." file-path="$PROJECT_DIR$/node_modules/grunt-mocha/tasks/mocha.js" multi="true" />
+      <core-task name="simplemocha" info="Run tests with mocha" file-path="$PROJECT_DIR$/node_modules/grunt-simple-mocha/tasks/simple-mocha.js" multi="true">
+        <target value="all" />
+      </core-task>
+      <core-task name="watch" info="Run predefined tasks whenever watched files change." file-path="$PROJECT_DIR$/node_modules/grunt-contrib-watch/tasks/watch.js" multi="false">
+        <target value="angulartest" />
+        <target value="express" />
+      </core-task>
+    </gruntfile>
   </component>
   <component name="JsGruntFileManager">
     <gruntfiles>
@@ -354,7 +451,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="test" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -368,97 +465,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="test" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PGP-WEB-APP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PGP-WEB-APP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PGP-WEB-APP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PGP-WEB-APP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PGP-WEB-APP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PGP-WEB-APP" />
+              <option name="myItemId" value="mocha" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="routes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PGP-WEB-APP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PGP-WEB-APP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PGP-WEB-APP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PGP-WEB-APP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -469,7 +484,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../tactile_prototype" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../drcorns" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="FullScreen" value="false" />
@@ -508,7 +523,7 @@
       <recent name="$PROJECT_DIR$/test/mocha" />
     </key>
   </component>
-  <component name="RunManager" selected="Mocha.Unit Tests">
+  <component name="RunManager" selected="Node.js.login-routes-test.js">
     <configuration default="false" name="pgps-controller.test.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="/usr/local/bin/node" path-to-js-file="pgps-controller.test.js" working-dir="$PROJECT_DIR$/test/angular">
       <RunnerSettings RunnerId="Basic" />
       <ConfigurationWrapper RunnerId="Basic" />
@@ -544,6 +559,13 @@
       <method />
     </configuration>
     <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.grunt" factoryName="Grunt.js">
+      <pass-parent-env-vars value="true" />
+      <force value="false" />
+      <verbose value="false" />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
@@ -604,8 +626,8 @@
     </list>
     <recent_temporary>
       <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Node.js.user-routes-test.js" />
-        <item index="1" class="java.lang.String" itemvalue="Node.js.login-routes-test.js" />
+        <item index="0" class="java.lang.String" itemvalue="Node.js.login-routes-test.js" />
+        <item index="1" class="java.lang.String" itemvalue="Node.js.user-routes-test.js" />
         <item index="2" class="java.lang.String" itemvalue="Node.js.pgps-controller.test.js" />
       </list>
     </recent_temporary>
@@ -647,10 +669,10 @@
     <frame x="-1" y="27" width="1368" height="742" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33555928" sideWeight="0.4969605" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33555928" sideWeight="0.49289098" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32554257" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39899832" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33555928" sideWeight="0.50303954" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33555928" sideWeight="0.507109" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32888147" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -665,8 +687,8 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="CSS Styles" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32888147" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Grunt" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32888147" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="REST Client" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4657763" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21656536" sideWeight="0.52612615" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43071786" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -720,7 +742,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="10" />
+      <option name="time" value="12" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="NodeJSConfigurationType">
@@ -729,13 +751,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/directives/drcOptCls-Directive.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="36" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/survey-controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -897,13 +912,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/loginView.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1031,26 +1039,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/clientValidation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="72" column="56" selection-start-line="72" selection-start-column="56" selection-end-line="72" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#334#0" expanded="false" />
-            <element signature="n#!!block;n#validateTitleTextLength#0" expanded="true" />
-            <element signature="e#510#531#0" expanded="false" />
-            <element signature="n#!!block;n#validateDescriptionCharacters#0" expanded="true" />
-            <element signature="n#!!block;n#validateResourceDescription#0" expanded="true" />
-            <element signature="e#2786#2901#0" expanded="true" />
-            <element signature="n#!!block;n#buildErrorString#0" expanded="true" />
-            <element signature="e#3028#3278#0" expanded="false" />
-            <element signature="e#3063#3272#0" expanded="false" />
-            <element signature="e#3191#3264#0" expanded="false" />
-            <element signature="e#3340#3386#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/createPgpView.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.39452055">
@@ -1064,8 +1052,8 @@
         <state vertical-scroll-proportion="0.45753425">
           <caret line="210" column="44" selection-start-line="210" selection-start-column="44" selection-end-line="210" selection-end-column="44" />
           <folding>
-            <element signature="e#6278#6483#0" expanded="true" />
-            <element signature="e#6529#6694#0" expanded="true" />
+            <element signature="e#6278#6483#0" expanded="false" />
+            <element signature="e#6529#6694#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1078,33 +1066,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/dgMethods.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="41" selection-start-line="39" selection-start-column="41" selection-end-line="39" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#81#0" expanded="false" />
-            <element signature="e#205#388#0" expanded="true" />
-            <element signature="e#277#305#0" expanded="false" />
-            <element signature="e#534#663#0" expanded="true" />
-            <element signature="e#716#867#0" expanded="true" />
-            <element signature="e#1292#1421#0" expanded="true" />
-            <element signature="e#1474#1576#0" expanded="true" />
-            <element signature="e#1758#1817#0" expanded="false" />
-            <element signature="e#1992#2121#0" expanded="true" />
-            <element signature="e#2174#2325#0" expanded="true" />
-            <element signature="e#2787#3955#0" expanded="true" />
-            <element signature="e#2856#3345#0" expanded="false" />
-            <element signature="e#2885#3104#0" expanded="false" />
-            <element signature="e#2981#3043#0" expanded="false" />
-            <element signature="e#3113#3193#0" expanded="false" />
-            <element signature="e#3572#3949#0" expanded="false" />
-            <element signature="e#4010#4230#0" expanded="true" />
-            <element signature="e#4264#4294#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/js/authorize.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1113,41 +1074,106 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31910947">
+          <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/mocha/api/login-routes-test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09540636">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+          <folding>
+            <element signature="e#477#4433#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/clientValidation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="66" column="58" selection-start-line="66" selection-start-column="58" selection-end-line="66" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#334#0" expanded="false" />
+            <element signature="e#510#531#0" expanded="false" />
+            <element signature="e#547#608#0" expanded="false" />
+            <element signature="e#802#823#0" expanded="false" />
+            <element signature="e#1040#1061#0" expanded="false" />
+            <element signature="e#1218#1239#0" expanded="false" />
+            <element signature="e#1505#1526#0" expanded="false" />
+            <element signature="e#1696#1772#0" expanded="false" />
+            <element signature="e#1711#1768#0" expanded="false" />
+            <element signature="e#2518#2654#0" expanded="false" />
+            <element signature="e#2675#2721#0" expanded="false" />
+            <element signature="e#2816#2876#0" expanded="false" />
+            <element signature="e#2991#3282#0" expanded="false" />
+            <element signature="e#3028#3278#0" expanded="false" />
+            <element signature="e#3063#3272#0" expanded="false" />
+            <element signature="e#3191#3264#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/api/routes/resource-routes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="117" column="12" selection-start-line="117" selection-start-column="12" selection-end-line="117" selection-end-column="12" />
+          <caret line="123" column="31" selection-start-line="123" selection-start-column="31" selection-end-line="123" selection-end-column="31" />
           <folding>
             <element signature="e#343#383#0" expanded="false" />
             <element signature="e#685#734#0" expanded="false" />
-            <element signature="e#2206#2938#0" expanded="true" />
             <element signature="e#2353#2932#0" expanded="true" />
             <element signature="e#2522#2859#0" expanded="true" />
             <element signature="e#2690#2847#0" expanded="true" />
-            <element signature="e#3434#3542#0" expanded="true" />
+            <element signature="e#2992#3566#0" expanded="true" />
+            <element signature="e#3139#3560#0" expanded="true" />
+            <element signature="e#3373#3481#0" expanded="true" />
+            <element signature="e#3775#4145#0" expanded="true" />
+            <element signature="e#3956#4067#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/createPGPcontroller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.61095893">
-          <caret line="128" column="22" selection-start-line="128" selection-start-column="22" selection-end-line="128" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="67" column="32" selection-start-line="67" selection-start-column="32" selection-end-line="67" selection-end-column="32" />
           <folding>
             <element signature="e#0#63#0" expanded="false" />
-            <element signature="e#643#1370#0" expanded="false" />
-            <element signature="e#727#780#0" expanded="false" />
-            <element signature="e#795#1350#0" expanded="false" />
+            <element signature="e#712#1357#0" expanded="true" />
             <element signature="e#1042#1146#0" expanded="false" />
             <element signature="e#1159#1251#0" expanded="false" />
-            <element signature="e#1583#3652#0" expanded="true" />
-            <element signature="e#1672#3646#0" expanded="true" />
-            <element signature="e#1997#2046#0" expanded="false" />
-            <element signature="e#3775#4044#0" expanded="false" />
-            <element signature="e#3877#3934#0" expanded="false" />
-            <element signature="e#4587#4657#0" expanded="false" />
-            <element signature="e#4687#6318#0" expanded="true" />
-            <element signature="e#4956#6312#0" expanded="true" />
+            <element signature="e#1583#2002#0" expanded="true" />
+            <element signature="e#1672#1996#0" expanded="true" />
+            <element signature="e#2595#3086#0" expanded="true" />
+            <element signature="e#2732#3073#0" expanded="true" />
+            <element signature="e#3209#3279#0" expanded="false" />
+            <element signature="e#3309#5134#0" expanded="true" />
+            <element signature="e#5160#5312#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/dgMethods.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5972603">
+          <caret line="101" column="9" selection-start-line="101" selection-start-column="9" selection-end-line="101" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#81#0" expanded="false" />
+            <element signature="e#205#388#0" expanded="true" />
+            <element signature="e#277#305#0" expanded="false" />
+            <element signature="e#449#1147#0" expanded="true" />
+            <element signature="e#534#663#0" expanded="true" />
+            <element signature="e#716#867#0" expanded="true" />
+            <element signature="e#1292#1421#0" expanded="true" />
+            <element signature="e#1992#2121#0" expanded="true" />
+            <element signature="e#2174#2325#0" expanded="true" />
+            <element signature="e#3044#3106#0" expanded="false" />
+            <element signature="e#3608#3985#0" expanded="false" />
+            <element signature="e#4326#4543#0" expanded="true" />
+            <element signature="e#4577#4607#0" expanded="true" />
           </folding>
         </state>
       </provider>
