@@ -87,6 +87,8 @@ dgMethod.dataBindInput = function(elem, evnt, mdl, item){
 };
 
 dgMethod.dataLoadSelect = function(elId, ary, item){
+  var el = document.getElementById(elId);
+  el.innerHTML = '';
   var len = ary.length, c = 0, opt, display;
   for(c; c < len; c++){
     if(Array.isArray(item)){
@@ -103,7 +105,7 @@ dgMethod.dataLoadSelect = function(elId, ary, item){
     opt = document.createElement('option');
     opt.innerHTML = display;
     opt.accessKey = c;
-    document.getElementById(elId).appendChild(opt);
+    el.appendChild(opt);
   }
 
   dgMethod.makeFormCheckBoxGroup = function(formID, data, nameKey, descriptionKey, idKey){
