@@ -17,6 +17,10 @@ require('../js/dgRouteProvider')(dgApp); //adds loadRoute method to dgApp
 require('../js/dgMethods')(dgApp); //add dgMethod object to dgApp
 require('../js/clientValidation')(dgApp); //add client validation
 
+var views = require('./build/views');
+var controllers = require('./controllers/controllerRegistry')();
+var route = require('./router')(views, controllers);
+
 function firstDo(){
   window.dgApp = dgApp;
   //Handle Refresh by checking session storage for last href and redirecting if it exists
@@ -24,12 +28,14 @@ function firstDo(){
   var netAction = window.sessionStorage.getItem('netAction');
     if (lastHref) {
       dgApp.loadRoute(lastHref);
+      route(lastHref);
     }
     else {//load home template
       lastHref = '#/home';
       window.sessionStorage.setItem('href', lastHref);
       window.history.pushState(null, null, lastHref);
       dgApp.loadRoute(lastHref);
+      route(lastHref);
     }
     //Add event handlers for 'a' tags
     var links = document.getElementsByTagName('a');
