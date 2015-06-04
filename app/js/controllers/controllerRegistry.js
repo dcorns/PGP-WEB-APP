@@ -6,6 +6,7 @@
 'use strict';
 module.exports = function (){
   return{
-    home: require('./home')
+    home: require('./home'),
+    login: require('./login')
   };
 };

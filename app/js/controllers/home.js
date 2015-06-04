@@ -7,7 +7,6 @@ var views = require('../build/views');
 var controllers = require('./controllerRegistry')();
 var route = require('../router')(views, controllers);
 module.exports = function(){
-  alert('home controller');
   document.getElementById('mybtn').addEventListener('click', function(e){
     alert('you clicked me!');
   });
