@@ -7,7 +7,8 @@ var views = require('../build/views');
 var controllers = require('./controllerRegistry')();
 var route = require('../router')(views, controllers);
 module.exports = function(){
-  document.getElementById('mybtn').addEventListener('click', function(e){
-    alert('you clicked me!');
-  });
+  document.getElementById('btncreatepgp').style.display = 'none';
+  document.getElementById('btnsurvey').style.display = 'none';
+  document.getElementById('btnviewpgp').style.display = 'none';
+
 };

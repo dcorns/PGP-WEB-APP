@@ -7,6 +7,7 @@
 module.exports = function (){
   return{
     home: require('./home'),
-    login: require('./login')
+    login: require('./login'),
+    create_PGP: require('./create_PGP')
   };
 };

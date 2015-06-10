@@ -16,6 +16,7 @@ require('../models/pgpModel')(dgApp); //adds pgpMdl object
 //require('../js/dgRouteProvider')(dgApp); //adds loadRoute method to dgApp
 require('../js/dgMethods')(dgApp); //add dgMethod object to dgApp
 require('../js/clientValidation')(dgApp); //add client validation
+require('../js/dgComponents')(dgApp); //add web components
 
 var views = require('./build/views');
 var controllers = require('./controllers/controllerRegistry')();
@@ -23,7 +24,6 @@ var route = require('./router')(views, controllers);
 
 function firstDo(){
   window.dgApp = dgApp;
-  alert('firstDo');
   //Handle Refresh by checking session storage for last href and redirecting if it exists
   var lastHref = window.sessionStorage.getItem('href');
   var netAction = window.sessionStorage.getItem('netAction');

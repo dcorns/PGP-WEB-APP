@@ -7,13 +7,13 @@
 var ui = require('../js/ui');
 
 module.exports = function(){
-  var ux = ui();
-  ux.hideMainButtons();
-  var ca = document.getElementById('btncreateaccount');
-  ca.className = 'hidden';
-  var btnCreatePgp = document.getElementById('btncreatepgp');
-  btnCreatePgp.className = 'nav_ul-li';
-  document.getElementById('btnviewpgp').className = 'nav_ul-li';
+  //var ux = ui();
+  //ux.hideMainButtons();
+  //var ca = document.getElementById('btncreateaccount');
+  //ca.className = 'hidden';
+  //var btnCreatePgp = document.getElementById('btncreatepgp');
+  //btnCreatePgp.className = 'nav_ul-li';
+  //document.getElementById('btnviewpgp').className = 'nav_ul-li';
 
   //main view
   document.getElementById('dgView').innerHTML = '';
