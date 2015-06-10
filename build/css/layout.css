@@ -51,3 +51,11 @@ header {
 .footer_p {
     text-align: center;
 }
+
+#addResources{
+    border-radius: 10%;
+    border-width: 2em;
+    border-style: ridge;
+    display: block;
+    width:400px;
+}

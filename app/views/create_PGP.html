@@ -1,25 +1,25 @@
-<div data-ng-controller="pgpsController">
-<article class="newSurvey">
-<form class="newSurvey_form">
-<fieldset class="newSurvey_select">
-    <legend>Please Select A Student</legend>
-    <select id="selStudents" data-ng-model="selectedPgp" data-ng-options="pgp.name group by pgp.recComplete for pgp in pgps" ></select>
-</fieldset>
+
+    <select id="studentSelect"></select>
+
+    <section id="addResources">
+        <h2 id="saveGenResHere">Save New Resources Here</h2>
+
+                <input class="rGeneral" type="text" placeholder="New Resource Title" data-ng-model="saveGResource.resource.title">
+                <input class="rGeneral" type="text" placeholder="New Resource type" data-ng-model="saveGResource.resource.type">
+                <input class="rGeneral" type="text" placeholder="New Resource Link" data-ng-model="saveGResource.resource.rlink">
+        <section id="rTypes"></section><!--populated with checkboxes by controller-->
+        <button id="btnSaveNewResource">Save New Resource</button>
+        <select id="resources"></select>
+        <super-select id="resources2"></super-select>
+    </section>
+
+
 <button class="toggle" id="btnGoalsOn">GOALS</button>
 <!--Goal Resources ***************************************************************************-->
 <fieldset id="fGoals">
     <button class="toggle" id="btnGoalsOff">GOALS</button>
     <legend>Goals</legend>
-    <h2 id="saveGenResHere">Save New General Resources Here</h2>
 
-    <div id="addGenResourse">
-        <form id="frmGoalResource">
-            <input class="rGeneral" type="text" placeholder="New Resource Title" data-ng-model="saveGResource.resource.title">
-            <input class="rGeneral" type="text" placeholder="New Resource type" data-ng-model="saveGResource.resource.type">
-            <input class="rGeneral" type="text" placeholder="New Resource Link" data-ng-model="saveGResource.resource.rlink">
-            <button data-ng-click="saveResource(saveGResource, genResources, 'General', 'rGeneral')">Save New Resource</button>
-        </form>
-    </div>
 
 
     <!--Goals input ************************************************************************************-->
@@ -30,9 +30,7 @@
 
         <p class="newSurvey_form-std">PreSurvey: {{selectedPgp.goal}}</p>
         <p class="newSurvey_form-std">PostSurvey: {{selectedPgp.goala}}</p>
-        <label for="sG1">General Resources</label>
-        <select id="sG1" data-ng-model="selectedG1Res" data-ng-options="r.title for r in genResources" data-ng-click="removeResource($event, selectedG1Res, genResources, 'General')">
-        </select>
+
         <label>Resource Blame:</label> {{selectedG1Res.name}}
         <button data-ng-click="addResource(selectedG1Res, selectedPgp.goalsrc1)">ADD Resource to Plan</button>
         <label>Remove from Plan: Alt+Click</label>
@@ -387,7 +385,3 @@
     <button data-ng-click="savePgp(selectedPgp)">Save PGP</button>
     <label for="cbPGP">Check Complete to make PGP available to student</label>
     <input class="cbComplete" id="cbPGP" type="checkbox" data-ng-model="selectedPgp.recComplete">
-</form>
-</article>
-    <div data-create-pgp-ui></div>
-</div>

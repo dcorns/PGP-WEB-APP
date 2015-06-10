@@ -8,6 +8,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-express-server');
+  grunt.loadNpmTasks('grunt-add-view');
 
   grunt.initConfig({
     clean: {
@@ -21,12 +22,21 @@ module.exports = function (grunt) {
         src: ['build/css/']
       }
     },
-
+    add_view: {
+      prod:{
+        src:  'app/views/**/*.html',
+        dest: 'app/js/build/views.js'
+      },
+      dev:{
+        src:  'app/views/**/*.html',
+        dest: 'app/js/build/views.js'
+      }
+    },
     copy: {
       dev: {
         expand: true,
         cwd: 'app/',
-        src: ['*.html', 'css/*.css', 'img/*.*', 'views/**/*.html'],
+        src: ['*.html', 'css/**/*.css', 'img/**/*.*'],
         dest: 'build/',
         filter: 'isFile'
       },
@@ -124,7 +134,7 @@ module.exports = function (grunt) {
       }
     }
   });
-  grunt.registerTask('build:dev', ['clean:dev', 'browserify:dev', 'copy:dev']);
+  grunt.registerTask('build:dev', ['clean:dev','add_view:dev', 'browserify:dev', 'copy:dev']);
   grunt.registerTask('build:production', ['clean:production', 'browserify:production', 'copy:production']);
   grunt.registerTask('angulartest', ['browserify:angulartest', 'karma:unit']);
   grunt.registerTask('angulartestwatch', ['angulartest', 'watch:angulartest']);

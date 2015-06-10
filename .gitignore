@@ -1,9 +1,10 @@
 node_modules/
-      **/*.sw?
-      app/bower_components/
-      db/
-      test/testbundle.js
-      test/bundle.js
-      test/angular-testbundle.js
-      build/
-      .idea/
+**/*.sw?
+app/bower_components/
+db/
+test/testbundle.js
+test/bundle.js
+test/angular-testbundle.js
+build/
+.idea/
+npm-debug.log

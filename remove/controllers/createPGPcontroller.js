@@ -12,31 +12,31 @@ module.exports = function(){
   var selG1Res, selG2Res, selG3Res, selG4Res, selG5Res;
   var selHTMLRes, selCSSRes, selJSRes, selGITRes, selDSARes, selCMDRes, selOOPRes;
   var token = storage.getItem('token');
-  if(token){
-    dgApp.dgMethod.ajaxGet('/api/v_0_0_1/pgps', function(err, data){
-      if(err){
-        errHandle.alertObject(err); return;
-      }
-      if(data){
-        pgpArray = data.n;
-        var formIdx = storage.getItem('formIdx');
-        dgApp.dgMethod.dataLoadSelect('studentSelect', data.n, 'name', '_id');
-        var studentSelect = document.getElementById('studentSelect');
-        if(formIdx){
-          dgApp.pgpMdl = pgpArray[formIdx];
-          studentSelect.selectedIndex = formIdx;
-        }
-        else{
-          dgApp.pgpMdl = pgpArray[0];
-          storage.setItem('formIdx', '0');
-        }
-        dgApp.userId = data.u._id;
-        getAllResources(data.u);
-        addHandlers();
-      }
-
-    }, token);
-  }
+  //if(token){
+  //  dgApp.dgMethod.ajaxGet('/api/v_0_0_1/pgps', function(err, data){
+  //    if(err){
+  //      errHandle.alertObject(err); return;
+  //    }
+  //    if(data){
+  //      pgpArray = data.n;
+  //      var formIdx = storage.getItem('formIdx');
+  //      dgApp.dgMethod.dataLoadSelect('studentSelect', data.n, 'name', '_id');
+  //      var studentSelect = document.getElementById('studentSelect');
+  //      if(formIdx){
+  //        dgApp.pgpMdl = pgpArray[formIdx];
+  //        studentSelect.selectedIndex = formIdx;
+  //      }
+  //      else{
+  //        dgApp.pgpMdl = pgpArray[0];
+  //        storage.setItem('formIdx', '0');
+  //      }
+  //      dgApp.userId = data.u._id;
+  //      getAllResources(data.u);
+  //      addHandlers();
+  //    }
+  //
+  //  }, token);
+  //}
 
   function bindPgpData(){
     document.getElementById('preGoala').innerHTML = dgApp.pgpMdl['goal'];

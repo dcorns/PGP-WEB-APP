@@ -1,267 +1,27 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-/**
- * createAccountController
- * Created by dcorns on 3/12/15.
- */
-'use strict';
-module.exports = function(){
-  alert('Create Account Controller');
-};
-},{}],2:[function(require,module,exports){
-/**
- * createPGPcontroller
- * Created by dcorns on 3/12/15.
- */
-'use strict';
-var errHandle = require('../js/handleErrors')();
-module.exports = function(){
-  //check authorization before loading data
-  var storage = window.sessionStorage;
-  var pgpArray = [], pgpResources = [], pgpTopics = [];
-  var genResources = [], HTMLResources = [], CSSResources = [], JSResources = [], GITResources = [], DSAResources = [], CMDResources = [], OOPResources = [];
-  var selG1Res, selG2Res, selG3Res, selG4Res, selG5Res;
-  var selHTMLRes, selCSSRes, selJSRes, selGITRes, selDSARes, selCMDRes, selOOPRes;
-  var token = storage.getItem('token');
-  if(token){
-    dgApp.dgMethod.ajaxGet('/api/v_0_0_1/pgps', function(err, data){
-      if(err){
-        errHandle.alertObject(err); return;
-      }
-      if(data){
-        pgpArray = data.n;
-        var formIdx = storage.getItem('formIdx');
-        dgApp.dgMethod.dataLoadSelect('studentSelect', data.n, 'name', '_id');
-        var studentSelect = document.getElementById('studentSelect');
-        if(formIdx){
-          dgApp.pgpMdl = pgpArray[formIdx];
-          studentSelect.selectedIndex = formIdx;
-        }
-        else{
-          dgApp.pgpMdl = pgpArray[0];
-          storage.setItem('formIdx', '0');
-        }
-        dgApp.userId = data.u._id;
-        getAllResources(data.u);
-        addHandlers();
-      }
-
-    }, token);
-  }
-
-  function bindPgpData(){
-    document.getElementById('preGoala').innerHTML = dgApp.pgpMdl['goal'];
-    document.getElementById('postGoala').innerHTML = dgApp.pgpMdl['goala'];
-  }
-  function getAllResources(usr){
-    dgApp.dgMethod.ajaxPostJson('/api/v_0_0_1/pgps/resources/',usr, function(err, data){
-      if(err){
-        errHandle.alertObject(err); return;
-      }
-      pgpResources = data.resourceList;
-      pgpTopics = data.topicList;
-      dgApp.dgMethod.dataLoadSelect('sG1', pgpResources, 'title');
-      dgApp.dgMethod.makeFormCheckBoxGroup('chooseResourceTopics', pgpTopics, 'name', 'description', 'cId');
-    });
-  }
-
-  function removeResource(e, item, rsrc, rsrcFor){
-    var rmvOption = e.target.selectedOptions[0];
-    var ridx = rmvOption.index;
-    var rmRsrc = pgpResources[ridx];
-    rmRsrc.token = token;
-    dgApp.dgMethod.ajaxPostJson('/api/v_0_0_1/pgps/resources/remove', rmRsrc, function(err, success){
-      if(err){
-        errHandle.alertObject(err); return;
-      }
-      if(success){
-        pgpResources.splice(ridx, 1);
-        dgApp.dgMethod.dataLoadSelect('sG1', pgpResources, 'title');
-        alert('Resource Deleted!');
-      }
-
-    }, token);
-  }
-
-  function saveResource(nrsrc, rsrc){
-    console.log('save resource invoked');
-    dgApp.dgMethod.ajaxPostJson('api/v_0_0_1/pgps/resources/save', nrsrc, function(err, data){
-      console.dir(data);
-      if(err){
-        errHandle.alertObject(err); return;
-      }
-      if (typeof pgpResources !== 'undefined') {
-        pgpResources.push(data[0]);
-      }
-      else {
-        pgpResources = data;
-      }
-      dgApp.dgMethod.selectAddOption('sG1', data[0], 'title');
-      alert("New Resource Saved!");
-    }, token);
-  }
-
-  function addResource(sel, rsrc){
-    rsrc.push(sel);
-  }
-
-  function removeRsrcFromPGP(e, item, rsrc){
-    if(e.altKey){
-      var idx = rsrc.indexOf(item);
-      rsrc.splice(idx, 1);
-    }
-  }
-
-  function addHandlers(){
-
-    var studentSelect = document.getElementById('studentSelect');
-    studentSelect.addEventListener('click', setPgpData);
-    studentSelect.addEventListener('change', setPgpData);
-    document.getElementById('btnSaveResource').addEventListener('click', function(e){
-      var topicFrm = document.getElementById('chooseResourceTopics');
-      var topicArray = [];
-      var c = 0, len = topicFrm.length;
-      for (c; c < len; c++) {
-        if (topicFrm[c].checked) {
-          topicArray.push(parseInt(topicFrm[c].alt));
-        }
-      }
-        //resrcTitle resrcDescription resrcLink
-        var newResource = {title: document.getElementById('resrcTitle').value, topics: topicArray};
-        newResource.description = document.getElementById('resrcDescription').value;
-        newResource.resourceLink = document.getElementById('resrcLink').value;
-        var errorString = dgApp.dgClientValidate.validateResource(newResource);
-        if (errorString.length > 0) {
-          alert(errorString);
-        }
-      else{
-          newResource.token = token;
-          console.dir(newResource);
-          if(dgApp.dgMethod.arrayContains(pgpResources, newResource.title, 'title')){
-            alert(newResource.title + ' is already a resource title.');
-          }
-          else{
-            if(dgApp.dgMethod.arrayContains(pgpResources, newResource.resourceLink, 'resourceLink') && (newResource.resourceLink !== '')){
-              alert(newResource.resourceLink + ' is already a resource link');
-            }
-            else{
-              //save resource
-              saveResource(newResource, pgpResources);
-            }
-          }
-        }
-    });
-    var fg1 = document.getElementById('fG1');
-    fg1.addEventListener('click', function(e){
-      if (e.altKey) {
-        removeResource(e);
-      }
-    });
-  }
-
-  function setPgpData(e){
-    var idx = e.srcElement.selectedOptions[0].accessKey;
-    dgApp.pgpMdl = pgpArray[idx];
-    storage.setItem('formIdx', idx);
-    bindPgpData();
-  }
-
-};
-},{"../js/handleErrors":12}],3:[function(require,module,exports){
-/**
- * homeController
- * Created by dcorns on 3/12/15.
- */
-'use strict';
-module.exports = function(){
-
-};
-},{}],4:[function(require,module,exports){
-/**
- * loginController
- * Created by dcorns on 3/12/15.
- */
-'use strict';
-var errHandle = require('../js/handleErrors')();
-var firstDo = function(){
-  dgApp.dgMethod.dataBindInput(document.getElementById('username'), 'change', 'userMdl', 'email');
-  dgApp.dgMethod.dataBindInput(document.getElementById('password'), 'change', 'userMdl', 'password');
-};
-var userLogin = function() {
-  var storage = window.sessionStorage;
-  storage.removeItem('token');
- dgApp.dgMethod.ajaxPostJson('api/v_0_0_1/login', dgApp.userMdl, function(err, data){
-   if(err){
-     errHandle.alertObject(err); return;
-   }
-   storage.setItem('token', data.user.atoken);
-   var roll = data.user.roll;
-   if(roll === 'ta' || roll === 'admin'){
-     window.location="/#/create_PGP";
-   }
-   else {
-     if (roll === 'student') {
-       var btnSurvey = document.getElementById('btnsurvey');
-       btnSurvey.className = 'nav_ul-li';
-       //Save note to local storage
-       var sessionNote = SOS(data.note);
-       sessionNote.saveNote();
-       if (data.note.recComplete) window.location = '/#/view_PGP';
-       else window.location = '/#/student_survey';
-     }
-   }
- });
-};
-
-module.exports = function(){
-  document.getElementById('btnLogin').onclick = userLogin;
-  firstDo();
-};
-},{"../js/handleErrors":12}],5:[function(require,module,exports){
-/**
- * preViewPGPcontroller
- * Created by dcorns on 3/12/15.
- */
-'use strict';
-module.exports = function(){
-  alert('Preview PGP controller');
-};
-},{}],6:[function(require,module,exports){
-/**
- * surveyController
- * Created by dcorns on 3/9/15.
- */
-'use strict';
-module.exports = function(){
-  alert('Survey Controller');
-};
-},{}],7:[function(require,module,exports){
-/**
- * viewPGPcontroller
- * Created by dcorns on 3/9/15.
- */
-'use strict';
-module.exports = function(){
-  alert('view PGP controller');
-};
-},{}],8:[function(require,module,exports){
 'use strict';
 var dgApp = {};
-dgApp.homeView = require('../views/homeView');
-dgApp.homeCtrl = require('../controllers/homeController');
-dgApp.loginView = require('../views/loginView');
-dgApp.loginCtrl = require('../controllers/loginController');
-dgApp.createAccountCtrl = require('../controllers/createAccountController');
-dgApp.surveyCtrl = require('../controllers/surveyController');
-dgApp.createPgpView = require('../views/createPgpView');
-dgApp.createPGPCtrl = require('../controllers/createPGPcontroller');
-dgApp.previewPGPCtrl = require('../controllers/previewPGPcontroller');
-dgApp.viewPGPCtrl = require('../controllers/viewPGPcontroller');
+//dgApp.homeView = require('../views/homeView');
+//dgApp.homeCtrl = require('../controllers/homeController');
+//dgApp.loginView = require('../views/loginView');
+//dgApp.loginCtrl = require('../controllers/loginController');
+//dgApp.createAccountCtrl = require('../controllers/createAccountController');
+//dgApp.surveyCtrl = require('../controllers/surveyController');
+//dgApp.createPgpView = require('../views/createPgpView');
+//dgApp.createPGPCtrl = require('../controllers/createPGPcontroller');
+//dgApp.previewPGPCtrl = require('../controllers/previewPGPcontroller');
+//dgApp.viewPGPCtrl = require('../controllers/viewPGPcontroller');
 
 require('../models/userModel')(dgApp); //adds userMdl object
 require('../models/pgpModel')(dgApp); //adds pgpMdl object
-require('../js/dgRouteProvider')(dgApp); //adds loadRoute method to dgApp
+//require('../js/dgRouteProvider')(dgApp); //adds loadRoute method to dgApp
 require('../js/dgMethods')(dgApp); //add dgMethod object to dgApp
 require('../js/clientValidation')(dgApp); //add client validation
+require('../js/dgComponents')(dgApp); //add web components
+
+var views = require('./build/views');
+var controllers = require('./controllers/controllerRegistry')();
+var route = require('./router')(views, controllers);
 
 function firstDo(){
   window.dgApp = dgApp;
@@ -269,13 +29,15 @@ function firstDo(){
   var lastHref = window.sessionStorage.getItem('href');
   var netAction = window.sessionStorage.getItem('netAction');
     if (lastHref) {
-      dgApp.loadRoute(lastHref);
+      //dgApp.loadRoute(lastHref);
+      route(lastHref);
     }
     else {//load home template
       lastHref = '#/home';
       window.sessionStorage.setItem('href', lastHref);
       window.history.pushState(null, null, lastHref);
-      dgApp.loadRoute(lastHref);
+      //dgApp.loadRoute(lastHref);
+      route(lastHref);
     }
     //Add event handlers for 'a' tags
     var links = document.getElementsByTagName('a');
@@ -285,18 +47,21 @@ function firstDo(){
         window.sessionStorage.setItem('href', this.href);
         window.history.pushState(null, null, this.href);
         e.preventDefault();
-        dgApp.loadRoute(this.href);
+        route(this.href);
       });
     }
     //Add front and back button handler
     window.addEventListener('popstate', function () {
       window.sessionStorage.setItem('href', location.href);
-      dgApp.loadRoute(location.href);
+      route(location.href);
     });
 }
 
 dgApp.dgMethod.winReady(firstDo);
-},{"../controllers/createAccountController":1,"../controllers/createPGPcontroller":2,"../controllers/homeController":3,"../controllers/loginController":4,"../controllers/previewPGPcontroller":5,"../controllers/surveyController":6,"../controllers/viewPGPcontroller":7,"../js/clientValidation":9,"../js/dgMethods":10,"../js/dgRouteProvider":11,"../models/pgpModel":17,"../models/userModel":18,"../views/createPgpView":19,"../views/homeView":20,"../views/loginView":21}],9:[function(require,module,exports){
+},{"../js/clientValidation":3,"../js/dgComponents":8,"../js/dgMethods":9,"../models/pgpModel":16,"../models/userModel":17,"./build/views":2,"./controllers/controllerRegistry":4,"./router":13}],2:[function(require,module,exports){
+'use strict';
+module.exports = {"create_Account":"<div data-ng-controller=\"userController\">\n    <article class=\"newUser\">\n        <form class=\"newUser_form\">\n            <fieldset>\n                <legend>New User Information</legend>\n                <div>\n                    <label class=\"newUser_form-lbl\">Email Address</label>\n                    <input class=\"newUser_form-textarea\" type=\"email\" placeholder=\"Email for User Name\"\n                           data-ng-model=\"newUser.email\">\n                </div>\n\n                <div>\n                    <label class=\"newUser_form-lbl\">Password</label>\n                    <input type=\"password\" placeholder=\"Choose password\" data-ng-model=\"newUser.password\">\n                </div>\n\n                <div>\n                    <label class=\"newUser_form-lbl\">First Name</label>\n                    <input type=\"text\" placeholder=\"First name?\" class=\"newUser_form-textarea\"\n                           data-ng-model=\"newUser.firstName\">\n                </div>\n\n                <div>\n                    <label class=\"newUser_form-lbl\">Last Name</label>\n                    <input type=\"text\" placeholder=\"Last name?\" class=\"newUser_form-textarea\"\n                           data-ng-model=\"newUser.lastName\">\n                </div>\n            </fieldset>\n            <button data-ng-click=\"saveNewUser(selectedUser)\">Create</button>\n        </form>\n    </article>\n</div>\n","create_PGP":"\n    <select id=\"studentSelect\"></select>\n\n    <section id=\"addResources\">\n        <h2 id=\"saveGenResHere\">Save New Resources Here</h2>\n\n                <input class=\"rGeneral\" type=\"text\" placeholder=\"New Resource Title\" data-ng-model=\"saveGResource.resource.title\">\n                <input class=\"rGeneral\" type=\"text\" placeholder=\"New Resource type\" data-ng-model=\"saveGResource.resource.type\">\n                <input class=\"rGeneral\" type=\"text\" placeholder=\"New Resource Link\" data-ng-model=\"saveGResource.resource.rlink\">\n        <section id=\"rTypes\"></section><!--populated with checkboxes by controller-->\n        <button id=\"btnSaveNewResource\">Save New Resource</button>\n        <select id=\"resources\"></select>\n        <super-select id=\"resources2\"></super-select>\n    </section>\n\n\n<button class=\"toggle\" id=\"btnGoalsOn\">GOALS</button>\n<!--Goal Resources ***************************************************************************-->\n<fieldset id=\"fGoals\">\n    <button class=\"toggle\" id=\"btnGoalsOff\">GOALS</button>\n    <legend>Goals</legend>\n\n\n\n    <!--Goals input ************************************************************************************-->\n    <button id=\"btnG1On\" class=\"toggle\">LongTermGoals</button>\n    <fieldset id=\"fG1\">\n        <button id=\"btnG1Off\" class=\"toggle\">LongTermGoals</button>\n        <label class=\"pgpQuestions\">My long term goals:</label>\n\n        <p class=\"newSurvey_form-std\">PreSurvey: {{selectedPgp.goal}}</p>\n        <p class=\"newSurvey_form-std\">PostSurvey: {{selectedPgp.goala}}</p>\n\n        <label>Resource Blame:</label> {{selectedG1Res.name}}\n        <button data-ng-click=\"addResource(selectedG1Res, selectedPgp.goalsrc1)\">ADD Resource to Plan</button>\n        <label>Remove from Plan: Alt+Click</label>\n        <ul class=\"resourceList\">\n            <li class=\"animate-repeat\" data-ng-click=\"removeRsrcFromPGP($event, rec, selectedPgp.goalsrc1)\"\n                data-ng-repeat=\"rec in selectedPgp.goalsrc1\">\n                Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n            </li>\n            <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                <strong>No results found...</strong>\n            </li>\n        </ul>\n    </fieldset>\n\n    <button id=\"btnG2On\" class=\"toggle\">REASONS</button>\n    <fieldset id=\"fG2\">\n        <button id=\"btnG2Off\" class=\"toggle\">REASONS</button>\n        <label class=\"pgpQuestions\">Reasons for my interest in developing computer/coding skills:</label>\n\n        <p class=\"newSurvey_form-std\">PreSurvey: {{selectedPgp.goal2}}</p>\n        <p class=\"newSurvey_form-std\">PostSurvey: {{selectedPgp.goal2a}}</p>\n        <label for=\"sG2\">General Resources</label>\n        <select id=\"sG2\" data-ng-model=\"selectedG2Res\" data-ng-options=\"r.title for r in genResources\" data-ng-click=\"removeResource($event, selectedG2Res, genResources, 'General')\">\n        </select>\n        <lable>Resource Blame:</lable> {{selectedG2Res.name}}\n        <button data-ng-click=\"addResource(selectedG2Res, selectedPgp.goalsrc2)\">ADD Resource to Plan</button>\n        <label>Remove from Plan: Alt+Click</label>\n        <ul class=\"resourceList\">\n            <li class=\"animate-repeat\" data-ng-click=\"removeRsrcFromPGP($event, rec, selectedPgp.goalsrc2)\"\n                data-ng-repeat=\"rec in selectedPgp.goalsrc2\">\n                Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n            </li>\n            <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                <strong>No results found...</strong>\n            </li>\n        </ul>\n    </fieldset>\n\n    <button id=\"btnG3On\" class=\"toggle\">LikeProblems</button>\n    <fieldset id=\"fG3\">\n        <button id=\"btnG3Off\" class=\"toggle\">LikeProblems</button>\n        <label class=\"pgpQuestions\">I like working on these kinds of problems:</label>\n\n        <p class=\"newSurvey_form-std\">PreSurvey: {{selectedPgp.goal3}}</p>\n        <p class=\"newSurvey_form-std\">PostSurvey: {{selectedPgp.goal3a}}</p>\n        <label for=\"sG3\">General Resources</label>\n        <select id=\"sG3\" data-ng-model=\"selectedG3Res\" data-ng-options=\"r.title for r in genResources\" data-ng-click=\"removeResource($event, selectedG3Res, genResources, 'General')\">\n        </select>\n        <lable>Resource Blame:</lable> {{selectedG3Res.name}}\n        <button data-ng-click=\"addResource(selectedG3Res, selectedPgp.goalsrc3)\">ADD Resource to Plan</button>\n        <label>Remove from Plan: Alt+Click</label>\n        <ul class=\"resourceList\">\n            <li class=\"animate-repeat\" data-ng-click=\"removeRsrcFromPGP($event, rec, selectedPgp.goalsrc3)\"\n                data-ng-repeat=\"rec in selectedPgp.goalsrc3\">\n                Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n            </li>\n            <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                <strong>No results found...</strong>\n            </li>\n        </ul>\n    </fieldset>\n\n    <button id=\"btnG4On\" class=\"toggle\">WhatNext</button>\n    <fieldset id=\"fG4\">\n        <button id=\"btnG4Off\" class=\"toggle\">WhatNext</button>\n        <label class=\"pgpQuestions\">What I would like to do next:</label>\n\n        <p class=\"newSurvey_form-std\">PreSurvey: {{selectedPgp.goal4}}</p>\n        <p class=\"newSurvey_form-std\">PostSurvey: {{selectedPgp.goal4a}}</p>\n        <label for=\"sG4\">General Resources</label>\n        <select id=\"sG4\" data-ng-model=\"selectedG4Res\" data-ng-options=\"r.title for r in genResources\" data-ng-click=\"removeResource($event, selectedG4Res, genResources, 'General')\">\n        </select>\n        <lable>Resource Blame:</lable> {{selectedG4Res.name}}\n        <button data-ng-click=\"addResource(selectedG4Res, selectedPgp.goalsrc4)\">ADD Resource to Plan</button>\n        <label>Remove from Plan: Alt+Click</label>\n        <ul class=\"resourceList\">\n            <li class=\"animate-repeat\" data-ng-click=\"removeRsrcFromPGP($event, rec, selectedPgp.goalsrc4)\"\n                data-ng-repeat=\"rec in selectedPgp.goalsrc4\">\n                Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n            </li>\n            <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                <strong>No results found...</strong>\n            </li>\n        </ul>\n    </fieldset>\n\n    <button id=\"btnG5On\" class=\"toggle\">ACCOMPLISH</button>\n    <fieldset id=\"fG5\">\n        <button id=\"btnG5Off\" class=\"toggle\">ACCOMPLISH</button>\n        <label class=\"pgpQuestions\">>What I would like to be able to accomplish with code:</label>\n\n        <p class=\"newSurvey_form-std\">PreSurvey: {{selectedPgp.goal5}}</p>\n        <p class=\"newSurvey_form-std\">PostSurvey: {{selectedPgp.goal5a}}</p>\n        <label for=\"sG5\">General Resources</label>\n        <select id=\"sG5\" data-ng-model=\"selectedG5Res\" data-ng-options=\"r.title for r in genResources\" data-ng-click=\"removeResource($event, selectedG5Res, genResources, 'General')\">\n        </select>\n        <lable>Resource Blame:</lable> {{selectedG5Res.name}}\n        <button data-ng-click=\"addResource(selectedG5Res, selectedPgp.goalsrc5)\">ADD Resource to Plan</button>\n        <label>Remove from Plan: Alt+Click</label>\n        <ul class=\"resourceList\">\n            <li class=\"animate-repeat\" data-ng-click=\"removeRsrcFromPGP($event, rec, selectedPgp.goalsrc5)\"\n                data-ng-repeat=\"rec in selectedPgp.goalsrc5\">\n                Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n            </li>\n            <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                <strong>No results found...</strong>\n            </li>\n        </ul>\n    </fieldset>\n\n</fieldset>\n\n<!--Self Assessment ********************************************************************************************-->\n<button class=\"toggle\" id=\"btnAssOn\">ASSESSMENT</button>\n<fieldset id=\"fAss\">\n    <button class=\"toggle\" id=\"btnAssOff\">ASSESSMENT</button>\n    <legend>Student's Skill Assessment By Topic</legend>\n\n    <button id=\"btnHTMLOn\" class=\"toggle\">HTML</button>\n    <fieldset id=\"fHTML\">\n        <button id=\"btnHTMLOff\" class=\"toggle\">HTML</button>\n        <label class=\"newSurvey_form-lbl\">HTML:</label>\n\n        <form id=\"frmHTMLResource\">\n            <label class=\"ppgrating\">{{selectedPgp.rtg1}}</label>\n            <label class=\"ppgrating\">{{selectedPgp.rtg1a}}</label>\n            <input class=\"rHtml\" type=\"text\" placeholder=\"New Resource Title\" data-ng-model=\"saveHTMLResource.resource.title\">\n            <input class=\"rHtml\" type=\"text\" placeholder=\"New Resource type\" data-ng-model=\"saveHTMLResource.resource.type\">\n            <input class=\"rHtml\" type=\"text\" placeholder=\"New Resource Link\" data-ng-model=\"saveHTMLResource.resource.rlink\">\n            <button data-ng-click=\"saveResource(saveHTMLResource, HTMLResources, 'HTML', 'rHtml')\">Save New HTML resource</button>\n        </form>\n        <label for=\"sHTML\">HTML Resources</label>\n        <select id=\"sHTML\" data-ng-model=\"selectedHTMLRes\" data-ng-options=\"r.title for r in HTMLResources\" data-ng-click=\"removeResource($event, selectedHTMLRes, HTMLResources, 'HTML')\">\n        </select>\n        <lable>Resource Blame:</lable> {{selectedHTMLRes.name}}\n        <button data-ng-click=\"addResource(selectedHTMLRes, selectedPgp.recsrc1)\">ADD HTML Resource to Plan</button>\n        <label>Remove from Plan: Alt+Click</label>\n        <ul class=\"resourceList\">\n            <li class=\"animate-repeat\" data-ng-click=\"removeRsrcFromPGP($event, rec, selectedPgp.recsrc1)\"\n                data-ng-repeat=\"rec in selectedPgp.recsrc1\">\n                Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n            </li>\n            <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                <strong>No results found...</strong>\n            </li>\n        </ul>\n        <textarea rows=\"5\" class=\"newSurvey_form-textarea\" placeholder=\"Please enter recommendations here\"\n                  data-ng-model=\"selectedPgp.rec1\"></textarea>\n    </fieldset>\n\n    <button id=\"btnCSSOn\" class=\"toggle\">CSS</button>\n    <fieldset id=\"fCSS\">\n        <button id=\"btnCSSOff\" class=\"toggle\">CSS</button>\n        <label class=\"newSurvey_form-lbl\">CSS:</label>\n\n        <form id=\"frmCSSResource\">\n            <label class=\"ppgrating\">{{selectedPgp.rtg2}}</label>\n            <label class=\"ppgrating\">{{selectedPgp.rtg2a}}</label>\n            <input class = \"rCss\" type=\"text\" placeholder=\"New Resource Title\" data-ng-model=\"saveCSSResource.resource.title\">\n            <input class=\"rCss\" type=\"text\" placeholder=\"New Resource type\" data-ng-model=\"saveCSSResource.resource.type\">\n            <input class=\"rCss\" type=\"text\" placeholder=\"New Resource Link\" data-ng-model=\"saveCSSResource.resource.rlink\">\n            <button data-ng-click=\"saveResource(saveCSSResource, CSSResources, 'CSS', 'rCss')\">Save New CSS Resource</button>\n        </form>\n        <label for=\"sCSS\">CSS Resources</label>\n        <select id=\"sCSS\" data-ng-model=\"selectedCSSRes\" data-ng-options=\"r.title for r in CSSResources\" data-ng-click=\"removeResource($event, selectedCSSRes, CSSResources, 'CSS')\">\n        </select>\n        <lable>Resource Blame:</lable> {{selectedCSSRes.name}}\n        <button data-ng-click=\"addResource(selectedCSSRes, selectedPgp.recsrc2)\">ADD CSS Resource to Plan</button>\n        <label>Remove from Plan: Alt+Click</label>\n        <ul class=\"resourceList\">\n            <li class=\"animate-repeat\" data-ng-click=\"removeRsrcFromPGP($event, rec, selectedPgp.recsrc2)\"\n                data-ng-repeat=\"rec in selectedPgp.recsrc2\">\n                Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n            </li>\n            <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                <strong>No results found...</strong>\n            </li>\n        </ul>\n        <textarea rows=\"5\" placeholder=\"Please enter recommendations here\" class=\"newSurvey_form-textarea\"\n                  data-ng-model=\"selectedPgp.rec2\"></textarea>\n    </fieldset>\n\n    <button id=\"btnJSOn\" class=\"toggle\">JavaScript</button>\n    <fieldset id=\"fJS\">\n        <button id=\"btnJSOff\" class=\"toggle\">JavaScript</button>\n        <label class=\"newSurvey_form-lbl\">Javascript:</label>\n\n        <form id=\"frmJSResource\">\n            <label class=\"ppgrating\">{{selectedPgp.rtg3}}</label>\n            <label class=\"ppgrating\">{{selectedPgp.rtg3a}}</label>\n            <input class=\"rJs\" type=\"text\" placeholder=\"New Resource Title\" data-ng-model=\"saveJSResource.resource.title\">\n            <input class=\"rJs\" type=\"text\" placeholder=\"New Resource type\" data-ng-model=\"saveJSResource.resource.type\">\n            <input class=\"rJs\" type=\"text\" placeholder=\"New Resource Link\" data-ng-model=\"saveJSResource.resource.rlink\">\n            <button data-ng-click=\"saveResource(saveJSResource, JSResources, 'JS', 'rJs')\">Save New JS resource</button>\n        </form>\n        <label for=\"sJS\">JavaSript Resources</label>\n        <select id=\"sJS\" data-ng-model=\"selectedJSRes\" data-ng-options=\"r.title for r in JSResources\" data-ng-click=\"removeResource($event, selectedJSRes, JSResources, 'JS')\">\n        </select>\n        <lable>Resource Blame:</lable> {{selectedJSRes.name}}\n        <button data-ng-click=\"addResource(selectedJSRes, selectedPgp.recsrc3)\">ADD JS Resource to Plan</button>\n        <label>Remove from Plan: Alt+Click</label>\n        <ul class=\"resourceList\">\n            <li class=\"animate-repeat\" data-ng-click=\"removeRsrcFromPGP($event, rec, selectedPgp.recsrc3)\"\n                data-ng-repeat=\"rec in selectedPgp.recsrc3\">\n                Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n            </li>\n            <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                <strong>No results found...</strong>\n            </li>\n        </ul>\n        <textarea rows=\"5\" placeholder=\"Please enter recommendations here\" class=\"newSurvey_form-textarea\"\n                  data-ng-model=\"selectedPgp.rec3\"></textarea>\n    </fieldset>\n\n    <button id=\"btnGITOn\" class=\"toggle\">GIT</button>\n    <fieldset id=\"fGIT\">\n        <button id=\"btnGITOff\" class=\"toggle\">GIT</button>\n        <label class=\"newSurvey_form-lbl\">GIT:</label>\n\n        <form id=\"frmGITResource\">\n            <label class=\"ppgrating\">{{selectedPgp.rtg4}}</label>\n            <label class=\"ppgrating\">{{selectedPgp.rtg4a}}</label>\n            <input class=\"rGit\" type=\"text\" placeholder=\"New Resource Title\" data-ng-model=\"saveGITResource.resource.title\">\n            <input class=\"rGit\" type=\"text\" placeholder=\"New Resource type\" data-ng-model=\"saveGITResource.resource.type\">\n            <input class=\"rGit\" type=\"text\" placeholder=\"New Resource Link\" data-ng-model=\"saveGITResource.resource.rlink\">\n            <button data-ng-click=\"saveResource(saveGITResource, GITResources, 'GIT', 'rGit')\">Save New GIT Resource</button>\n        </form>\n        <label for=\"sGIT\">GIT Resources</label>\n        <select id=\"sGIT\" data-ng-model=\"selectedGITRes\" data-ng-options=\"r.title for r in GITResources\" data-ng-click=\"removeResource($event, selectedGITRes, GITResources, 'GIT')\">\n        </select>\n        <lable>Resource Blame:</lable> {{selectedGITRes.name}}\n        <button data-ng-click=\"addResource(selectedGITRes, selectedPgp.recsrc4)\">ADD GIT Resource to Plan</button>\n        <label>Remove from Plan: Alt+Click</label>\n        <ul class=\"resourceList\">\n            <li class=\"animate-repeat\" data-ng-click=\"removeRsrcFromPGP($event, rec, selectedPgp.recsrc4)\"\n                data-ng-repeat=\"rec in selectedPgp.recsrc4\">\n                Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n            </li>\n            <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                <strong>No results found...</strong>\n            </li>\n        </ul>\n        <textarea rows=\"5\" placeholder=\"Please enter recommendations here\" class=\"newSurvey_form-textarea\"\n                  data-ng-model=\"selectedPgp.rec4\"></textarea>\n    </fieldset>\n\n    <button id=\"btnDSAOn\" class=\"toggle\">DATA</button>\n    <fieldset id=\"fDSA\">\n        <button id=\"btnDSAOff\" class=\"toggle\">DATA</button>\n        <label class=\"newSurvey_form-lbl\">Data structures and algorithms:</label>\n\n        <form id=\"frmDSAResource\">\n            <label class=\"ppgrating\">{{selectedPgp.rtg5}}</label>\n            <label class=\"ppgrating\">{{selectedPgp.rtg5a}}</label>\n            <input class=\"rDsa\" type=\"text\" placeholder=\"New Resource Title\" data-ng-model=\"saveDSAResource.resource.title\">\n            <input class=\"rDsa\" type=\"text\" placeholder=\"New Resource type\" data-ng-model=\"saveDSAResource.resource.type\">\n            <input class=\"rDsa\" type=\"text\" placeholder=\"New Resource Link\" data-ng-model=\"saveDSAResource.resource.rlink\">\n            <button data-ng-click=\"saveResource(saveDSAResource, DSAResources, 'DSA', 'rDsa')\">Save New Data Resource</button>\n        </form>\n        <label for=\"sDSA\">Data Structures and Algorithms Resources</label>\n        <select id=\"sDSA\" data-ng-model=\"selectedDSARes\" data-ng-options=\"r.title for r in DSAResources\" data-ng-click=\"removeResource($event, selectedDSARes, DSAResources, 'DSA')\">\n        </select>\n        <lable>Resource Blame:</lable> {{selectedDSARes.name}}\n        <button data-ng-click=\"addResource(selectedDSARes, selectedPgp.recsrc5)\">ADD Data Resource to Plan</button>\n        <label>Remove from Plan: Alt+Click</label>\n        <ul class=\"resourceList\">\n            <li class=\"animate-repeat\" data-ng-click=\"removeRsrcFromPGP($event, rec, selectedPgp.recsrc5)\"\n                data-ng-repeat=\"rec in selectedPgp.recsrc5\">\n                Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n            </li>\n            <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                <strong>No results found...</strong>\n            </li>\n        </ul>\n        <textarea rows=\"5\" placeholder=\"Please enter recommendations here\" class=\"newSurvey_form-textarea\"\n                  data-ng-model=\"selectedPgp.rec5\"></textarea>\n    </fieldset>\n\n    <button id=\"btnCMDOn\" class=\"toggle\">TERMINAL</button>\n    <fieldset id=\"fCMD\">\n        <button id=\"btnCMDOff\" class=\"toggle\">TERMINAL</button>\n        <label class=\"newSurvey_form-lbl\">Command line interface:</label>\n\n        <form id=\"frmCMDResource\">\n            <label class=\"ppgrating\">{{selectedPgp.rtg6}}</label>\n            <label class=\"ppgrating\">{{selectedPgp.rtg6a}}</label>\n            <input class=\"rCmd\" type=\"text\" placeholder=\"New Resource Title\" data-ng-model=\"saveCMDResource.resource.title\">\n            <input class=\"rCmd\" type=\"text\" placeholder=\"New Resource type\" data-ng-model=\"saveCMDResource.resource.type\">\n            <input class=\"rCmd\" type=\"text\" placeholder=\"New Resource Link\" data-ng-model=\"saveCMDResource.resource.rlink\">\n            <button data-ng-click=\"saveResource(saveCMDResource, CMDResources, 'CMD', 'rCmd')\">Save New Terminal Resource</button>\n        </form>\n        <label for=\"sCMD\">Command Line (terminal) Resources</label>\n        <select id=\"sCMD\" data-ng-model=\"selectedCMDRes\" data-ng-options=\"r.title for r in CMDResources\" data-ng-click=\"removeResource($event, selectedCMDRes, CMDResources, 'CMD')\">\n        </select>\n        <lable>Resource Blame:</lable> {{selectedCMDRes.name}}\n        <button data-ng-click=\"addResource(selectedCMDRes, selectedPgp.recsrc6)\">ADD Terminal Resource to Plan</button>\n        <label>Remove from Plan: Alt+Click</label>\n        <ul class=\"resourceList\">\n            <li class=\"animate-repeat\" data-ng-click=\"removeRsrcFromPGP($event, rec, selectedPgp.recsrc6)\"\n                data-ng-repeat=\"rec in selectedPgp.recsrc6\">\n                Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n            </li>\n            <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                <strong>No results found...</strong>\n            </li>\n        </ul>\n        <textarea rows=\"5\" placeholder=\"Please enter recommendations here\" class=\"newSurvey_form-textarea\"\n                  data-ng-model=\"selectedPgp.rec6\"></textarea>\n    </fieldset>\n\n    <button id=\"btnOOPOn\" class=\"toggle\">Object-Orientated</button>\n    <fieldset id=\"fOOP\">\n        <button id=\"btnOOPOff\" class=\"toggle\">Object-Orientated</button>\n        <label class=\"newSurvey_form-lbl\">Object-oriented programming:</label>\n\n        <form id=\"frmOOPResource\">\n            <label class=\"ppgrating\">{{selectedPgp.rtg7}}</label>\n            <label class=\"ppgrating\">{{selectedPgp.rtg7a}}</label>\n            <input class=\"rOop\" type=\"text\" placeholder=\"New Resource Title\" data-ng-model=\"saveOOPResource.resource.title\">\n            <input class=\"rOop\" type=\"text\" placeholder=\"New Resource type\" data-ng-model=\"saveOOPResource.resource.type\">\n            <input class=\"rOop\" type=\"text\" placeholder=\"New Resource Link\" data-ng-model=\"saveOOPResource.resource.rlink\">\n            <button data-ng-click=\"saveResource(saveOOPResource, OOPResources, 'OOP', 'rOop')\">Save New Object-oriented Resource</button>\n        </form>\n        <label for=\"sOOP\">Object-oriented Programing Resources</label>\n        <select id=\"sOOP\" data-ng-model=\"selectedOOPRes\" data-ng-options=\"r.title for r in OOPResources\" data-ng-click=\"removeResource($event, selectedOOPRes, OOPResources, 'OOP')\">\n        </select>\n        <lable>Resource Blame:</lable> {{selectedOOPRes.name}}\n        <button data-ng-click=\"addResource(selectedOOPRes, selectedPgp.recsrc7)\">ADD Object-oriented Resource to Plan</button>\n        <label>Remove from Plan: Alt+Click</label>\n        <ul class=\"resourceList\">\n            <li class=\"animate-repeat\" data-ng-click=\"removeRsrcFromPGP($event, rec, selectedPgp.recsrc7)\"\n                data-ng-repeat=\"rec in selectedPgp.recsrc7\">\n                Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n            </li>\n            <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                <strong>No results found...</strong>\n            </li>\n        </ul>\n        <textarea rows=\"5\" placeholder=\"Please enter recommendations here\" class=\"newSurvey_form-textarea\"\n                  data-ng-model=\"selectedPgp.rec7\"></textarea>\n    </fieldset>\n</fieldset>\n\n<fieldset>\n    <legend>Questions/Concerns?</legend>\n    <p class=\"newSurvey_form-std\">PreSurvey: {{selectedPgp.note}}</p>\n    <p class=\"newSurvey_form-std\">PostSurvey: {{selectedPgp.noteA}}</p>\n    <label class=\"newSurvey_form-lbl\">Responses:</label>\n    <textarea rows=\"5\" placeholder=\"Enter responses to Questions and concerns here.\" class=\"newSurvey_form-textarea\"\n              data-ng-model=\"selectedPgp.feedbk\"></textarea>\n</fieldset>\n    <button data-ng-click=\"savePgp(selectedPgp)\">Save PGP</button>\n    <label for=\"cbPGP\">Check Complete to make PGP available to student</label>\n    <input class=\"cbComplete\" id=\"cbPGP\" type=\"checkbox\" data-ng-model=\"selectedPgp.recComplete\">","home":"\n    <article>\n        <p>Congratulations, you've made it to the end of our Foundations of CS and Web Development course! I truly hope\n            it has been a rewarding experience for you, and encourage you to continue to spend as much time as you can\n            honing and further developing your coding powers.</p>\n\n        <p>To help us give you the best guidance on where to go from here, please tell us a little about how strongly\n            you are feeling about the various topics we covered, and what your longer-term goals are. Your TA will share\n            some feedback and favorite resources you can use to keep you learning on your own time.</p>\n\n        <p>It's been a great honor to travel this stretch of the journey with you. I wish you the best with all that\n            this path leads you towards!</p>\n\n        <p>—Brook</p>\n    </article>\n<button id=\"mybtn\">clickMe</button>\n","login":"\n    <article class=\"userLogin\">\n        <form class=\"userLogin_form\">\n            <fieldset>\n                <legend>User Login</legend>\n                <label class=\"loginUser_form-lbl\">Email Address</label>\n                    <input id=\"username\" class=\"loginUser_form-textarea\" placeholder=\"email address\" type=\"email\"\n                       >\n                <label class=\"newUser_form-lbl\">Password</label>\n                <input id=\"password\" placeholder=\"password\" type=\"password\">\n            </fieldset>\n        </form>\n        <button id=\"btnLogin\">Submit</button>\n    </article>\n","preview_PGP":"<div data-ng-controller=\"pgpsController\" id=\"pgpout\">\n\n    <article>\n        <fieldset id=\"pgpSelection\" class=\"newSurvey_select\">\n            <select id=\"selStudents\"data-ng-model=\"selectedPgp\" data-ng-options=\"pgp.name for pgp in pgps\"></select>\n        </fieldset>\n\n        <fieldset>\n            <h1 class=\"pgpHeader\" >Personal Growth Plan For {{selectedPgp.name}}</h1>\n            <h2 class=\"hCourse\">{{ 'Course ' + selectedPgp.course}}</h2>\n        </fieldset>\n\n        <fieldset>\n            <legend class=\"pgpLegend\">Based on your self assessment responses we recommend the following resources:</legend>\n            <label class=\"ppgrating\">{{selectedPgp.rtg1}}</label>\n            <label class=\"ppgrating\">{{selectedPgp.rtg1a}}</label>\n            <label class=\"pgpAssTitle\">HTML:</label>\n            <ul>\n                <li class=\"animate-repeat\" data-ng-repeat=\"rec in selectedPgp.recsrc1\">\n                    Type:{{rec.type}}: <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n                </li>\n                <li class=\"animate-repeat\" data-ng-if=\"results.length == 0\">\n                    <strong>Nothing Recommended</strong>\n                </li>\n            </ul>\n            <p>{{selectedPgp.rec1}}</p>\n\n            <label class=\"ppgrating\">{{selectedPgp.rtg2}}</label>\n            <label class=\"ppgrating\">{{selectedPgp.rtg2a}}</label>\n            <label class=\"pgpAssTitle\">CSS:</label>\n            <ul>\n                <li class=\"animate-repeat\" data-ng-click=\"removeFromSrc2($event, rec)\"\n                    data-ng-repeat=\"rec in selectedPgp.recsrc2\">\n                    Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n                </li>\n                <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                    <strong>No results found...</strong>\n                </li>\n            </ul>\n            <p>{{selectedPgp.rec2}}</p>\n\n            <label class=\"ppgrating\">{{selectedPgp.rtg3}}</label>\n            <label class=\"ppgrating\">{{selectedPgp.rtg3a}}</label>\n            <label class=\"pgpAssTitle\">JavaScript:</label>\n            <ul>\n                <li class=\"animate-repeat\" data-ng-click=\"removeFromSrc3($event, rec)\"\n                    data-ng-repeat=\"rec in selectedPgp.recsrc3\">\n                    Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n                </li>\n                <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                    <strong>No results found...</strong>\n                </li>\n            </ul>\n            <p>{{selectedPgp.rec3}}</p>\n\n            <label class=\"ppgrating\">{{selectedPgp.rtg4}}</label>\n            <label class=\"ppgrating\">{{selectedPgp.rtg4a}}</label>\n            <label class=\"pgpAssTitle\">GIT:</label>\n            <ul>\n                <li class=\"animate-repeat\" data-ng-click=\"removeFromSrc4($event, rec)\"\n                    data-ng-repeat=\"rec in selectedPgp.recsrc4\">\n                    Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n                </li>\n                <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                    <strong>No results found...</strong>\n                </li>\n            </ul>\n            <p>{{selectedPgp.rec4}}</p>\n\n            <label class=\"ppgrating\">{{selectedPgp.rtg5}}</label>\n            <label class=\"ppgrating\">{{selectedPgp.rtg5a}}</label>\n            <label class=\"pgpAssTitle\">Data Structures and Algorithms:</label>\n            <ul>\n                <li class=\"animate-repeat\" data-ng-click=\"removeFromSrc5($event, rec)\"\n                    data-ng-repeat=\"rec in selectedPgp.recsrc5\">\n                    Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n                </li>\n                <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                    <strong>No results found...</strong>\n                </li>\n            </ul>\n            <p>{{selectedPgp.rec5}}</p>\n\n            <label class=\"ppgrating\">{{selectedPgp.rtg6}}</label>\n            <label class=\"ppgrating\">{{selectedPgp.rtg6a}}</label>\n            <label class=\"pgpAssTitle\">Command Line/ Terminal:</label>\n            <ul>\n                <li class=\"animate-repeat\" data-ng-click=\"removeFromSrc6($event, rec)\"\n                    data-ng-repeat=\"rec in selectedPgp.recsrc6\">\n                    Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n                </li>\n                <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                    <strong>No results found...</strong>\n                </li>\n            </ul>\n            <p>{{selectedPgp.rec6}}</p>\n\n            <label class=\"ppgrating\">{{selectedPgp.rtg7}}</label>\n            <label class=\"ppgrating\">{{selectedPgp.rtg7a}}</label>\n            <label class=\"pgpAssTitle\">Object-orientated Programing:</label>\n            <ul>\n                <li class=\"animate-repeat\" data-ng-click=\"removeFromSrc7($event, rec)\"\n                    data-ng-repeat=\"rec in selectedPgp.recsrc7\">\n                    Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n                </li>\n                <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                    <strong>No results found...</strong>\n                </li>\n            </ul>\n            <p>{{selectedPgp.rec7}}</p>\n        </fieldset>\n\n        <fieldset>\n            <legend class=\"pgpLegend\">Additional resources provided based on your responses to survey questions:</legend>\n\n            <ul>\n                <li class=\"animate-repeat\" data-ng-click=\"removeFromGsrc1($event, rec)\"\n                    data-ng-repeat=\"rec in selectedPgp.goalsrc1\">\n                    Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n                </li>\n                <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                    <strong>No results found...</strong>\n                </li>\n            </ul>\n\n            <ul>\n                <li class=\"animate-repeat\" data-ng-click=\"removeFromGsrc2($event, rec)\"\n                    data-ng-repeat=\"rec in selectedPgp.goalsrc2\">\n                    Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n                </li>\n                <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                    <strong>No results found...</strong>\n                </li>\n            </ul>\n\n            <ul>\n                <li class=\"animate-repeat\" data-ng-click=\"removeFromGsrc3($event, rec)\"\n                    data-ng-repeat=\"rec in selectedPgp.goalsrc3\">\n                    Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n                </li>\n                <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                    <strong>No results found...</strong>\n                </li>\n            </ul>\n\n            <ul>\n                <li class=\"animate-repeat\" data-ng-click=\"removeFromGsrc4($event, rec)\"\n                    data-ng-repeat=\"rec in selectedPgp.goalsrc4\">\n                    Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n                </li>\n                <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                    <strong>No results found...</strong>\n                </li>\n            </ul>\n\n            <ul>\n                <li class=\"animate-repeat\" data-ng-click=\"removeFromGsrc5($event, rec)\"\n                    data-ng-repeat=\"rec in selectedPgp.goalsrc5\">\n                    Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n                </li>\n                <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                    <strong>No results found...</strong>\n                </li>\n            </ul>\n\n        </fieldset>\n        <label class=\"pgpLegend\">Additional comments and responses:</label>\n        <p>{{selectedPgp.feedbk}}</p>\n\n    </article>\n    <div data-preview-pgp-ui></div>\n</div>\n","student_survey":"<article data-ng-controller=\"surveyController\" class=\"newSurvey\">\n    <h1 hidden class=\"hidden\">New Student Survey</h1>\n    <h1 ng-hide=\"!surveysComplete\">\n        Thank you for completing your post-survey. Your personal growth plan is being processed. When completed, it will be displayed here when you login.\n    </h1>\n    <form name=\"survey\" novalidate class=\"newSurvey_form\" ng-hide=\"surveysComplete\">\n\n        <fieldset class=\"newSurvey_form-info\">\n            <legend>Welcome {{survey.name}}</legend>\n            <label class=\"newSurvey_form-lbl\"></label></br>\n            <label class=\"newSurvey_form-lbl\">Course</label>\n            <input id=\"course\" required class=\"newSurvey_form-lbl\" data-ng-model=\"survey.course\">\n        </fieldset>\n\n        <section ng-hide=\"showPostSurvey\">\n            <h1>Pre-Course Self Assessment</h1>\n\n            <!--<p>We want to help you reach your goals. We've seen the work you've turned in. Now, we need your help-->\n                <!--answering the following questions, so we can create a Personalized Growth Plan for you.</p>-->\n\n            <p>How do you rate yourself on a scale from 1 to 5</p>\n\n            <p>1: I am not at all comfortable with this</p>\n\n            <p>2: I have just a little comfort with this</p>\n\n            <p>3: I am moderately comfortable with this</p>\n\n            <p>4: I am very comfortable with this</p>\n\n            <p>5: I feel ready to use this skill professionally</p>\n        </section>\n\n        <section ng-hide=\"!showPostSurvey\">\n            <h1>Post-Course Self Assessment</h1>\n\n            <p>We want to help you reach your goals. We've seen the work you've turned in. Now, we need your help\n                answering the following questions, so we can create a Personalized Growth Plan for you.</p>\n\n            <p>How do you rate yourself on a scale from 1 to 5</p>\n\n            <p>1: I am not at all comfortable with this</p>\n\n            <p>2: I have just a little comfort with this</p>\n\n            <p>3: I am moderately comfortable with this</p>\n\n            <p>4: I am very comfortable with this</p>\n\n            <p>5: I feel ready to use this skill professionally</p>\n        </section>\n\n        <fieldset name=\"rating\" class=\"newSurvey_form-sbj\">\n            <div ng-hide=\"showPostSurvey\">\n                <label class=\"newSurvey_form-lbl\">HTML</label></br>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg1 ===1}\" ng-click=\"survey.rtg1 = 1\">1</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg1 ===2}\" ng-click=\"survey.rtg1 = 2\">2</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg1 ===3}\" ng-click=\"survey.rtg1 = 3\">3</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg1 ===4}\" ng-click=\"survey.rtg1 = 4\">4</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg1 ===5}\" ng-click=\"survey.rtg1 = 5\">5</label>\n            </div>\n\n            <div ng-hide=\"!showPostSurvey\">\n                <div class=\"preSurveyRatings\">\n                    <label class=\"newSurvey_form-lbl\">HTML</label></br>\n                    <!--<label>Pre-Course Rating:</label>-->\n                    <!--<label class=\"selectedRating\">{{survey.rtg1}}</label></br>-->\n                </div>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg1a ===1}\" ng-click=\"survey.rtg1a = 1\">1</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg1a ===2}\" ng-click=\"survey.rtg1a = 2\">2</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg1a ===3}\" ng-click=\"survey.rtg1a = 3\">3</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg1a ===4}\" ng-click=\"survey.rtg1a = 4\">4</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg1a ===5}\" ng-click=\"survey.rtg1a = 5\">5</label>\n            </div>\n\n            <div ng-hide=\"showPostSurvey\">\n                <label class=\"newSurvey_form-lbl\">CSS</label></br>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg2 ===1}\" ng-click=\"survey.rtg2 = 1\">1</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg2 ===2}\" ng-click=\"survey.rtg2 = 2\">2</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg2 ===3}\" ng-click=\"survey.rtg2 = 3\">3</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg2 ===4}\" ng-click=\"survey.rtg2 = 4\">4</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg2 ===5}\" ng-click=\"survey.rtg2 = 5\">5</label>\n            </div>\n\n            <div ng-hide=\"!showPostSurvey\">\n                <div class=\"preSurveyRatings\">\n                    <label class=\"newSurvey_form-lbl\">CSS</label></br>\n                    <!--<label>Pre-Course Rating:</label>-->\n                    <!--<label class=\"selectedRating\">{{survey.rtg2}}</label></br>-->\n                </div>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg2a ===1}\" ng-click=\"survey.rtg2a = 1\">1</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg2a ===2}\" ng-click=\"survey.rtg2a = 2\">2</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg2a ===3}\" ng-click=\"survey.rtg2a = 3\">3</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg2a ===4}\" ng-click=\"survey.rtg2a = 4\">4</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg2a ===5}\" ng-click=\"survey.rtg2a = 5\">5</label>\n            </div>\n\n            <div ng-hide=\"showPostSurvey\">\n                <label class=\"newSurvey_form-lbl\">JavaScript</label></br>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg3 ===1}\" ng-click=\"survey.rtg3 = 1\">1</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg3 ===2}\" ng-click=\"survey.rtg3 = 2\">2</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg3 ===3}\" ng-click=\"survey.rtg3 = 3\">3</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg3 ===4}\" ng-click=\"survey.rtg3 = 4\">4</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg3 ===5}\" ng-click=\"survey.rtg3 = 5\">5</label>\n            </div>\n\n            <div ng-hide=\"!showPostSurvey\">\n                <div class=\"preSurveyRatings\">\n                    <label class=\"newSurvey_form-lbl\">JavaScript</label></br>\n                    <!--<label>Pre-Course Rating:</label>-->\n                    <!--<label class=\"selectedRating\">{{survey.rtg3}}</label></br>-->\n                </div>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg3a ===1}\" ng-click=\"survey.rtg3a = 1\">1</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg3a ===2}\" ng-click=\"survey.rtg3a = 2\">2</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg3a ===3}\" ng-click=\"survey.rtg3a = 3\">3</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg3a ===4}\" ng-click=\"survey.rtg3a = 4\">4</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg3a ===5}\" ng-click=\"survey.rtg3a = 5\">5</label>\n            </div>\n\n            <div ng-hide=\"showPostSurvey\">\n                <label class=\"newSurvey_form-lbl\">GIT</label></br>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg4 ===1}\" ng-click=\"survey.rtg4 = 1\">1</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg4 ===2}\" ng-click=\"survey.rtg4 = 2\">2</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg4 ===3}\" ng-click=\"survey.rtg4 = 3\">3</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg4 ===4}\" ng-click=\"survey.rtg4 = 4\">4</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg4 ===5}\" ng-click=\"survey.rtg4 = 5\">5</label>\n            </div>\n\n            <div ng-hide=\"!showPostSurvey\">\n                <div class=\"preSurveyRatings\">\n                    <label class=\"newSurvey_form-lbl\">GIT</label></br>\n                    <!--<label>Pre-Course Rating:</label>-->\n                    <!--<label class=\"selectedRating\">{{survey.rtg4}}</label></br>-->\n                </div>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg4a ===1}\" ng-click=\"survey.rtg4a = 1\">1</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg4a ===2}\" ng-click=\"survey.rtg4a = 2\">2</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg4a ===3}\" ng-click=\"survey.rtg4a = 3\">3</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg4a ===4}\" ng-click=\"survey.rtg4a = 4\">4</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg4a ===5}\" ng-click=\"survey.rtg4a = 5\">5</label>\n            </div>\n\n            <div ng-hide=\"showPostSurvey\">\n                <label class=\"newSurvey_form-lbl\">Data structures and algorithms</label></br>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg5 ===1}\" ng-click=\"survey.rtg5 = 1\">1</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg5 ===2}\" ng-click=\"survey.rtg5 = 2\">2</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg5 ===3}\" ng-click=\"survey.rtg5 = 3\">3</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg5 ===4}\" ng-click=\"survey.rtg5 = 4\">4</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg5 ===5}\" ng-click=\"survey.rtg5 = 5\">5</label>\n            </div>\n\n            <div ng-hide=\"!showPostSurvey\">\n                <div class=\"preSurveyRatings\">\n                    <label class=\"newSurvey_form-lbl\">Data structures and algorithms</label></br>\n                    <!--<label>Pre-Course Rating:</label>-->\n                    <!--<label class=\"selectedRating\">{{survey.rtg5}}</label></br>-->\n                </div>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg5a ===1}\" ng-click=\"survey.rtg5a = 1\">1</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg5a ===2}\" ng-click=\"survey.rtg5a = 2\">2</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg5a ===3}\" ng-click=\"survey.rtg5a = 3\">3</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg5a ===4}\" ng-click=\"survey.rtg5a = 4\">4</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg5a ===5}\" ng-click=\"survey.rtg5a = 5\">5</label>\n            </div>\n\n            <div ng-hide=\"showPostSurvey\">\n                <label class=\"newSurvey_form-lbl\">Command line interface</label></br>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg6 ===1}\" ng-click=\"survey.rtg6 = 1\">1</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg6 ===2}\" ng-click=\"survey.rtg6 = 2\">2</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg6 ===3}\" ng-click=\"survey.rtg6 = 3\">3</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg6 ===4}\" ng-click=\"survey.rtg6 = 4\">4</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg6 ===5}\" ng-click=\"survey.rtg6 = 5\">5</label>\n            </div>\n\n            <div ng-hide=\"!showPostSurvey\">\n                <div class=\"preSurveyRatings\">\n                    <label class=\"newSurvey_form-lbl\">Command line interface</label></br>\n                    <!--<label>Pre-Course Rating:</label>-->\n                    <!--<label class=\"selectedRating\">{{survey.rtg6}}</label></br>-->\n                </div>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg6a ===1}\" ng-click=\"survey.rtg6a = 1\">1</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg6a ===2}\" ng-click=\"survey.rtg6a = 2\">2</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg6a ===3}\" ng-click=\"survey.rtg6a = 3\">3</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg6a ===4}\" ng-click=\"survey.rtg6a = 4\">4</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg6a ===5}\" ng-click=\"survey.rtg6a = 5\">5</label>\n            </div>\n\n            <div ng-hide=\"showPostSurvey\">\n                <label class=\"newSurvey_form-lbl\">Object-oriented programming</label></br>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg7 ===1}\" ng-click=\"survey.rtg7 = 1\">1</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg7 ===2}\" ng-click=\"survey.rtg7 = 2\">2</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg7 ===3}\" ng-click=\"survey.rtg7 = 3\">3</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg7 ===4}\" ng-click=\"survey.rtg7 = 4\">4</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg7 ===5}\" ng-click=\"survey.rtg7 = 5\">5</label>\n            </div>\n\n            <div ng-hide=\"!showPostSurvey\">\n                <div class=\"preSurveyRatings\">\n                    <label class=\"newSurvey_form-lbl\">Object-oriented programming</label></br>\n                    <!--<label>Pre-Course Rating:</label>-->\n                    <!--<label class=\"selectedRating\">{{survey.rtg7}}</label></br>-->\n                </div>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg7a ===1}\" ng-click=\"survey.rtg7a = 1\">1</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg7a ===2}\" ng-click=\"survey.rtg7a = 2\">2</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg7a ===3}\" ng-click=\"survey.rtg7a = 3\">3</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg7a ===4}\" ng-click=\"survey.rtg7a = 4\">4</label>\n                <label class=\"ppgrating\" ng-class=\"{selectedRating:survey.rtg7a ===5}\" ng-click=\"survey.rtg7a = 5\">5</label>\n            </div>\n        </fieldset>\n\n        <fieldset>\n            <legend>Goals</legend>\n            <label for=\"goal\">What are your long-term goals?</label>\n            <textarea ng-hide=\"showPostSurvey\" id=\"goal\" rows=\"10\" class=\"newSurvey_form-textarea\" placeholder=\"What are your long-term goals?\" data-ng-model=\"survey.goal\">\n            </textarea>\n            <div ng-hide=\"!showPostSurvey\">\n                <!--<label>Pre-Survey Answer:</label>-->\n                <!--<blockquote class=\"preQuestQuote\">{{survey.goal}}</blockquote>-->\n                <textarea id=\"goala\" rows=\"10\" class=\"newSurvey_form-textarea\" placeholder=\"What are your long-term goals?\" data-ng-model=\"survey.goala\"></textarea>\n            </div>\n            <label for=\"goal2\">Why are you interested in developing your computer/coding skills?</label>\n            <textarea ng-hide=\"showPostSurvey\" id=\"goal2\" rows=\"10\" class=\"newSurvey_form-textarea\" placeholder=\"Why are you interested in developing your computer/coding skills?\" data-ng-model=\"survey.goal2\">\n            </textarea>\n            <div ng-hide=\"!showPostSurvey\">\n                <!--<label>Pre-Survey Answer:</label>-->\n                <!--<blockquote class=\"preQuestQuote\">{{survey.goal2}}</blockquote>-->\n                <textarea id=\"goal2a\" rows=\"10\" class=\"newSurvey_form-textarea\" placeholder=\"Why are you interested in developing your computer/coding skills?\" data-ng-model=\"survey.goal2a\"></textarea>\n            </div>\n            <label for=\"goal3\">What kinds of problems do you like working on?</label>\n            <textarea ng-hide=\"showPostSurvey\" id=\"goal3\" rows=\"10\" class=\"newSurvey_form-textarea\" placeholder=\"What kinds of problems do you like working on?\" data-ng-model=\"survey.goal3\">\n            </textarea>\n            <div ng-hide=\"!showPostSurvey\">\n                <!--<label>Pre-Survey Answer:</label>-->\n                <!--<blockquote class=\"preQuestQuote\">{{survey.goal3}}</blockquote>-->\n                <textarea id=\"goal3a\" rows=\"10\" class=\"newSurvey_form-textarea\" placeholder=\"What kinds of problems do you like working on?\" data-ng-model=\"survey.goal3a\"></textarea>\n            </div>\n            <label for=\"goal4\">What would you like to do next?</label>\n            <textarea ng-hide=\"showPostSurvey\" id=\"goal4\" rows=\"10\" class=\"newSurvey_form-textarea\" placeholder=\"What would you like to do next?\" data-ng-model=\"survey.goal4\">\n            </textarea>\n            <div ng-hide=\"!showPostSurvey\">\n                <!--<label>Pre-Survey Answer:</label>-->\n                <!--<blockquote class=\"preQuestQuote\">{{survey.goal4}}</blockquote>-->\n                <textarea id=\"goal4a\" rows=\"10\" class=\"newSurvey_form-textarea\" placeholder=\"What would you like to do next?\" data-ng-model=\"survey.goal4a\"></textarea>\n            </div>\n            <label for=\"goal5\">What would you like to be able to accomplish with code?</label>\n            <textarea ng-hide=\"showPostSurvey\" id=\"goal5\" rows=\"10\" class=\"newSurvey_form-textarea\" placeholder=\"What would you like to be able to accomplish with code?\" data-ng-model=\"survey.goal5\">\n            </textarea>\n            <div ng-hide=\"!showPostSurvey\">\n                <!--<label>Pre-Survey Answer:</label>-->\n                <!--<blockquote class=\"preQuestQuote\">{{survey.goal5}}</blockquote>-->\n                <textarea id=\"goal5a\" rows=\"10\" class=\"newSurvey_form-textarea\" placeholder=\"What would you like to be able to accomplish with code?\" data-ng-model=\"survey.goal5a\"></textarea>\n            </div>\n        </fieldset>\n\n        <fieldset>\n            <legend>Questions/Concerns?</legend>\n            <textarea ng-hide=\"showPostSurvey\" id=\"note\" rows=\"10\" class=\"newSurvey_form-textarea\" placeholder=\"Please share any questions or concerns you may have.\" data-ng-model=\"survey.note\">\n            </textarea>\n            <div ng-hide=\"!showPostSurvey\">\n                <!--<label>Pre-Survey Answer:</label>-->\n                <!--<blockquote class=\"preQuestQuote\">{{survey.note}}</blockquote>-->\n                <textarea id=\"noteA\" rows=\"10\" class=\"newSurvey_form-textarea\" placeholder=\"Please share any questions or concerns you may have.\" data-ng-model=\"survey.noteA\"></textarea>\n            </div>\n        </fieldset>\n        <div ng-hide=\"showPostSurvey\">\n            <label for=\"cbPreSurvey\">When you have completed your pre-survey, check here to have it processed</label>\n            <input class=\"cbComplete\" id=\"cbPreSurvey\" type=\"checkbox\" data-ng-model=\"survey.preRtgComplete\">\n            <button data-ng-click=\"saveSurvey()\">SAVE</button>\n        </div>\n        <div ng-hide=\"!showPostSurvey\">\n            <label for=\"cbPostSurvey\">When you have completed your post-survey, check here to have it processed</label>\n            <input class=\"cbComplete\" id=\"cbPostSurvey\" type=\"checkbox\" data-ng-model=\"survey.rtgComplete\">\n            <button data-ng-click=\"saveSurvey()\">SAVE</button>\n        </div>\n    </form>\n</article>\n\n","view_PGP":"<div data-ng-controller=\"viewPGPController\" id=\"pgpout\">\n\n    <article>\n        <fieldset>\n            <h1 class=\"pgpHeader\" >Personal Growth Plan For {{pgp.name}}</h1>\n            <h2 class=\"hCourse\">{{ 'Course ' + pgp.course}}</h2>\n        </fieldset>\n        <fieldset>\n            <legend class=\"pgpLegend\">Based on your self assessment responses we recommend the following resources:</legend>\n            <label class=\"ppgrating\">{{pgp.rtg1}}</label>\n            <label class=\"ppgrating\" ng-hide=\"!showPostSurvey\">{{pgp.rtg1a}}</label>\n            <label class=\"pgpAssTitle\">HTML:</label>\n            <ul>\n                <li class=\"animate-repeat\" data-ng-repeat=\"rec in pgp.recsrc1\">\n                    Type:{{rec.type}}: <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n                </li>\n                <li class=\"animate-repeat\" data-ng-if=\"results.length == 0\">\n                    <strong>Nothing Recommended</strong>\n                </li>\n            </ul>\n            <p>{{pgp.rec1}}</p>\n            <label class=\"ppgrating\">{{pgp.rtg2}}</label>\n            <label class=\"ppgrating\" ng-hide=\"!showPostSurvey\">{{pgp.rtg2a}}</label>\n            <label class=\"pgpAssTitle\">CSS:</label>\n            <ul>\n                <li class=\"animate-repeat\" data-ng-repeat=\"rec in pgp.recsrc2\">\n                    Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n                </li>\n                <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                    <strong>No results found...</strong>\n                </li>\n            </ul>\n            <p>{{pgp.rec2}}</p>\n            <label class=\"ppgrating\">{{pgp.rtg3}}</label>\n            <label class=\"ppgrating\" ng-hide=\"!showPostSurvey\">{{pgp.rtg3a}}</label>\n            <label class=\"pgpAssTitle\">JavaScript:</label>\n            <ul>\n                <li class=\"animate-repeat\" data-ng-repeat=\"rec in pgp.recsrc3\">\n                    Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n                </li>\n                <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                    <strong>No results found...</strong>\n                </li>\n            </ul>\n            <p>{{pgp.rec3}}</p>\n            <label class=\"ppgrating\">{{pgp.rtg4}}</label>\n            <label class=\"ppgrating\" ng-hide=\"!showPostSurvey\">{{pgp.rtg4a}}</label>\n            <label class=\"pgpAssTitle\">GIT:</label>\n            <ul>\n                <li class=\"animate-repeat\" data-ng-repeat=\"rec in pgp.recsrc4\">\n                    Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n                </li>\n                <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                    <strong>No results found...</strong>\n                </li>\n            </ul>\n            <p>{{pgp.rec4}}</p>\n            <label class=\"ppgrating\">{{pgp.rtg5}}</label>\n            <label class=\"ppgrating\" ng-hide=\"!showPostSurvey\">{{pgp.rtg5a}}</label>\n            <label class=\"pgpAssTitle\">Data Structures and Algorithms:</label>\n            <ul>\n                <li class=\"animate-repeat\" data-ng-repeat=\"rec in pgp.recsrc5\">\n                    Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n                </li>\n                <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                    <strong>No results found...</strong>\n                </li>\n            </ul>\n            <p>{{pgp.rec5}}</p>\n            <label class=\"ppgrating\">{{pgp.rtg6}}</label>\n            <label class=\"ppgrating\" ng-hide=\"!showPostSurvey\">{{pgp.rtg6a}}</label>\n            <label class=\"pgpAssTitle\">Command Line/ Terminal:</label>\n            <ul>\n                <li class=\"animate-repeat\" data-ng-repeat=\"rec in pgp.recsrc6\">\n                    Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n                </li>\n                <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                    <strong>No results found...</strong>\n                </li>\n            </ul>\n            <p>{{pgp.rec6}}</p>\n            <label class=\"ppgrating\">{{pgp.rtg7}}</label>\n            <label class=\"ppgrating\" ng-hide=\"!showPostSurvey\">{{pgp.rtg7a}}</label>\n            <label class=\"pgpAssTitle\">Object-orientated Programing:</label>\n            <ul>\n                <li class=\"animate-repeat\" data-ng-repeat=\"rec in pgp.recsrc7\">\n                    Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n                </li>\n                <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                    <strong>No results found...</strong>\n                </li>\n            </ul>\n            <p>{{pgp.rec7}}</p>\n        </fieldset>\n        <fieldset>\n            <legend class=\"pgpLegend\">Additional resources provided based on your responses to survey questions:</legend>\n            <ul>\n                <li class=\"animate-repeat\" data-ng-repeat=\"rec in pgp.goalsrc1\">\n                    Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n                </li>\n                <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                    <strong>No results found...</strong>\n                </li>\n            </ul>\n            <ul>\n                <li class=\"animate-repeat\" data-ng-repeat=\"rec in pgp.goalsrc2\">\n                    Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n                </li>\n                <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                    <strong>No results found...</strong>\n                </li>\n            </ul>\n            <ul>\n                <li class=\"animate-repeat\" data-ng-repeat=\"rec in pgp.goalsrc3\">\n                    Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n                </li>\n                <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                    <strong>No results found...</strong>\n                </li>\n            </ul>\n            <ul>\n                <li class=\"animate-repeat\" data-ng-repeat=\"rec in pgp.goalsrc4\">\n                    Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n                </li>\n                <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                    <strong>No results found...</strong>\n                </li>\n            </ul>\n            <ul>\n                <li class=\"animate-repeat\" data-ng-repeat=\"rec in pgp.goalsrc5\">\n                    Type:{{rec.type}} <a data-ng-href=\"{{rec.rlink}}\">{{rec.title}}</a>\n                </li>\n                <li class=\"animate-repeat\" ng-if=\"results.length == 0\">\n                    <strong>No results found...</strong>\n                </li>\n            </ul>\n        </fieldset>\n        <label class=\"pgpLegend\">Additional comments and responses:</label>\n        <p>{{pgp.feedbk}}</p>\n    </article>\n</div>\n"};
+},{}],3:[function(require,module,exports){
 /**
  * clientValidation
  * Created by dcorns on 4/28/15.
@@ -417,7 +182,237 @@ function buildErrorString(errObj){
 module.exports = function (app) {
   app.dgClientValidate = dgClientValidate;
 };
-},{}],10:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
+/**
+ * controllerRegistry
+ * Created by dcorns on 5/26/15.
+ * modules required in this file are specifically for associated views. The property names should be equal to the associated html file name which is equal to the associated js file name used with the path as the argument to the require statement which is the value of the property. This file is used by router.js to invoke the java script when the matching view is loaded.
+ */
+'use strict';
+module.exports = function (){
+  return{
+    home: require('./home'),
+    login: require('./login'),
+    create_PGP: require('./create_PGP')
+  };
+};
+},{"./create_PGP":5,"./home":6,"./login":7}],5:[function(require,module,exports){
+/**
+ * create_PGP
+ * Created by dcorns on 6/1/15.
+ */
+'use strict';
+module.exports = function(){
+  //set button visibility
+  document.getElementById('btncreateaccount').style.display = 'none';
+  document.getElementById('btnlogin').style.display = 'none';
+  document.getElementById('btnviewpgp').style.display = 'inline';
+  //
+  var storage = window.sessionStorage, pgpArray = [], pgpResources = [], pgpTopics = [], token = storage.getItem('token');
+  if(token){
+    dgApp.dgMethod.ajaxGet('/api/v_0_0_1/pgps', function(err, data){
+      if(err){
+        errHandle.alertObject(err); return;
+      }
+      if(data){
+        pgpArray = data.n;
+        var formIdx = storage.getItem('formIdx');
+        dgApp.dgMethod.dataLoadSelect('studentSelect', data.n, 'name', '_id');
+        var studentSelect = document.getElementById('studentSelect');
+        //sync studentSelect index from previous pages if it was selected
+        if(formIdx){
+          dgApp.pgpMdl = pgpArray[formIdx];
+          studentSelect.selectedIndex = formIdx;
+        }
+        else{
+          dgApp.pgpMdl = pgpArray[0];
+          storage.setItem('formIdx', '0');
+        }
+        //
+        dgApp.userId = data.u._id;
+        getAllResources(data.u);
+        addHandlers();
+      }
+
+    }, token);
+  }
+  function getAllResources(usr){
+    dgApp.dgMethod.ajaxPostJson('/api/v_0_0_1/pgps/resources/',usr, function(err, data){
+      if(err){
+        errHandle.alertObject(err); return;
+      }
+      pgpResources = data.resourceList;
+      console.dir(pgpResources);
+      pgpTopics = data.topicList;
+      dgApp.dgMethod.dataLoadSelect('resources', pgpResources, 'title');
+      dgApp.dgMethod.makeFormCheckBoxGroup('rTypes', pgpTopics, 'name', 'description', 'cId');
+      //register superSelect component
+      dgApp.dgComponents.superSelect();
+    });
+  }
+  function addHandlers(){
+
+    var studentSelect = document.getElementById('studentSelect');
+    //studentSelect.addEventListener('click', setPgpData);
+    //studentSelect.addEventListener('change', setPgpData);
+    document.getElementById('btnSaveNewResource').addEventListener('click', function(e){
+      var topicFrm = document.getElementById('chooseResourceTopics');
+      var topicArray = [];
+      var c = 0, len = topicFrm.length;
+      for (c; c < len; c++) {
+        if (topicFrm[c].checked) {
+          topicArray.push(parseInt(topicFrm[c].alt));
+        }
+      }
+      //resrcTitle resrcDescription resrcLink
+      var newResource = {title: document.getElementById('resrcTitle').value, topics: topicArray};
+      newResource.description = document.getElementById('resrcDescription').value;
+      newResource.resourceLink = document.getElementById('resrcLink').value;
+      var errorString = dgApp.dgClientValidate.validateResource(newResource);
+      if (errorString.length > 0) {
+        alert(errorString);
+      }
+      else{
+        newResource.token = token;
+        console.dir(newResource);
+        if(dgApp.dgMethod.arrayContains(pgpResources, newResource.title, 'title')){
+          alert(newResource.title + ' is already a resource title.');
+        }
+        else{
+          if(dgApp.dgMethod.arrayContains(pgpResources, newResource.resourceLink, 'resourceLink') && (newResource.resourceLink !== '')){
+            alert(newResource.resourceLink + ' is already a resource link');
+          }
+          else{
+            //save resource
+            saveResource(newResource, pgpResources);
+          }
+        }
+      }
+    });
+    var selResources = document.getElementById('resources');
+    selResources.addEventListener('click', function(e){
+      if (e.altKey) {
+        removeResource(e);
+      }
+    });
+
+  }
+
+  function populateResourceTypeElements(e){
+   console.dir(e);
+  }
+  function resourceOptionClick(e){
+    console.dir(e);
+  }
+
+};
+},{}],6:[function(require,module,exports){
+/**
+ * home
+ * Created by dcorns on 6/1/15.
+ */
+'use strict';
+var views = require('../build/views');
+var controllers = require('./controllerRegistry')();
+var route = require('../router')(views, controllers);
+module.exports = function(){
+  document.getElementById('btncreatepgp').style.display = 'none';
+  document.getElementById('btnsurvey').style.display = 'none';
+  document.getElementById('btnviewpgp').style.display = 'none';
+
+};
+},{"../build/views":2,"../router":13,"./controllerRegistry":4}],7:[function(require,module,exports){
+/**
+ * loginController
+ * Created by dcorns on 3/12/15.
+ */
+'use strict';
+var errHandle = require('../handleErrors')();
+var ui = require('../ui');
+
+function userLogin() {
+  var storage = window.sessionStorage;
+  storage.removeItem('token');
+  dgApp.dgMethod.ajaxPostJson('api/v_0_0_1/login', dgApp.userMdl, function(err, data){
+    if(err){
+      errHandle.alertObject(err); return;
+    }
+    storage.setItem('token', data.user.atoken);
+    var roll = data.user.roll;
+    if(roll === 'ta' || roll === 'admin'){
+      window.location="/#/create_PGP";
+    }
+    else {
+      if (roll === 'student') {
+        var btnSurvey = document.getElementById('btnsurvey');
+        btnSurvey.className = 'nav_ul-li';
+        //Save note to local storage
+        var sessionNote = SOS(data.note);
+        sessionNote.saveNote();
+        if (data.note.recComplete) window.location = '/#/view_PGP';
+        else window.location = '/#/student_survey';
+      }
+    }
+  });
+}
+
+module.exports = function(){
+  var ux = ui();
+  ux.hideMainButtons();
+  document.getElementById('btncreateaccount').className = 'nav_ul-li-a';
+  document.getElementById('btnLogin').onclick = userLogin;
+  var uName = document.getElementById('username');
+  var psw = document.getElementById('password');
+  dgApp.dgMethod.dataBindInput(uName, 'change', 'userMdl', 'email');
+  dgApp.dgMethod.dataBindInput(psw, 'change', 'userMdl', 'password');
+};
+},{"../handleErrors":10,"../ui":15}],8:[function(require,module,exports){
+/**
+ * dgComponents
+ * Created by dcorns on 6/9/15.
+ */
+'use strict';
+var dgComponents = {};
+
+dgComponents.superSelect = function(){
+  var proto = Object.create(HTMLElement.prototype);
+  proto.showAll = false;
+  proto.createdCallback = function(){
+    var shadowdom = this.createShadowRoot();
+    console.dir(shadowdom);
+    console.dir(this.shadowRoot.children);
+    var subHTML = this.shadowRoot.children;
+    shadowdom.innerHTML = '<input><button>*</button><input type="number" value="5">';
+    //Set Internal Styles
+    subHTML[2].style.width = '30px';
+    //Add event listeners for sub elements
+    subHTML[0].addEventListener('keyup', function(e){
+      console.log(e.target.value);
+    });
+    subHTML[1].addEventListener('click', function(e){
+      var showAll = e.target.parentNode.host.showAll;
+      if(showAll){
+        e.target.parentNode.host.showAll = false;
+        e.target.innerHTML = '*'
+      }
+      else{
+        e.target.parentNode.host.showAll = true;
+        e.target.innerHTML = '@'
+      }
+      console.log(showAll);
+    });
+
+    subHTML[2].addEventListener('change', function(e){
+      console.log(e.target.value);
+    });
+  };
+  document.registerElement('super-select', {prototype: proto});
+};
+
+module.exports = function (app){
+  app.dgComponents = dgComponents;
+};
+},{}],9:[function(require,module,exports){
 /**
  * dgMethods
  * Created by dcorns on 3/16/15.
@@ -506,20 +501,20 @@ dgMethod.dataBindInput = function(elem, evnt, mdl, item){
   });
 };
 
-dgMethod.dataLoadSelect = function(elId, ary, item){
+dgMethod.dataLoadSelect = function(elId, ary, item) {
   var el = document.getElementById(elId);
   el.innerHTML = '';
   var len = ary.length, c = 0, opt, display;
-  for(c; c < len; c++){
-    if(Array.isArray(item)){
+  for (c; c < len; c++) {
+    if (Array.isArray(item)) {
       display = '';
       var itLen = item.length, itC = 0;
-      for(itC; itC < itLen; itC++){
+      for (itC; itC < itLen; itC++) {
         display = display + ary[c][item[itC]] + '|';
       }
       display = display.substr(0, display.length - 1);
     }
-    else{
+    else {
       display = '<label class=selOptTitle>' + ary[c][item] + '</label>';
     }
     opt = document.createElement('option');
@@ -527,22 +522,21 @@ dgMethod.dataLoadSelect = function(elId, ary, item){
     opt.accessKey = c;
     el.appendChild(opt);
   }
+};
 
-  dgMethod.makeFormCheckBoxGroup = function(formID, data, nameKey, descriptionKey, idKey){
-    var elId = document.getElementById(formID), c = 0, len = data.length, cb, cblbl;
-    console.dir(formID);
-    for(c; c < len; c++){
-      cb = document.createElement('input');
-      cb.id = formID+ 'Cb' + c;
-      cb.title = data[c][descriptionKey];
-      cblbl = document.createElement('label');
-      cblbl.for = cb.id;
-      cblbl.innerHTML = data[c][nameKey];
-      cb.setAttribute('type', 'checkbox');
-      cb.alt = data[c][idKey] || c;
-      elId.appendChild(cblbl);
-      elId.appendChild(cb);
-    }
+dgMethod.makeFormCheckBoxGroup = function(formID, data, nameKey, descriptionKey, idKey){
+  var elId = document.getElementById(formID), c = 0, len = data.length, cb, cblbl;
+  for(c; c < len; c++){
+    cb = document.createElement('input');
+    cb.id = formID+ 'Cb' + c;
+    cb.title = data[c][descriptionKey];
+    cblbl = document.createElement('label');
+    cblbl.for = cb.id;
+    cblbl.innerHTML = data[c][nameKey];
+    cb.setAttribute('type', 'checkbox');
+    cb.alt = data[c][idKey] || c;
+    elId.appendChild(cblbl);
+    elId.appendChild(cb);
   }
 };
 
@@ -572,83 +566,7 @@ dgMethod.selectAddOption = function (selId, optObj, item){
 module.exports = function (app){
   app.dgMethod = dgMethod;
 };
-},{}],11:[function(require,module,exports){
-/**
- * dgRouteProvider
- * Created by dcorns on 3/6/15.
- * Handles client routing and the script/controller that is used for each route
- */
-'use strict';
-
-function loadRoute(rtObj){
-  rtObj.view(); rtObj.controller();
-}
-
-module.exports = function(app){
-  app.loadRoute = function(dgRoute){
-    //grab the '#' and everything that follows it.
-    dgRoute = dgRoute.substr(dgRoute.indexOf('#'));
-    switch(dgRoute) {
-      case '#/student_survey':
-        return loadRoute({
-          templateUrl: 'views/student_survey.html',
-          view: function(){},
-          controller: app.surveyCtrl
-        });
-        break;
-      case '#/create_PGP':
-        return loadRoute({
-          templateUrl: 'views/create_PGP.html',
-          view: app.createPgpView,
-          controller: app.createPGPCtrl
-        });
-        break;
-      case '#/preview_PGP':
-        return loadRoute({
-          templateUrl: 'views/preview_PGP.html',
-          view: function(){},
-          controller: app.previewPGPCtrl
-        });
-        break;
-      case '#/view_PGP':
-        return loadRoute({
-          templateUrl: 'views/view_PGP.html',
-          view: function(){},
-          controller: app.viewPGPCtrl
-        });
-        break;
-      case '#/create_Account':
-        return loadRoute({
-          templateUrl: 'views/create_Account.html',
-          view: function(){},
-          controller: app.createAccountCtrl
-        });
-        break;
-      case '#/login':
-        return loadRoute({
-          templateUrl: 'views/login.html',
-          view: app.loginView,
-          controller: app.loginCtrl
-        });
-        break;
-      case '#/home':
-        return loadRoute({
-          templateUrl: 'views/home.html',
-          view: app.homeView,
-          controller: app.homeCtrl
-        });
-        break;
-      default:
-        return loadRoute({
-          templateUrl: 'views/home.html',
-          view: app.homeView,
-          controller: app.homeCtrl
-        });
-        break;
-    }
-};
-};
-},{}],12:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 /**
  * Created by dcorns on 11/14/14.
  */
@@ -666,7 +584,7 @@ module.exports = function(){
     }
   };
 };
-},{}],13:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 /**
  * Created by dcorns on 11/10/14.
  */
@@ -696,7 +614,7 @@ module.exports = function(obj){
     }
   }
 };
-},{}],14:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 /**
  * Created by dcorns on 11/12/14.
  */
@@ -811,7 +729,25 @@ module.exports = function($scope, $http){
 
   return $scope;
 };
-},{"../js/ui":16}],15:[function(require,module,exports){
+},{"../js/ui":15}],13:[function(require,module,exports){
+/**
+ * router.js
+ * Created by dcorns on 5/25/15.
+ * takes in a view object like the one created with grunt-add-view and with the expectation that every view in the view object has an associated javascript file by the same name to run when the view is chosen
+ */
+'use strict';
+module.exports = function(views, controllers){
+  function loadRoute(route, pEl){
+    var el = pEl || 'main-content';
+    var view = route.substr(route.lastIndexOf('/') + 1);
+    document.getElementById(el).innerHTML = views[view];
+    if(controllers[view]){
+      controllers[view]();
+    }
+  }
+  return loadRoute;
+};
+},{}],14:[function(require,module,exports){
 /**
  * Created by dcorns on 11/9/14.
  */
@@ -843,7 +779,7 @@ module.exports = function(obj){
     }
   }
 };
-},{}],16:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 /**
  * Created by dcorns on 10/7/14.
  */
@@ -1067,7 +1003,7 @@ var legtxt = document.createTextNode('User Login');
   }
 };
 
-},{}],17:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 /**
  * pgp
  * Created by dcorns on 3/25/15.
@@ -1132,7 +1068,7 @@ var pgpMdl = {
 module.exports = function (app){
   app.pgpMdl = pgpMdl;
 };
-},{}],18:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 /**
  * surveyModel
  * Created by dcorns on 3/13/15.
@@ -1148,103 +1084,4 @@ var userMdl = {
 module.exports = function (app){
   app.userMdl = userMdl;
 };
-},{}],19:[function(require,module,exports){
-/**
- * createPgpView
- * Created by dcorns on 3/24/15.
- */
-'use strict';
-
-var ui = require('../js/ui');
-
-module.exports = function(){
-  var ux = ui();
-  ux.hideMainButtons();
-  var ca = document.getElementById('btncreateaccount');
-  ca.className = 'hidden';
-  var btnCreatePgp = document.getElementById('btncreatepgp');
-  btnCreatePgp.className = 'nav_ul-li';
-  document.getElementById('btnviewpgp').className = 'nav_ul-li';
-
-  //main view
-  document.getElementById('dgView').innerHTML = '';
-  ux.addTag('dgView', 'Article', 'createPGP');
-
-  ux.addTag('createPGP', 'form', 'createPGPForm');
-  ux.addTag('createPGPForm', 'fieldset', 'createPGPSelect');
-  ux.addTextTag('createPGPSelect', 'legend', 'Please Select A Student');
-  ux.addTag('createPGPSelect', 'select', 'studentSelect');
-
-  ux.addTextTag('createPGPForm', 'h2', 'Save New Resources Here');
-  ux.addTag('createPGPForm', 'form', 'frmGoalResource');
-  ux.addInput('frmGoalResource', 'resrcTitle', 'New Resource Title', 'text');
-  ux.addInput('frmGoalResource', 'resrcDescription', 'New Resource Description', 'text');
-  ux.addInput('frmGoalResource', 'resrcLink', 'New Resource Link', 'text');
-  ux.addTag('frmGoalResource', 'form','chooseResourceTopics');
-  ux.addTextTag('chooseResourceTopics', 'h3', 'Check all that apply to new Resource');
-  ux.addButton('frmGoalResource', 'btnSaveResource', 'Save New Resource');
-
-  ux.addToggleViewButton('createPGPForm', 'btnGoalsToggle', 'GOALS', 'btnOn', 'fGoals');
-  ux.addTag('createPGPForm', 'fieldset', 'fGoals');
-  ux.addTextTag('fGoals', 'legend', 'Goals');
-  //ux.addTag('fGoals','div', 'addGenResource');
-
-  ux.addToggleViewButton('fGoals', 'btnG1On', 'LongTermGoals', 'btnOn', 'fG1');
-  ux.addTag('fGoals', 'fieldset', 'fG1');
-  ux.addTextTag('fG1', 'label', 'My long term goals:', 'pgpQuestions');
-  ux.addTag('fG1', 'p', 'preGoala', 'preSurvey', 'PreSurvey: ');
-  ux.addTag('fG1', 'p', 'postGoala', 'postSurvey', 'PostSurvey');
-
-  ux.addLabel('fG1', 'sG1', 'General Resources');
-  ux.addTag('fG1', 'select', 'sG1');
-  ux.addTextTag('fG1', 'label', 'Resource Blame: ');
-  ux.addButton('fG1', 'addToPlan', 'Add Resource to Plan');
-  ux.addTextTag('fG1', 'label', 'Remove from Plan: Alt+Click');
-  ux.addTag('fG1', 'ul', 'goalAresources', 'resourceList');
-};
-},{"../js/ui":16}],20:[function(require,module,exports){
-/**
- * homeView
- * Created by dcorns on 3/13/15.
- */
-'use strict';
-
-var ui = require('../js/ui');
-module.exports = function(){
-  var ux = ui();
-  ux.hideMainButtons();
-  //Create View
-  document.getElementById('dgView').innerHTML = '';
-  var title = 'artHome';
-  ux.addTag('dgView', 'article', title);
-  ux.addTextTag(title, 'p', 'Congratulations, you\'ve made it to the end of our Foundations of CS and Web Development course! I truly hope it has been a rewarding experience for you, and encourage you to continue to spend as much time as you can honing and further developing your coding powers.');
-  ux.addTextTag(title, 'p', 'To help us give you the best guidance on where to go from here, please tell us a little about how strongly you are feeling about the various topics we covered, and what your longer-term goals are. Your TA will share some feedback and favorite resources you can use to keep you learning on your own time.');
-  ux.addTextTag(title, 'p', 'It\'s been a great honor to travel this stretch of the journey with you. I wish you the best with all that this path leads you towards!');
-  ux.addTextTag(title, 'p', '—Brook');
-};
-},{"../js/ui":16}],21:[function(require,module,exports){
-/**
- * loginView
- * Created by dcorns on 3/13/15.
- */
-'use strict';
-var ui = require('../js/ui');
-
-module.exports = function(){
-  var ux = ui();
-  ux.hideMainButtons();
-  document.getElementById('btncreateaccount').className = 'nav_ul-li-a';
-  //Create View
-  document.getElementById('dgView').innerHTML = '';
-  ux.addTag('dgView', 'Article', 'loginHome');
-  ux.addTag('loginHome', 'form', 'loginForm');
-  ux.addTag('loginForm', 'fieldset', 'loginField');
-  ux.addTextTag('loginField', 'legend', 'User Login');
-  ux.addTextTag('loginField', 'label', 'Email Address');
-  ux.addInput('loginField', 'username', 'enter email address', 'email');
-  ux.addTextTag('loginField', 'label', 'Password');
-  ux.addInput('loginField', 'password', 'enter password', 'password');
-  ux.addButton('loginForm', 'btnLogin', 'SUBMIT');
-  ux.replaceClass('loginForm', 'userLogin_form');
-};
-},{"../js/ui":16}]},{},[8,9,10,11,12,13,14,15,16]);
+},{}]},{},[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]);
