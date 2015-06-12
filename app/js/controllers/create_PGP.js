@@ -9,6 +9,7 @@ module.exports = function(){
   document.getElementById('btnlogin').style.display = 'none';
   document.getElementById('btnviewpgp').style.display = 'inline';
   //
+  var dataobj = {}
   var storage = window.sessionStorage, pgpArray = [], pgpResources = [], pgpTopics = [], token = storage.getItem('token');
   if(token){
     dgApp.dgMethod.ajaxGet('/api/v_0_0_1/pgps', function(err, data){
@@ -45,10 +46,14 @@ module.exports = function(){
       pgpResources = data.resourceList;
       console.dir(pgpResources);
       pgpTopics = data.topicList;
-      dgApp.dgMethod.dataLoadSelect('resources', pgpResources, 'title');
+      dgApp.dgMethod.dataLoadSelect('resources2', pgpResources, 'title');
       dgApp.dgMethod.makeFormCheckBoxGroup('rTypes', pgpTopics, 'name', 'description', 'cId');
       //register superSelect component
-      dgApp.dgComponents.superSelect();
+      dataobj.pgpResources = pgpResources;
+      dataobj.pgpTopics = pgpTopics;
+      dataobj.titles = ['title', 'description', 'resourceLink', 'addedBy'];
+      dgApp.dgComponents.superSelect(dataobj);
+
     });
   }
   function addHandlers(){
