@@ -16,14 +16,16 @@ dgComponents.superSelect = function(obj){
     //console.dir(this.shadowRoot.children);
 
 
-    shadowdom.innerHTML = '<section><input><button>*</button><input type="number" value="5"><ol></ol><section></section></section>';
+    shadowdom.innerHTML = '<section><input><button>*</button><input type="number" value="5"><ul></ul><section></section></section>';
 
     //var subHTML = this.shadowRoot.children;
     var sSelect = this.shadowRoot.firstChild, sSKids = sSelect.children, searchTxt = sSKids[0], preferenceBtn = sSKids[1], numItemsToDisplay = sSKids[2], itemList = sSKids[3], sSDescriptions = sSKids[4];
     //Set Internal Styles
     numItemsToDisplay.style.width = '30px';
     var listStyle = sSelect.style;
-    listStyle.display = 'block'; listStyle.borderStyle = 'solid'; listStyle.borderWidth = '3';
+    listStyle.display = 'block'; listStyle.borderStyle = 'solid'; listStyle.borderWidth = '3'; listStyle.width = '240px';
+    var itemStyle = itemList.style;
+    itemStyle.listStyle = 'none'; itemStyle.margin = '0'; itemStyle.padding = '0';
     //Add event listeners for sub elements
     searchTxt.addEventListener('keyup', function(e){
       console.log(e.target.value);
@@ -68,12 +70,10 @@ dgComponents.superSelect = function(obj){
             var len2 = titles.length, c2 = 1;
             for(c2;c2<len2;c2++){
               el.setAttribute('data-' + titles[c2], items[c][titles[c2]]);
-              console.log('title= ' + titles[c2] + ' = ' + items[c][titles[c2]]);
             }
             el.addEventListener('mouseenter', function(e){
               e.target.style.backgroundColor = 'grey';
               var data = e.target.dataset;
-              console.dir(data);
               var sSDescKids = sSDescriptions.children;
               for(var prop in data){
                 if(data.hasOwnProperty(prop)){
@@ -102,8 +102,9 @@ dgComponents.superSelect = function(obj){
           for(c;c<len;c++){
             el = document.createElement('label');
             el.innerHTML = titles[c];
-            el.style.display = 'block';
+            el.style.position = 'relative';
             descData = document.createElement('label');
+            descData.style.position = 'relative';
             sSDescriptions.appendChild(el);
             sSDescriptions.appendChild(descData);
           }
