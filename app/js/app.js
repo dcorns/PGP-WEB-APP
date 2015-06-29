@@ -10,13 +10,12 @@ var dgApp = {};
 //dgApp.createPGPCtrl = require('../controllers/createPGPcontroller');
 //dgApp.previewPGPCtrl = require('../controllers/previewPGPcontroller');
 //dgApp.viewPGPCtrl = require('../controllers/viewPGPcontroller');
-
 require('../models/userModel')(dgApp); //adds userMdl object
 require('../models/pgpModel')(dgApp); //adds pgpMdl object
 //require('../js/dgRouteProvider')(dgApp); //adds loadRoute method to dgApp
 require('../js/dgMethods')(dgApp); //add dgMethod object to dgApp
 require('../js/clientValidation')(dgApp); //add client validation
-require('../js/dgComponents')(dgApp); //add web components
+//require('../js/dgComponents')(dgApp); //add web components
 
 var views = require('./build/views');
 var controllers = require('./controllers/controllerRegistry')();

@@ -10,7 +10,12 @@
         <section id="rTypes"></section><!--populated with checkboxes by controller-->
         <button id="btnSaveNewResource">Save New Resource</button>
         <select id="resources2"></select>
-        <super-select id="resources" data-items="pgpResources" data-filters="pgpTopics" data-titles="titles"></super-select>
+        <script>
+            window.Polymer = window.Polymer || {};
+            window.Polymer.dom = 'shadow';
+        </script>
+        <link rel="import" href="bower_components/super-select/super-select.html">
+        <super-select id="ss1"></super-select>
     </section>
 
 

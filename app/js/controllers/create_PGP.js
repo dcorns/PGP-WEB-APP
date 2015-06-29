@@ -8,8 +8,9 @@ module.exports = function(){
   document.getElementById('btncreateaccount').style.display = 'none';
   document.getElementById('btnlogin').style.display = 'none';
   document.getElementById('btnviewpgp').style.display = 'inline';
-  //
-  var dataobj = {}
+ var test = document.getElementById('ss');
+  console.dir(test);
+  var dataobj = {};
   var storage = window.sessionStorage, pgpArray = [], pgpResources = [], pgpTopics = [], token = storage.getItem('token');
   if(token){
     dgApp.dgMethod.ajaxGet('/api/v_0_0_1/pgps', function(err, data){
@@ -52,55 +53,58 @@ module.exports = function(){
       dataobj.pgpResources = pgpResources;
       dataobj.pgpTopics = pgpTopics;
       dataobj.titles = ['title', 'description', 'resourceLink', 'addedBy'];
-      dgApp.dgComponents.superSelect(dataobj);
-
+     // var ss = document.getElementById('ss');
+      document.querySelector('super-select').itemlist = pgpResources;
+      document.querySelector('super-select').associations = pgpTopics;
+      document.querySelector('super-select').displayitems = [{prop: 'title'}];
+console.dir(document.querySelector('super-select'));
     });
   }
   function addHandlers(){
 
-    var studentSelect = document.getElementById('studentSelect');
-    //studentSelect.addEventListener('click', setPgpData);
-    //studentSelect.addEventListener('change', setPgpData);
-    document.getElementById('btnSaveNewResource').addEventListener('click', function(e){
-      var topicFrm = document.getElementById('chooseResourceTopics');
-      var topicArray = [];
-      var c = 0, len = topicFrm.length;
-      for (c; c < len; c++) {
-        if (topicFrm[c].checked) {
-          topicArray.push(parseInt(topicFrm[c].alt));
-        }
-      }
-      //resrcTitle resrcDescription resrcLink
-      var newResource = {title: document.getElementById('resrcTitle').value, topics: topicArray};
-      newResource.description = document.getElementById('resrcDescription').value;
-      newResource.resourceLink = document.getElementById('resrcLink').value;
-      var errorString = dgApp.dgClientValidate.validateResource(newResource);
-      if (errorString.length > 0) {
-        alert(errorString);
-      }
-      else{
-        newResource.token = token;
-        console.dir(newResource);
-        if(dgApp.dgMethod.arrayContains(pgpResources, newResource.title, 'title')){
-          alert(newResource.title + ' is already a resource title.');
-        }
-        else{
-          if(dgApp.dgMethod.arrayContains(pgpResources, newResource.resourceLink, 'resourceLink') && (newResource.resourceLink !== '')){
-            alert(newResource.resourceLink + ' is already a resource link');
-          }
-          else{
-            //save resource
-            saveResource(newResource, pgpResources);
-          }
-        }
-      }
-    });
-    var selResources = document.getElementById('resources');
-    selResources.addEventListener('click', function(e){
-      if (e.altKey) {
-        removeResource(e);
-      }
-    });
+    //var studentSelect = document.getElementById('studentSelect');
+    ////studentSelect.addEventListener('click', setPgpData);
+    ////studentSelect.addEventListener('change', setPgpData);
+    //document.getElementById('btnSaveNewResource').addEventListener('click', function(e){
+    //  var topicFrm = document.getElementById('chooseResourceTopics');
+    //  var topicArray = [];
+    //  var c = 0, len = topicFrm.length;
+    //  for (c; c < len; c++) {
+    //    if (topicFrm[c].checked) {
+    //      topicArray.push(parseInt(topicFrm[c].alt));
+    //    }
+    //  }
+    //  //resrcTitle resrcDescription resrcLink
+    //  var newResource = {title: document.getElementById('resrcTitle').value, topics: topicArray};
+    //  newResource.description = document.getElementById('resrcDescription').value;
+    //  newResource.resourceLink = document.getElementById('resrcLink').value;
+    //  var errorString = dgApp.dgClientValidate.validateResource(newResource);
+    //  if (errorString.length > 0) {
+    //    alert(errorString);
+    //  }
+    //  else{
+    //    newResource.token = token;
+    //    console.dir(newResource);
+    //    if(dgApp.dgMethod.arrayContains(pgpResources, newResource.title, 'title')){
+    //      alert(newResource.title + ' is already a resource title.');
+    //    }
+    //    else{
+    //      if(dgApp.dgMethod.arrayContains(pgpResources, newResource.resourceLink, 'resourceLink') && (newResource.resourceLink !== '')){
+    //        alert(newResource.resourceLink + ' is already a resource link');
+    //      }
+    //      else{
+    //        //save resource
+    //        saveResource(newResource, pgpResources);
+    //      }
+    //    }
+    //  }
+    //});
+    //var selResources = document.getElementById('resources');
+    //selResources.addEventListener('click', function(e){
+    //  if (e.altKey) {
+    //    removeResource(e);
+    //  }
+    //});
 
   }
 
