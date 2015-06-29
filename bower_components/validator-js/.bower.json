@@ -1,7 +1,7 @@
 {
   "name": "validator-js",
   "main": "validator.js",
-  "version": "3.22.0",
+  "version": "3.22.2",
   "homepage": "https://github.com/chriso/validator.js",
   "authors": [
     "Chris O'Hara <cohara87+gh@gmail.com>"
@@ -15,14 +15,13 @@
     "test",
     "tests"
   ],
-  "_release": "3.22.0",
+  "_release": "3.22.2",
   "_resolution": {
     "type": "version",
-    "tag": "3.22.0",
-    "commit": "b8949f5ec3beeb4f3ade604170f7dc2fb95f880d"
+    "tag": "3.22.2",
+    "commit": "ae9ef3ccc2c9cf92f5954d65c0b1612b008dcbbc"
   },
   "_source": "git://github.com/chriso/validator.js.git",
   "_target": "~3.22.0",
-  "_originalSource": "validator-js",
-  "_direct": true
+  "_originalSource": "validator-js"
 }

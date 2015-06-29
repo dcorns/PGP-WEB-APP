@@ -8,3 +8,4 @@ test/angular-testbundle.js
 build/
 .idea/
 npm-debug.log
+bower_components/

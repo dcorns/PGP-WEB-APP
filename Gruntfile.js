@@ -40,6 +40,12 @@ module.exports = function (grunt) {
         dest: 'build/',
         filter: 'isFile'
       },
+      cpBower:{
+        expand: true,
+        src: ['bower_components/**/*.*'],
+        dest: 'build/',
+        filter: 'isFile'
+      },
       production: {
         expand: true,
         cwd: 'app/',
@@ -134,7 +140,7 @@ module.exports = function (grunt) {
       }
     }
   });
-  grunt.registerTask('build:dev', ['clean:dev','add_view:dev', 'browserify:dev', 'copy:dev']);
+  grunt.registerTask('build:dev', ['clean:dev','add_view:dev', 'browserify:dev', 'copy:dev', 'copy:cpBower']);
   grunt.registerTask('build:production', ['clean:production', 'browserify:production', 'copy:production']);
   grunt.registerTask('angulartest', ['browserify:angulartest', 'karma:unit']);
   grunt.registerTask('angulartestwatch', ['angulartest', 'watch:angulartest']);
