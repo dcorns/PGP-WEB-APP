@@ -1,6 +1,6 @@
 {
   "name": "code-fellows-pgp",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "Track student learning objectives",
   "main": "server.js",
   "engines": {
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/codefellows/PGP-Web-App"
+    "url": "https://github.com/dcorns/PGP-WEB-APP"
   },
-  "author": "",
+  "author": "codefellow <codefellow@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/codefellows/PGP-Web-App/issues"
+    "url": "https://github.com/dcorns/PGP-WEB-APP/issues"
   },
-  "homepage": "https://github.com/codefellows/PGP-Web-App",
+  "homepage": "https://github.com/dcorns/PGP-WEB-APP",
   "dependencies": {
     "bcryptjs": "latest",
     "body-parser": "^1.6.3",
