@@ -3,6 +3,8 @@
  * Created by dcorns on 6/1/15.
  */
 'use strict';
+require ('webcomponents.js');
+var comp = require('../dgComponents');
 module.exports = function(){
   //set button visibility
   document.getElementById('btncreateaccount').style.display = 'none';
@@ -50,14 +52,10 @@ module.exports = function(){
       dgApp.dgMethod.dataLoadSelect('resources2', pgpResources, 'title');
       dgApp.dgMethod.makeFormCheckBoxGroup('rTypes', pgpTopics, 'name', 'description', 'cId');
       //register superSelect component
-      dataobj.pgpResources = pgpResources;
-      dataobj.pgpTopics = pgpTopics;
-      dataobj.titles = ['title', 'description', 'resourceLink', 'addedBy'];
-     // var ss = document.getElementById('ss');
-      document.querySelector('super-select').itemlist = pgpResources;
-      document.querySelector('super-select').associations = pgpTopics;
-      document.querySelector('super-select').displayitems = [{prop: 'title'}];
-console.dir(document.querySelector('super-select'));
+      dataobj.datalist = pgpResources;
+      dataobj.displayItems = [{prop: 'title'}, {prop: 'description', tag: 'label'}, {prop: 'link', tag: 'a'}];
+      dataobj.filterObjects = [{appliesTo: 'appliesTo'}, {name: 'HTML', id: 1}, {name: 'CSS', id: 2}, {name: 'JavaScript', id: 3}, {name: 'Data & Algorithms', id: 4}, {name: 'OOP', id: 5}, {name: 'Terminal/Console', id: 6}, {name: 'GIT', id: 7}, {name: 'General', id: 8}];
+     comp.superSelect(dataobj);
     });
   }
   function addHandlers(){
