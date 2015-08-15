@@ -1,9 +1,9 @@
 {
-  "name": "PGP-Wev-App",
-  "version": "0.0.0",
-  "homepage": "https://github.com/codefellows/sea-b20-notes",
+  "name": "PGP-Web-App",
+  "version": "0.2.0",
+  "homepage": "https://github.com/dcorns/PGP-WEB-APP",
   "authors": [
-    "toastynerd <tylermorgan86@gmail.com>"
+    "codefellow <codefellow@gmail.com>"
   ],
   "license": "MIT",
   "private": true,
