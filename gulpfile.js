@@ -42,6 +42,7 @@ gulp.task('webpackTests', function(){
 gulp.task('watch', function(){
   gulp.watch('app/**/*.js', ['webpack']);
   gulp.watch('sass/**/*.sass', ['sass']);
+  gulp.watch('app/index.html', ['copyBuild']);
 });
 
 gulp.task('sass', function(){
