@@ -1,5 +1,8 @@
 'use strict';
-var dgApp = {};
+var angular = require('angular');
+var bannerController = require('./controllers/bannerController');
+var pgpApp = angular.module('pgpApp', []);
+pgpApp.controller('bannerController', [$scope, bannerController]);
 //dgApp.homeView = require('../views/homeView');
 //dgApp.homeCtrl = require('../controllers/homeController');
 //dgApp.loginView = require('../views/loginView');

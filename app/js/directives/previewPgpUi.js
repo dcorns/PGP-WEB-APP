@@ -3,7 +3,7 @@
  * Created by dcorns on 3/4/15.
  */
 'use strict';
-var ui = require('../js/ui');
+var ui = require('../ui');
 module.exports = function(app){
   app.directive('previewPgpUi', function(){
     return {

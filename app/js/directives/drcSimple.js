@@ -3,7 +3,7 @@
  * Created by dcorns on 3/3/15.
  */
 'use strict';
-var ui = require('../js/ui');
+var ui = require('../ui');
 module.exports = function(app){
   app.directive('drcSimple', function(){
     return {
