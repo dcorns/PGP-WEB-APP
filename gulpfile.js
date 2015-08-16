@@ -10,6 +10,7 @@ var connect = require('gulp-connect');
 var glob = require('glob');
 var webpack = require('gulp-webpack');
 var karma = require('gulp-karma');
+var del = require('del');
 
 gulp.task('connect', function(){
   connect.server({
@@ -56,5 +57,20 @@ return gulp.src(['test/testmain.js'])
   }));
 });
 
+gulp.task('cleanBuild', function(){
+  del([
+    'build/**/*'
+  ])
+});
+
+gulp.task('copyBuild', function(){
+  //return gulp.src(['app/index.html', 'app/img']).pipe(gulp.dest('./build'));
+  return function(){
+    gulp.src(['app/index.html', 'app/img']).pipe(gulp.dest('./build'));
+    gulp.src(['app/img/**/*']).pipe(gulp.dest('./build/img'));
+  }();
+});
+
 gulp.task('default', ['connect', 'watch']);
 gulp.task('unitTests', ['webpackTests', 'angularTests']);
+gulp.task('buildDev', ['cleanBuild', 'copyBuild', 'webpack', 'sass']);
