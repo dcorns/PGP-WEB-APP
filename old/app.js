@@ -1,8 +1,5 @@
 'use strict';
 var angular = require('angular');
 var bannerController = require('./controllers/bannerController');
-var pgpApp = angular.module('pgpApp', [])
-  .controller('firstController', function($scope){
-  $scope.testthis = 'testthis';
-});
+var pgpApp = angular.module('pgpApp', []);
 pgpApp.controller('bannerController', ['$scope', bannerController]);

@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="pgpApp">
-<head>
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <!--<title>Personalized Growth Plan</title>-->
+    <!--<link href='http://fonts.googleapis.com/css?family=Rajdhani:400,700|Source+Code+Pro:400,700|Droid+Serif:400,700'-->
+          <!--rel='stylesheet' type='text/css'>-->
+    <!--<link href="css/base.css" type="text/css" rel="stylesheet">-->
+    <!--<link href="css/newSurvey.css" type="text/css" rel="stylesheet">-->
+    <!--<link href="css/layout.css" type="text/css" rel="stylesheet">-->
+    <!--<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico"/>-->
+<!--</head>-->
+<head lang="en">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Personalized Growth Plan</title>
-    <link href='http://fonts.googleapis.com/css?family=Rajdhani:400,700|Source+Code+Pro:400,700|Droid+Serif:400,700'
-          rel='stylesheet' type='text/css'>
-    <link href="css/base.css" type="text/css" rel="stylesheet">
-    <link href="css/newSurvey.css" type="text/css" rel="stylesheet">
-    <link href="css/layout.css" type="text/css" rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico"/>
+    <title>Angular Experiments</title>
+    <script src="bundle.js" async></script>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
-
 <body>
-<header ng-controller="banner-Controller">
+<header ng-controller="bannerController">
     <h1>{{heading}}</h1>
 </header>
+<div ng-controller="firstController">
+    {{testthis}}
+</div>
 <!--<header>-->
     <!--<img class="header-logo" src="img/logo_wText2.png" alt="logo">-->
     <!--<nav>-->
@@ -49,6 +57,6 @@
     <p class="footer_p">&copy; 2014 Dale Corns</p>
 </footer>
 
-<script src="bundle.js" async></script>
+
 </body>
 </html>
