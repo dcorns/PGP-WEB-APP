@@ -19,6 +19,7 @@
   "homepage": "https://github.com/dcorns/PGP-WEB-APP",
   "dependencies": {
     "angular": "^1.2.23",
+    "angular-route": "^1.4.4",
     "bcryptjs": "latest",
     "body-parser": "^1.6.3",
     "express": "^4.7.4",

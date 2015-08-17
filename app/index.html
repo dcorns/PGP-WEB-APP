@@ -1,124 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="pgpApp">
 <head>
     <meta charset="UTF-8" />
+    <!--Support web crawlers for angular with the following metatag-->
+    <meta name="fragment" content="!" />
     <meta content='width=device-width, initial-scale=1.0, minimum-scale=0.5 maximum-scale=1.0' name='viewport'>
     <link href="https://d5zj7rao2hm75.cloudfront.net/assets/dashboard-combined-0278e29ac1c7d3ec711c04c44a5e847b.css" media="all" rel="stylesheet" />
     <meta content="authenticity_token" name="csrf-param" />
     <meta content="frPkbE9Tm2lTQeAs4G9ffIp8/FNQ9Xn/649azjA+KXQ=" name="csrf-token" />
 </head>
 <body>
-<div id="header-container">
+<div id="header-container" ng-controller="bannerController">
     <nav id="header" class="navbar" role="navigation">
         <a id="menu-trigger" href="#"><i class="icon-align-justify"></i></a>
         <div id= "nav-container" class="container">
             <a class="navbar-brand" href="/">
                 <img src="https://d5zj7rao2hm75.cloudfront.net/assets/logos/Logo_white-e4425b6f8e755ca9e34dff34e624843a.png" alt="Code Fellows Logo" /></a>
+            <h1>{{heading}}</h1>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <!-- <li><a href="https://www.codefellows.org/bootcamps">Bootcamps</a></li> -->
-                    <li><a href="https://www.codefellows.org/calendar">Calendar</a></li>
-                    <!-- <li><a href="https://www.codefellows.org/employers">Employers</a></li> -->
-                    <li><a href="http://support.codefellows.org">Contact</a></li>
-                    <li class="active"><a href="/profile">Profile</a></li>
-                    <li id="menu-messages">
-                        <a href="/messages">
-                            Messages
-                        </a>
-                        <ul class="dropdown-menu">
-                        </ul>
+                    <li ng-repeat="item in listItems">
+                        <a href="{{item.route}}">{{item.name}}</a>
                     </li>
+                    <!--<li><a href="https://www.codefellows.org/calendar">Calendar</a></li>-->
+                    <!--<li><a href="http://support.codefellows.org">Contact</a></li>-->
+                    <!--<li class="active"><a href="/profile">Profile</a></li>-->
+                    <!--<li id="menu-messages">-->
+                        <!--<a href="/messages">-->
+                            <!--Messages-->
+                        <!--</a>-->
+                        <!--<ul class="dropdown-menu">-->
+                        <!--</ul>-->
+                    <!--</li>-->
 
-                    <!-- on hover show dropdown, when click, go to messages -->
-
-                    <li><a href="/logout">Sign out</a></li>
-                    <li><div class="header-photo">
-                        <a href="/profile" title="drcorns@hotmail.com">
-                            <img src="https://d5zj7rao2hm75.cloudfront.net/2014/02/25/00/53/46/576/HS2.jpg" alt="Dale Corns" /></a>
-                    </div></li>
+                    <!--<li><a href="/logout">Sign out</a></li>-->
+                    <!--<li><div class="header-photo">-->
+                        <!--<a href="/profile" title="drcorns@hotmail.com">-->
+                            <!--<img src="https://d5zj7rao2hm75.cloudfront.net/2014/02/25/00/53/46/576/HS2.jpg" alt="Dale Corns" /></a>-->
+                    <!--</div></li>-->
                 </ul>
             </div>
         </div>
     </nav>
 </div>
 
-<div id="sidebar">
+<div id="sidebar" ng-controller="sideBarController">
     <ul>
-        <li class="logout" >
-            <a href="/logout"><i class="icon-logout"></i> <span>Sign out</span></a>
+        <li ng-repeat="item in listItems">
+            <a href="{{item.route}}"><i class="icon-logout"></i><span>{{item.name}}</span> </a>
         </li>
-        <li class="active">
-            <a href="/dashboard"><i class="icon-home"></i> <span>Dashboard</span></a>
-        </li>
-        <li >
-            <a href="/messages"><i class="icon-envelope"></i> <span>Messages</span></a>
-        </li>
-        <li >
-            <a href="/enroll"><i class="icon-edit"></i> <span>Enroll</span></a>
-        </li>
-
-
-
-
-        <li >
-            <a href="/billing"><i class="icon-download"></i> <span>Billing</span></a>
-        </li>
-
+        <!--<li class="logout" >-->
+            <!--<a href="/logout"><i class="icon-logout"></i> <span>Sign out</span></a>-->
+        <!--</li>-->
+        <!--<li class="active">-->
+            <!--<a href="/{{listItems[0].route}}"><i class="icon-home"></i> <span>{{listItems[0].name}}</span></a>-->
+        <!--</li>-->
+        <!--<li >-->
+            <!--<a href="/messages"><i class="icon-envelope"></i> <span>Messages</span></a>-->
+        <!--</li>-->
+        <!--<li >-->
+            <!--<a href="/enroll"><i class="icon-edit"></i> <span>Enroll</span></a>-->
+        <!--</li>-->
+        <!--<li >-->
+            <!--<a href="/billing"><i class="icon-download"></i> <span>Billing</span></a>-->
+        <!--</li>-->
 
     </ul>
 </div>
 
 <div id="content">
-
-    <div id="content-header">
-        <h1>Dashboard</h1>
-    </div>
-
-    <div id="breadcrumb">
-        <a href="/" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home </a>
-        <a href="#" class="current">Dashboard</a>
-    </div>
-
-
-
-    <div class="alert alert-success fadeout">
-        <a href="#" data-dismiss="alert" class="close">&times;</a>
-        Signed in successfully!
-    </div>
-
-
-    <script type="text/javascript">
-        window.setTimeout( function() { $(".fadeout").fadeOut(800); }, 4000);
-    </script>
-
-
-
-    <div class='widget-box things-to-do'>
-        <div class='widget-title'>
-<span class='icon'>
-<i class='icon-tasks'></i>
-</span>
-            <h5>Things to do</h5>
-        </div>
-        <ul class='widget-list'>
-            <li>
-                <a href='/qs/6'>
-                    Please complete the JavaScript Coding Challenge  »
-                </a>
-            </li>
-            <li>
-                <a href='/enroll'>
-                    Enroll in a Workshop, Class, Bootcamp, and/or Development Accelerator »
-                </a>
-            </li>
-            <li>
-                <a href='/profile'>
-                    Update your profile »
-                </a>
-            </li>
-        </ul>
-    </div>
-
+<div ng-view></div>
 
 </div>
 
@@ -128,6 +79,7 @@
         2015 &copy; Code Fellows, LLC---&copy; 2015 Dale Corns
     </div>
 </div>
-<script src="https://d5zj7rao2hm75.cloudfront.net/assets/dashboard-combined-6e64c401da4688d4b86c0d1b222dc6a8.js"></script>
+<!--<script src="https://d5zj7rao2hm75.cloudfront.net/assets/dashboard-combined-6e64c401da4688d4b86c0d1b222dc6a8.js"></script>-->
+<script src="bundle.js"></script>
 </body>
 </html>

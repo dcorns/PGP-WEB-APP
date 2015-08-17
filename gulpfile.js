@@ -43,6 +43,7 @@ gulp.task('watch', function(){
   gulp.watch('app/**/*.js', ['webpack']);
   gulp.watch('sass/**/*.scss', ['sass']);
   gulp.watch('app/index.html', ['copyBuild']);
+  gulp.watch('app/views/**/*.html', ['copyBuild']);
 });
 
 gulp.task('sass', function(){
@@ -69,6 +70,7 @@ gulp.task('copyBuild', function(){
   return function(){
     gulp.src(['app/index.html', 'app/img']).pipe(gulp.dest('./build'));
     gulp.src(['app/img/**/*']).pipe(gulp.dest('./build/img'));
+    gulp.src(['app/views/**/*']).pipe(gulp.dest('./build/views'));
   }();
 });
 
