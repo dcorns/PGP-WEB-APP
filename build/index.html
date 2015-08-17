@@ -18,13 +18,371 @@
 </head>
 <body>
 <header ng-controller="bannerController">
-    <h1>{{heading}}</h1>
-    <nav>
 
+    <nav class="navbar navbar-default">
+        ::before
+        <div class="container">
+            <div class="navbar-header">
+                ::before
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only"></span>
+                </button>
+                <a class="navbar-brand" href="/">Code Fellows</a>
+                ::after
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                ::before
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle disabled" data-toggle="dropdown">About <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/student-success-stories">Student Success</a></li>
+                            <li><a href="/get-a-software-development-job">The Guarantee</a></li>
+                            <li><a href="/scholarships">Scholarships</a></li>
+                            <li><a href="/code-fellows-partner-companies">Become a Partner</a></li>
+                            <li><a href="/jobs-at-code-fellows">Join our team</a></li>
+                            <li><a href="/faq">FAQ</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle disabled" data-toggle="dropdown">Courses <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/where-can-i-start-learning-to-code">Where do I start?</a></li>
+                            <li><a href="/how-to-choose-a-programming-language">How to choose a language</a></li>
+                            <li><a href="/courses/foundations-1/computer-science-and-web-development">Foundations I</a></li>
+                            <li><a href="/courses/workshops/unix-and-git">Unix &amp; Git</a></li>
+                            <li><a href="/courses/bootcamps/computer-science-and-web-development">Bootcamp</a></li>
+                            <li><a href="/learn-to-code">Foundations II</a></li>
+                            <li><a href="/courses/development-accelerators">Development Accelerators</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle disabled" data-toggle="dropdown">Locations <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/locations/learn-to-code-in-seattle">Seattle</a></li>
+                            <li><a href="/locations/learn-to-code-in-portland">Portland</a></li>
+                            <li><a href="/locations/learn-to-code-in-chicago">Chicago</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="/class-calendar" class="dropdown-toggle disabled" data-toggle="dropdown">Calendar <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/class-calendar">Upcoming Courses</a></li>
+                            <li><a href="/events-calendar">Events</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="https://panel.codefellows.org/login">Sign in</a></li>
+                    <!-- <li><a href="https://www.codefellows.org/blogs">Blog</a></li> -->
+                    <li><a class="btn btn-primary navbar-btn apply_button" style="padding-top:0.5em;padding-bottom:0.5em;margin-top: 27px;" href="https://panel.codefellows.org" target="_blank">Apply Now</a></li>
+                </ul>
+            </div>
+            ::after
+        </div>
+        ::after
     </nav>
-
+    <div class="container home-hero">
+        ::before
+        <div class="row">
+            ::before
+            <div class="home-welcome">
+                <h1>Your Opportunity <br> To Develop</h1>
+                <h2>
+                    Learn to Code<span>.&nbsp;</span>Get a Job<span>.&nbsp;</span>Guaranteed<span>.</span></h2>
+                <a class="btn btn-primary btn-lg" href="/learn-to-code">
+                    Learn More
+                </a>
+            </div>
+            ::after
+        </div>
+        ::after
+    </div>
 </header>
+<div class="container">
+    <!-- .row -->
+    <!-- .col-sm-4.col-sm-offset-4 -->
+    <!-- = newsletter_subscirption_form_group -->
+    <div class="row">
+        <div class="featured_in">
+            <header>
+                As featured in:
+            </header>
+            <ul>
+                <li>
+                    <a href="http://bits.blogs.nytimes.com/2013/08/12/code-to-joy-the-school-for-poetic-computation-opens/?_r=1" target="_blank"><img alt="Newyorktimes small" src="https://dgosxlrnzhofi.cloudfront.net/assets/newyorktimes_small-6693554f9365f6c677a36b1e75a1668a.png"></a>
+                </li>
+                <li>
+                    <a href="http://www.huffingtonpost.com/cassie-slane/women-cio_b_3561842.html?utm_hp_ref=women-in-tech" target="_blank"><img alt="Huffington small" src="https://dgosxlrnzhofi.cloudfront.net/assets/huffington_small-46807d1e944d2dcbab91326065be5654.png"></a>
+                </li>
+                <li>
+                    <a href="http://www.businessinsider.com/7-careers-you-can-switch-to-without-earning-another-degree-2013-7" target="_blank"><img alt="Business insider small" src="https://dgosxlrnzhofi.cloudfront.net/assets/business_insider_small-7211f7be5b01b8a24ca83baf832d4003.jpg"></a>
+                </li>
+                <li>
+                    <a href="http://www.king5.com/news/local/Woman-coding-bootcamp-215337331.html" target="_blank"><img alt="King5 small" src="https://dgosxlrnzhofi.cloudfront.net/assets/king5_small-8877077601d33645b1e17c99716e8b62.png"></a>
+                </li>
+                <li>
+                    <a href="http://www.techwell.com/2013/07/no-boys-allowed-women-only-ruby-rails-boot-camp" target="_blank"><img alt="Techwell small" src="https://dgosxlrnzhofi.cloudfront.net/assets/techwell_small-246603ca0ed84245f6aaf3aea283dc85.jpg"></a>
+                </li>
+                <li>
+                    <a href="http://www.usnews.com/news/stem-solutions/articles/2013/12/10/hour-of-code-initiative-engages-middle-school-girls-in-computer-science" target="_blank"><img alt="Usnews small" src="https://dgosxlrnzhofi.cloudfront.net/assets/usnews_small-58af9977da891277d316ab22e4c0a560.png"></a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="http://tech.co/code-fellows-ruby-on-rails-bootcamp-for-women-only-2013-05" target="_blank"><img alt="Techco small" src="https://dgosxlrnzhofi.cloudfront.net/assets/techco_small-05a24dc23bbb4c38136838431e7c5a52.png"></a>
+                </li>
+                <li>
+                    <a href="http://blogs.wsj.com/accelerators/2014/02/06/david-cohen-designers-are-tomorrows-scarce-resource/" target="_blank"><img alt="Marketwatch small" src="https://dgosxlrnzhofi.cloudfront.net/assets/MarketWatch_small-23036ba4092decfd35340d583aa64e45.png"></a>
+                </li>
+                <li>
+                    <a href="http://www.geekwire.com/2013/attention-lady-hackers-codefellows-debuts-womenonly-bootcamp-guarantees-60k-salary/" target="_blank"><img alt="Geekwire small" src="https://dgosxlrnzhofi.cloudfront.net/assets/geekwire_small-d0526baf5b3b4db2f8cd9f7c925e540c.png"></a>
+                </li>
+                <li>
+                    <a href="http://www.bizjournals.com/seattle/blog/techflash/2013/05/is-seattle-becoming-the-place-for.html" target="_blank"><img alt="Psbj small" src="https://dgosxlrnzhofi.cloudfront.net/assets/psbj_small-d939a37e83ae8c6966f824a836bb31bf.png"></a>
+                </li>
+                <li>
+                    <a href="http://www.nerdwallet.com/blog/nerdscholar/2013/leverage-hidden-stem-economy/" target="_blank"><img alt="Nerdscholar small" src="https://dgosxlrnzhofi.cloudfront.net/assets/nerdscholar_small-517ca2519cc75132c1be7b59b09a8c33.png"></a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="http://www.women2.com/learn-ruby-on-rails-in-a-girls-only-boot-camp/" target="_blank"><img alt="Women2 small" src="https://dgosxlrnzhofi.cloudfront.net/assets/women2_small-4949a4a946146d1e9d565a16f2071cf3.png"></a>
+                </li>
+                <li>
+                    <a href="http://finance.yahoo.com/news/code-fellows-launches-women-only-120000898.html" target="_blank"><img alt="Yahoofinance small" src="https://dgosxlrnzhofi.cloudfront.net/assets/YahooFinance_small-744378448f9334520216b60df5169d73.png"></a>
+                </li>
+                <li>
+                    <a href="http://venturebeat.com/2013/06/07/seattle-groups-launch-coding-scholarship-for-low-income-women/" target="_blank"><img alt="Venture beat small" src="https://dgosxlrnzhofi.cloudfront.net/assets/venture_beat_small-77b2f74af7b9de864fcc26d4c2940919.png"></a>
+                </li>
+                <li>
+                    <a href="http://readwrite.com/2013/06/28/bootcamp-scholarships-bootstraps-women-developers#awesm=~oa5j75R18exRky" target="_blank"><img alt="Readwrite small" src="https://dgosxlrnzhofi.cloudfront.net/assets/readwrite_small-1ee0aa77948d62e800233972cea9bbc6.png"></a>
+                </li>
+                <li>
+                    <a href="http://dailycaller.com/2013/06/20/seattle-based-tech-education-firm-offers-women-only-coding-boot-camp-real-jobs/" target="_blank"><img alt="Daily caller small" src="https://dgosxlrnzhofi.cloudfront.net/assets/daily_caller_small-16c096ecb6953e0104573a419eed5730.png"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<section id="subheader">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 mega-buttons">
+                <h4 style="font-size:22px;">
+                    <a href="/learn-to-code">Learn to code<span>&nbsp;&gt;</span>
+                    </a></h4>
+                <p style="font-family: 'SourceCodePro';">Our <em>Foundations</em> evening courses and 4-week <em>Bootcamps</em> are designed to train you how to write excellent code and give you a personalized plan for development.</p>
+            </div>
+            <div class="col-md-3 mega-buttons" onclick="window.location.assign('/courses/development-accelerators');">
+                <h4 style="font-size:22px;">
+                    <a href="/courses/development-accelerators">Take a Development Accelerator<span>&nbsp;&gt;</span>
+                    </a></h4>
+                <p style="font-family: 'SourceCodePro';">Take this hands-on, rigorous, and immersive training for eight weeks to level-up your skills.</p>
+            </div>
+            <div class="col-md-3 mega-buttons" onclick="window.location.assign('/get-a-software-development-job');">
+                <h4 style="font-size:22px;">
+                    <a href="/get-a-software-development-job">Get A Job<span>&nbsp;&gt;</span>
+                    </a></h4>
+                <p style="font-family: 'SourceCodePro';">We help students prepare to land a high-paying job with one of our partner companies (or with any organization seeking to hire software developers).</p>
+            </div>
+            <div class="col-md-3 mega-buttons" onclick="window.location.assign('/blog');">
+                <h4 style="font-size:22px;">
+                    <a href="/blog">Latest articles<span>&nbsp;&gt;</span>
+                    </a></h4>
+                <p style="font-family: 'SourceCodePro';">Our articles are tailored to a variety of skill levels. They are written by Code Fellows staff, instructors, students, alumni, and guests.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="callout">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <p>Opportunity is something we all want and need—to take a chance, to break in, and to prove our worth. We all want the chance to become our best. At Code Fellows, <b>we believe everyone deserves the opportunity to develop.</b></p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="container take-bootcamp">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <h4>
+                Take a Development Accelerator<span class="brand-accent">&gt;</span></h4>
+        </div>
+    </div>
+    <div class="row no-negative-margins">
+        <div class="col-md-2 col-md-offset-1 col-sm-6">
+            <a href="/courses/development-accelerators/python"><img alt="Dev icons python" data-icon-hover="assets/dev-icons-python-hover.png" src="https://dgosxlrnzhofi.cloudfront.net/assets/dev-icons-python-ee4bf4182f64512813cdebb620c68d82.png">
+            </a></div>
+        <div class="col-md-2 col-sm-6">
+            <a href="/courses/development-accelerators/ios"><img alt="Dev icons ios" data-icon-hover="assets/dev-icons-ios-hover.png" src="https://dgosxlrnzhofi.cloudfront.net/assets/dev-icons-ios-a968b673141d3cfcc992fe130dd70ce5.png">
+            </a></div>
+        <div class="col-md-2 col-sm-6">
+            <a href="/courses/development-accelerators/ruby-on-rails"><img alt="Dev icons ruby" data-icon-hover="assets/dev-icons-ruby-hover.png" src="https://dgosxlrnzhofi.cloudfront.net/assets/dev-icons-ruby-b8c5aa529b78319b01a3b7b1ce5178a0.png">
+            </a></div>
+        <div class="col-md-2 col-sm-6">
+            <a href="/courses/development-accelerators/full-stack-javascript"><img alt="Dev icons js" data-icon-hover="assets/dev-icons-js-hover.png" src="https://dgosxlrnzhofi.cloudfront.net/assets/dev-icons-js-d00ee4285b2fda76657c2efa371efb4b.png">
+            </a></div>
+        <div class="col-md-2 col-sm-6">
+            <a href="/courses/development-accelerators/front-end"><img alt="Dev icons ux" data-icon-hover="assets/dev-icons-ux-hover.png" src="https://dgosxlrnzhofi.cloudfront.net/assets/dev-icons-ux-f90790be1dd96aaea7bf394330fa4511.png">
+            </a></div>
+    </div>
+</section>
+<section class="foundations">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h1>
+                    Foundations in Computer Science &amp; Web Development<span class="brand-accent">.</span></h1>
+                <p>Not quite ready for a Development Accelerator? Get in-person instruction in our 4-week evening courses or a full-time Bootcamp.</p>
+                <a class="btn btn-primary" href="/learn-to-code">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="homepage-about">
+                <h3>About Code Fellows</h3>
+                <p>Code Fellows is an in-person code school offering job-ready web and mobile development training in <a href="/locations/seattle">Seattle, WA</a>, <a href="/locations/portland">Portland, OR</a>, and <a href="/locations/chicago">Chicago, IL</a>.</p>
+                <p>Developers who are ready to launch a new career or learn a new programming language can level up their skills in <a href="/development-accelerators">Development Accelerators</a>, where they receive world-class training from industry professionals in an immersive environment. Students also receive <a href="/get-a-job">job-search training</a> through practice interviews, resume help, networking, mentorship, and more.</p>
+                <p>For aspiring developers, Code Fellows offers <a href="/courses/foundations-1/computer-science-and-web-development">Foundations I</a> night courses and full-time <a href="/courses/bootcamps/computer-science-and-web-development">Bootcamps</a> that train students in the fundamentals of computer science and web development. <a href="/learn-to-code">Foundations II</a> night courses focus on intermediate training in specific programming languages.</p>
+                <p>2015 Development Accelerators are: <a href="/courses/development-accelerators/ruby-on-rails">Ruby on Rails</a>, <a href="/courses/development-accelerators/full-stack-javascript">Full-Stack Javascript</a>, <a href="/courses/development-accelerators/ios">iOS Development</a>, <a href="/courses/development-accelerators/python">Python</a>, and <a href="/courses/development-accelerators/front-end">Front-End Development</a>.</p>
+            </div>
+            <div class="partner-grid">
+                <h3>Some of Our Partners</h3>
+                <div class="appetas">
+                    <a href="http://www.appetas.com" target="_blank">link to appetas</a>
+                </div>
+                <div class="aws">
+                    <a href="http://aws.amazon.com" target="_blank">link to Amazon Web Services</a>
+                </div>
+                <div class="bigdoor">
+                    <a href="http://bigdoor.com" target="_blank">link to Bigdoor</a>
+                </div>
+                <div class="cheez">
+                    <a href="http://www.cheezburger.com/" target="_blank">link to cheez burger</a>
+                </div>
+                <div class="facebook">
+                    <a href="http://www.facebook.com/" target="_blank">link to facebook</a>
+                </div>
+                <div class="fullcircle">
+                    <a href="http://www.fullcircle.com/" target="_blank">link to full circle</a>
+                </div>
+                <div class="getty">
+                    <a href="http://www.gettyimages.com/" target="_blank">link to getty images</a>
+                </div>
+                <div class="hulu">
+                    <a href="http://www.hulu.com " target="_blank">link to hulu</a>
+                </div>
+                <div class="liquidplanner">
+                    <a href="http://www.liquidplanner.com" target="_blank">link to liquid planner</a>
+                </div>
+                <div class="moz">
+                    <a href="http://moz.com" target="_blank">link to moz</a>
+                </div>
+                <div class="snapskout">
+                    <a href="http://www.snapskout.com/" target="_blank">link to snaps kout</a>
+                </div>
+                <div class="techstars">
+                    <a href="http://www.techstars.com/" target="_blank">link to techstars</a>
+                </div>
+                <div class="wetpaint">
+                    <a href="http://www.wetpaint.com/" target="_blank">link to wetpaint</a>
+                </div>
+                <div class="whitepages">
+                    <a href="http://www.whitepages.com/" target="_blank">link to white-pages</a>
+                </div>
+                <div class="pawzii">
+                    <a href="http://www.pawzii.com/" target="_blank">link to pawzii</a>
+                </div>
+                <div class="upglobal">
+                    <a href="http://www.up.co/" target="_blank">link to up global</a>
+                </div>
+                <div class="yapta">
+                    <a href="http://www.yapta.com/" target="_blank">link to yapta</a>
+                </div>
+                <div class="devhub">
+                    <a href="http://www.devhub.com/" target="_blank">link to devhub</a>
+                </div>
+            </div>
 
+        </div>
+    </div>
+</section>
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 detail-cell hq-contact-details">
+                <!-- <a href="https://maps.google.com/maps?q=47.623561,-122.335948"> 511 Boren Ave N, Seattle, WA</a> -->
+
+                <h5>Campuses</h5>
+
+
+                <address class="hq-address" style="font-size: 0.8em; margin: .5em 0;">
+                    <a target="_blank" href="https://www.google.com/maps/place/Code+Fellows/@47.623573,-122.336069,17z/data=!3m1!4b1!4m2!3m1!1s0x5490153758c88a61:0xe3d3fd29c55db518"><strong style="font-size: 1.4em">Seattle</strong><br>
+                        511 Boren Ave N. Suite 100 <br>
+                        Seattle, WA 98109 <br>
+                        206-681-9318 <br>
+                        Visit Campus: TH, 12-1pm
+                    </a>
+                </address> <br>
+
+                <address class="hq-address" style="font-size: 0.8em; margin: .5em 0;">
+                    <a target="_blank" href="https://www.google.com/maps/place/920+SW+3rd+Ave,+Portland,+OR+97204/data=!4m2!3m1!1s0x54950a0f90bed80f:0x9b6eb286812dfb84?sa=X&amp;ei=t4TnVIy7H5KrogS6lYKADw&amp;ved=0CB8Q8gEwAA"><strong style="font-size: 1.4em">Portland</strong><br>
+                        920 SW Third Ave. <br> Floor 2 <br>
+                        Portland, OR 97204 <br>
+                        971-279-6535
+                    </a>
+                </address> <br>
+
+                <address class="hq-address" style="font-size: 0.8em; margin: .5em 0;">
+                    <a target="_blank" href="https://www.google.com/maps/place/1871/@41.888457,-87.635477,17z/data=!3m1!4b1!4m2!3m1!1s0x880e2cb6fb22d371:0x40547b2a8f2c295"><strong style="font-size: 1.4em">Chicago</strong><br>
+                        222 W Merchandise Mart Plaza <br>
+                        Floor 12 (in 1871)<br>
+                        Chicago, IL 60654</a>
+                </address> <br>
+
+
+
+                <!-- <a href="http://support.codefellows.org/" style="font-size: 1.5em;">Contact Us</a> -->
+            </div>
+            <div class="col-md-3 detail-cell hq-social-details">
+                <h5>Social Media</h5>
+                <ul class="hq-social-list">
+                    <li><a href="https://www.facebook.com/codefellows.org">Facebook</a></li>
+                    <li><a href="https://twitter.com/CodeFellows">Twitter</a></li>
+                    <li><a href="https://plus.google.com/+CodeFellowsSeattle">Google+</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 detail-cell hq-information-details">
+                <h5>Information</h5>
+                <ul class="hq-social-list">
+                    <li><a href="/courses/bootcamps">Bootcamps</a></li>
+                    <li><a href="/faq">FAQ</a></li>
+                    <li><a href="/student-success-stories">Student Success</a></li>
+                    <li><a href="/press">Press</a></li>
+                    <li><a href="/code-fellows-partner-companies">Partners</a></li>
+                    <li><a href="/jobs-at-code-fellows">Jobs</a></li>
+                    <li><a href="/privacy-policy">Privacy Policy</a></li>
+                    <li><a href="http://support.codefellows.org/customer/portal/emails/new" onclick="trackOutboundLink(this,'Outbound Links', 'Email Us'); return false;">Contact Us</a>
+                    </li></ul>
+            </div>
+            <div class="col-md-3 detail-cell hq-bootcamps">
+                <h5>Sign Up for News</h5>
+                <div class="newsletter_subscription"><div class="newsletter_subscribe_error"></div><form accept-charset="UTF-8" action="/home/subscribe_to_newsletter" class="newsletter_subscribe_form form-inline" data-remote="true" method="post" __bizdiag="1314675403" __biza="WJ__"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div><div class="form-group"><label class="sr-only" for="email">Stay Informed</label><input class="newsletter_subscribe_form_email form-control" id="email" name="email" placeholder="email" type="text" value=""></div><button class="btn btn-primary newsletter_subscribe_submit" data-disable-with="Subscribing..." name="button" type="submit">Stay Informed</button></form></div>
+            </div>
+        </div>
+        <p class="footer_p">
+            © 2015 Code Fellows, LLC. Code Fellows is a licensed Technical Education provider by the state of Washington.
+            &copy; 2015 Dale Corns
+        </p>
+    </div>
+</footer>
+<div style="display: none; visibility: hidden;"><script type="text/javascript">var $mcGoal={settings:{uuid:"27aed85ced3caa23dc6092e31",dc:"us6"}};(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.defer=!0;a.src=("https:"==document.location.protocol?"https://s3.amazonaws.com/downloads.mailchimp.com":"http://downloads.mailchimp.com")+"/js/goal.min.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();</script></div>
+<span id="buffer-extension-hover-button" style="display: none;position: absolute;z-index: 8675309;width: 100px;height: 25px;background-size: 100px 25px;opacity: 0.9;cursor: pointer;"></span>
+<img style="display: none;" src="https://cdn.bizible.com/m/ipv?_biz_r=https%3A%2F%2Fwww.codefellows.org%2Fget-a-software-development-job&amp;_biz_h=-884118237&amp;_biz_u=810eb64aced84386ce9f7fa29cc2617b&amp;_biz_s=2d44e4&amp;_biz_l=https%3A%2F%2Fwww.codefellows.org%2F&amp;_biz_t=1439752558989&amp;_biz_i=%20%C2%BB%20Code%20Fellows&amp;_biz_n=46&amp;cdn_o=a&amp;rnd=19245&amp;_biz_z=1439752558997">
 <!--<header>-->
     <!--<img class="header-logo" src="img/logo_wText2.png" alt="logo">-->
     <!--<nav>-->
@@ -50,13 +408,6 @@
     <!--<h1 class="header-h1">Self-assessment for Personalized Growth Plan</h1>-->
 <!--</header>-->
 
-<main id="main-content">
-
-</main>
-
-<footer class="footer">
-    <p class="footer_p">&copy; 2014 Dale Corns</p>
-</footer>
 
 <script src="bundle.js" async></script>
 </body>

@@ -41,12 +41,12 @@ gulp.task('webpackTests', function(){
 
 gulp.task('watch', function(){
   gulp.watch('app/**/*.js', ['webpack']);
-  gulp.watch('sass/**/*.sass', ['sass']);
+  gulp.watch('sass/**/*.scss', ['sass']);
   gulp.watch('app/index.html', ['copyBuild']);
 });
 
 gulp.task('sass', function(){
-return sass(glob.sync('sass/**/*.sass'))
+return sass(glob.sync('sass/**/*.scss'))
   .pipe(gulp.dest('./build/css/'))
 });
 
