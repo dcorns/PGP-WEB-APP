@@ -1,51 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="pgpApp">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Personalized Growth Plan</title>
-    <link href='http://fonts.googleapis.com/css?family=Rajdhani:400,700|Source+Code+Pro:400,700|Droid+Serif:400,700'
-          rel='stylesheet' type='text/css'>
-    <link href="css/base.css" type="text/css" rel="stylesheet">
-    <link href="css/newSurvey.css" type="text/css" rel="stylesheet">
-    <link href="css/layout.css" type="text/css" rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico"/>
+    <meta charset="UTF-8" />
+    <!--Support web crawlers for angular with the following metatag-->
+    <meta name="fragment" content="!" />
+    <meta content='width=device-width, initial-scale=1.0, minimum-scale=0.5 maximum-scale=1.0' name='viewport'>
+    <link href="https://d5zj7rao2hm75.cloudfront.net/assets/dashboard-combined-0278e29ac1c7d3ec711c04c44a5e847b.css" media="all" rel="stylesheet" />
+    <meta content="authenticity_token" name="csrf-param" />
+    <meta content="frPkbE9Tm2lTQeAs4G9ffIp8/FNQ9Xn/649azjA+KXQ=" name="csrf-token" />
 </head>
-
 <body>
-<header>
-    <img class="header-logo" src="img/logo_wText2.png" alt="logo">
-    <nav>
-        <h1 hidden class="hidden">Navigation</h1>
-        <ul class="nav_ul">
-            <li id="btnsurvey" class="nav_ul-li">
-                <a class="nav_ul-li-a" href="#/student_survey">Student Survey</a>
-            </li>
-            <li id="btncreatepgp" class="nav_ul-li">
-                <a class="nav_ul-li-a" href="#/create_PGP">Create PGP</a>
-            </li>
-            <li id="btnviewpgp" class="nav_ul-li">
-                <a class="nav_ul-li-a" href="#/preview_PGP">Preview PGP</a>
-            </li>
-            <li class="nav_ul-li" id="btncreateaccount">
-                <a class="nav_ul-li-a" href="#/create_Account">Create Account</a>
-            </li>
-            <li class="nav_ul-li">
-                <a class="nav_ul-li-a" href="#/login" id="btnlogin">Sign In</a>
-            </li>
-        </ul>
+<div id="header-container" ng-controller="bannerController">
+    <nav id="header" class="navbar" role="navigation">
+        <a id="menu-trigger" href="#"><i class="icon-align-justify"></i></a>
+        <div id= "nav-container" class="container">
+            <a class="navbar-brand" href="/">
+                <img src="https://d5zj7rao2hm75.cloudfront.net/assets/logos/Logo_white-e4425b6f8e755ca9e34dff34e624843a.png" alt="Code Fellows Logo" /></a>
+            <h1>{{heading}}</h1>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li ng-repeat="item in listItems">
+                        <a href="{{item.route}}">{{item.name}}</a>
+                    </li>
+                    <!--<li><a href="https://www.codefellows.org/calendar">Calendar</a></li>-->
+                    <!--<li><a href="http://support.codefellows.org">Contact</a></li>-->
+                    <!--<li class="active"><a href="/profile">Profile</a></li>-->
+                    <!--<li id="menu-messages">-->
+                        <!--<a href="/messages">-->
+                            <!--Messages-->
+                        <!--</a>-->
+                        <!--<ul class="dropdown-menu">-->
+                        <!--</ul>-->
+                    <!--</li>-->
+
+                    <!--<li><a href="/logout">Sign out</a></li>-->
+                    <!--<li><div class="header-photo">-->
+                        <!--<a href="/profile" title="drcorns@hotmail.com">-->
+                            <!--<img src="https://d5zj7rao2hm75.cloudfront.net/2014/02/25/00/53/46/576/HS2.jpg" alt="Dale Corns" /></a>-->
+                    <!--</div></li>-->
+                </ul>
+            </div>
+        </div>
     </nav>
-    <h1 class="header-h1">Self-assessment for Personalized Growth Plan</h1>
-</header>
+</div>
 
-<main id="main-content">
+<div id="sidebar" ng-controller="sideBarController">
+    <ul>
+        <li ng-repeat="item in listItems">
+            <a href="{{item.route}}"><i class="icon-logout"></i><span>{{item.name}}</span> </a>
+        </li>
+        <!--<li class="logout" >-->
+            <!--<a href="/logout"><i class="icon-logout"></i> <span>Sign out</span></a>-->
+        <!--</li>-->
+        <!--<li class="active">-->
+            <!--<a href="/{{listItems[0].route}}"><i class="icon-home"></i> <span>{{listItems[0].name}}</span></a>-->
+        <!--</li>-->
+        <!--<li >-->
+            <!--<a href="/messages"><i class="icon-envelope"></i> <span>Messages</span></a>-->
+        <!--</li>-->
+        <!--<li >-->
+            <!--<a href="/enroll"><i class="icon-edit"></i> <span>Enroll</span></a>-->
+        <!--</li>-->
+        <!--<li >-->
+            <!--<a href="/billing"><i class="icon-download"></i> <span>Billing</span></a>-->
+        <!--</li>-->
 
-</main>
+    </ul>
+</div>
 
-<footer class="footer">
-    <p class="footer_p">&copy; 2014 Dale Corns</p>
-</footer>
+<div id="content">
+<div ng-view></div>
 
-<script src="bundle.js" async></script>
+</div>
+
+
+<div class="row">
+    <div id="footer" class="col-xs-12">
+        2015 &copy; Code Fellows, LLC---&copy; 2015 Dale Corns
+    </div>
+</div>
+<!--<script src="https://d5zj7rao2hm75.cloudfront.net/assets/dashboard-combined-6e64c401da4688d4b86c0d1b222dc6a8.js"></script>-->
+<script src="bundle.js"></script>
 </body>
 </html>
