@@ -1,190 +1,133 @@
 <!DOCTYPE html>
-<html ng-app="pgpApp">
+<html lang="en">
 <head>
-    <meta name="msvalidate.01" content="765CF63A0ABDDE328978AD261A99A863"/>
-    <meta property="fb:admins" content="1105836978" />
-
-    <title> » Code Fellows</title>
-    <meta property="og:title" content=" » Code Fellows" />
-
-    <meta name="description" content="Code Fellows is a world-class code school training web and mobile developers in industry best practices, in-demand frameworks and technologies, and more." />
-    <meta property="og:description" content="Code Fellows is a world-class code school training web and mobile developers in industry best practices, in-demand frameworks and technologies, and more." />
-
-    <link data-turbolinks-track="true" href="https://dgosxlrnzhofi.cloudfront.net/assets/application-b7eb5181a26fc3c400285c18609621dd.css" media="all" rel="stylesheet" />
-    <script data-turbolinks-track="true" src="https://dgosxlrnzhofi.cloudfront.net/assets/application-5ec582e44a0a7f338deb5fa7b1537450.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-
-    <meta property="og:image" content="https://dgosxlrnzhofi.cloudfront.net/custom_page_images/production/211/page_images/Screen_Shot_2014-06-30_at_3.19.50_PM.png?1404159863"/>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
-
+    <meta charset="UTF-8" />
+    <meta content='width=device-width, initial-scale=1.0, minimum-scale=0.5 maximum-scale=1.0' name='viewport'>
+    <link href="https://d5zj7rao2hm75.cloudfront.net/assets/dashboard-combined-0278e29ac1c7d3ec711c04c44a5e847b.css" media="all" rel="stylesheet" />
     <meta content="authenticity_token" name="csrf-param" />
-    <meta content="JhBkpGuIUy3iX+p9Q+g/7mwjcVAAhhZtUwNvWNbFd50=" name="csrf-token" />
+    <meta content="frPkbE9Tm2lTQeAs4G9ffIp8/FNQ9Xn/649azjA+KXQ=" name="csrf-token" />
 </head>
-
-<body class="codefellows home">
-<!-- Google Tag Manager -->
-<noscript>
-    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WD9V56" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-</noscript>
-<header id="header-container">
-    <nav id="header" class="navbar navbar-default" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">Code Fellows</a>
-            </div>
+<body>
+<div id="header-container">
+    <nav id="header" class="navbar" role="navigation">
+        <a id="menu-trigger" href="#"><i class="icon-align-justify"></i></a>
+        <div id= "nav-container" class="container">
+            <a class="navbar-brand" href="/">
+                <img src="https://d5zj7rao2hm75.cloudfront.net/assets/logos/Logo_white-e4425b6f8e755ca9e34dff34e624843a.png" alt="Code Fellows Logo" /></a>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle disabled" data-toggle="dropdown">About <b class="caret"></b></a>
+                    <!-- <li><a href="https://www.codefellows.org/bootcamps">Bootcamps</a></li> -->
+                    <li><a href="https://www.codefellows.org/calendar">Calendar</a></li>
+                    <!-- <li><a href="https://www.codefellows.org/employers">Employers</a></li> -->
+                    <li><a href="http://support.codefellows.org">Contact</a></li>
+                    <li class="active"><a href="/profile">Profile</a></li>
+                    <li id="menu-messages">
+                        <a href="/messages">
+                            Messages
+                        </a>
                         <ul class="dropdown-menu">
-                            <li><a href="/student-success-stories">Student Success</a></li>
-                            <li><a href="/get-a-software-development-job">The Guarantee</a></li>
-                            <li><a href="/scholarships">Scholarships</a></li>
-                            <li><a href="/code-fellows-partner-companies">Become a Partner</a></li>
-                            <li><a href="/jobs-at-code-fellows">Join our team</a></li>
-                            <li><a href="/faq">FAQ</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle disabled" data-toggle="dropdown">Courses <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/where-can-i-start-learning-to-code">Where do I start?</a></li>
-                            <li><a href="/how-to-choose-a-programming-language">How to choose a language</a></li>
-                            <li><a href="/courses/foundations-1/computer-science-and-web-development">Foundations I</a></li>
-                            <li><a href="/courses/workshops/unix-and-git">Unix & Git</a></li>
-                            <li><a href="/courses/bootcamps/computer-science-and-web-development">Bootcamp</a></li>
-                            <li><a href="/learn-to-code">Foundations II</a></li>
-                            <li><a href="/courses/development-accelerators">Development Accelerators</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle disabled" data-toggle="dropdown">Locations <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/locations/learn-to-code-in-seattle">Seattle</a></li>
-                            <li><a href="/locations/learn-to-code-in-portland">Portland</a></li>
-                            <li><a href="/locations/learn-to-code-in-chicago">Chicago</a></li>
                         </ul>
                     </li>
 
-                    <li class="dropdown">
-                        <a href="/class-calendar" class="dropdown-toggle disabled" data-toggle="dropdown">Calendar <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/class-calendar">Upcoming Courses</a></li>
-                            <li><a href="/events-calendar">Events</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="/blog">Blog</a></li>
-                    <li><a href="https://panel.codefellows.org/login">Sign in</a></li>
-                    <!-- <li><a href="https://www.codefellows.org/blogs">Blog</a></li> -->
-                    <li><a class="btn btn-primary navbar-btn apply_button" style="padding-top:0.5em;padding-bottom:0.5em;margin-top: 27px;" href="https://panel.codefellows.org" target = "_blank" >Apply Now</a></li>
+                    <!-- on hover show dropdown, when click, go to messages -->
+
+                    <li><a href="/logout">Sign out</a></li>
+                    <li><div class="header-photo">
+                        <a href="/profile" title="drcorns@hotmail.com">
+                            <img src="https://d5zj7rao2hm75.cloudfront.net/2014/02/25/00/53/46/576/HS2.jpg" alt="Dale Corns" /></a>
+                    </div></li>
                 </ul>
             </div>
         </div>
     </nav>
-</header>
-<footer id="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 detail-cell hq-contact-details">
-                <!-- <a href="https://maps.google.com/maps?q=47.623561,-122.335948"> 511 Boren Ave N, Seattle, WA</a> -->
+</div>
 
-                <h5>Campuses</h5>
+<div id="sidebar">
+    <ul>
+        <li class="logout" >
+            <a href="/logout"><i class="icon-logout"></i> <span>Sign out</span></a>
+        </li>
+        <li class="active">
+            <a href="/dashboard"><i class="icon-home"></i> <span>Dashboard</span></a>
+        </li>
+        <li >
+            <a href="/messages"><i class="icon-envelope"></i> <span>Messages</span></a>
+        </li>
+        <li >
+            <a href="/enroll"><i class="icon-edit"></i> <span>Enroll</span></a>
+        </li>
 
 
-                <address class="hq-address" style="font-size: 0.8em; margin: .5em 0;">
-                    <a target="_blank" href="https://www.google.com/maps/place/Code+Fellows/@47.623573,-122.336069,17z/data=!3m1!4b1!4m2!3m1!1s0x5490153758c88a61:0xe3d3fd29c55db518"><strong style="font-size: 1.4em">Seattle</strong><br />
-                        511 Boren Ave N. Suite 100 <br />
-                        Seattle, WA 98109 <br />
-                        206-681-9318 <br />
-                        Visit Campus: TH, 12-1pm
-                    </a>
-                </address> <br />
 
-                <address class="hq-address" style="font-size: 0.8em; margin: .5em 0;">
-                    <a target="_blank" href="https://www.google.com/maps/place/920+SW+3rd+Ave,+Portland,+OR+97204/data=!4m2!3m1!1s0x54950a0f90bed80f:0x9b6eb286812dfb84?sa=X&ei=t4TnVIy7H5KrogS6lYKADw&ved=0CB8Q8gEwAA"><strong style="font-size: 1.4em">Portland</strong><br />
-                        920 SW Third Ave. <br /> Floor 2 <br />
-                        Portland, OR 97204 <br />
-                        971-279-6535
-                    </a>
-                </address> <br />
 
-                <address class="hq-address" style="font-size: 0.8em; margin: .5em 0;">
-                    <a target="_blank" href="https://www.google.com/maps/place/1871/@41.888457,-87.635477,17z/data=!3m1!4b1!4m2!3m1!1s0x880e2cb6fb22d371:0x40547b2a8f2c295"><strong style="font-size: 1.4em">Chicago</strong><br />
-                        222 W Merchandise Mart Plaza <br />
-                        Floor 12 (in 1871)</br>
-                        Chicago, IL 60654</a>
-                </address> <br />
-            </div>
-            <div class="col-md-3 detail-cell hq-social-details">
-                <h5>Social Media</h5>
-                <ul class="hq-social-list">
-                    <li><a href="https://www.facebook.com/codefellows.org">Facebook</a></li>
-                    <li><a href="https://twitter.com/CodeFellows">Twitter</a></li>
-                    <li><a href="https://plus.google.com/+CodeFellowsSeattle">Google+</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3 detail-cell hq-information-details">
-                <h5>Information</h5>
-                <ul class="hq-social-list">
-                    <li><a href="/courses/bootcamps">Bootcamps</a></li>
-                    <li><a href="/faq">FAQ</a></li>
-                    <li><a href="/student-success-stories">Student Success</a></li>
-                    <li><a href="/press">Press</a></li>
-                    <li><a href="/code-fellows-partner-companies">Partners</a></li>
-                    <li><a href="/jobs-at-code-fellows">Jobs</a></li>
-                    <li><a href="/privacy-policy">Privacy Policy</a></li>
-                    <li><a href="http://support.codefellows.org/customer/portal/emails/new" onClick= "trackOutboundLink(this,'Outbound Links', 'Email Us'); return false;">Contact Us</a>
-                </ul>
-            </div>
-            <div class="col-md-3 detail-cell hq-bootcamps">
-                <h5>Sign Up for News</h5>
-                <div class="newsletter_subscription"><div class="newsletter_subscribe_error"></div><form accept-charset="UTF-8" action="/home/subscribe_to_newsletter" class="newsletter_subscribe_form form-inline" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div><div class="form-group"><label class="sr-only" for="email">Stay Informed</label><input class="newsletter_subscribe_form_email form-control" id="email" name="email" placeholder="email" type="text" value="" /></div><button class="btn btn-primary newsletter_subscribe_submit" data-disable-with="Subscribing..." name="button" type="submit">Stay Informed</button></form></div>
-            </div>
-        </div>
-        <p class="footer_p">
-        © 2015 Code Fellows, LLC. Code Fellows is a licensed Technical Education provider by the state of Washington.
-        &copy; 2015 Dale Corns
-        </p>
+        <li >
+            <a href="/billing"><i class="icon-download"></i> <span>Billing</span></a>
+        </li>
+
+
+    </ul>
+</div>
+
+<div id="content">
+
+    <div id="content-header">
+        <h1>Dashboard</h1>
     </div>
-</footer>
-<script src="bundle.js" async></script>
+
+    <div id="breadcrumb">
+        <a href="/" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home </a>
+        <a href="#" class="current">Dashboard</a>
+    </div>
+
+
+
+    <div class="alert alert-success fadeout">
+        <a href="#" data-dismiss="alert" class="close">&times;</a>
+        Signed in successfully!
+    </div>
+
+
+    <script type="text/javascript">
+        window.setTimeout( function() { $(".fadeout").fadeOut(800); }, 4000);
+    </script>
+
+
+
+    <div class='widget-box things-to-do'>
+        <div class='widget-title'>
+<span class='icon'>
+<i class='icon-tasks'></i>
+</span>
+            <h5>Things to do</h5>
+        </div>
+        <ul class='widget-list'>
+            <li>
+                <a href='/qs/6'>
+                    Please complete the JavaScript Coding Challenge  »
+                </a>
+            </li>
+            <li>
+                <a href='/enroll'>
+                    Enroll in a Workshop, Class, Bootcamp, and/or Development Accelerator »
+                </a>
+            </li>
+            <li>
+                <a href='/profile'>
+                    Update your profile »
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+
+<div class="row">
+    <div id="footer" class="col-xs-12">
+        2015 &copy; Code Fellows, LLC---&copy; 2015 Dale Corns
+    </div>
+</div>
+<script src="https://d5zj7rao2hm75.cloudfront.net/assets/dashboard-combined-6e64c401da4688d4b86c0d1b222dc6a8.js"></script>
 </body>
 </html>
-
-<!--<header>-->
-    <!--<img class="header-logo" src="img/logo_wText2.png" alt="logo">-->
-    <!--<nav>-->
-        <!--<h1 hidden class="hidden">Navigation</h1>-->
-        <!--<ul class="nav_ul">-->
-            <!--<li id="btnsurvey" class="nav_ul-li">-->
-                <!--<a class="nav_ul-li-a" href="#/student_survey">Student Survey</a>-->
-            <!--</li>-->
-            <!--<li id="btncreatepgp" class="nav_ul-li">-->
-                <!--<a class="nav_ul-li-a" href="#/create_PGP">Create PGP</a>-->
-            <!--</li>-->
-            <!--<li id="btnviewpgp" class="nav_ul-li">-->
-                <!--<a class="nav_ul-li-a" href="#/preview_PGP">Preview PGP</a>-->
-            <!--</li>-->
-            <!--<li class="nav_ul-li" id="btncreateaccount">-->
-                <!--<a class="nav_ul-li-a" href="#/create_Account">Create Account</a>-->
-            <!--</li>-->
-            <!--<li class="nav_ul-li">-->
-                <!--<a class="nav_ul-li-a" href="#/login" id="btnlogin">Sign In</a>-->
-            <!--</li>-->
-        <!--</ul>-->
-    <!--</nav>-->
-    <!--<h1 class="header-h1">Self-assessment for Personalized Growth Plan</h1>-->
-<!--</header>-->
-
-<!--<p class="footer_p">-->
-    <!--© 2015 Code Fellows, LLC. Code Fellows is a licensed Technical Education provider by the state of Washington.-->
-    <!--&copy; 2015 Dale Corns-->
-<!--</p>-->
