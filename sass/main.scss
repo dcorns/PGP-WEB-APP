@@ -367,6 +367,13 @@ $black: rgba(0,0,0,0.75);
     background: #333333;
     color: #ffffff;
   }
+  h1.pgpHeader {
+    color: floralwhite;
+    font-size: 100px;
+  }
+  div.custom-page-header{
+    height: 500px;
+  }
 }
 @media (min-width: 768px){
   header.container{

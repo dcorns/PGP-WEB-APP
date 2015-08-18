@@ -49,7 +49,9 @@
 	__webpack_require__(5);
 	__webpack_require__(8);
 	__webpack_require__(7);
-	module.exports = __webpack_require__(6);
+	__webpack_require__(6);
+	__webpack_require__(9);
+	module.exports = __webpack_require__(12);
 
 
 /***/ },
@@ -63,7 +65,8 @@
 	var sideBarController = __webpack_require__(6);
 	var resourcesController = __webpack_require__(7);
 	var loginController = __webpack_require__(8);
-	var ngRoute = __webpack_require__(9);
+	var signupController = __webpack_require__(9);
+	var ngRoute = __webpack_require__(10);
 
 	var pgpApp = angular.module('pgpApp', ['ngRoute']);
 	pgpApp.controller('homeController', ['$scope', homeController]);
@@ -71,30 +74,10 @@
 	pgpApp.controller('sideBarController', ['$rootScope', '$scope', sideBarController]);
 	pgpApp.controller('resourcesController', ['$scope', resourcesController]);
 	pgpApp.controller('loginController', ['$scope', loginController]);
+	pgpApp.controller('signupController', ['$scope', signupController]);
 
-	pgpApp.config(['$routeProvider', function($routeProvider){
-	  $routeProvider
-	    .when('/', {
-	      templateUrl: '../views/home.html',
-	      controller: 'homeController'
-	    })
-	    .when('/home', {
-	      templateUrl: '../views/home.html',
-	      controller: 'homeController'
-	    })
-	    .when('/resources', {
-	      templateUrl: '../views/resources.html',
-	      controller: 'resourcesController'
-	    })
-	    .when('/login', {
-	      templateUrl: '../views/login.html',
-	      controller: 'loginController'
-	    })
-	    .otherwise({
-	      templateUrl: '..views/home.html',
-	      controller: 'homeController'
-	    });
-	}]);
+	__webpack_require__(12)(pgpApp);
+
 
 /***/ },
 /* 2 */
@@ -28736,6 +28719,10 @@
 	          {
 	            name:'Contact',
 	            route: 'http://support.codefellows.org'
+	          },
+	          {
+	            name: 'Sign In',
+	            route: '#login'
 	          }
 	        ];
 	        $scope.heading = 'Personal Growth Plan';
@@ -28743,11 +28730,23 @@
 	      case 'resourcesController':
 	        $scope.listItems = [
 	          {
-	            name:'Welcome',
-	            route: '#home'
+	            name:'Sign In',
+	            route: '#login'
 	          }
 	        ];
 	        $scope.heading = 'Personal Growth Plan';
+	        break;
+	      case 'loginController':
+	        $scope.listItems = [
+	          {
+	            name:'Calendar',
+	            route: 'https://www.codefellows.org/calendar'
+	          },
+	          {
+	            name:'Contact',
+	            route: 'http://support.codefellows.org'
+	          }
+	        ];
 	        break;
 	      default:
 	        $scope.listItems = [];
@@ -28803,6 +28802,14 @@
 	        }
 	      ];
 	      break;
+	    case 'loginController':
+	      $scope.listItems = [
+	        {
+	          name:'Welcome',
+	          route: '#home'
+	        }
+	      ];
+	      break;
 	    default:
 	      $scope.listItems = [];
 	  }
@@ -28839,14 +28846,27 @@
 
 /***/ },
 /* 9 */
+/***/ function(module, exports) {
+
+	/**
+	 * signupController
+	 * Created by dcorns on 8/17/15.
+	 */
+	'use strict';
+	module.exports = function($scope){
+	  $scope.heading = 'Create An Account';
+	};
+
+/***/ },
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(10);
+	__webpack_require__(11);
 	module.exports = 'ngRoute';
 
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports) {
 
 	/**
@@ -29842,6 +29862,48 @@
 
 	})(window, window.angular);
 
+
+/***/ },
+/* 12 */
+/***/ function(module, exports) {
+
+	/**
+	 * routes.js
+	 * Created by dcorns on 8/17/15.
+	 */
+	'use strict';
+
+
+	module.exports = function(app){
+
+	  app.config(['$routeProvider', function($routeProvider){
+	    $routeProvider
+	      .when('/', {
+	        templateUrl: '../views/home.html',
+	        controller: 'homeController'
+	      })
+	      .when('/home', {
+	        templateUrl: '../views/home.html',
+	        controller: 'homeController'
+	      })
+	      .when('/resources', {
+	        templateUrl: '../views/resources.html',
+	        controller: 'resourcesController'
+	      })
+	      .when('/login', {
+	        templateUrl: '../views/login.html',
+	        controller: 'loginController'
+	      })
+	      .when('/signup', {
+	        templateUrl: '../views/signup.html',
+	        controller: 'signupController'
+	      })
+	      .otherwise({
+	        templateUrl: '..views/home.html',
+	        controller: 'homeController'
+	      });
+	  }]);
+	};
 
 /***/ }
 /******/ ]);

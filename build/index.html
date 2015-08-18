@@ -5,18 +5,19 @@
     <!--Support web crawlers for angular with the following metatag-->
     <meta name="fragment" content="!" />
     <meta content='width=device-width, initial-scale=1.0, minimum-scale=0.5 maximum-scale=1.0' name='viewport'>
-    <link href="https://d5zj7rao2hm75.cloudfront.net/assets/dashboard-combined-0278e29ac1c7d3ec711c04c44a5e847b.css" media="all" rel="stylesheet" />
+    <!--<link href="https://d5zj7rao2hm75.cloudfront.net/assets/dashboard-combined-0278e29ac1c7d3ec711c04c44a5e847b.css" media="all" rel="stylesheet" />-->
     <meta content="authenticity_token" name="csrf-param" />
     <meta content="frPkbE9Tm2lTQeAs4G9ffIp8/FNQ9Xn/649azjA+KXQ=" name="csrf-token" />
 </head>
 <body>
 <div id="header-container" ng-controller="bannerController">
     <nav id="header" class="navbar" role="navigation">
+
         <a id="menu-trigger" href="#"><i class="icon-align-justify"></i></a>
         <div id= "nav-container" class="container">
             <a class="navbar-brand" href="/">
                 <img src="https://d5zj7rao2hm75.cloudfront.net/assets/logos/Logo_white-e4425b6f8e755ca9e34dff34e624843a.png" alt="Code Fellows Logo" /></a>
-            <h1>{{heading}}</h1>
+            <h1 class="pgpHeader">{{heading}}</h1>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li ng-repeat="item in listItems">

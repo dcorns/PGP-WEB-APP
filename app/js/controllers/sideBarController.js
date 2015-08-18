@@ -29,6 +29,14 @@ $rootScope.$on('$routeChangeStart', function(evt, next){
         }
       ];
       break;
+    case 'loginController':
+      $scope.listItems = [
+        {
+          name:'Welcome',
+          route: '#home'
+        }
+      ];
+      break;
     default:
       $scope.listItems = [];
   }
