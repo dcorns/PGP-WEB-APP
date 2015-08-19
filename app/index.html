@@ -47,24 +47,9 @@
 
 <div id="sidebar" ng-controller="sideBarController">
     <ul>
-        <li ng-repeat="item in listItems">
+        <li class="active" ng-repeat="item in listItems">
             <a href="{{item.route}}"><i class="icon-logout"></i><span>{{item.name}}</span> </a>
         </li>
-        <!--<li class="logout" >-->
-            <!--<a href="/logout"><i class="icon-logout"></i> <span>Sign out</span></a>-->
-        <!--</li>-->
-        <!--<li class="active">-->
-            <!--<a href="/{{listItems[0].route}}"><i class="icon-home"></i> <span>{{listItems[0].name}}</span></a>-->
-        <!--</li>-->
-        <!--<li >-->
-            <!--<a href="/messages"><i class="icon-envelope"></i> <span>Messages</span></a>-->
-        <!--</li>-->
-        <!--<li >-->
-            <!--<a href="/enroll"><i class="icon-edit"></i> <span>Enroll</span></a>-->
-        <!--</li>-->
-        <!--<li >-->
-            <!--<a href="/billing"><i class="icon-download"></i> <span>Billing</span></a>-->
-        <!--</li>-->
 
     </ul>
 </div>
