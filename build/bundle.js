@@ -46,10 +46,14 @@
 
 	__webpack_require__(1);
 	__webpack_require__(4);
-	__webpack_require__(5);
-	__webpack_require__(8);
+	__webpack_require__(6);
+	__webpack_require__(10);
+	__webpack_require__(9);
 	__webpack_require__(7);
-	module.exports = __webpack_require__(6);
+	__webpack_require__(11);
+	__webpack_require__(5);
+	__webpack_require__(14);
+	module.exports = __webpack_require__(8);
 
 
 /***/ },
@@ -59,11 +63,12 @@
 	'use strict';
 	angular = __webpack_require__(2);
 	var bannerController = __webpack_require__(4);
-	var homeController = __webpack_require__(5);
-	var sideBarController = __webpack_require__(6);
-	var resourcesController = __webpack_require__(7);
-	var loginController = __webpack_require__(8);
-	var ngRoute = __webpack_require__(9);
+	var homeController = __webpack_require__(6);
+	var sideBarController = __webpack_require__(7);
+	var resourcesController = __webpack_require__(9);
+	var loginController = __webpack_require__(10);
+	var signupController = __webpack_require__(11);
+	var ngRoute = __webpack_require__(12);
 
 	var pgpApp = angular.module('pgpApp', ['ngRoute']);
 	pgpApp.controller('homeController', ['$scope', homeController]);
@@ -71,30 +76,10 @@
 	pgpApp.controller('sideBarController', ['$rootScope', '$scope', sideBarController]);
 	pgpApp.controller('resourcesController', ['$scope', resourcesController]);
 	pgpApp.controller('loginController', ['$scope', loginController]);
+	pgpApp.controller('signupController', ['$scope', signupController]);
 
-	pgpApp.config(['$routeProvider', function($routeProvider){
-	  $routeProvider
-	    .when('/', {
-	      templateUrl: '../views/home.html',
-	      controller: 'homeController'
-	    })
-	    .when('/home', {
-	      templateUrl: '../views/home.html',
-	      controller: 'homeController'
-	    })
-	    .when('/resources', {
-	      templateUrl: '../views/resources.html',
-	      controller: 'resourcesController'
-	    })
-	    .when('/login', {
-	      templateUrl: '../views/login.html',
-	      controller: 'loginController'
-	    })
-	    .otherwise({
-	      templateUrl: '..views/home.html',
-	      controller: 'homeController'
-	    });
-	}]);
+	__webpack_require__(14)(pgpApp);
+
 
 /***/ },
 /* 2 */
@@ -28715,13 +28700,30 @@
 
 /***/ },
 /* 4 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * bannerContoller
 	 * Created by dcorns on 8/15/15.
+	 * Controller for the Header
 	 */
 	'use strict';
+	module.exports = function($rootScope, $scope){
+	  __webpack_require__(5)($rootScope, $scope);
+
+	};
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	/**
+	 * headerMenu
+	 * Created by dcorns on 8/18/15.
+	 * Change menu controls based on the name of the controller being routed
+	 */
+	'use strict';
+
 	module.exports = function($rootScope, $scope){
 	  var ctrl = 'homeController';
 	  $rootScope.$on('$routeChangeStart', function(evt, next){
@@ -28736,6 +28738,10 @@
 	          {
 	            name:'Contact',
 	            route: 'http://support.codefellows.org'
+	          },
+	          {
+	            name: 'Sign In',
+	            route: '#login'
 	          }
 	        ];
 	        $scope.heading = 'Personal Growth Plan';
@@ -28743,11 +28749,23 @@
 	      case 'resourcesController':
 	        $scope.listItems = [
 	          {
-	            name:'Welcome',
-	            route: '#home'
+	            name:'Sign In',
+	            route: '#login'
 	          }
 	        ];
 	        $scope.heading = 'Personal Growth Plan';
+	        break;
+	      case 'loginController':
+	        $scope.listItems = [
+	          {
+	            name:'Calendar',
+	            route: 'https://www.codefellows.org/calendar'
+	          },
+	          {
+	            name:'Contact',
+	            route: 'http://support.codefellows.org'
+	          }
+	        ];
 	        break;
 	      default:
 	        $scope.listItems = [];
@@ -28756,7 +28774,7 @@
 	};
 
 /***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports) {
 
 	/**
@@ -28769,8 +28787,8 @@
 	};
 
 /***/ },
-/* 6 */
-/***/ function(module, exports) {
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * sideBarController
@@ -28778,41 +28796,61 @@
 	 * This controller is for changing side bar navigation based on route that is called
 	 */
 	'use strict';
-	module.exports = function($scope, $rootScope, $location){
-	  var ctrl = 'homeController';
-	$rootScope.$on('$routeChangeStart', function(evt, next){
-	  ctrl = next.$$route.controller;
-	  switch(ctrl){
-	    case 'homeController':
-	      $scope.listItems = [
-	        {
-	          name:'Welcome',
-	          route: '#home'
-	        },
-	        {
-	          name:'Resources',
-	          route: '#resources'
-	        }
-	      ];
-	      break;
-	    case 'resourcesController':
-	      $scope.listItems = [
-	        {
-	          name:'Welcome',
-	          route: '#home'
-	        }
-	      ];
-	      break;
-	    default:
-	      $scope.listItems = [];
-	  }
-	});
-
-
+	module.exports = function($scope, $rootScope){
+	  __webpack_require__(8)($scope, $rootScope);
 	};
 
 /***/ },
-/* 7 */
+/* 8 */
+/***/ function(module, exports) {
+
+	/**
+	 * sidebarMenu
+	 * Created by dcorns on 8/18/15.
+	 */
+	'use strict';
+
+	module.exports = function($scope, $rootScope){
+	  var ctrl = 'homeController';
+	  $rootScope.$on('$routeChangeStart', function(evt, next){
+	    ctrl = next.$$route.controller;
+	    switch(ctrl){
+	      case 'homeController':
+	        $scope.listItems = [
+	          {
+	            name:'Welcome',
+	            route: '#home'
+	          },
+	          {
+	            name:'Resources',
+	            route: '#resources'
+	          }
+	        ];
+	        break;
+	      case 'resourcesController':
+	        $scope.listItems = [
+	          {
+	            name:'Welcome',
+	            route: '#home'
+	          }
+	        ];
+	        break;
+	      case 'loginController':
+	        $scope.listItems = [
+	          {
+	            name:'Welcome',
+	            route: '#home'
+	          }
+	        ];
+	        break;
+	      default:
+	        $scope.listItems = [];
+	    }
+	  });
+	};
+
+/***/ },
+/* 9 */
 /***/ function(module, exports) {
 
 	/**
@@ -28825,7 +28863,7 @@
 	};
 
 /***/ },
-/* 8 */
+/* 10 */
 /***/ function(module, exports) {
 
 	/**
@@ -28838,15 +28876,28 @@
 	};
 
 /***/ },
-/* 9 */
+/* 11 */
+/***/ function(module, exports) {
+
+	/**
+	 * signupController
+	 * Created by dcorns on 8/17/15.
+	 */
+	'use strict';
+	module.exports = function($scope){
+	  $scope.heading = 'Create An Account';
+	};
+
+/***/ },
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(10);
+	__webpack_require__(13);
 	module.exports = 'ngRoute';
 
 
 /***/ },
-/* 10 */
+/* 13 */
 /***/ function(module, exports) {
 
 	/**
@@ -29842,6 +29893,48 @@
 
 	})(window, window.angular);
 
+
+/***/ },
+/* 14 */
+/***/ function(module, exports) {
+
+	/**
+	 * routes.js
+	 * Created by dcorns on 8/17/15.
+	 */
+	'use strict';
+
+
+	module.exports = function(app){
+
+	  app.config(['$routeProvider', function($routeProvider){
+	    $routeProvider
+	      .when('/', {
+	        templateUrl: '../views/home.html',
+	        controller: 'homeController'
+	      })
+	      .when('/home', {
+	        templateUrl: '../views/home.html',
+	        controller: 'homeController'
+	      })
+	      .when('/resources', {
+	        templateUrl: '../views/resources.html',
+	        controller: 'resourcesController'
+	      })
+	      .when('/login', {
+	        templateUrl: '../views/login.html',
+	        controller: 'loginController'
+	      })
+	      .when('/signup', {
+	        templateUrl: '../views/signup.html',
+	        controller: 'signupController'
+	      })
+	      .otherwise({
+	        templateUrl: '..views/home.html',
+	        controller: 'homeController'
+	      });
+	  }]);
+	};
 
 /***/ }
 /******/ ]);

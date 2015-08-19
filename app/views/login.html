@@ -1,14 +1,37 @@
 
-    <article class="userLogin">
-        <form class="userLogin_form">
-            <fieldset>
-                <legend>User Login</legend>
-                <label class="loginUser_form-lbl">Email Address</label>
-                    <input id="username" class="loginUser_form-textarea" placeholder="email address" type="email"
-                       >
-                <label class="newUser_form-lbl">Password</label>
-                <input id="password" placeholder="password" type="password">
-            </fieldset>
-        </form>
-        <button id="btnLogin">Submit</button>
-    </article>
+<article id="loginbox">
+
+    <form accept-charset="UTF-8" action="/login" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="frPkbE9Tm2lTQeAs4G9ffIp8/FNQ9Xn/649azjA+KXQ=" /></div>
+        <p>Please sign in to continue:</p>
+        <div class="input-group input-sm">
+            <span class="input-group-addon"><i class="icon-user"></i></span><input class="form-control" type="email" name="email" id="email" placeholder="Email" />
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="icon-lock"></i></span><input class="form-control" type="password" name="password" id="password" placeholder="Password" />
+        </div>
+        <div class="form-actions clearfix">
+            <div class="pull-left">
+                <a href="#signup" class="flip-link to-register blue">Create new account</a>
+            </div>
+            <div class="pull-right">
+                <a href="/reset-password" class="flip-link to-recover grey">Lost password?</a>
+            </div>
+            <input type="submit" class="btn btn-block btn-primary btn-default" value="Sign in" id="login_submit" />
+        </div>
+        <div class="footer-login">
+            <div class="pull-left text">
+                Sign in with:
+            </div>
+            <div class="pull-right btn-social">
+                <a class="btn btn-linkedin" href="https://panel.codefellows.org/login-via-linkedin"><i class="icon-linkedin"></i></a>
+                <a class="btn btn-github" href="https://panel.codefellows.org/login-via-github"><i class="icon-github"></i></a>
+                <a class="btn btn-facebook" href="https://panel.codefellows.org/login-via-facebook"><i class="icon-facebook"></i></a>
+                <a class="btn btn-twitter" href="https://panel.codefellows.org/login-via-twitter"><i class="icon-twitter"></i></a>
+                <a class="btn btn-google-plus" href="https://panel.codefellows.org/login-via-google"><i class="icon-google-plus"></i></a>
+
+            </div>
+        </div>
+
+    </form>
+
+</article>

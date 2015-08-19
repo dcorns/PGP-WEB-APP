@@ -12,11 +12,12 @@
 <body>
 <div id="header-container" ng-controller="bannerController">
     <nav id="header" class="navbar" role="navigation">
+
         <a id="menu-trigger" href="#"><i class="icon-align-justify"></i></a>
         <div id= "nav-container" class="container">
             <a class="navbar-brand" href="/">
                 <img src="https://d5zj7rao2hm75.cloudfront.net/assets/logos/Logo_white-e4425b6f8e755ca9e34dff34e624843a.png" alt="Code Fellows Logo" /></a>
-            <h1>{{heading}}</h1>
+            <h1 class="pgpHeader">{{heading}}</h1>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li ng-repeat="item in listItems">
