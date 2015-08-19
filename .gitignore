@@ -3,7 +3,7 @@ node_modules/
 app/bower_components/
 db/
 test/testbundle.js
-test/bundle.js
+test/testmain.js
 test/angular-testbundle.js
 build/
 .idea/

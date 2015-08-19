@@ -30,13 +30,24 @@ gulp.task('webpack', function(){
 });
 
 gulp.task('webpackTests', function(){
-  return gulp.src(glob('app/test/**/*._test.js'))
+  return gulp.src(glob.sync('test/**/*_test.js'))
     .pipe(webpack({
       output: {
         filename: 'testmain.js'
       }
     }))
-    .pipe(gulp.dest('./app/test'));
+    .pipe(gulp.dest('test'));
+});
+
+gulp.task('angularTests', ['webpackTests'], function(){
+  return gulp.src(['test/testmain.js'])
+    .pipe(karma({
+      configFile: 'karma.conf.js',
+      action: 'run'
+    }));
+  //.on('error', function(err){
+  //  throw err;
+  //});
 });
 
 gulp.task('watch', function(){

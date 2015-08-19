@@ -9,18 +9,18 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine','browserify'],
-
-    browserify: {
-      watch: true
-    },
+    frameworks: ['jasmine'],
 
     // list of files / patterns to load in the browser
     files: [
-      './app/js/*.js',
-      './app/controllers/*.js',
-      './bower_components/angular-mocks/angular-mocks.js',
-      //'./test/angular/*.test.js'
+      './app/js/**/*.js',
+      './app/models/*.js',
+      './app/views/*.html',
+      'test/**/*_test.js',
+      'node_modules/**/*'
+      //'node_modules/angular/angular.js',
+      //'node_modules/angular-route/angular-route.js',
+      //'node_modules/angular-mocks/angular-mocks.js'
 
     ],
 
@@ -31,9 +31,8 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-    './app/js/*.js': ['coverage', 'browserify']
+    './app/js/**/*.js': ['coverage', 'webpack']
     },
-
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
@@ -60,11 +59,11 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome', 'Firefox', 'PhantomJS'],
+    browsers: ['Chrome'],//, 'Firefox', 'PhantomJS'],
 
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
     singleRun: false
-  } );
+  });
 };

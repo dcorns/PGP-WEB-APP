@@ -48,7 +48,9 @@
     "karma-mocha": "^0.1.8",
     "karma-phantomjs-launcher": "^0.1.4",
     "karma-safari-launcher": "^0.1.1",
+    "karma-webpack": "^1.7.0",
     "mocha": "^1.21.4",
-    "sinon": "^1.10.3"
+    "sinon": "^1.10.3",
+    "webpack": "^1.11.0"
   }
 }
