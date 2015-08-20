@@ -1,5 +1,5 @@
 'use strict';
-angular = require('angular');
+var angular = require('angular');
 var bannerController = require('./controllers/bannerController');
 var homeController = require('./controllers/homeController');
 var sideBarController = require('./controllers/sideBarController');
